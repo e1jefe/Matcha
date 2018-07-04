@@ -1,3 +1,5 @@
 Hola, mi amigo!
-Hola, mi amiga! Trabajadorses
-Kaka, Lala
+Hola, mi amiga! Trabajadorses!
+Hasta la vista!
+Me yamo Ira
+Privet
