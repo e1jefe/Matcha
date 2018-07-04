@@ -1,2 +1,3 @@
 Hola, mi amigo!
-Hola, mi amiga! Trabajadorses
+Hola, mi amiga! Trabajadorses!
+Hasta la vista!
