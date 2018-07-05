@@ -1,0 +1,127 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Changa+One|Comfortaa|Concert+One|Merriweather|Rozha+One');
+/* End Fonts */
+*{transition: all .3s linear; box-sizing: border-box;}
+/*body{*/
+    /*!*   background-color: #fbc2eb; *!*/
+
+
+    /*background-image: linear-gradient( 135deg, #fbc2eb 10%, #FF52E5 100%);*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    /*font-family: 'Comfortaa', cursive;*/
+
+/*}*/
+.con {
+    height: calc(100vh - 189px);
+    font-family: 'Ubuntu', sans-serif;
+}
+.card {
+    width: 700px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.56);
+    margin: 10px auto 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 5%;
+}
+.card-about{
+    width: 40%;
+    height: 100%;
+    float: left;
+    background: url(https://s-media-cache-ak0.pinimg.com/736x/f7/cf/e1/f7cfe19050679efd4fa855ab99461ac4.jpg);
+    background-size: cover;
+    color: #649DAD;
+    font-family: 'Ubuntu', sans-serif;
+    /*   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+}
+/* about p*/
+.card-about h1, .card-about p {margin-top: 40px; color: #518894;}
+.card-about h1 {
+    font-size: 32px;
+}
+/* form */
+form.sign-in {
+    width: 60%;
+    height: 100%;
+    float: right;
+    overflow: hidden;
+    background-color: rgba(246, 198, 198, 0.7);
+}
+/* input[type=text] */
+form .inputs input {
+    width: 45%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-family: 'Comfortaa', cursive;
+    border: none;
+    outline: none;
+    background: rgba(0,0,0,0.140);
+    border-radius: 5px;
+
+}
+input[type]:focus {
+    background: rgba(0,0,0,0.40);
+    color: #FFF;
+}
+
+
+.submit {
+    background: transparent;
+    border: 2px solid #DEC8F6;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 10px 0 95px 0;
+    font-family: 'Comfortaa', cursive;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+.submit::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height:0;
+    background: rgba(0,0,0,0.32);
+    top:0;
+    left:0;
+    z-index:-1;
+    transition: all 0.3s;
+    content: '';
+    position: absolute;
+}
+.submit:hover:before{
+    height:100%;
+}
+/* terms */
+
+/* p  */
+.terms p{
+    font-size: 80%;
+    display: inline-block;
+}
+.terms i {
+    text-decoration: underline;
+    color:#771B66;
+    cursor: pointer;
+}
+.terms i:hover{color:#96F;}
+
+
+/* .login */
+.login {margin-top: 30px;}
+#login p {
+    font-size: 80%;
+}
+
+#login a{
+    font-weight: bolder;
+    text-decoration: underline;
+    color:#771B66;
+    cursor: pointer;
+}
+#login a:hover{color:#96F;}

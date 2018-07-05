@@ -1,15 +1,23 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 
-require 'vendor/autoload.php';
+//PDO::ERRMODE_EXCEPTION;
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-$app = new \Slim\App;
-$app->get('/hello', function (Request $request, Response $response, array $args) {
-    $name = "Ya hochu spattttttttttt";
-    $response->getBody()->write("$name");
+define('ROOT', dirname(__FILE__));
 
-    return $response;
+use application\components\Router;
+use application\components\Db;
+
+spl_autoload_register(function ($class) {
+    $path = str_replace('\\', '/', $class.'.php');
+    if (file_exists($path))
+    {
+        require $path;
+    }
 });
-$app->run();
-?>
+
+session_start();
+
+$router = new Router;
+$router->run();

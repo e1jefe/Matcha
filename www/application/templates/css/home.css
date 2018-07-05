@@ -1,0 +1,117 @@
+.top {
+    line-height: 50px;
+    background: #fae5d2;
+    border: 1px solid #f7d8ba;
+}
+
+    .logo {
+        display: inline-block;
+        font-family: 'Ballpark', sans-serif;;
+        font-size: 2em;
+        color: #365b63;
+        margin: 0 10px;
+        padding: 0 10px;
+    }
+
+        .logo-txt {
+            margin: 0;
+        }
+
+    .menu-unknown {
+        display: inline-block;
+        float: right;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+        .menu-unknown a, .logo a {
+            outline: none;
+            color: #365b63;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+            .menu-unknown a {
+                padding: 0 5px;
+            }
+
+            .menu-unknown a:hover {
+                background-color: #fcf2e8;
+            }
+
+            .menu-unknown a.login {
+                text-transform: initial;
+                font-style: italic;
+            }
+
+button {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+footer {
+    text-align: left;
+    background-color: #fae5d2;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    line-height: 40px;
+    color: #365b63;
+    font-size: 0.8em;
+    padding-left: 5px;
+}
+
+@media only screen and (max-width: 454px) {
+    .top {
+        line-height: 35px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .menu-unknown a:nth-child(1) {
+        margin-right: 5px;
+    }
+    footer {
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 400px) {
+
+    footer {
+        font-size: 10px;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 333px) {
+    .menu-unknown {
+        font-size: 11px;
+    }
+    footer {
+        text-align: center;
+        font-size: 8px;
+    }
+}
