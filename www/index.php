@@ -1,5 +1,6 @@
 <?php
-"just to change smthing becouse need to commit";
+
+"blyat'";
 
 //PDO::ERRMODE_EXCEPTION;
 ini_set('display_errors', 1);
