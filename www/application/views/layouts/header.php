@@ -19,8 +19,8 @@
 				Logout
 			</a>
 		<?php else: ?>
-			<a href="http://localhost:8001/user/login">
-				Log/Sign in
+			<a href="http://localhost:8001/login">
+				Login
 			</a>
 		<?php endif; ?>
 	</nav>

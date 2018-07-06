@@ -47,13 +47,13 @@ return [
 		'action' => 'singlePhoto',
 	],
 
-	'user/login' => [
-		'controller' => 'user',
+	'login' => [
+		'controller' => 'authorization',
 		'action' => 'login',
 	],
 
-	'user/signin' => [
-		'controller' => 'user',
+	'signin' => [
+		'controller' => 'authorization',
 		'action' => 'signin',
 	],
 

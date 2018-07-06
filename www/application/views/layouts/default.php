@@ -9,7 +9,7 @@
 		minimum-scale=1,
 		maximum-scale=1,
 		user-scalable=0"/>
-	<link rel="icon" type="image/png" href="application/templates/img/favicon.ico">
+	<link rel="icon" type="image/png" href="/application/templates/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/application/templates/css/font.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext" rel="stylesheet">

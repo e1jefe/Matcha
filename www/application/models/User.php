@@ -20,13 +20,21 @@ class User extends Model
 
 	public function extractUsersByEmail($str)
 	{
-		$res = $this->db->row("SELECT * FROM users WHERE email='$str'");
+        $res = $this->db->row("SELECT * FROM users WHERE email='$str'");
 		return $res;
 	}
 
-	public function insertNewUser($str)
+	public function insertNewUser($arr)
 	{
-		$res = $this->db->query($str);
+        $login = $arr['login'];
+        $password = $arr['pass'];
+        $email = $arr['email'];
+        $firstName = $arr['firstName'];
+        $lastName = $arr['lastName'];
+        $token = $arr['token'];
+	    $sql = "INSERT INTO users (login, password, email, firstName, lastName, token, isEmailConfirmed) VALUES ('$login', '$password', '$email', '$firstName', '$lastName', '$token', '0')";
+		$res = $this->db->query($sql);
+		return $res;
 	}
 
 	public function insertUserSubscription($str)

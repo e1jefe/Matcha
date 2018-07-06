@@ -31,26 +31,32 @@
     <div class="card">
         <div class="card-about">
             <h1>Sign up</h1>
-            <!--       <h2>oDsoky .<span>inc</span></h2> -->
             <p>Join Our Community</p>
         </div>
-        <form autocomplete="off" class="sign-in">
+        <form autocomplete="off" class="sign-in" method="post">
 
             <div class="inputs">
-                <!--         <i class="fa fa-envelope-o" aria-hidden="true"></i> -->
-                <input type="text" placeholder="First Name" required/>
-                <input type="text" placeholder="Last Name"/>
-
-                <input type="text" placeholder="UserName" required/>
-                <input type="text" placeholder="Email" required/>
-
-                <input type="password" placeholder="Password" required/>
-                <input type="password" placeholder="Confirm Password" required/>
+                <div data-tip="Only latin letters">
+                    <input class="withTip" type="text" placeholder="First Name" name="fname" pattern="[A-Za-z]+" required/>
+                </div>
+                <div data-tip="Only latin letters">
+                    <input class="withTip" type="text" placeholder="Last Name" name="lname" pattern="[A-Za-z]+" required/>
+                </div>
+                <div data-tip="Input at least 5 characters">
+                    <input class="withTip" type="text" placeholder="UserName" name="userName"/>
+                </div>
+                <div data-tip="We will send you an activation link">
+                    <input class="withTip" type="email" placeholder="Email" name="email" required/>
+                </div>
+                <div data-tip="Input at least 7 characters and 1 uppercase letter">
+                    <input class="withTip" type="password" placeholder="Password" name="pass" required/>
+                </div>
+                <input type="password" placeholder="Confirm Password" name="cpass" required/>
             </div>
 
             <!--       terms -->
             <div class="terms">
-                <input type="checkbox" id="signing" name="signing">
+                <input type="checkbox" id="signing" name="agree" required/>
                 <label for="signing"><p>i agree with <i>terms and conditions</i></p></label>
             </div>
 

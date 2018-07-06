@@ -8,39 +8,9 @@ use application\components\Db;
 
 class UserController extends Controller
 {
-	public function generateToken()
-	{
-		$token = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!$/()*";
-		$token = str_shuffle($token);
-		$token = substr($token, 0, 20);
-		return $token;
-	}
 
-	static public function sendMail($mail_to, $mail_subject, $mail_message)
-	{
-		if ($mail_to != null && $mail_subject != null && $mail_message != null)
-		{
-			$encoding = "utf-8";
-			$subject_preferences = array(
-				"input-charset" => $encoding,
-				"output-charset" => $encoding,
-				"line-length" => 76,
-				"line-break-chars" => "\r\n"
-			);
-			$from_name = "Matcha";
-			$from_mail = "Matcha@love.com";
-			// Mail header
-			$header = "Content-type: text/html; charset=".$encoding." \r\n";
-			$header .= "From: ".$from_name." <".$from_mail."> \r\n";
-			$header .= "MIME-Version: 1.0 \r\n";
-			$header .= "Content-Transfer-Encoding: 8bit \r\n";
-			$header .= "Date: ".date("r (T)")." \r\n";
-			$header .= iconv_mime_encode("Subject", $mail_subject, $subject_preferences);
-			//Send
-			$res = mail($mail_to, $mail_subject, $mail_message, $header);
-		}
-		return $res;
-	}
+
+
 
 	public function loginAction()
 	{
@@ -68,53 +38,7 @@ class UserController extends Controller
 		return true;
 	}
 
-	public function signinAction()
-	{
-		$msg = "";
-		if (isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['cpasswd']) && isset($_POST['email']))
-		{
-			$login = htmlspecialchars($_POST['login'], ENT_QUOTES);
-			$passwd = $_POST['passwd'];
-			$cpasswd = $_POST['cpasswd'];
-			$email = $_POST['email'];
-			$wrongLogin = ($login == "" || strlen($login) < 5);
-			$wrongPass = ($passwd == "" || $cpasswd != $passwd || strlen($passwd) < 7 || strlen($passwd) > 140 || preg_match("([A-Z]+)", $passwd) == false);
-			$wrongEmail = ($email == "" || filter_var($email, FILTER_VALIDATE_EMAIL) == false);
-			if ($wrongLogin || $wrongPass || $wrongEmail)
-				$msg = "Check your inputs";
-			else
-			{
-				$isLoginTaken = $this->model->extractUserByLogin($login);
-				$isEmailTaken = $this->model->extractUsersByEmail($email);
-				if (($isLoginTaken != null && $isLoginTaken[0]['isEmailConfirmed'] === '1') || ($isEmailTaken != null && $isEmailTaken[0]['isEmailConfirmed'] === '1'))
-					$isLoginTaken != null ? $msg = 'This login has already taken' : $msg = 'This email has already registered';
-				else
-				{
-					$token = $this->generateToken();
-					$hashPass = password_hash($passwd, PASSWORD_BCRYPT);
-					$sql = "INSERT INTO users (login,pass,email,isEmailConfirmed,token) VALUES ('$login', '$hashPass', '$email', '0', '$token')";
-					$this->model->insertNewUser($sql);
-					$base_url = 'http://localhost:8001/user/confirmEmail/';
-					$mail_to = $_POST["email"];
-					$mail_subject = 'Account varification';
-					$mail_message = '
-					<p>Hi '.$login.',</p>
-					<p>Thanks for registration. In order to use your account at our site, please confirm your email by following this link: '.$base_url.'email_verification?login='.$login.'&activation_code='.$token.'</p>
-					<p>Best Regards, Cramata</p>';
-					$res = $this->sendMail($mail_to, $mail_subject, $mail_message);
-					$res == true ? $msg = 'Success, check your email' : $msg = 'Something went wrong'; 
-				}
-			}       
-			$arr['msg'] = $msg;
-			$this->showMsg($arr);
-			$msg == "Success, check your email" ? header('refresh:2; url=http://localhost:8001/home') : header('refresh:2; url=http://localhost:8001/user/signin');
-		}
-		elseif (isset($_SESSION['isUser']) === false)
-			$this->view->render('');
-		else
-			$this->view->render('home');
-		return true;
-	}
+
 
 	public function confirmEmailAction() 
 	{

@@ -33,6 +33,11 @@ class View
 			echo "no such view: ".$this->path;
 	}
 
+    public function showMsg($str, $arr)
+    {
+        $this->render($str, $arr);
+    }
+
 	public static function errorCode($code)
 	{
 		if (is_numeric($code))
