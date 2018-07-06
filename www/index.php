@@ -1,4 +1,5 @@
 <?php
+"just to change smthing becouse need to commit";
 
 //PDO::ERRMODE_EXCEPTION;
 ini_set('display_errors', 1);
