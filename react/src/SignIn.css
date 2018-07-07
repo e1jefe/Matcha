@@ -21,7 +21,7 @@ body {
 }
 
 .Modal {
-  background: #5e384e;
+  background: #FFDEAD;
   border-radius: 2px;
   padding: 20px;
   width: 320px;
@@ -30,28 +30,25 @@ body {
 .Input {
   display: flex;
   flex-direction: row-reverse;
-  border-bottom: 1px solid rgba(181, 181, 181, 1);
+  border-bottom: 1px solid rgb(128,128,128);
   padding-bottom: 3px;
   margin-bottom: 5px;
 }
 .Input input {
   outline: none;
   border: 0;
-  color: #FFFCE8;
+  color: #696969;
   background: transparent;
   font-family: "Lato", sans-serif;
   flex: 1 0 auto;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 350;
 }
 .Input input:focus ~ label {
   opacity: 1;
 }
 .Input input[type='text'] ~ label::before {
-  content: "\f007";
-}
-.Input input[type='email'] ~ label::before {
-  content: "\f1fa";
+  content: "\f183";
 }
 .Input input[type='password'] ~ label::before {
   content: "\f023";
@@ -64,14 +61,14 @@ body {
 }
 .Input label::before {
   align-items: center;
-  color: #FFFCE8;
+  color: #696969;
   display: flex;
   height: 30px;
   justify-content: center;
   width: 30px;
 }
 .message {
-  color: lightgrey;
+  color: #696969;
   font-size: 13px;
   text-align: center;
   margin-top: 10px;
@@ -106,7 +103,7 @@ button:hover {
 button:active {
   transform: scale(0.99);
 }
-a:visited { color: grey; }
+a:visited { color: white; }
 .example-enter {
   margin-top: 30px;
   opacity: .01;

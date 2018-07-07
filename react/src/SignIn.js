@@ -38,8 +38,9 @@ var Modal = React.createClass({
 					<button>
 						Log in <i className="fa fa-fw fa-chevron-right"></i>
 					</button>
-					<p className="message">Not registered? <a href="">Create your account</a></p>
+					<p className="message">Not registered? <a href="http://localhost:8001/signin">Create your account</a></p>
 					<p className="message"><a href="">Forgot password?</a></p>
+					<p className="message"><a img src="../www/application/templates/img/fb+icon.png" href=""></a></p>
 				</form>
 			</div>
 		);

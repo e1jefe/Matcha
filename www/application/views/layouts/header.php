@@ -19,9 +19,11 @@
 				Logout
 			</a>
 		<?php else: ?>
-			<a href="http://localhost:8001/login">
+            <div id="root">
+            <a href="http://localhost:8001/login">
 				Login
 			</a>
+            </div>
 		<?php endif; ?>
 	</nav>
 </section>
