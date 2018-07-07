@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="3f39f45c-3dd3-4614-bae6-4e15af511982" name="Default" comment="">
+=======
+    <list default="true" id="c2c82396-c39c-4ba2-946f-b2934c5dd75b" name="Default" comment="">
+>>>>>>> origin/rout
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/.bin/acorn" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/.bin/ansi-html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/.bin/atob" afterPath="" />
@@ -23039,7 +23043,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/yargs/node_modules/string-width/readme.md" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/yargs/package.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hello-world/node_modules/yargs/yargs.js" afterPath="" />
+<<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/hola.php" afterPath="" />
+=======
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.php" afterPath="" />
+>>>>>>> origin/rout
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/create-react-app" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/envinfo" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/mime" afterPath="" />
@@ -23047,6 +23055,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/rimraf" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/semver" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/.bin/which" afterPath="" />
+<<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/hello-world/.gitignore" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/hello-world/README.md" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/hello-world/package-lock.json" afterPath="" />
@@ -23062,6 +23071,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/hello-world/src/registerServiceWorker.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/index.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.php" afterPath="$PROJECT_DIR$/www/index.php" />
+>>>>>>> origin/rout
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23070,6 +23082,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
@@ -23152,6 +23165,182 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>sendmail_from</find>
+=======
+  <component name="FavoritesManager">
+    <favorites_list name="Matcha" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.54888105">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="AuthorizationController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/www/application/controllers/AuthorizationController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="876">
+                  <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#43#81#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="php.ini" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/php.ini">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="813">
+                  <caret line="1055" column="0" lean-forward="false" selection-start-line="1055" selection-start-column="0" selection-end-line="1055" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/views/layouts/home.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Dockerfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="20" lean-forward="false" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="690">
+                  <caret line="46" column="12" lean-forward="false" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="php-mail.conf" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/php-mail.conf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ssmtp.conf" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ssmtp.conf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="15" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/views/layouts/header.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/models/User.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="26">
+                  <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+                  <folding>
+                    <marker date="1530880093000" expanded="true" signature="170:208" ph="SELECT * FRO... users" />
+                    <marker date="1530880093000" expanded="true" signature="307:350" ph="SELECT login... users" />
+                    <marker date="1530880093000" expanded="true" signature="462:500" ph="SELECT * FRO... users" />
+                    <marker date="1530880093000" expanded="true" signature="784:881" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="784:891" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="784:904" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="784:914" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="784:928" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="784:955" ph="INSERT INTO users... " />
+                    <marker date="1530880093000" expanded="true" signature="1151:1205" ph="INSERT INTO subscription... " />
+                    <marker date="1530880093000" expanded="true" signature="1296:1347" ph="SELECT * FRO... subscription" />
+                    <marker date="1530880093000" expanded="true" signature="1636:1698" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="1819:1881" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="2048:2109" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="2228:2289" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="2465:2529" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="2654:2718" ph="UPDATE subsc... " />
+                    <marker date="1530880093000" expanded="true" signature="2843:2901" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="2958:3016" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="3111:3163" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="3485:3533" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="3683:3737" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="3761:3813" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="3904:3956" ph="UPDATE users... " />
+                    <marker date="1530880093000" expanded="true" signature="4049:4089" ph="SELECT * FRO... users" />
+                    <marker date="1530880093000" expanded="true" signature="4141:4200" ph="SELECT * FRO... pics" />
+                    <marker date="1530880093000" expanded="true" signature="4404:4451" ph="SELECT user_... pics" />
+                    <marker date="1530880093000" expanded="true" signature="4509:4548" ph="SELECT login... users" />
+                    <marker date="1530880093000" expanded="true" signature="4805:4856" ph="SELECT * FRO... subscription" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="signin.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/views/authorization/signin.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="891">
+                  <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/www/index.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="48" lean-forward="false" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="authorization.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/templates/css/authorization.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>run</find>
+      <find>allowo</find>
+      <find>Loa</find>
+      <find>flo</find>
+      <find>mail f</find>
+>>>>>>> origin/rout
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -23160,6 +23349,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/arbuz.conf" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/del.php" />
@@ -23174,6 +23364,59 @@
         <option value="$PROJECT_DIR$/react/src/App.js" />
         <option value="$PROJECT_DIR$/react/src/index.js" />
         <option value="$PROJECT_DIR$/react/src/SignIn.css" />
+=======
+        <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/controllers/AboutController.php" />
+        <option value="$PROJECT_DIR$/controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/controllers/PictureController.php" />
+        <option value="$PROJECT_DIR$/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/models/Home.php" />
+        <option value="$PROJECT_DIR$/models/Picture.php" />
+        <option value="$PROJECT_DIR$/models/User.php" />
+        <option value="$PROJECT_DIR$/application/components/Controller.php" />
+        <option value="$PROJECT_DIR$/application/components/Db.php" />
+        <option value="$PROJECT_DIR$/application/components/Model.php" />
+        <option value="$PROJECT_DIR$/application/components/View.php" />
+        <option value="$PROJECT_DIR$/application/controllers/AboutController.php" />
+        <option value="$PROJECT_DIR$/application/controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/application/controllers/PictureController.php" />
+        <option value="$PROJECT_DIR$/application/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/application/models/Home.php" />
+        <option value="$PROJECT_DIR$/application/models/User.php" />
+        <option value="$PROJECT_DIR$/arbuz.conf" />
+        <option value="$PROJECT_DIR$/www/.htaccess" />
+        <option value="$PROJECT_DIR$/apache2.conf" />
+        <option value="$PROJECT_DIR$/application/components/Router.php" />
+        <option value="$PROJECT_DIR$/www/application/config/database.php" />
+        <option value="$PROJECT_DIR$/www/application/components/Router.php" />
+        <option value="$PROJECT_DIR$/www/application/controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/www/application/components/Model.php" />
+        <option value="$PROJECT_DIR$/rewrite.load" />
+        <option value="$PROJECT_DIR$/www/application/templates/css/style2.css" />
+        <option value="$PROJECT_DIR$/www/application/templates/css/font.css" />
+        <option value="$PROJECT_DIR$/www/application/templates/css/noAuthor.css" />
+        <option value="$PROJECT_DIR$/www/application/templates/css/home.css" />
+        <option value="$PROJECT_DIR$/www/application/views/layouts/default.php" />
+        <option value="$PROJECT_DIR$/www/application/views/home/notAuthorize.php" />
+        <option value="$PROJECT_DIR$/www/application/config/routes.php" />
+        <option value="$PROJECT_DIR$/www/application/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/www/application/views/user/signin.php" />
+        <option value="$PROJECT_DIR$/www/application/views/errors/404.php" />
+        <option value="$PROJECT_DIR$/www/application/templates/css/authorization.css" />
+        <option value="$PROJECT_DIR$/www/application/models/Authorization.php" />
+        <option value="$PROJECT_DIR$/www/application/components/View.php" />
+        <option value="$PROJECT_DIR$/www/application/components/Db.php" />
+        <option value="$PROJECT_DIR$/www/application/views/authorization/signin.php" />
+        <option value="$PROJECT_DIR$/www/application/models/User.php" />
+        <option value="$PROJECT_DIR$/ssmtp.conf" />
+        <option value="$PROJECT_DIR$/php.ini" />
+        <option value="$PROJECT_DIR$/php-mail.conf" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/www/application/views/layouts/header.php" />
+        <option value="$PROJECT_DIR$/www/application/controllers/AuthorizationController.php" />
+        <option value="$PROJECT_DIR$/www/index.php" />
+>>>>>>> origin/rout
       </list>
     </option>
   </component>
@@ -23183,6 +23426,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/react/node_modules" />
   </component>
@@ -23191,6 +23435,14 @@
     <option name="x" value="1627" />
     <option name="width" value="933" />
     <option name="height" value="1440" />
+=======
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="414" />
+    <option name="y" value="221" />
+    <option name="width" value="1949" />
+    <option name="height" value="1138" />
+>>>>>>> origin/rout
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -23207,26 +23459,147 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> origin/rout
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
               <item name="Matcha" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="authorization" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="errors" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="user" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> origin/rout
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+>>>>>>> origin/rout
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+=======
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/application/views/authorization" />
+      <recent name="$PROJECT_DIR$/www/application/views/layouts" />
+    </key>
+>>>>>>> origin/rout
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -23245,6 +23618,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="3f39f45c-3dd3-4614-bae6-4e15af511982" name="Default" comment="" />
       <created>1530023202667</created>
       <option name="number" value="Default" />
@@ -23268,10 +23642,22 @@
       <workItem from="1530856451023" duration="2815000" />
       <workItem from="1530874663667" duration="6705000" />
       <workItem from="1530950909424" duration="366000" />
+=======
+      <changelist id="c2c82396-c39c-4ba2-946f-b2934c5dd75b" name="Default" comment="" />
+      <created>1530721094237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1530721094237</updated>
+      <workItem from="1530721100278" duration="749000" />
+      <workItem from="1530783753969" duration="8654000" />
+      <workItem from="1530801477451" duration="10503000" />
+      <workItem from="1530868133874" duration="9954000" />
+>>>>>>> origin/rout
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="34791000" />
   </component>
   <component name="ToolWindowManager">
@@ -23281,28 +23667,51 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21746032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="29860000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="414" y="221" width="1949" height="1138" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10959622" sideWeight="0.5" order="0" side_tool="true" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/rout
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+=======
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+>>>>>>> origin/rout
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+<<<<<<< HEAD
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/rout
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.php" />
   </component>
+=======
+>>>>>>> origin/rout
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -23311,6 +23720,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -23331,10 +23741,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/application/components/Model.php" />
+    <entry file="file://$PROJECT_DIR$/application/components/View.php" />
+    <entry file="file://$PROJECT_DIR$/application/config/database.php" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/AboutController.php" />
+    <entry file="file://$PROJECT_DIR$/application/views/home/notAuthorize.php" />
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/HomeController.php" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/PictureController.php" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/UserController.php" />
+    <entry file="file://$PROJECT_DIR$/application/models/Home.php" />
+    <entry file="file://$PROJECT_DIR$/application/models/Picture.php" />
+    <entry file="file://$PROJECT_DIR$/application/models/User.php" />
+    <entry file="file://$PROJECT_DIR$/arbuz.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -23346,10 +23782,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/apache2.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="802">
+          <caret line="173" column="13" lean-forward="false" selection-start-line="173" selection-start-column="13" selection-end-line="173" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/components/Router.php" />
+    <entry file="file://$PROJECT_DIR$/www/application/views/home/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -23361,10 +23812,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/components/HomeController.php" />
+    <entry file="file://$PROJECT_DIR$/www/application/components/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="26" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/AboutController.php" />
+    <entry file="file://$PROJECT_DIR$/www/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="44" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="44" />
+>>>>>>> origin/rout
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -23376,10 +23844,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/rewrite.load">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="65" lean-forward="false" selection-start-line="0" selection-start-column="65" selection-end-line="0" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/templates/css/style2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/arbuz.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -23405,10 +23887,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/templates/css/font.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/templates/css/noAuthor.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="61" lean-forward="false" selection-start-line="72" selection-start-column="61" selection-end-line="72" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/templates/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/layouts/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+>>>>>>> origin/rout
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/arbuz.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -23434,10 +23947,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/views/home/notAuthorize.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/PictureController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="38" />
+>>>>>>> origin/rout
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/arbuz.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -23446,6 +23990,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/views/errors/404.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/layouts/showMsg.php">
+>>>>>>> origin/rout
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -23453,6 +24008,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -23464,10 +24020,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="345" column="5" lean-forward="true" selection-start-line="342" selection-start-column="4" selection-end-line="345" selection-end-column="5" />
+          <folding>
+            <element signature="e#43#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/components/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="41" lean-forward="true" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="41" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -23539,10 +24112,111 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/templates/css/authorization.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/components/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/components/Db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/components/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <marker date="1530880093000" expanded="true" signature="170:208" ph="SELECT * FRO... users" />
+            <marker date="1530880093000" expanded="true" signature="307:350" ph="SELECT login... users" />
+            <marker date="1530880093000" expanded="true" signature="462:500" ph="SELECT * FRO... users" />
+            <marker date="1530880093000" expanded="true" signature="784:881" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="784:891" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="784:904" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="784:914" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="784:928" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="784:955" ph="INSERT INTO users... " />
+            <marker date="1530880093000" expanded="true" signature="1151:1205" ph="INSERT INTO subscription... " />
+            <marker date="1530880093000" expanded="true" signature="1296:1347" ph="SELECT * FRO... subscription" />
+            <marker date="1530880093000" expanded="true" signature="1636:1698" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="1819:1881" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="2048:2109" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="2228:2289" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="2465:2529" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="2654:2718" ph="UPDATE subsc... " />
+            <marker date="1530880093000" expanded="true" signature="2843:2901" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="2958:3016" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="3111:3163" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="3485:3533" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="3683:3737" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="3761:3813" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="3904:3956" ph="UPDATE users... " />
+            <marker date="1530880093000" expanded="true" signature="4049:4089" ph="SELECT * FRO... users" />
+            <marker date="1530880093000" expanded="true" signature="4141:4200" ph="SELECT * FRO... pics" />
+            <marker date="1530880093000" expanded="true" signature="4404:4451" ph="SELECT user_... pics" />
+            <marker date="1530880093000" expanded="true" signature="4509:4548" ph="SELECT login... users" />
+            <marker date="1530880093000" expanded="true" signature="4805:4856" ph="SELECT * FRO... subscription" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssmtp.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="813">
+          <caret line="1055" column="0" lean-forward="false" selection-start-line="1055" selection-start-column="0" selection-end-line="1055" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php-mail.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="12" lean-forward="false" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+>>>>>>> origin/rout
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/react/daily-ui-sign-up-post.md" />
     <entry file="file://$PROJECT_DIR$/react/README.md">
       <provider selected="true" editor-type-id="text-editor">
@@ -23580,10 +24254,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="923">
           <caret line="106" column="25" lean-forward="false" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="20" lean-forward="false" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/layouts/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/layouts/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/models/Authorization.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+>>>>>>> origin/rout
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/react/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -23596,14 +24301,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/AuthorizationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="876">
+          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding>
+            <element signature="e#43#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/authorization/signin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="48" lean-forward="false" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
+>>>>>>> origin/rout
           <folding />
         </state>
       </provider>

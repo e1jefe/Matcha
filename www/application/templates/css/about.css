@@ -1,0 +1,63 @@
+.about {
+    background-image: url(../img/home-bground.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    height: calc(100vh - 106px);
+}
+
+    .about-title {
+        font-weight: 800;
+        font-size: 3em;
+        padding: 5% 0%;
+        text-align: center;
+    }
+
+    .about__left {
+        display: inline-block;
+        width: 33%;
+        margin: 0% 0% 20%;
+    }
+
+        .about__left p:first-child {
+            font-weight: 700;
+            font-size: 1.5em;
+            padding-bottom: 12%;
+        }
+
+        .about__left p:nth-child(2) {
+            font-weight: 300;
+            font-size: calc(12px + (22 - 14) * ((100vw - 300px) / (1600 - 300)));
+        }
+
+
+    .about__right {
+        float: right;
+        width: 43%;
+    }
+
+@media only screen and (max-width: 1600px) {
+    .about__left {
+        margin-left: 10%;
+    }
+}
+@media only screen and (max-width: 636px) {
+    .about-title {
+        font-size: 2em;
+    }
+    .about__left {
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 417px) {
+    .about-title {
+        font-size: 1em;
+    }
+    .about__left p:first-child {
+        font-size: 0.8em;
+    }
+    .about__left p:nth-child(2) {
+        font-size: 11px;
+    }
+}
