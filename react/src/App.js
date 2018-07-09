@@ -1,5 +1,5 @@
 import React from 'react';
-import './SignIn.css';
+import './App.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 var Input = React.createClass({
