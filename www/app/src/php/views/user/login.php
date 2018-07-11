@@ -1,6 +1,6 @@
 <section class="login-page">
 	<div class="form">
-		<form class="login-form" action="login" method="post">
+		<form class="login-form" action="../../index.php" method="post">
 			<p class="register-form_title">
 				Login in
 			</p>

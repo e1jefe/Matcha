@@ -21,7 +21,7 @@ use application\models\Picture;
 			Change my data
 		</button>
 		<div id="grey" onclick="show('none', 'change-user-data')"></div>
-		<form class="subscription-preferences" action="changeSubscription" method="get">
+		<form class="subscription-preferences" action="../../index.php" method="get">
 			<legend class="subscription-preferences--title">
 				Subscription preferences
 			</legend>
@@ -133,7 +133,7 @@ use application\models\Picture;
 			<h2>
 				Change my information
 			</h2>
-			<form action="changeUserData" name="f1" method="post">
+			<form action="../../index.php" name="f1" method="post">
 				<div data-tip="Input at least 5 characters">
 					<input type="text" name="loginNew" placeholder="My new login" class="input"/>
 				</div>

@@ -55,7 +55,7 @@
 	height: 400px;
 	margin: 0 auto;
 	display: block;
-	background-image: url(../../templates/img/bgr.png);
+	background-image: url(../img/bgr.png);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-color: rgba(0,0,0,0.3);

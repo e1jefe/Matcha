@@ -7,7 +7,7 @@
             The Only Human-Feline Dating App
         </h3>
         <hr>
-        <a href="signin" class="index-btn">
+        <a href="../../index.php" class="index-btn">
             <i class="paw" aria-hidden="true"></i>
             Get Started!
         </a>
