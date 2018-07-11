@@ -20,6 +20,7 @@ var Input = React.createClass({
 });
 
 var Modal = React.createClass({
+
 	render: function() {
 		return (
 			<div className="Modal">
@@ -40,7 +41,7 @@ var Modal = React.createClass({
 					</button>
 					<p className="message">Not registered? <a href="http://localhost:8001/signin">Create your account</a></p>
 					<p className="message"><a href="">Forgot password?</a></p>
-					<p className="message"><a img src="../www/application/templates/img/fb+icon.png" href=""></a></p>
+					<p className="message"><a img src="/application/templates/img/fb+icon.png" href=""></a></p>
 				</form>
 			</div>
 		);
