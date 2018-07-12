@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Ballpark';
+    src: url('./Ballpark.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Centaur';
+    src: url('./Centaur/Centaur.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('./FontAwesome.ttf') format('truetype');
+}

@@ -1,0 +1,66 @@
+* {
+    padding         : 0;
+    margin          : 0;
+    box-sizing      : border-box;
+    list-style-type : none;
+}
+
+nav.menu {
+    width: 100%;
+    overflow: hidden;
+    background-color : #F0F6FF;
+    box-shadow: 5px 5px 20px #58626E;
+}
+
+.logo {
+    font-family: 'Ballpark', sans-serif;
+    line-height: 44px;
+    font-size: 40px;
+}
+
+    .logo:hover {
+        background-color: transparent;
+    }
+
+a {
+    padding : 20px 35px;
+    display : inline-block;
+    transition: background-color 1s;
+    text-decoration: none;
+    font-family: 'Centaur', sans-serif;
+    color: #000;
+}
+a:hover{
+    background-color : #58626E;
+}
+li.item{
+  display: inline-block;
+}
+div.clearfix{
+    width : 0;
+    height : 0;
+    clear : both;
+}
+img.homeImage{
+    width : 40px;
+    height : 40px;
+}
+img.searchImage{
+    width : 40px;
+    height : 40px;
+}
+img.shopaImage{
+    width : 40px;
+    height : 40px;
+}
+img.notificationImage{
+    width : 40px;
+    height : 40px;
+}
+img.userImage{
+    width : 40px;
+    height : 40px;
+}
+.menu-right {
+    float: right;
+}
