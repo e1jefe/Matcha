@@ -41,26 +41,23 @@ div.clearfix{
     height : 0;
     clear : both;
 }
-img.homeImage{
-    width : 40px;
-    height : 40px;
-}
-img.searchImage{
-    width : 40px;
-    height : 40px;
-}
-img.shopaImage{
-    width : 40px;
-    height : 40px;
-}
-img.notificationImage{
-    width : 40px;
-    height : 40px;
-}
-img.userImage{
+img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userImage {
     width : 40px;
     height : 40px;
 }
 .menu-right {
     float: right;
+}
+@media (max-width: 465px){
+    nav.menu a {
+        padding: 10px;
+    }
+    .logo {
+        font-size: 30px;
+        line-height: inherit;
+    }
+    img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userImage { 
+        width: 30px;
+        height: 30px;
+    }
 }

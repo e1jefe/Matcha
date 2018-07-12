@@ -5,7 +5,7 @@ import '../../../fonts/fonts.css'
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {author: false};
+        this.state = {author: true};
         //this.handleChange = this.handleChange.bind(this) - some func call;
         //this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -27,7 +27,7 @@ class Nav extends Component {
                                 Purrfect Matcha
                             </a>
                         </li>
-                        <div className="menu-right">
+                        <div className="menu-right no-autho">
                             <li className="item">
                                 <a href="/login">
                                     <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>

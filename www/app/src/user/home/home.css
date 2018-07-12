@@ -61,6 +61,7 @@
             cursor: pointer;
             user-select: none;
             background-image: none;
+            font-family: 'lato', sans-serif;
         }
 
             a.index-btn:hover {
