@@ -41,38 +41,51 @@ class Nav extends Component {
         }
         else {
             return(
-                <nav className="menu">
+                <nav className="menu" role="navigation">
                     <ul>
                         <li className="item">
                             <a href="/home" className="logo">
                                 Matcha
                             </a>
                         </li>
-                        <div className="menu-right">
-                            <li className="item">
+                        <div className="menu-right" id="menuToggle">
+
+                            {/* A fake / hidden checkbox is used as click reciever,
+                            so you can use the :checked selector on it. */}
+                            <input type="checkbox" />
+                            
+                            {/* Some spans to act as a hamburger. */}
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        
+                           {/* Too bad the menu has to be inside of the button
+                            but hey, it's pure CSS magic.*/} 
+                            <ul id="menu">
                                 <a href="/myProfile">
-                                    <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
+                                    <li className="item">
+                                        <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
+                                    </li>
                                 </a>
-                            </li>
-                            <li className="item">
-                                <a href="/msg">
-                                    <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+                                <a href="msg">
+                                    <li className="item">
+                                        <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+                                    </li>
                                 </a>
-                            </li>
-                            <li className="item">
-                                <a href="/notification">
-                                    <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
+                                <a href="notification">
+                                    <li className="item">
+                                        <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
+                                    </li>
                                 </a>
-                            </li>
-                            <li className="item">
-                                <a href="/logout">
-                                    <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
+                                <a href="logout">
+                                    <li className="item">
+                                        <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
+                                    </li>
                                 </a>
-                            </li>
+                            </ul>
                         </div>
-                        <div className="clearfix"></div>
                     </ul>
-                </nav>
+                </nav>                            
             )
         }
     }
