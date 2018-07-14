@@ -18,13 +18,13 @@ class Nav extends Component {
     if the user is logged in or false when he logged out */
 
     render() {
-        if (this.state.author === false) {
+        if (this.state.author === true) {
             return(
                 <nav className="menu">
                     <ul>
                         <li className="item">
                             <a href="/home" className="logo">
-                                Purrfect Matcha
+                               Matcha
                             </a>
                         </li>
                         <div className="menu-right no-autho">
