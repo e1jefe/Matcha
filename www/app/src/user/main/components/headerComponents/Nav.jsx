@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './header.css'
-import '../../../fonts/fonts.css'
+import './header.css';
+import '../../../fonts/fonts.css';
+import { NavLink } from 'react-router-dom';
 
 class Nav extends Component {
     constructor(props) {
@@ -29,9 +30,9 @@ class Nav extends Component {
                         </li>
                         <div className="menu-right no-autho">
                             <li className="item">
-                                <a href="/login">
+                                <NavLink to="/login" onClick={this.toSigninForm}activeClassName="linkActive">
                                     <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
-                                </a>
+                                </NavLink>
                             </li>
                         </div>
                         <div className="clearfix"></div>
