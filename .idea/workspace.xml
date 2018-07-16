@@ -2,8 +2,168 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2906337-f70e-42ba-92f4-5a9484ea65c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/094d50e21e0455ab2facb9a6b39d3a847545e10e.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/2228db9a83149656dbe69cea8d91e7d7fa139dc7.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/24d46592f846c8d4ae1f6f6d2fed07294fe2e743.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/265c13e46c0afe453e5c1fe21f3f5b245b23dcb3.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/2d1449bd9324b3cfc5a94e83dd36f93504f20f3f.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/30e2f3afdf2cf7fb02957982dcb68a27ffeb7172.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/3868878475fd1c62612f2d3928c3b1a1306e6c38.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/39d3a54f1e235acc6f02686abf847c4ddc3a442c.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/3dfe176ca6c4c7fe060aa1179b7478ae72996435.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/457a7a7d9f8e16cf622f623ca0f6a130fd35a3c3.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/4a22230d695b9dd994fb948e1343663e0464cbb6.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/4afbf960d33f53d671ee5a0c5d7c05c27e7ccf0b.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/4d3542d86ae7f1b4c464939f6c1258410d446fb4.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/51b94b93b83b2cd1154fe8c9d44322f133b87fac.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/558dc76833c5128c204ad71799fbc780107d2560.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/69dc9c767a331bdb5d5333cb8021a8f315264bee.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/6d3b85c14e23ecc04042b3851837e1cce2861a1f.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/6e3e1c16fefd75e2c7d43261c7e7a9d7fb4d6850.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/6ef9d70db9438f595485b5fd5524990451a3d5dc.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/743aab3e85037b68645d0504f81d3111574cdb54.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/80ece6a2cd0476c3487121de74489afd81f2e078.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/8102315340ca37a95ec96657382e385345726fbd.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/876869089016d543c709f5f134d24226d655ff54.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/92872d86f4c3f0fe4c62c8905960bec1acf1a064.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/9638f80ca85938b6e1519119f63f825eabf7a118.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/9704ae8b9bc843718fc80228dcf9b5a5e32cd23c.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/9ad98cfb170dc3069332077b4b73f3ec96c88c90.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/9f8d58bf6bcf69281c9ca54da8b71266fa29a605.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/9fe20f02879d11afc4b3c60abc4dca7365b89ccb.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/a93c920042b3916cc79eff94fa1c1aae9777c333.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/a97cfc350c527d595d584b4ac9c96f6f992f6689.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/ae40289d2d3bee0d18cc0935b812dd7f0821812a.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/af4c66bc46e0e2e507150a067a15e87c79761921.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/b7c6863df5909d1edeb385562cc24ea16ce9828e.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/bbae1b8ce36e30a2f3a68fba835f03b985c42f76.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/bed9de37e55be0dcfe0cae85d64f961a932c39c0.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/c0b74d34a79d2280daa992c17bdd03189a941bcd.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/c274201e4d71d256c08f57e5de3be2207d2ce003.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/c360e87591828acb3e3fd9b58389c0bd053ba8e2.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/c8cd6e4f7b74dc21a1fe64b9863681407a2ee3a2.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/ca1ab5c396a6720a614785475a6939ed84ae0066.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/ca507d455041e7428fda0a2f2df69ad5a57dc159.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/ce816d6eed79161ea392f8180eeb28266618a757.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/d9b8a68e1530972a1de21738775c667ba29e220e.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/dbc59e0af0aac8ef215d361f6ffb3cba83278a28.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/dd9e86443c66bf3eedc648ed53730cc7554f959c.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/e41b94c606ad67ecc80df4834085511b38d82f43.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/e71696ca6f932d12bc267c9e9073586d2c4d7e3f.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/efc9815ff92f2716ff101189e9f6aa5542696481.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/f156248073c5738b9aa551e9d8e4d44ebd520104.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/f55155a5f4fa3b8ec0ee61bf5c8bcd9f92d4362a.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/fc4fd5781e41f8354b6010d1e11a9dc3a98f1b2e.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/node_modules/.cache/babel-loader/fdc33989b74f18bb37161733977f8f613e7c03b0.json.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chain-function/.gitattributes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chain-function/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chain-function/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chain-function/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chain-function/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/activeElement.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/class/addClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/class/hasClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/class/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/class/removeClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/events/filter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/events/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/events/listen.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/events/off.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/events/on.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/ownerDocument.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/ownerWindow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/closest.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/contains.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/height.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/isWindow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/matches.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/offset.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/offsetParent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/position.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/querySelectorAll.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/scrollLeft.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/scrollParent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/scrollTop.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/query/width.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/style/getComputedStyle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/style/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/style/removeStyle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/transition/animate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/transition/end.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/transition/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/transition/isTransform.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/transition/properties.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/camelize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/camelizeStyle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/hyphenate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/hyphenateStyle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/inDOM.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/requestAnimationFrame.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/scrollTo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dom-helpers/util/scrollbarSize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/js-tokens/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/js-tokens/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/js-tokens/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/js-tokens/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/js-tokens/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/cli.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/custom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/loose-envify.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/loose-envify/replace.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/object-assign/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/object-assign/license" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/object-assign/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/object-assign/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/checkPropTypes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/factory.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithThrowingShims.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithTypeCheckers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/ReactPropTypesSecret.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-addons-css-transition-group/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-addons-css-transition-group/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-addons-css-transition-group/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-addons-css-transition-group/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/CSSTransitionGroup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/CSSTransitionGroupChild.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/TransitionGroup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/dist/react-transition-group.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/dist/react-transition-group.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/utils/ChildMapping.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/react-transition-group/utils/PropTypes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/browser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/warning/warning.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/app/src/Main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/App.js" afterPath="$PROJECT_DIR$/www/app/src/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/index.js" afterPath="$PROJECT_DIR$/www/app/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/user/home/UnAuthorize.jsx" afterPath="$PROJECT_DIR$/www/app/src/user/home/UnAuthorize.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/user/home/home.css" afterPath="$PROJECT_DIR$/www/app/src/user/home/home.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.css" afterPath="$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Nav.jsx" afterPath="$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Nav.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/SigninForm.js" afterPath="$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/SigninForm.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,18 +204,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/app/src/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="header.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/header.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -70,7 +218,7 @@
         <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Header.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+              <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -81,9 +229,11 @@
       <file leaf-file-name="Nav.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Nav.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="294">
+              <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,9 +241,11 @@
       <file leaf-file-name="Footer.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="255">
+              <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+              <folding>
+                <marker date="1531746641000" expanded="true" signature="15:17" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,11 +253,9 @@
       <file leaf-file-name="SigninForm.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/SigninForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,6 +307,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
     <handled-path value="$PROJECT_DIR$/www/app/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
@@ -269,6 +420,15 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="history" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -291,17 +451,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="footerComponents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matcha" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="headerComponents" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -360,18 +509,18 @@
       <workItem from="1531465554427" duration="1439000" />
       <workItem from="1531488530175" duration="414000" />
       <workItem from="1531553752486" duration="10226000" />
-      <workItem from="1531720279680" duration="947000" />
+      <workItem from="1531720279680" duration="3861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42824000" />
+    <option name="totallyTimeSpent" value="45738000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1287" height="1440" extended-state="6" />
+    <frame x="1361" y="0" width="1199" height="1440" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26806527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28773978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -611,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/src/user/history/history.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -656,21 +798,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/SigninForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -693,7 +823,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -736,6 +866,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding>
+            <marker date="1531746641000" expanded="true" signature="15:17" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Header.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/src/user/history/history.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/header.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -744,29 +912,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/footerComponents/Footer.css">
+    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Nav.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Header.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        <state relative-caret-position="294">
+          <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/src/user/main/components/headerComponents/Nav.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>

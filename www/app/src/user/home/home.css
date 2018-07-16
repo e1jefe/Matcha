@@ -1,7 +1,7 @@
 .index {
     margin: 0;
     padding: 0;
-    min-height: calc(100vh - 95px);
+    min-height: calc(100vh - 125px);
     font-family: "lato", sans-serif;
     font-size: calc(10px + (20 - 14) * ((100vw - 300px) / (1600 - 300)));
     background: url(https://images.unsplash.com/photo-1415369629372-26f2fe60c467?dpr=2&fit=crop&fm=jpg&h=2175&ixlib=rb-0.3.5&q=50&w=1450);
@@ -93,8 +93,11 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .index-holder {
         width: 750px;
+    }
+    .index {
+        min-height: calc(100vh - 119px);
     }
 }

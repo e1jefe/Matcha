@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './header.css';
 import '../../../fonts/fonts.css';
 import { NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {author: true};
+        this.state = {author: false};
         //this.handleChange = this.handleChange.bind(this) - some func call;
         //this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,14 +20,18 @@ class Nav extends Component {
     if the user is logged in or false when he logged out */
 
     render() {
-        if (this.state.author === true) {
+        if (this.state.author === false) {
             return(
                 <nav className="menu">
                     <ul>
                         <li className="item">
-                            <a href="/home" className="logo">
-                               Matcha
-                            </a>
+                            
+                            <NavLink to="/home">
+                                // <a href="/home" className="logo">
+                                   Matcha
+                                // </a>
+                            </NavLink>
+
                         </li>
                         <div className="menu-right no-autho">
                             <li className="item">
@@ -63,11 +68,15 @@ class Nav extends Component {
                            {/* Too bad the menu has to be inside of the button
                             but hey, it's pure CSS magic.*/} 
                             <ul id="menu">
-                                <a href="/myProfile">
+                                <NavLink to="/myProfile" onClick={this.toSigninForm}activeClassName="linkActive">
+                                    
+                                // <a href="/myProfile">
                                     <li className="item">
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
                                     </li>
-                                </a>
+                                // </a>
+                                </NavLink>
+
                                 <a href="msg">
                                     <li className="item">
                                         <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
