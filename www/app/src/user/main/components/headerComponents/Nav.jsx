@@ -30,7 +30,7 @@ class Nav extends Component {
                         </li>
                         <div className="menu-right no-autho">
                             <li className="item">
-                                <NavLink to="/login" onClick={this.toSigninForm}activeClassName="linkActive">
+                                <NavLink to="/login" onClick={this.SigninForm}activeClassName="linkActive">
                                     <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
                                 </NavLink>
                             </li>
