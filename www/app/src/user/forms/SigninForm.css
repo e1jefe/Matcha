@@ -1,0 +1,135 @@
+fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    font-size: 1.0rem;
+}
+
+.form-holder {
+  min-height: calc(100vh - 125px);
+  padding-top: 7%;
+}
+
+.flex-wrap {
+  opacity: 1;
+  transition: opacity 0.5s;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: #FFF2D3;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.58);
+}
+
+/*//    fix position radio input off-canvas*/
+.flex-wrap fieldset input[type="radio"] {
+    position: fixed;
+    left: -100px;
+}
+
+/*//    style input fields (note hidden by default) */
+input:not([type="radio"]) {
+    font-family: inherit;
+    appearance: none;
+    background-color: #fff;
+    display: block;
+    transition: 300ms ease;
+    border-radius: 7px;
+    border: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    width: 250px;
+    opacity: 0;
+    font-size: 16px;
+    text-align: center;
+    outline: 0;
+}
+
+/*//    show input based on radio selection */
+[id="sign-in"]:checked ~ input.sign-in,
+[id="sign-up"]:checked ~ input.sign-up,
+[id="reset"]:checked ~ input.reset {
+    max-height: 40px;
+    padding: 10px;
+    margin: 10px 0;
+    opacity: 1;
+}
+
+
+/*//    submit button */
+button {
+    height: 40px;
+    border-radius: 7px;    
+    background-color: #8B2428;
+    color: #fff;
+    font-size: 0;
+    width: 100%;
+    font-family: inherit;
+}
+
+  button:hover {
+    cursor: pointer;
+  }
+  
+  button:before { font-size: 16px; }
+
+/*//    show botton text based on radio selection*/
+[id="sign-in"]:checked ~ button:before { content: 'Sign In'; }
+[id="sign-up"]:checked ~ button:before { content: 'Sign Up'; }
+[id="reset"]:checked ~ button:before { content: 'Reset password'; }
+
+
+/*//            */
+label {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    color: #8B2428;
+    transition: 300ms ease;
+    width: calc(100% / 3 - 4px);
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+/*//     set active label marker*/
+[id="sign-in"]:checked ~ [for="sign-in"],
+[id="sign-up"]:checked ~ [for="sign-up"],
+[id="reset"]:checked ~ [for="reset"] {
+    background-color: #eaaeb0;
+}
+    [id="sign-in"]:checked ~ [for="sign-in"]:after, [id="sign-in"]:checked ~ [for="sign-up"]:after, [id="reset"]:checked ~ [for="reset"]:after {
+        border-bottom-color: #fff;
+    }
+
+body {
+    background-color: #7bacb7;
+    font-size: 16px;
+}
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+}
