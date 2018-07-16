@@ -5,11 +5,8 @@ import './SigninForm.css';
 
 class SignIn extends Component {
 	render() {
-		return(
-			<div>Hellow, pls register</div>
-		);
-	}
-
+    return (<div>Sssanaya avtorizaciya</div>);
+  }
 }
 
 // class Input extends Component{

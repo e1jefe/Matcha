@@ -26,10 +26,8 @@ class Nav extends Component {
                     <ul>
                         <li className="item">
                             
-                            <NavLink to="/home">
-                                // <a href="/home" className="logo">
-                                   Matcha
-                                // </a>
+                            <NavLink to="/home" className="logo">
+                                Matcha
                             </NavLink>
 
                         </li>
@@ -68,30 +66,26 @@ class Nav extends Component {
                            {/* Too bad the menu has to be inside of the button
                             but hey, it's pure CSS magic.*/} 
                             <ul id="menu">
-                                <NavLink to="/myProfile" onClick={this.toSigninForm}activeClassName="linkActive">
-                                    
-                                // <a href="/myProfile">
+                                <NavLink to="/myProfile">
                                     <li className="item">
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
                                     </li>
-                                // </a>
                                 </NavLink>
-
-                                <a href="msg">
+                                <NavLink to="/msg">
                                     <li className="item">
                                         <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
                                     </li>
-                                </a>
-                                <a href="notification">
+                                </NavLink>
+                                <NavLink to="/notification">
                                     <li className="item">
                                         <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
                                     </li>
-                                </a>
-                                <a href="logout">
+                                </NavLink>
+                                <NavLink to="/logout" onClick={this.handleLogout.bind(this)}>
                                     <li className="item">
                                         <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
                                     </li>
-                                </a>
+                                </NavLink>
                             </ul>
                         </div>
                     </ul>

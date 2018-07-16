@@ -21,6 +21,7 @@ class Home extends Component {
 			return(<MainPage />);
 		}
 	}
+	
 }
 
 export default Home;
