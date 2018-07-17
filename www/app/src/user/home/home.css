@@ -95,9 +95,9 @@
 
 @media (max-width: 768px) {
     .index-holder {
-        width: 750px;
+        width: 100%;
     }
     .index {
-        min-height: calc(100vh - 119px);
+        min-height: calc(100vh - 104px);
     }
 }

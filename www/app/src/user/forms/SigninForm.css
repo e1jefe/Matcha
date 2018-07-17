@@ -35,7 +35,7 @@ fieldset {
 }
 
 /*//    style input fields (note hidden by default) */
-input:not([type="radio"]) {
+.flex-wrap input:not([type="radio"]) {
     font-family: inherit;
     appearance: none;
     background-color: #fff;
@@ -43,7 +43,7 @@ input:not([type="radio"]) {
     transition: 300ms ease;
     border-radius: 2px;
     border: 0;
-    max-height: 0;
+    max-height: 0; 
     margin: 0;
     padding: 0 10px;
     overflow: hidden;
