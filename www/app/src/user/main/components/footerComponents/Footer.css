@@ -7,7 +7,7 @@ a, a:visited {
 }
 
 .footerBackground {
-    background-color: #fff4f0 !important;
+    background-color: #FAEBD7 !important;
     font-family: 'lato', sans-serif;
     line-height: 40px;
     font-size: calc(12px + (18 - 12) * ((100vw - 320px) / 680));
