@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {author: false};
+        this.state = {author: true};
         //this.handleChange = this.handleChange.bind(this) - some func call;
         //this.handleSubmit = this.handleSubmit.bind(this);
     }
