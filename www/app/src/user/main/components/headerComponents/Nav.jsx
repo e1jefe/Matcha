@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {author: false};
-        //this.handleChange = this.handleChange.bind(this) - some func call;
-        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {author: true};
+        // this.handleChange = this.handleChange.bind(this) - some func call;
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // handleChange(event) {
@@ -20,7 +20,8 @@ class Nav extends Component {
     if the user is logged in or false when he logged out */
 
     render() {
-        if (this.state.author === false) {
+        if (this.state.author === false
+        ) {
             return(
                 <nav className="menu">
                     <ul>
@@ -81,9 +82,9 @@ class Nav extends Component {
                                     </NavLink>                                    
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/logout" onClick={this.handleLogout.bind(this)}>                                    
-                                        <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
-                                    </NavLink>
+                                    {/*<NavLink to="/logout" onClick={this.handleLogout.bind(this)}>*/}
+                                        {/*<img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>*/}
+                                    {/*</NavLink>*/}
                                 </li>
                             </ul>
                         </div>
