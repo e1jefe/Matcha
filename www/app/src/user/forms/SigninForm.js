@@ -60,7 +60,7 @@ class SignIn extends Component{
 		
 		return(
 			<div className="form-holder">
-				<ReactCSSTransitionGroup 
+				<ReactCSSTransitionGroup
 					transitionName="example"
 					transitionEnterTimeout={500}
 					transitionLeaveTimeout={300}>

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './header.css';
 import '../../../fonts/fonts.css';
 import { NavLink } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { Badge } from 'antd';
+import Badge from 'antd/lib/badge';
+import 'antd/dist/antd.css';
 
 class Nav extends Component {
     constructor(props) {
@@ -68,18 +71,24 @@ class Nav extends Component {
                             <ul id="menu">
                                 <li className="item">
                                     <NavLink to="/myProfile">
+
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
+
                                     </NavLink>
                                 </li>
                                 <li className="item">
                                     <NavLink to="/msg">
-                                        <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+                                        <Badge count={42}>
+                                            <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+                                        </Badge>
                                     </NavLink>
                                 </li>
                                 <li className="item">
                                     <NavLink to="/notification">
+                                        <Badge count={7}>
                                         <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
-                                    </NavLink>                                    
+                                        </Badge>
+                                    </NavLink>
                                 </li>
                                 <li className="item">
                                     {/*<NavLink to="/logout" onClick={this.handleLogout.bind(this)}>*/}
