@@ -1,7 +1,6 @@
 // import React from 'react';
 import React, { Component } from 'react';
 import './SigninForm.css';
-import { PostData } from './PostData';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ToFill extends Component {
@@ -17,10 +16,7 @@ class ToFill extends Component {
 	}
 
 	login() {
-		PostData('login', this.state).then((result) => {
-			let responceJson = result;
-			console.log(responceJson);
-		});
+console.log("tut");
 	}
 
 	onChange(e) {
