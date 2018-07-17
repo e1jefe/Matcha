@@ -1,25 +1,25 @@
 <?php
 
-"blyat'";
+echo "blyat'";
 
 //PDO::ERRMODE_EXCEPTION;
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
-define('ROOT', dirname(__FILE__));
+// define('ROOT', dirname(__FILE__));
 
-use application\components\Router;
-use application\components\Db;
+// use application\components\Router;
+// use application\components\Db;
 
-spl_autoload_register(function ($class) {
-    $path = str_replace('\\', '/', $class.'.php');
-    if (file_exists($path))
-    {
-        require $path;
-    }
-});
+// spl_autoload_register(function ($class) {
+//     $path = str_replace('\\', '/', $class.'.php');
+//     if (file_exists($path))
+//     {
+//         require $path;
+//     }
+// });
 
-session_start();
+// session_start();
 
-$router = new Router;
-$router->run();
+// $router = new Router;
+// $router->run();

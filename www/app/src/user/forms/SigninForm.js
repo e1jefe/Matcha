@@ -1,9 +1,33 @@
 // import React from 'react';
 import React, { Component } from 'react';
 import './SigninForm.css';
+import { PostData } from './PostData';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ToFill extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			login: '',
+			password: ''
+		}
+		this.login = this.login.bind(this);
+		this.onChange = this.onChange.bind(this);
+
+	}
+
+	login() {
+		PostData('login', this.state).then((result) => {
+			let responceJson = result;
+			console.log(responceJson);
+		});
+	}
+
+	onChange(e) {
+		this.setState({[e.target.name]: e.target.value});
+		console.log(this.state);
+	}
+
 	render() {
 		return (
 			<div className="flex-wrap">
@@ -18,12 +42,12 @@ class ToFill extends Component {
 			            <label htmlFor="reset">Reset</label>  
 			            <input className="sign-up" type="name" placeholder ="First Name" pattern="[a-zA-Z]{1-20}" required/>
 			            <input className="sign-up" type="name" placeholder ="Last Name" pattern="[a-zA-Z]{1-20}" required/>
-			            <input className="sign-up sign-in" type="name" placeholder ="Login" required/>
+			            <input className="sign-up sign-in" type="name" name="login" onChange={this.onChange} placeholder ="Login" required/>
 
 			            <input className="sign-up reset" type="email" placeholder="Email" required/>
 			            <input className="sign-up sign-in" type="password" placeholder ="Password" required/>
-			            <input className="sign-up" type="password" placeholder ="Repeat Password" required/>
-			            <button>Submit</button>
+			            <input className="sign-up" type="password" name="password" onChange={this.onChange} placeholder ="Repeat Password" required/>
+			            <button onClick={this.login}>Submit</button>
 			        </form>
 			        </fieldset>
 			</div>

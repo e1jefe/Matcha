@@ -97,4 +97,14 @@ class AuthorizationController extends Controller
             $this->view->render('home');
         return true;
     }
+
+    public function loginAction()
+    {
+        echo "Ya tipa proverila togo kto loginetsya";
+        // $token = array();
+        // $token['id'] = $id;
+        // echo JWT::encode($token, 'secret_server_key'); //закодировать
+        // $token = JWT::decode($_POST['token'], 'secret_server_key');
+        // echo $token->id;
+    }
 }
