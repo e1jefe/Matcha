@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink}  from 'react-router-dom';
 import './home.css';
 import Home from './Home';
 
@@ -22,10 +23,10 @@ class UnAuthorize extends Component {
                     </h3>
                     <hr/>
                     {/* <a href="/signin" className="index-btn" onClick={onClick}>*/}
-                    <a href="/signin" className="index-btn">
+                    <NavLink to="/signin" className="index-btn">
                         <i className="paw" aria-hidden="true"></i>
                         Get Started!
-                    </a>
+                    </NavLink>
             	</div>
             </div>
         );

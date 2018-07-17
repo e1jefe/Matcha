@@ -24,18 +24,15 @@ class Nav extends Component {
             return(
                 <nav className="menu">
                     <ul>
-                        <li className="item">
-                            
-                            <NavLink to="/home">
-                                // <a href="/home" className="logo">
-                                   Matcha
-                                // </a>
+                        <li className="item">                            
+                            <NavLink to="/home" className="logo">
+                                Matcha
                             </NavLink>
-
                         </li>
                         <div className="menu-right no-autho">
                             <li className="item">
-                                <NavLink to="/login" onClick={this.SigninForm}activeClassName="linkActive">
+                                {/*<NavLink to="/login" onClick={this.SigninForm}activeClassName="linkActive">*/}
+                                <NavLink to="/signin">
                                     <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
                                 </NavLink>
                             </li>
@@ -49,10 +46,10 @@ class Nav extends Component {
             return(
                 <nav className="menu" role="navigation">
                     <ul>
-                        <li className="item">
-                            <a href="/home" className="logo">
+                        <li className="item">                            
+                            <NavLink to="/home" className="logo">
                                 Matcha
-                            </a>
+                            </NavLink>
                         </li>
                         <div className="menu-right" id="menuToggle">
 
@@ -68,30 +65,26 @@ class Nav extends Component {
                            {/* Too bad the menu has to be inside of the button
                             but hey, it's pure CSS magic.*/} 
                             <ul id="menu">
-                                <NavLink to="/myProfile" onClick={this.toSigninForm}activeClassName="linkActive">
-                                    
-                                // <a href="/myProfile">
-                                    <li className="item">
+                                <li className="item">
+                                    <NavLink to="/myProfile">
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
-                                    </li>
-                                // </a>
-                                </NavLink>
-
-                                <a href="msg">
-                                    <li className="item">
+                                    </NavLink>
+                                </li>
+                                <li className="item">
+                                    <NavLink to="/msg">
                                         <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
-                                    </li>
-                                </a>
-                                <a href="notification">
-                                    <li className="item">
+                                    </NavLink>
+                                </li>
+                                <li className="item">
+                                    <NavLink to="/notification">
                                         <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
-                                    </li>
-                                </a>
-                                <a href="logout">
-                                    <li className="item">
+                                    </NavLink>                                    
+                                </li>
+                                <li className="item">
+                                    <NavLink to="/logout" onClick={this.handleLogout.bind(this)}>                                    
                                         <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
-                                    </li>
-                                </a>
+                                    </NavLink>
+                                </li>
                             </ul>
                         </div>
                     </ul>

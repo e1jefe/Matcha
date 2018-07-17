@@ -5,6 +5,10 @@
     list-style-type : none;
 }
 
+a:visited {
+        color : #000;
+    }
+
 nav.menu {
     width: 100%;
     overflow: hidden;
@@ -20,6 +24,9 @@ nav.menu {
 }
     .menu a:hover {
         background-color : #b6c0c8;
+    }
+    .menu a:visited {
+        color : #000;
     }
     .menu .logo {
         font-family: 'Ballpark', sans-serif;
