@@ -7,7 +7,22 @@ return [
 		'action' => 'index',
 	],
 
-	'home(.*)' => [
+	'sign-in' => [
+		'controller' => 'authorization',
+		'action' => 'login',
+	],
+
+	'sign-up' => [
+		'controller' => 'authorization',
+		'action' => 'signin',
+	],
+	
+	'resetPass' => [
+		'controller' => 'authorization',
+		'action' => 'resetPass',
+	],
+
+	/*'home(.*)' => [
 		'controller' => 'home',
 		'action' => 'index',
 	],
@@ -47,15 +62,7 @@ return [
 		'action' => 'singlePhoto',
 	],
 
-	'login' => [
-		'controller' => 'authorization',
-		'action' => 'login',
-	],
 
-	'signin' => [
-		'controller' => 'authorization',
-		'action' => 'signin',
-	],
 
 	'user/confirm' => [
 		'controller' => 'user',
@@ -65,11 +72,6 @@ return [
 	'user/confirmEmail/(.*)' => [
 		'controller' => 'user',
 		'action' => 'confirmEmail',
-	],
-
-	'user/resetPass/initial(.*)' => [
-		'controller' => 'user',
-		'action' => 'resetPass',
 	],
 
 	'user/resetPass/after' => [
@@ -100,6 +102,6 @@ return [
 	'about' => [
 		'controller' => 'about',
 		'action' => 'view',
-	],
+	],*/
 
 ];
