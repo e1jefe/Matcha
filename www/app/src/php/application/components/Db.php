@@ -11,7 +11,7 @@ class Db
 
 	public function __construct()
 	{
-		$this->db = new PDO('mysql:host=db; dbname=myDb', 'user', 'test');
+		$this->db = new PDO('mysql:host=localhost; dbname=myDb', 'root', 'qwerty');
 	}
 
 	public function query($sql, $params = [])
