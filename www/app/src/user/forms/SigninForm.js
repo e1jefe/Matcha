@@ -2,21 +2,64 @@
 import React, { Component } from 'react';
 import './SigninForm.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import axios from 'axios';
 
 class ToFill extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			login: '',
-			password: ''
+			password: '',
+			cpassword: '',
+			fname: '',
+			lname: '',
+			email: ''
 		}
-		this.login = this.login.bind(this);
+		this.action = this.action.bind(this);
 		this.onChange = this.onChange.bind(this);
-
 	}
 
-	login() {
-console.log("tut");
+	action(event) {
+		event.preventDefault();
+		if (this.state.fname === '' && this.state.login !== '')
+		{
+			const user = {
+				login: this.state.login,
+				pass: this.state.password
+			};
+			axios.post(`http://localhost:8001/sign-in`, { user })
+		      .then(res => {
+		        if (res)
+		        {
+		        	localStorage.setItem('token', 'nu_takoe_dolgen_priti_s_backa_no_ya_ne_znau_kak_sgenerirovat');
+		        }
+		    })
+		}
+		else if (this.state.login !== '' && this.state.fname !== '')
+		{
+			const user = {
+				login: this.state.login,
+				pass: this.state.password,
+				cpass: this.state.cpassword,
+				fname: this.state.fname,
+				lname: this.state.lname,
+				email: this.state.email
+			};
+			axios.post(`http://localhost:8001/sign-up`, { user })
+		      .then(res => {
+		        console.log(res);
+		    })
+		}
+		else
+		{
+			const user = {
+				email: this.state.email
+			};
+			axios.post(`http://localhost:8001/resetPass`, { user })
+		      .then(res => {
+		        console.log(res);
+		    })
+		}	
 	}
 
 	onChange(e) {
@@ -36,14 +79,14 @@ console.log("tut");
 			            <label htmlFor="sign-in">Sign in</label>
 			            <label htmlFor="sign-up">Sign up</label>
 			            <label htmlFor="reset">Reset</label>  
-			            <input className="sign-up" type="name" placeholder ="First Name" pattern="[a-zA-Z]{1-20}" required/>
-			            <input className="sign-up" type="name" placeholder ="Last Name" pattern="[a-zA-Z]{1-20}" required/>
+			            <input className="sign-up" type="name" name="fname" onChange={this.onChange} placeholder ="First Name" pattern="[a-zA-Z]{1-20}" required/>
+			            <input className="sign-up" type="name" name="lname" onChange={this.onChange} placeholder ="Last Name" pattern="[a-zA-Z]{1-20}" required/>
 			            <input className="sign-up sign-in" type="name" name="login" onChange={this.onChange} placeholder ="Login" required/>
 
-			            <input className="sign-up reset" type="email" placeholder="Email" required/>
-			            <input className="sign-up sign-in" type="password" placeholder ="Password" required/>
-			            <input className="sign-up" type="password" name="password" onChange={this.onChange} placeholder ="Repeat Password" required/>
-			            <button onClick={this.login}>Submit</button>
+			            <input className="sign-up reset" type="email" name="email" onChange={this.onChange} placeholder="Email" required/>
+			            <input className="sign-up sign-in" type="password" name="password" onChange={this.onChange} placeholder ="Password" required/>
+			            <input className="sign-up" type="password" name="cpassword" onChange={this.onChange} placeholder ="Repeat Password" required/>
+			            <button onClick={this.action}>Submit</button>
 			        </form>
 			        </fieldset>
 			</div>
