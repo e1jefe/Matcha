@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "antd": "^3.7.0",
+=======
+    "jsonwebtoken": "^8.3.0",
+>>>>>>> 696f25da8b1229baad555b77c5965e2915e4b21c
     "react": "^16.4.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.4.1",
