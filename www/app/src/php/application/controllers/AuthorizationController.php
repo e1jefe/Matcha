@@ -1,11 +1,18 @@
 <?php
 
 namespace application\controllers;
+namespace application\ReallySimpleJWT;
+
 
 use application\components\Controller;
 use application\components\View;
 use application\models\User;
 use application\components\Db;
+
+use application\ReallySimpleJWT\TokenBuilder;
+use application\ReallySimpleJWT\TokenAbstract;
+
+
 header('Content-type: application/json');
 
 class AuthorizationController extends Controller
@@ -55,14 +62,39 @@ class AuthorizationController extends Controller
         $entityBody = json_decode(file_get_contents("php://input"), true);
         $toCheck = new User;
         $res = $toCheck->extractUserByLogin($entityBody['user']['login']);
-        if (count($res) !== 0 && password_verify($entityBody['user']['pass'], $res[0]['password']))
+        if (count($res) !== 0 && password_verify($entityBody['user']['pass'], $res[0]['password']) && $res[0]['isEmailConfirmed'] === '1')
         {
-//HERE COMES TOKEN GENERATION (without password pls!)
-            echo json_encode($entityBody);
+            //JWT without library (https://dev.to/robdwaller/how-to-create-a-json-web-token-using-php-3gml)
+            // Create token header as a JSON string
+            // $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
+            // Create token payload as a JSON string
+            // $payload = json_encode(['user_id' => $res[0]['id'], 'user_login' => $res[0]['login']]);
+            // Encode Header to Base64Url String
+            // $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
+            // Encode Payload to Base64Url String
+            // $base64UrlPayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
+            // Create Signature Hash
+            // $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, 'abC123!', true);
+            // Encode Signature to Base64Url String
+            // $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
+            // Create JWT
+            // $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
+            // echo $jwt;
+
+            //JWT on ReallySimpleJWT library
+            $builder = new TokenBuilder();
+            $secret = 'abC123!';
+            $expiration = 1532022388;
+            $token = $builder->addPayload(['user_id' => $res[0]['id'], 'user_login' => $res[0]['login']])
+                ->setSecret($secret)
+                ->setExpiration($expiration)
+                ->setIssuer('issuerIdentifier')
+                ->build();
+            echo $token;
         }
         else
         {
-            echo json_encode(array('check'=> $res));
+            echo json_encode(['check'=> $res]);
         }
 
 //        echo "Ya tipa proverila togo kto loginetsya";
