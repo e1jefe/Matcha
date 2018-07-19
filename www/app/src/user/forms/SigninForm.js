@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './SigninForm.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 class ToFill extends Component {
 	constructor(props) {
@@ -29,12 +30,12 @@ class ToFill extends Component {
 			};
 			axios.post(`http://localhost:8001/sign-in`, { user })
 		      .then(res => {
-		        if (res)
+		        if (res && res.data.user.length !== 0)
 		        {
 		        	// if (res.data.user.hasOwnProperty('check') === false)
 		        		console.log(res);
                     // console.log(res.data.Array(1).login);
-		        	localStorage.setItem('token', 'nu_takoe_dolgen_priti_s_backa_no_ya_ne_znau_kak_sgenerirovat');
+		        	localStorage.setItem('token', res.data.user);
 		        }
 		    })
 		}

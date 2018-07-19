@@ -17,11 +17,16 @@ header('Content-type: application/json');
 
 class AuthorizationController extends Controller
 {
-    public function generateToken()
+    public function generateToken($res)
     {
-        $token = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!$/()*";
-        $token = str_shuffle($token);
-        $token = substr($token, 0, 20);
+        $builder = new TokenBuilder();
+        $secret = 'abC123!';
+        $expiration = time() + (60 * 15 * 1000);
+        $token = $builder->addPayload(['user_id' => $res[0]['id'], 'user_login' => $res[0]['login']])
+            ->setSecret($secret)
+            ->setExpiration($expiration)
+            ->setIssuer('issuerIdentifier')
+            ->build();
         return $token;
     }
 
@@ -82,19 +87,11 @@ class AuthorizationController extends Controller
             // echo $jwt;
 
             //JWT on ReallySimpleJWT library
-            $builder = new TokenBuilder();
-            $secret = 'abC123!';
-            $expiration = 1532022388;
-            $token = $builder->addPayload(['user_id' => $res[0]['id'], 'user_login' => $res[0]['login']])
-                ->setSecret($secret)
-                ->setExpiration($expiration)
-                ->setIssuer('issuerIdentifier')
-                ->build();
-            echo $token;
+            echo (generateToken($res));
         }
         else
         {
-            echo json_encode(['check'=> $res]);
+            echo json_encode(['user'=> $res]);
         }
 
 //        echo "Ya tipa proverila togo kto loginetsya";

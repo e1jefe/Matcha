@@ -6,18 +6,35 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import { Badge } from 'antd';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
+import jwtDecode from 'jwt-decode';
 
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {author: true};
-        // this.handleChange = this.handleChange.bind(this) - some func call;
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            author: false,
+            userLogin: ''
+        };
     }
 
-    // handleChange(event) {
-    //     this.setState({value: event.target.value});
-    // }
+    componentWillMount() {
+        let token;
+        localStorage.getItem('token') !== null ? token = localStorage.getItem('token') : token = '';
+        // let token = localStorage.getItem('token');
+        if (token !== '')
+        {
+            let user = jwtDecode(token);
+            console.log(user);
+            if (user.login !== '')
+            {
+                this.setState({
+                    author: true,
+                    userLogin: user.login
+                });
+            }
+        }
+    }
+
 
     /*Somewhere here should be func which changes author for true
     if the user is logged in or false when he logged out */
@@ -71,8 +88,8 @@ class Nav extends Component {
                             <ul id="menu">
                                 <li className="item">
                                     <NavLink to="/myProfile">
-
-                                        <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
+                                        <p>{this.state.userLogin}</p>
+                                        {/*<img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>*/}
 
                                     </NavLink>
                                 </li>
