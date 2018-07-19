@@ -31,6 +31,9 @@ class ToFill extends Component {
 		      .then(res => {
 		        if (res)
 		        {
+		        	// if (res.data.user.hasOwnProperty('check') === false)
+		        		console.log(res);
+                    // console.log(res.data.Array(1).login);
 		        	localStorage.setItem('token', 'nu_takoe_dolgen_priti_s_backa_no_ya_ne_znau_kak_sgenerirovat');
 		        }
 		    })

@@ -53,10 +53,19 @@ class AuthorizationController extends Controller
     public function loginAction()
     {
         $entityBody = json_decode(file_get_contents("php://input"), true);
-        echo $entityBody['user']['login'];
-        // var_dump($entityBody);
+        $toCheck = new User;
+        $res = $toCheck->extractUserByLogin($entityBody['user']['login']);
+        if (count($res) !== 0 && password_verify($entityBody['user']['pass'], $res[0]['password']))
+        {
+//HERE COMES TOKEN GENERATION (without password pls!)
+            echo json_encode($entityBody);
+        }
+        else
+        {
+            echo json_encode(array('check'=> $res));
+        }
 
-        echo "Ya tipa proverila togo kto loginetsya";
+//        echo "Ya tipa proverila togo kto loginetsya";
         // $token = array();
         // $token['id'] = $id;
         // echo JWT::encode($token, 'secret_server_key'); //закодировать
