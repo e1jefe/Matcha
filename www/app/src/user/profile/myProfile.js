@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Profile from './Profile';
+import Profile from './userProfile';
 
-class Userprofile extends Component {
+class myProfile extends Component {
     render(){
         return(
             <div>
@@ -11,4 +11,4 @@ class Userprofile extends Component {
     }
 }
 
-export default Userprofile;
+export default myProfile;
