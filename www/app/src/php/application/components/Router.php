@@ -27,6 +27,9 @@ class Router
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
+
+        echo $url;
+
         foreach ($this->routes as $route => $params)
         {
             if (preg_match($route, $url, $matches))
@@ -59,6 +62,7 @@ class Router
             else
             {
                 View::errorCode(404);
+
             }
         }
         else

@@ -1,7 +1,6 @@
 <?php
 
 namespace application\controllers;
-namespace application\ReallySimpleJWT;
 
 
 use application\components\Controller;
@@ -10,7 +9,7 @@ use application\models\User;
 use application\components\Db;
 
 use application\ReallySimpleJWT\TokenBuilder;
-use application\ReallySimpleJWT\TokenAbstract;
+// use application\ReallySimpleJWT\TokenAbstract;
 
 
 header('Content-type: application/json');
@@ -64,6 +63,7 @@ class AuthorizationController extends Controller
 
     public function loginAction()
     {
+        // echo "here";
         $entityBody = json_decode(file_get_contents("php://input"), true);
         $toCheck = new User;
         $res = $toCheck->extractUserByLogin($entityBody['user']['login']);
@@ -87,7 +87,9 @@ class AuthorizationController extends Controller
             // echo $jwt;
 
             //JWT on ReallySimpleJWT library
-            echo (generateToken($res));
+            echo ($this->generateToken($res));
+            // echo json_encode(['user'=> $res]);
+
         }
         else
         {

@@ -28,7 +28,7 @@ class ToFill extends Component {
 				login: this.state.login,
 				pass: this.state.password
 			};
-			axios.post(`http://localhost:8001/sign-in`, { user })
+			axios.post(`http://localhost:8001/login`, { user })
 		      .then(res => {
 		        if (res)
 		        {

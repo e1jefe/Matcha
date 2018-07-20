@@ -7,7 +7,7 @@ return [
 		'action' => 'index',
 	],
 
-	'sign-in' => [
+	'login' => [
 		'controller' => 'authorization',
 		'action' => 'login',
 	],
@@ -22,86 +22,86 @@ return [
 		'action' => 'resetPass',
 	],
 
-	/*'home(.*)' => [
+	'home(.*)' => [
 		'controller' => 'home',
 		'action' => 'index',
 	],
 
-	'picture/upload' => [
-		'controller' => 'picture',
-		'action' => 'upload',
-	],
+	// 'picture/upload' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'upload',
+	// ],
 
-	'picture/like' => [
-		'controller' => 'picture',
-		'action' => 'like',
-	],
+	// 'picture/like' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'like',
+	// ],
 	
-	'[\w.\-\s\/]{0,25}PictureController(.*)' => [
-		'controller' => 'picture',
-		'action' => 'savePhoto',
-	],
+	// '[\w.\-\s\/]{0,25}PictureController(.*)' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'savePhoto',
+	// ],
 
-	'picture/camera' => [
-		'controller' => 'picture',
-		'action' => 'index',
-	],
+	// 'picture/camera' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'index',
+	// ],
 
-	'picture/comment' => [
-		'controller' => 'picture',
-		'action' => 'comment',
-	],
+	// 'picture/comment' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'comment',
+	// ],
 
-	'picture/dell' => [
-		'controller' => 'picture',
-		'action' => 'dell',
-	],
+	// 'picture/dell' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'dell',
+	// ],
 
-	'(.*)singlePhoto/(.*)' => [
-		'controller' => 'picture',
-		'action' => 'singlePhoto',
-	],
+	// '(.*)singlePhoto/(.*)' => [
+	// 	'controller' => 'picture',
+	// 	'action' => 'singlePhoto',
+	// ],
 
 
 
-	'user/confirm' => [
-		'controller' => 'user',
-		'action' => 'confirm',
-	],
+	// 'user/confirm' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'confirm',
+	// ],
 
-	'user/confirmEmail/(.*)' => [
-		'controller' => 'user',
-		'action' => 'confirmEmail',
-	],
+	// 'user/confirmEmail/(.*)' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'confirmEmail',
+	// ],
 
-	'user/resetPass/after' => [
-		'controller' => 'user',
-		'action' => 'resetPassAfter',
-	],
+	// 'user/resetPass/after' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'resetPassAfter',
+	// ],
 
-	'(.*)logout' => [
-		'controller' => 'user',
-		'action' => 'logout',
-	],
+	// '(.*)logout' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'logout',
+	// ],
 
-	'user/cabinet(.*)' => [
-		'controller' => 'user',
-		'action' => 'cabinet',
-	],
+	// 'user/cabinet(.*)' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'cabinet',
+	// ],
 
-	'user/changeUserData' => [
-		'controller' => 'user',
-		'action' => 'changeUserData',
-	],
+	// 'user/changeUserData' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'changeUserData',
+	// ],
 
-	'user/changeSubscription(.*)' => [
-		'controller' => 'user',
-		'action' => 'changeSubscription',
-	],
+	// 'user/changeSubscription(.*)' => [
+	// 	'controller' => 'user',
+	// 	'action' => 'changeSubscription',
+	// ],
 
-	'about' => [
-		'controller' => 'about',
-		'action' => 'view',
-	],*/
+	// 'about' => [
+	// 	'controller' => 'about',
+	// 	'action' => 'view',
+	// ],
 
 ];

@@ -10,16 +10,7 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-    	if (isset($_SESSION['isUser']))
-        {
-            $feed = new Picture();
-            $arr = $feed->extractPics();
-            $this->view->render('home/index', $arr);
-        }
-        else
-        {
-            $this->view->render('home/notAuthorize');
-        }
+        $this->view->render('home/notAuthorize');
     }
 
 }

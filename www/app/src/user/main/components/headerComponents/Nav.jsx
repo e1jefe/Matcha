@@ -32,7 +32,7 @@ class Nav extends Component {
 
     handleLogout() {
         localStorage.removeItem('token');
-        this.setState({author: true});
+        this.setState({author: false});
         // this.context.router.replace('/home');
     }
 
