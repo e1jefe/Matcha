@@ -8,6 +8,18 @@ import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
 
+class ForUnauthor extends Component{
+    render() {
+        return (
+            <li className="item">
+                <NavLink to="/signin">
+                    <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
+                </NavLink>
+            </li>
+        )
+    }
+}
+
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -15,13 +27,18 @@ class Nav extends Component {
             author: false,
             userLogin: ''
         };
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout() {
+        localStorage.removeItem('token');
+        this.setState({author: true});
+        // this.context.router.replace('/home');
     }
 
     componentWillMount() {
-        let token;
-        localStorage.getItem('token') !== null ? token = localStorage.getItem('token') : token = '';
-        // let token = localStorage.getItem('token');
-        if (token !== '')
+        let token = localStorage.getItem('token');
+        if (token !== null)
         {
             let user = jwtDecode(token);
             console.log(user);
@@ -35,10 +52,6 @@ class Nav extends Component {
         }
     }
 
-
-    /*Somewhere here should be func which changes author for true
-    if the user is logged in or false when he logged out */
-
     render() {
         if (this.state.author === false
         ) {
@@ -51,12 +64,7 @@ class Nav extends Component {
                             </NavLink>
                         </li>
                         <div className="menu-right no-autho">
-                            <li className="item">
-                                {/*<NavLink to="/login" onClick={this.SigninForm}activeClassName="linkActive">*/}
-                                <NavLink to="/signin">
-                                    <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
-                                </NavLink>
-                            </li>
+                            <ForUnauthor/>
                         </div>
                         <div className="clearfix"></div>
                     </ul>
@@ -73,24 +81,15 @@ class Nav extends Component {
                             </NavLink>
                         </li>
                         <div className="menu-right" id="menuToggle">
-
-                            {/* A fake / hidden checkbox is used as click reciever,
-                            so you can use the :checked selector on it. */}
                             <input type="checkbox" />
-                            
-                            {/* Some spans to act as a hamburger. */}
                             <span></span>
                             <span></span>
                             <span></span>
-                        
-                           {/* Too bad the menu has to be inside of the button
-                            but hey, it's pure CSS magic.*/} 
                             <ul id="menu">
                                 <li className="item">
                                     <NavLink to="/myProfile">
-                                        <p>{this.state.userLogin}</p>
-                                        {/*<img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>*/}
-
+                                        <p>{this.props.userLogin}</p>
+                                        <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
                                     </NavLink>
                                 </li>
                                 <li className="item">
@@ -108,9 +107,9 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    {/*<NavLink to="/logout" onClick={this.handleLogout.bind(this)}>*/}
-                                        {/*<img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>*/}
-                                    {/*</NavLink>*/}
+                                    <NavLink to="/home" onClick={this.handleLogout.bind(this)}>
+                                        <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>

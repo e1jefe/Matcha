@@ -30,7 +30,7 @@ class ToFill extends Component {
 			};
 			axios.post(`http://localhost:8001/sign-in`, { user })
 		      .then(res => {
-		        if (res && res.data.user.length !== 0)
+		        if (res)
 		        {
 		        	// if (res.data.user.hasOwnProperty('check') === false)
 		        		console.log(res);
