@@ -3,6 +3,8 @@ import './home.css';
 import '../fonts/fonts.css';
 import UnAuthorize from './UnAuthorize';
 import MainPage from './MainPage';
+import Header from '../main/components/headerComponents/Header.jsx';
+import Footer from '../main/components/footerComponents/Footer';
 
 class Home extends Component {
 
@@ -14,11 +16,23 @@ class Home extends Component {
 	render() {
 		if (this.state.author === false)
 		{
-			return(<UnAuthorize />);
+			return(
+				<div>
+					<Header/>
+					<UnAuthorize />
+					<Footer />
+				</div>
+			);
 		}
 		else
 		{
-			return(<MainPage />);
+			return(
+				<div>
+					<Header/>
+					<MainPage />
+					<Footer />
+				</div>
+			);
 		}
 	}
 	

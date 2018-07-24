@@ -42,7 +42,7 @@ class Nav extends Component {
         {
             let user = jwtDecode(token);
             console.log(user);
-            if (user.login !== '')
+            if (user.user_login !== '')
             {
                 this.setState({
                     author: true,

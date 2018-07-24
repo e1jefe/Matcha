@@ -1,16 +1,75 @@
-fieldset {
+.active {
+    display: block;
+}
+.none {
+    display: none;
+}
+i {
+    font-style: normal;
+}
+
+body {
+    background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
+}
+.form-holder{
+    margin: 20px auto 0;
+    padding: 2% 2% 3% 2%;
+    max-width: 320px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+}
+.position-relative {
+    position: relative;
+}
+.dop-pad {
+    padding-left: 40px;
+}
+
+label.image-replace {
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    top: 22%;
+    bottom: auto;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: rgba(0,0,0,0.5);
+    text-shadow: none;
+    background-repeat: no-repeat;
+    font-family: 'fontawesome';
+}
+label.password {
+    background-image: url(https://codyhouse.co/demo/login-signup-modal-window/img/cd-icon-password.svg);
+}
+.margin-top {
+    margin-top: 15px;
+    font-size: 16px;
+}
+.btn-my-color {
+    background-color: #f5a3ae;
+    border-color: transparent;
+}
+    .btn-my-color:hover {
+        background-color: #a11225;
+        border-color: transparent;
+    }
+    .btn-primary:focus {
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+
+/*fieldset {
     border: 0;
     padding: 0;
     margin: 0;
     min-width: 0;
     font-size: 1.0rem;
 }
-
-.form-holder {
-  min-height: calc(100vh - 125px);
-  padding-top: 7%;
-}
-
+*/
 .flex-wrap {
   opacity: 1;
   transition: opacity 0.5s;
@@ -29,13 +88,13 @@ fieldset {
 }
 
 /*//    fix position radio input off-canvas*/
-.flex-wrap fieldset input[type="radio"] {
+/*.flex-wrap fieldset input[type="radio"] {
     position: fixed;
     left: -100px;
 }
-
+*/
 /*//    style input fields (note hidden by default) */
-.flex-wrap input:not([type="radio"]) {
+/*.flex-wrap input:not([type="radio"]) {
     font-family: inherit;
     appearance: none;
     background-color: #fff;
@@ -53,9 +112,9 @@ fieldset {
     text-align: center;
     outline: 0;
 }
-
+*/
 /*//    show input based on radio selection */
-[id="sign-in"]:checked ~ input.sign-in,
+/*[id="sign-in"]:checked ~ input.sign-in,
 [id="sign-up"]:checked ~ input.sign-up,
 [id="reset"]:checked ~ input.reset {
     max-height: 40px;
@@ -63,10 +122,10 @@ fieldset {
     margin: 10px 0;
     opacity: 1;
 }
-
+*/
 
 /*//    submit button */
-button {
+/*button {
     height: 40px;
     border-radius: 2px;
     background-color: #8B2428;
@@ -82,14 +141,14 @@ button {
   
   button:before { font-size: 16px; }
 
-/*//    show botton text based on radio selection*/
-[id="sign-in"]:checked ~ button:before { content: 'Sign In'; }
+*//*//    show botton text based on radio selection*/
+/*[id="sign-in"]:checked ~ button:before { content: 'Sign In'; }
 [id="sign-up"]:checked ~ button:before { content: 'Sign Up'; }
 [id="reset"]:checked ~ button:before { content: 'Reset password'; }
-
+*/
 
 /*//            */
-label {
+/*label {
     position: relative;
     display: inline-block;
     text-align: center;
@@ -100,17 +159,17 @@ label {
     width: calc(100% / 3 - 4px);
     line-height: 30px;
     border-radius: 2px;
-}
+}*/
 
 /*//     set active label marker*/
-[id="sign-in"]:checked ~ [for="sign-in"],
+/*[id="sign-in"]:checked ~ [for="sign-in"],
 [id="sign-up"]:checked ~ [for="sign-up"],
 [id="reset"]:checked ~ [for="reset"] {
     background-color: #eaaeb0;
 }
     [id="sign-in"]:checked ~ [for="sign-in"]:after, [id="sign-in"]:checked ~ [for="sign-up"]:after, [id="reset"]:checked ~ [for="reset"]:after {
         border-bottom-color: #fff;
-    }
+    }*/
 
 body {
     background-color: #ADD8E6;

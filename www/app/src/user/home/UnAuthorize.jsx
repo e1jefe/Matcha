@@ -4,13 +4,6 @@ import './home.css';
 import Home from './Home';
 
 class UnAuthorize extends Component {
-
-    // function DeleteUserLink() {
-    // function onClick(e) {
-    //   e.preventDefault();
-    //   console.log('go to signin');
-    // }    
-
     render() {
         return(
             <div className="index">
@@ -22,7 +15,6 @@ class UnAuthorize extends Component {
                         The Only Human-Feline Dating App
                     </h3>
                     <hr/>
-                    {/* <a href="/signin" className="index-btn" onClick={onClick}>*/}
                     <NavLink to="/signin" className="index-btn">
                         <i className="paw" aria-hidden="true"></i>
                         Get Started!
