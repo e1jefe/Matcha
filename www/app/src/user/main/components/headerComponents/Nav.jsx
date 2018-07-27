@@ -7,12 +7,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
+import history from "../../../history/history";
 
 class ForUnauthor extends Component{
     render() {
         return (
             <li className="item">
-                <NavLink to="/signin">
+                <NavLink to="/signin" title="log in">
                     <img className="userImage" src="http://i63.tinypic.com/259vjpk.png" alt="login"/>
                 </NavLink>
             </li>
@@ -33,7 +34,7 @@ class Nav extends Component {
     handleLogout() {
         localStorage.removeItem('token');
         this.setState({author: false});
-        // this.context.router.replace('/home');
+        history.push('/home');
     }
 
     componentWillMount() {

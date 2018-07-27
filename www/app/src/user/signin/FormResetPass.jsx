@@ -8,8 +8,11 @@ class FormResetPass extends Component {
 		super(props);
 		this.state = {
 			email: '',
+			pass: '',
+
+			ePass: '',
 			errMsg: '',
-			loginStatuse: false
+			resetStatuse: false
 		}
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,17 +26,26 @@ class FormResetPass extends Component {
 		event.preventDefault();
 		if (this.state.email !== '')
 		{
-			PostData('auth/reset', this.state).then ((result) => {
-				if (result === false) {
-					this.setState({ errMsg: 'invalid email' });
-					console.log(result);
-				} else {
-					localStorage.setItem('token', result.jwt);
-					this.setState({loginStatuse: true});
-					console.log(result);
-					history.push('/');
-				}
+			this.setState({
+				ePass: '',				
+				errMsg: '',
+				resetStatuse: false
 			});
+			PostData('auth/reset', this.state).then ((result) => {
+				if (result.eEmail !== undefined) {
+					this.setState({ errMsg: result.eEmail });
+					console.log(result);
+				} else if (result.ePass !== undefined || result.wrongEmail !== undefined){
+					this.setState({
+						ePass: result.ePass,				
+						errMsg: result.wrongEmail
+					});
+				}
+				else {
+					this.setState({resetStatuse: true});
+					console.log(result);
+				}
+			});			
 		}
 	}
 
@@ -42,12 +54,18 @@ class FormResetPass extends Component {
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<fieldset>
+				{ this.state.resetStatuse && ( <span className="alert alert-success">Check your email to confirm your new password</span>) }				
+				{ this.state.errMsg !== '' && ( <span className="alert alert-danger">{this.state.errMsg}</span>) }				
 					<div className="form-group position-relative">
-						<label className="image-replace email" htmlFor="signin-email"><i className="far fa-envelope"></i></label>
-						<input type="email" name="email" className="form-control dop-pad" id="signin-email" onChange={this.onChange} aria-describedby="emailHelp" placeholder="email" required></input>
+						<label className="image-replace email" htmlFor="reset-email"><i className="far fa-envelope"></i></label>
+						<input type="email" name="email" className="form-control dop-pad" id="reset-email" onChange={this.onChange} aria-describedby="emailHelp" placeholder="email" required></input>
 					</div>
+					<div className="form-group position-relative">
+						<label className="image-replace password" htmlFor="reset-pass"></label>
+						<input type="password" className="form-control dop-pad" id="reset-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
+					</div>
+						{this.state.ePass !== undefined && this.state.ePass !== '' && ( <span className="alert alert-danger">{this.state.ePass}</span>)}
 					<button type="submit" className="btn btn-primary btn-block btn-my-color">Submit</button>
-						{ errMsg && ( <span className="alert alert-danger">{this.state.errMsg}</span>)}
 				</fieldset>
 			</form>
 

@@ -49,11 +49,11 @@ label.password {
     font-size: 16px;
 }
 .btn-my-color {
-    background-color: #f5a3ae;
+    background-color: #d9baf7;
     border-color: transparent;
 }
     .btn-my-color:hover {
-        background-color: #a11225;
+        background-color: #9947eb;
         border-color: transparent;
     }
     .btn-primary:focus {
@@ -73,7 +73,7 @@ label.password {
 .flex-wrap {
   opacity: 1;
   transition: opacity 0.5s;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 10px;
     max-width: 310px;
     display: flex;
@@ -87,6 +87,17 @@ label.password {
     box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.58);
 }
 
+.nav-push-down {
+    margin-bottom: 10px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #d9baf7;
+}
+
+.alert-danger, .alert-success {
+    display: block;
+}
 /*//    fix position radio input off-canvas*/
 /*.flex-wrap fieldset input[type="radio"] {
     position: fixed;

@@ -42,6 +42,9 @@ class FormSignIn extends Component {
 		const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
+				<div>
+					{ this.state.errMsg !== '' && ( <span className="alert alert-danger">{this.state.errMsg}</span>) }
+				</div>
 				<div className="form-group position-relative">
 					<label className="image-replace login" htmlFor="signin-email"><i className="far fa-user"></i></label>
 					<input type="text" className="form-control dop-pad" id="signin-email" name="login" onChange={this.onChange} aria-describedby="emailHelp" placeholder="Login"></input>

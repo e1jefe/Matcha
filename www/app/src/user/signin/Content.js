@@ -67,7 +67,7 @@ class Content extends Component {
 	render() {
 		return(
 			<div className="flex-wrap">
-			<ul className="nav nav-pills">
+			<ul className="nav nav-pills nav-push-down">
 				<li className="nav-item">
 					<a onClick={this.clicShowSignIn} className={"nav-link " + (this.state.activeIn ? 'active' : null)} href="#">Sign in</a>
 				</li>
