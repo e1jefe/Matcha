@@ -7,7 +7,7 @@ class Chat extends Component {
     render(){
         return(
             <div>
-                <ChatComponents />
+                <ChatComponents login={this.props.login}/>)}/>
             </div>
         );
     }

@@ -88,7 +88,7 @@ class Nav extends Component {
                             <span></span>
                             <ul id="menu">
                                 <li className="item">
-                                    <NavLink to="/myProfile">
+                                    <NavLink to="/cabinet">
                                         <p>{this.props.userLogin}</p>
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
                                     </NavLink>

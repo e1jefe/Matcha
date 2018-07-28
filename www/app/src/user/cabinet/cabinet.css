@@ -1,0 +1,17 @@
+img {
+	display: block;
+	width: 100%;
+}
+	.image-cropper {
+		width: 200px;
+		height: 200px;
+		position: relative;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+		.profile-pic {
+			display: inline;
+			margin: 0 auto;
+			height: 100%;
+			width: auto;
+		}
