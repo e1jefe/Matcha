@@ -76,26 +76,26 @@ class Home extends Component {
 		else if (this.state.author && this.state.fullProfile === false)
 		{
 			return(
+			<div>
+				<Header/>
 				<Router history={history}>
-					<div>
-					<Header />
-					<Route path="/cabinet" component={(props) => (<Cabinet login={this.state.userLogin} userId={this.state.userId} access={this.state.fullProfile}/>)}/>
-					<Footer />
-					</div>
+					<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId} access={this.state.fullProfile}/>} />				
 				</Router>
+				<Footer />				
+			</div>
 			)
 		}
 		else
 		{
 			return(
+				<div>
+				<Header/>
 				<Router history={history}>
-					<div>
-						<Header />
-							<Route path="/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)}/>
-							<Route path="/chat" component={(props) => (<Chat login={this.state.userLogin}/>)}/>
-						<Footer />
-					</div>
+						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)}/>
+						<Route path="/home/msg" component={(props) => (<Chat login={this.state.userLogin}/>)}/>				
 				</Router>
+				<Footer />
+				</div>
 			)
 		}
 	}

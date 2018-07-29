@@ -15,3 +15,7 @@ img {
 			height: 100%;
 			width: auto;
 		}
+
+.glyphicon-ok-sign:before {
+	margin-right: 5px;
+}

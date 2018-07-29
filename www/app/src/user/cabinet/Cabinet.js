@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import jwtDecode from 'jwt-decode';
-// import { PostData } from '../main/components/PostData';
-// import { Router, Route } from 'react-router-dom';
-// import history from "../history/history";
+import jwtDecode from 'jwt-decode';
+import { PostData } from '../main/components/PostData';
+import history from "../history/history";
 import './cabinet.css'
+import { Tabs, Tab } from 'react-bootstrap';
 
 class Cabinet extends Component {
 
@@ -23,29 +23,66 @@ class Cabinet extends Component {
 			fameRate: '',
 			tags: '',
 			pics: '',
-			avatar: ''
-		};
+			avatar: '',
+			pass: '',
+			whoLikedMe: []
+		}
+		this.handleSubmitInfo = this.handleSubmitInfo.bind(this)
+		this.handleSubmitAbout = this.handleSubmitAbout.bind(this)
+		// this.getWhoLikedMe()
 	}
 
 	componentWillMount() {
-				// console.log(props);
-		console.log(this.state);
-	// 	PostData('user/getAllInfo', this.state.userId).then ((result) => {
-	// 		console.log(result);
+		const token = localStorage.getItem('token')
+		if (token !== null)
+		{
+			let user = jwtDecode(token)
+			if (user.userLogin !== '')
+				user = user.userId
+			PostData('user/getAllInfo', {userId: user}).then ((result) => {
+				this.setState({
+					fName: result.userData.fname,
+					lName: result.userData.lname,
+					email: result.userData.email,
+					age: result.userData.age,
+					sex: result.userData.sex,
+					sexPref: result.userData.sexPref,
+					bio: result.userData.bio,
+					fameRate: result.userData.fameRate,
+					tags: result.userData.tags,
+					pics: result.userPhoto,
+					avatar: result.userData.profilePic
+				})
+			})
+			PostData('user/getWhoLikes', {userId: user}).then ((result) => {
+				this.setState({
+					whoLikedMe: result
+				})
+			})			
+		}
+	}
 
-	// 		// if (result.error !== '' || result.error !== undefined) {
-	// 		// 	this.setState({ errMsg: result.error });
-	// 		// 	console.log(result);
-	// 		// 	console.log('cirently in state', this.state);
-	// 		// } else if (result === true) {
-	// 		// 	this.setState({ fullProfile: true });					
-	// 		// }
-	// 	});
+	handleSubmitInfo(event) {
+		event.preventDefault();
+		PostData('user/recordInfo', this.state).then ((result) => {
+			console.log("I'm handling submit first tab")
+		})
+	}
+
+	handleSubmitAbout(event) {
+		event.preventDefault();
+		PostData('user/recordAbout', this.state).then ((result) => {
+			console.log("I'm handling submit second tab")
+		})
 	}
 
 	render() {
+		const marginTop = {marginTop: 15 + 'px'}
+		const userPics = this.state.pics
+		const whoLikedMe = this.state.whoLikedMe
+		console.log("in whoLikedMe:   ", whoLikedMe)
 		return(
-			<div className="container bootstrap snippet">
+			<div className="container bootstrap snippet" style={marginTop}>
 				<div className="row">
 					<div className="col-sm-4">
 						<h1>{this.state.login}</h1>
@@ -63,7 +100,7 @@ class Cabinet extends Component {
 					<div className="col-sm-3">
 						<div className="text-center">
 							<div className="image-cropper">
-								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" className="profile-pic" alt="avatar" />
+								<img src={this.state.avatar === '' || this.state.avatar === null ? "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" : this.state.avatar} className="profile-pic" alt="avatar" />
 							</div>
 							<h6>
 								Upload a different photo...
@@ -79,52 +116,41 @@ class Cabinet extends Component {
 						</ul>
 					</div>
 					<div className="col-sm-9">
-						<ul className="nav nav-tabs">
-							<li className="active"><a data-toggle="tab" href="#info">Personal info</a></li>
-							<li><a data-toggle="tab" href="#about">About me</a></li>
-							<li><a data-toggle="tab" href="#location">My location</a></li>
-							<li><a data-toggle="tab" href="#photo">Photos</a></li>
-							<li><a data-toggle="tab" href="#looked">Views</a></li>                
-							<li><a data-toggle="tab" href="#likes">Likes</a></li>
-							<li><a data-toggle="tab" href="#blocks">Blocked users</a></li>
-						</ul>
-						<div className="tab-content">
-
-							<div className="tab-pane active" id="info">
-								<hr />
-								<form className="form" action="##" method="post" id="registrationForm">
+						<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+							<Tab eventKey={1} title="Personal info">
+								<form className="form" id="registrationForm1" onSubmit={this.handleSubmitInfo}>
 									<div className="form-group">
-										<div className="col-xs-6">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="first_name">
 												<h4>
 													First name
 												</h4>
 											</label>
-											<input type="text" className="form-control" name="first_name" id="first_name" value="TipaMoeImyaIzBazy" title="enter your first name if any." />
+											<input type="text" className="form-control" name="first_name" id="first_name" defaultValue={this.state.fName} title="enter your first name if any." />
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="last_name">
 												<h4>
 													Last name
 												</h4>
 											</label>
-											<input type="text" className="form-control" name="last_name" id="last_name" value="TipaFamiliya" title="enter your last name if any." />
+											<input type="text" className="form-control" name="last_name" id="last_name" defaultValue={this.state.lName} title="enter your last name if any." />
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="login">
 												<h4>
 													Login
 												</h4>
 											</label>
-											<input type="text" className="form-control" name="login" id="login" value="MyPerfectLogin" title="enter your new login" />
+											<input type="text" className="form-control" name="login" id="login" defaultValue={this.state.login} title="enter your new login" />
 										</div>
 									</div>
-						  			<div className="form-group">
-							  			<div className="col-xs-6">
+									<div className="form-group">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="password">
 												<h4>
 													Password
@@ -134,17 +160,17 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">          
-										<div className="col-xs-6">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="email">
 												<h4>
 													Email
 												</h4>
 											</label>
-											<input type="email" className="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." />
+											<input type="email" className="form-control" name="email" id="email" placeholder={this.state.email} title="enter your email." />
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6">
+										<div className="col-xs-6" style={marginTop}>
 											<label htmlFor="dob">
 												<h4>
 													Date of Birth
@@ -154,33 +180,33 @@ class Cabinet extends Component {
 										</div> 
 									</div>
 									<div className="form-group">
-										<div className="col-xs-12">
+										<div className="col-xs-12" style={marginTop}>
 											<h4>Choose your sex</h4>
 											<label className="radio-inline">
-												<input type="radio" name="sex" id="inlineCheckbox1" value="male" />
+												<input type="radio" name="sex" id="inlineCheckbox1" defaultValue="male" checked={this.state.sex === "male" ? "true" : null}/>
 													Male
 											</label>
 											<label className="radio-inline">
-												<input type="radio" name="sex" id="inlineCheckbox2" value="female" />
+												<input type="radio" name="sex" id="inlineCheckbox2" defaultValue="female" checked={this.state.sex === "female" ? "true" : null}/>
 													Female
 											</label>
 										</div> 
 									</div>
 									<div className="form-group">
-										<div className="col-xs-12">
+										<div className="col-xs-12" style={marginTop}>
 											<h4>
 												Choose your sexual preferences
 											</h4>
 											<label className="radio-inline">
-												<input type="radio" name="sex2" id="inlineCheckbox2" value="bi" />
+												<input type="radio" name="sex2"  defaultValue="bi" checked={this.state.sex === "bi" ? "true" : null}/>
 													Bisexual
 											</label>
 											<label className="radio-inline">
-												<input type="radio" name="sex2" id="inlineCheckbox2" value="opposite" />
+												<input type="radio" name="sex2"  defaultValue="hetero" checked={this.state.sex === "hetero" ? "true" : null}/>
 													Heterosexual
 											</label>
 											<label className="radio-inline">
-												<input type="radio" name="sex2" id="inlineCheckbox2" value="homo" />
+												<input type="radio" name="sex2"  defaultValue="homo" checked={this.state.sex === "homo" ? "true" : null}/>
 													Homosexual
 											</label>
 										</div>
@@ -199,46 +225,59 @@ class Cabinet extends Component {
 										</div>
 									</div>
 								</form>
-							</div>
+							</Tab>
 
-							<div className="tab-pane" id="about">
-								<hr />
-									<form className="form" action="##" method="post" id="registrationForm">
-										<div className="form-group">
-											<div className="col-xs-12">
-												<label htmlFor="tags">
-													<h4>
-														My interests
-													</h4>
-												</label>
-												<input type="text" className="form-control" name="tags" id="tags" placeholder="for e.g. muzic photo" title="enter your interests as separated one space words" />
-											</div>
+							<Tab eventKey={2} title="About me">
+								<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
+									<div className="form-group">
+										<div className="col-xs-12">
+											<label htmlFor="tags">
+												<h4>
+													My interests:
+												</h4>
+											</label>
+											{this.state.tags !== null && this.state.tags !== '' ? 
+												<div className="col-xs-10">
+													{this.state.tags}
+												</div>
+												:
+												null
+											}
+											<input type="text" className="form-control" name="tags" id="tags" placeholder="for e.g. muzic photo" title="enter your interests as separated one space words" />
 										</div>
-										<div className="form-group">                          
-											<div className="col-xs-12">
-												<label htmlFor="bio">
-													<h4>
-														Some words about me
-													</h4>
-												</label>
-												<textarea className="form-control" name="bio" id="bio" placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxlength="256" rows="5"></textarea>
-											</div>
+									</div>
+									<div className="form-group">
+										<div className="col-xs-12" style={marginTop}>
+											<label htmlFor="bio">
+												<h4>
+													Some words about me
+												</h4>
+											</label>
+												{(this.state.bio !== '' && this.state.bio !== null) ?
+													<div className="col-xs-12" style={marginTop} contentEditable='true'>
+														{this.state.bio}
+													</div>
+													:
+													<textarea className="form-control" name="bio" id="bio" placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}}></textarea>
+												}
 										</div>
-										<div className="form-group">
-											<div className="col-xs-12">
-												<br />
-												<button className="btn btn-lg btn-success pull-right" type="submit">
-													<i className="glyphicon glyphicon-ok-sign"></i>
-													 Save
-												</button>
-											</div>
+									</div>
+									<div className="form-group">
+										<div className="col-xs-12">
+											<br />
+											<button className="btn btn-lg pull-right" type="reset">
+												<i className="glyphicon glyphicon-repeat"></i> Reset
+											</button>
+											<button className="btn btn-lg btn-success pull-right" type="submit">
+												<i className="glyphicon glyphicon-ok-sign"></i> Save
+											</button>
 										</div>
-									</form>
-							</div>
+									</div>
+								</form>
+							</Tab>
 
-							<div className="tab-pane" id="location">
-								<hr />
-								<form className="form" action="##" method="post" id="location2">
+							<Tab eventKey={3} title="My location">
+								<form className="form" id="location2">
 									<div className="form-group">
 										<div className="col-xs-12">
 											<label htmlFor="location">
@@ -259,25 +298,39 @@ class Cabinet extends Component {
 									<div className="form-group">
 										<div className="col-xs-12">
 											<br />
+											<button className="btn btn-lg pull-right" type="reset">
+												<i className="glyphicon glyphicon-repeat"></i> Reset
+											</button>
 											<button className="btn btn-lg btn-success pull-right" type="submit">
 												<i className="glyphicon glyphicon-ok-sign"></i>
 												 Save
 											</button>
 										</div>
-					  				</div>
+									</div>
 								</form>
-							</div>
+							</Tab>
 
-							<div className="tab-pane" id="photo">
-				  				<hr />
-								<form className="form" action="##" method="post" id="registrationForm">
-									<h4>
-										You can upload up to 5 photos
-									</h4>
+							<Tab eventKey={4} title="Photos">
+								<form className="form" id="registrationForm3">
+									<div className="form-group">								
+										<div className="col-xs-12">
+											<h4>
+												You can upload up to 5 photos
+											</h4>
+										</div>
+									</div>
+
 									<div className="row">
 										<div className="col-lg-12">
-											<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." className="img-thumbnail" />
-											<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." className="img-thumbnail" />
+											{(userPics !== null && userPics !== '') ? 
+												userPics.map((pikcha) => (
+													<div className="col-lg-3" key={pikcha.toString()}>
+														<img src={pikcha} alt="..." className="img-thumbnail" />
+													</div>
+												))
+												:
+												null
+											}											
 										</div>
 									</div>					
 									<div className="form-group">
@@ -285,100 +338,107 @@ class Cabinet extends Component {
 										<input type="file" className="form-control-file" id="myNewPicture" />
 									</div>
 								</form>
-							</div>
+							</Tab>
+							<Tab eventKey={5} title="Viewes">
+								<div className="form-group">
+									<div className="col-xs-12">
+										<h3>Users who looked through my profile</h3>
+									</div>
+								</div>
 
-							<div className="tab-pane" id="looked">
-								<hr />
-									<h3>Users who looked through my profile</h3>
-									<div className="row">
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">
-														Card title
-													</h5>
-													<p className="card-text">
-														Some quick example text to build on the card title and make up the bulk of the card's content.
-													</p>
-													<a href="#" className="btn btn-primary">
-														view
-													</a>
-												</div>
+								<div className="row">
+									<div className="col-xs-3">
+										<div className="card">
+											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+											<div className="card-body">
+												<h5 className="card-title">
+													Card title
+												</h5>
+												<p className="card-text">
+													Some quick example text to build on the card title and make up the bulk of the card's content.
+												</p>
+												<a href="#" className="btn btn-primary">
+													view
+												</a>
 											</div>
-										</div> 
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">
-														Card title
-													</h5>
-													<p className="card-text">
-														Some quick example text to build on the card title and make up the bulk of the card's content.
-													</p>
-													<a href="#" className="btn btn-primary">
-														view
-													</a>
-												</div>
+										</div>
+									</div> 
+									<div className="col-xs-3">
+										<div className="card">
+											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+											<div className="card-body">
+												<h5 className="card-title">
+													Card title
+												</h5>
+												<p className="card-text">
+													Some quick example text to build on the card title and make up the bulk of the card's content.
+												</p>
+												<a href="#" className="btn btn-primary">
+													view
+												</a>
 											</div>
-										</div> 
+										</div>
+									</div> 
+								</div>
+							</Tab>
+							<Tab eventKey={6} title="Likes">
+								<div className="form-group">
+									<div className="col-xs-12">
+										<h3>Users who liked my profile</h3>
 									</div>
-							</div>
-							<div className="tab-pane" id="likes">
-								<hr />
-									<h3>Users who liked my profile</h3>
-									<div className="row">
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">Card title</h5>
-													<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-													<a href="#" className="btn btn-primary">view</a>
+								</div>
+								<div className="row">
+									{whoLikedMe !== undefined && whoLikedMe !== null ? 
+										whoLikedMe.map((profile) => (												
+											<div className="col-xs-3" key={profile.profilePic}>
+												<div className="card">
+													<img className="card-img-top" src={profile.profilePic} />
+													<div className="card-body">
+														<h5 className="card-title">{profile.firstName} {profile.lastName}</h5>
+														<p className="card-text">{profile.about}</p>
+														<a href="#" className="btn btn-primary">View full profile</a>
+													</div>
 												</div>
 											</div>
-										</div> 
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">Card title</h5>
-													<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-													<a href="#" className="btn btn-primary">view</a>
-												</div>
-											</div>
-										</div> 
+										))
+										:
+										null
+									}
+								</div>
+							</Tab>
+							
+							<Tab eventKey={7} title="Blocs">
+								<div className="form-group">							
+									<div className="col-xs-12">
+										<h3>Profiles that I blocked</h3>
+										<h6>Или вывести списком имена</h6>
 									</div>
-							</div> 
-							<div className="tab-pane" id="blocks">
-								<hr />
-									<h3>Profiles that I blocked</h3>
-									<h6>Или вывести списком имена</h6>
-									<div className="row">
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">Card title</h5>
-													<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-													<a href="#" className="btn btn-primary">view</a>
-												</div>
+								</div>									
+								<div className="row">
+									<div className="col-xs-3">
+										<div className="card">
+											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+											<div className="card-body">
+												<h5 className="card-title">Card title</h5>
+												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+												<a href="#" className="btn btn-primary">view</a>
 											</div>
-										</div> 
-										<div className="col-xs-3">
-											<div className="card">
-												<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-												<div className="card-body">
-													<h5 className="card-title">Card title</h5>
-													<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-													<a href="#" className="btn btn-primary">view</a>
-												</div>
+										</div>
+									</div> 
+									<div className="col-xs-3">
+										<div className="card">
+											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+											<div className="card-body">
+												<h5 className="card-title">Card title</h5>
+												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+												<a href="#" className="btn btn-primary">view</a>
 											</div>
-										</div> 
-									</div>
-							</div> 
-						</div>
+										</div>
+									</div> 
+								</div>
+							</Tab>
+
+						</Tabs>
 					</div>
 				</div>
 			</div>
