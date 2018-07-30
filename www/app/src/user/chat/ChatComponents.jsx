@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Chat.css';
+import './chat.css';
 import 'antd/dist/antd.css'
 import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';

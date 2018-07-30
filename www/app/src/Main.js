@@ -5,6 +5,7 @@ import Home from './user/home/Home';
 import SignIn from './user/signin/Signin.js';
 import App from './App';
 import history from './user/history/history';
+import Chat from './user/chat/chat.js'
 
 
 // The Main component renders one of the three provided
@@ -19,6 +20,7 @@ const Main = () => (
 				<Route exact path='/' component={Home}/>
 				<Route path='/home' component={Home}/>
 				<Route path='/signin' component={SignIn}/>
+				<Route path='/chat' component={Chat}/>
 			</Switch>
 		</Router>
 	</main>

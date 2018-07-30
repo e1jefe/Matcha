@@ -11,7 +11,7 @@ import UnAuthorize from './UnAuthorize';
 import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
-import Chat from '../chat/Chat';
+import Chat from '../chat/chat';
 
 class Home extends Component {
 
@@ -92,7 +92,7 @@ class Home extends Component {
 				<Header/>
 				<Router history={history}>
 						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)}/>
-						<Route path="/home/msg" component={(props) => (<Chat login={this.state.userLogin}/>)}/>				
+						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)}/>
 				</Router>
 				<Footer />
 				</div>
