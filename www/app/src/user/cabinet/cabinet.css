@@ -1,21 +1,32 @@
-img {
-	display: block;
-	width: 100%;
+.image-cropper {
+	width: 200px;
+	height: 200px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
 }
-	.image-cropper {
-		width: 200px;
-		height: 200px;
-		position: relative;
-		overflow: hidden;
-		border-radius: 50%;
+	.profile-pic {
+		display: inline;
+		margin: 0 auto;
+		height: 100%;
+		width: auto;
 	}
-		.profile-pic {
-			display: inline;
-			margin: 0 auto;
-			height: 100%;
-			width: auto;
-		}
+
+	.card>img {
+		object-fit: cover;
+		width: 100%;
+		display: block;
+	}
 
 .glyphicon-ok-sign:before {
 	margin-right: 5px;
+}
+
+.bgr-col-wite {
+	background-color: #fff;
+	padding: 5px;
+}
+.file {
+  visibility: hidden;
+  position: absolute;
 }

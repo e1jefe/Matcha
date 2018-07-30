@@ -4,6 +4,16 @@ import { PostData } from '../main/components/PostData';
 import history from "../history/history";
 import './cabinet.css'
 import { Tabs, Tab } from 'react-bootstrap';
+import $ from 'jquery';
+import MyPhoto from './components/MyPhoto'
+
+	$(document).on('click', '.browse', function(){
+		var file = $(this).parent().parent().parent().find('.file');
+		file.trigger('click');
+	});
+	$(document).on('change', '.file', function(event){
+		$(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+	});
 
 class Cabinet extends Component {
 
@@ -22,14 +32,12 @@ class Cabinet extends Component {
 			bio: '',
 			fameRate: '',
 			tags: '',
-			pics: '',
 			avatar: '',
 			pass: '',
 			whoLikedMe: []
 		}
 		this.handleSubmitInfo = this.handleSubmitInfo.bind(this)
 		this.handleSubmitAbout = this.handleSubmitAbout.bind(this)
-		// this.getWhoLikedMe()
 	}
 
 	componentWillMount() {
@@ -50,15 +58,10 @@ class Cabinet extends Component {
 					bio: result.userData.bio,
 					fameRate: result.userData.fameRate,
 					tags: result.userData.tags,
-					pics: result.userPhoto,
-					avatar: result.userData.profilePic
+					avatar: result.userData.profilePic,
+					whoLikedMe: result.whoLikesUser
 				})
 			})
-			PostData('user/getWhoLikes', {userId: user}).then ((result) => {
-				this.setState({
-					whoLikedMe: result
-				})
-			})			
 		}
 	}
 
@@ -78,7 +81,7 @@ class Cabinet extends Component {
 
 	render() {
 		const marginTop = {marginTop: 15 + 'px'}
-		const userPics = this.state.pics
+		
 		const whoLikedMe = this.state.whoLikedMe
 		console.log("in whoLikedMe:   ", whoLikedMe)
 		return(
@@ -102,10 +105,6 @@ class Cabinet extends Component {
 							<div className="image-cropper">
 								<img src={this.state.avatar === '' || this.state.avatar === null ? "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" : this.state.avatar} className="profile-pic" alt="avatar" />
 							</div>
-							<h6>
-								Upload a different photo...
-							</h6>
-							<input type="file" className="text-center center-block file-upload" />
 						</div>
 						<br />
 						<ul className="list-group">
@@ -253,13 +252,7 @@ class Cabinet extends Component {
 													Some words about me
 												</h4>
 											</label>
-												{(this.state.bio !== '' && this.state.bio !== null) ?
-													<div className="col-xs-12" style={marginTop} contentEditable='true'>
-														{this.state.bio}
-													</div>
-													:
-													<textarea className="form-control" name="bio" id="bio" placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}}></textarea>
-												}
+											<textarea className="form-control" name="bio" id="bio" placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}} value={this.state.bio}/>
 										</div>
 									</div>
 									<div className="form-group">
@@ -311,34 +304,9 @@ class Cabinet extends Component {
 							</Tab>
 
 							<Tab eventKey={4} title="Photos">
-								<form className="form" id="registrationForm3">
-									<div className="form-group">								
-										<div className="col-xs-12">
-											<h4>
-												You can upload up to 5 photos
-											</h4>
-										</div>
-									</div>
-
-									<div className="row">
-										<div className="col-lg-12">
-											{(userPics !== null && userPics !== '') ? 
-												userPics.map((pikcha) => (
-													<div className="col-lg-3" key={pikcha.toString()}>
-														<img src={pikcha} alt="..." className="img-thumbnail" />
-													</div>
-												))
-												:
-												null
-											}											
-										</div>
-									</div>					
-									<div className="form-group">
-										<label htmlFor="myNewPicture">Add new photo</label>
-										<input type="file" className="form-control-file" id="myNewPicture" />
-									</div>
-								</form>
+								<MyPhoto userId={this.state.userId}/>
 							</Tab>
+
 							<Tab eventKey={5} title="Viewes">
 								<div className="form-group">
 									<div className="col-xs-12">
@@ -351,7 +319,7 @@ class Cabinet extends Component {
 										<div className="card">
 											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 											<div className="card-body">
-												<h5 className="card-title">
+												<h5 className="card-title margin-top">
 													Card title
 												</h5>
 												<p className="card-text">
@@ -367,7 +335,7 @@ class Cabinet extends Component {
 										<div className="card">
 											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 											<div className="card-body">
-												<h5 className="card-title">
+												<h5 className="card-title margin-top">
 													Card title
 												</h5>
 												<p className="card-text">
@@ -394,7 +362,7 @@ class Cabinet extends Component {
 												<div className="card">
 													<img className="card-img-top" src={profile.profilePic} />
 													<div className="card-body">
-														<h5 className="card-title">{profile.firstName} {profile.lastName}</h5>
+														<h5 className="card-title margin-top">{profile.firstName} {profile.lastName}</h5>
 														<p className="card-text">{profile.about}</p>
 														<a href="#" className="btn btn-primary">View full profile</a>
 													</div>
@@ -419,7 +387,7 @@ class Cabinet extends Component {
 										<div className="card">
 											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 											<div className="card-body">
-												<h5 className="card-title">Card title</h5>
+												<h5 className="card-title margin-top">Card title</h5>
 												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 												<a href="#" className="btn btn-primary">view</a>
 											</div>
@@ -429,7 +397,7 @@ class Cabinet extends Component {
 										<div className="card">
 											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 											<div className="card-body">
-												<h5 className="card-title">Card title</h5>
+												<h5 className="card-title margin-top">Card title</h5>
 												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 												<a href="#" className="btn btn-primary">view</a>
 											</div>
