@@ -17,7 +17,7 @@ class ChatComponents extends Component {
 
     render() {
         return (
-            <div id="wrapper">
+            <div id="wrapper" className="chatComponent">
                 <div class="sidebar">
                     <div class="profile-img">
                         <img src="http://img.vikna.if.ua/gallery_2017/80228/188771_102584486582505_1540861915_n-e1489585794754__large.jpg" alt=""/>
