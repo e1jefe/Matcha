@@ -93,7 +93,7 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/home/chat">
+                                    <NavLink to="/chat">
                                         <Badge count={42}>
                                             <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
                                         </Badge>
@@ -107,7 +107,7 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/home" onClick={this.handleLogout.bind(this)}>
+                                    <NavLink to="" onClick={this.handleLogout.bind(this)}>
                                         <img className="notificationImage" src="http://i68.tinypic.com/2ly5q36.png" alt="logout"/>
                                     </NavLink>
                                 </li>
