@@ -4,7 +4,6 @@ import 'antd/dist/antd.css'
 import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';
 // import 'emoji-mart/css/emoji-mart.css'
-// import { Picker } from 'emoji-mart'
 // import { Emoji } from 'emoji-mart'
 const DemoBox = props => <p className={`height-${props.value}`}>{props.children}</p>;
 class ChatComponents extends Component {

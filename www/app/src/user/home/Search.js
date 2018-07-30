@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import './chat.css';
-import ChatComponents from './ChatComponents';
+import './search.css';
 import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
+import SearchComponents from './SearchComponents.jsx';
 
-class Chat extends Component {
-    render(){
+class Search extends Component {
+    render() {
         return(
             <div>
                 <Header/>
-                <ChatComponents login={this.props.login}/>
+                <SearchComponents login={this.props.login}/>
                 <Footer />
             </div>
         );
     }
 }
 
-export default Chat;
+export default Search;

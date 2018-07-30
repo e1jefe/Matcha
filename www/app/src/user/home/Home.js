@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Redirect } from 'react-router-dom';
 import { PostData } from '../main/components/PostData';
 import history from "../history/history";
 import jwtDecode from 'jwt-decode';
@@ -12,6 +12,7 @@ import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
 import Chat from '../chat/chat';
+import Search from "./Search.js";
 
 class Home extends Component {
 
@@ -89,12 +90,14 @@ class Home extends Component {
 		{
 			return(
 				<div>
-				<Header/>
+
 				<Router history={history}>
-						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)}/>
-						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)}/>
+					<Header/>
+						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)} />
+						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)} />
+					<Route path='/search' component={(props) => (<Search login={this.state.userLogin}/>)} />
+					<Footer />
 				</Router>
-				<Footer />
 				</div>
 			)
 		}
