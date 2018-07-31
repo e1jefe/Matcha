@@ -30,3 +30,41 @@
   visibility: hidden;
   position: absolute;
 }
+
+.marginTop {
+	margin-top: 15px
+}
+
+.tag {
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	box-sizing: border-box;
+	padding: 10px;
+	border: 1px solid #888;
+	position: relative;
+	border-radius: 3px;
+}
+
+	.tagTxt {
+
+	}
+
+	.tagDel {
+		visibility: hidden;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 20px;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: -4px;
+    	right: -5px;
+		background-color: red;
+		border-radius: 50%;
+	}
+
+	.tag:hover > .tagDel {
+		visibility: visible;
+		color: #fff;
+		cursor: pointer;
+	}

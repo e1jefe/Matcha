@@ -12,7 +12,7 @@ class MyPhoto extends Component  {
 		super(props);
 		this.state = {
 			userId: props.userId,			
-			pics: '',
+			pics: props.photo,
 			picErr: '',
 			photoIndex: 0,
       		isOpen: false
@@ -27,8 +27,26 @@ class MyPhoto extends Component  {
 		})
 	}
 
-	componentDidMount(){
-		$('.ril-zoom-in').hide();
+	deletePic(event){
+		console.log('in delete')
+		
+		event.preventDefault()
+		let pic = event.target.getAttribute('target')
+		console.log('sorce: ', pic)
+		PostData('user/delMyPic', {userId: this.state.userId, pic: pic}).then ((result) => {
+			this.setState({pics: result.userPhoto})
+			console.log("удал pic after ", this.state.pics)
+			console.log("удал pic after result ", result)
+		})
+		console.log("удал pic before ", this.state.pics)
+		
+	}
+
+	setAvatar(event){
+		event.preventDefault()
+		let pic = event.target.getAttribute('target')
+		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
+		})
 	}
 
 	onCHangeFile(e) {
@@ -47,13 +65,18 @@ class MyPhoto extends Component  {
 						pics: result.userPhoto
 					})
 				}
+			console.log("pic after ", this.state.pics)
+
 			})
 		}
+		console.log("pic before ", this.state.pics)
 	}
 
 	render() {
 		const userPics = this.state.pics
 		const photoIndex = this.state.photoIndex
+		console.log("user pic in render  ", userPics)
+
 		return(
 			<form className="form" id="registrationForm3">
 				<div className="form-group">								
@@ -63,17 +86,23 @@ class MyPhoto extends Component  {
 						</h4>
 					</div>
 				</div>
-				<div className="row">
+				<div className="row my-photo-img">
 					<div className="col-lg-12">
 						{(userPics !== null && userPics !== '') ? 
 							userPics.map((pikcha) => (
-								<div className="col-lg-3" key={pikcha.toString()} onClick={() => this.setState({ isOpen: true })}>
-									<img src={pikcha} alt="..." className="img-thumbnail" />
-								</div>								
+								<div className="col-lg-6" key={pikcha.toString()}>
+									<div className="card">
+									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true })}/>
+									  <div className="card-body margin-top">									    
+									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
+									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
+									  </div>
+									</div>
+								</div>
 							))
 							:
 							null
-						}											
+						}
 					</div>
 				</div>					
 

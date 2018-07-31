@@ -6,6 +6,8 @@ import './cabinet.css'
 import { Tabs, Tab } from 'react-bootstrap';
 import $ from 'jquery';
 import MyPhoto from './components/MyPhoto'
+import AboutMe from './components/AboutMe'
+
 
 	$(document).on('click', '.browse', function(){
 		var file = $(this).parent().parent().parent().find('.file');
@@ -29,15 +31,13 @@ class Cabinet extends Component {
 			age: '',
 			sex: '',
 			sexPref: '',
-			bio: '',
 			fameRate: '',
-			tags: '',
 			avatar: '',
 			pass: '',
-			whoLikedMe: []
+			whoLikedMe: [],
+			pics: []
 		}
 		this.handleSubmitInfo = this.handleSubmitInfo.bind(this)
-		this.handleSubmitAbout = this.handleSubmitAbout.bind(this)
 	}
 
 	componentWillMount() {
@@ -55,13 +55,13 @@ class Cabinet extends Component {
 					age: result.userData.age,
 					sex: result.userData.sex,
 					sexPref: result.userData.sexPref,
-					bio: result.userData.bio,
 					fameRate: result.userData.fameRate,
-					tags: result.userData.tags,
 					avatar: result.userData.profilePic,
-					whoLikedMe: result.whoLikesUser
+					whoLikedMe: result.whoLikesUser,
+					pics: result.userPhoto
 				})
 			})
+			console.log("state in cabinet in WILL Mount ", this.state)			
 		}
 	}
 
@@ -72,20 +72,11 @@ class Cabinet extends Component {
 		})
 	}
 
-	handleSubmitAbout(event) {
-		event.preventDefault();
-		PostData('user/recordAbout', this.state).then ((result) => {
-			console.log("I'm handling submit second tab")
-		})
-	}
-
 	render() {
-		const marginTop = {marginTop: 15 + 'px'}
-		
 		const whoLikedMe = this.state.whoLikedMe
 		console.log("in whoLikedMe:   ", whoLikedMe)
 		return(
-			<div className="container bootstrap snippet" style={marginTop}>
+			<div className="container bootstrap snippet marginTop">
 				<div className="row">
 					<div className="col-sm-4">
 						<h1>{this.state.login}</h1>
@@ -119,7 +110,7 @@ class Cabinet extends Component {
 							<Tab eventKey={1} title="Personal info">
 								<form className="form" id="registrationForm1" onSubmit={this.handleSubmitInfo}>
 									<div className="form-group">
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop">
 											<label htmlFor="first_name">
 												<h4>
 													First name
@@ -129,7 +120,7 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop">
 											<label htmlFor="last_name">
 												<h4>
 													Last name
@@ -139,7 +130,7 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop">
 											<label htmlFor="login">
 												<h4>
 													Login
@@ -149,7 +140,7 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop">
 											<label htmlFor="password">
 												<h4>
 													Password
@@ -159,7 +150,7 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">          
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop" >
 											<label htmlFor="email">
 												<h4>
 													Email
@@ -169,7 +160,7 @@ class Cabinet extends Component {
 										</div>
 									</div>
 									<div className="form-group">
-										<div className="col-xs-6" style={marginTop}>
+										<div className="col-xs-6 marginTop" >
 											<label htmlFor="dob">
 												<h4>
 													Date of Birth
@@ -179,7 +170,7 @@ class Cabinet extends Component {
 										</div> 
 									</div>
 									<div className="form-group">
-										<div className="col-xs-12" style={marginTop}>
+										<div className="col-xs-12 marginTop" >
 											<h4>Choose your sex</h4>
 											<label className="radio-inline">
 												<input type="radio" name="sex" id="inlineCheckbox1" defaultValue="male" checked={this.state.sex === "male" ? "true" : null}/>
@@ -192,7 +183,7 @@ class Cabinet extends Component {
 										</div> 
 									</div>
 									<div className="form-group">
-										<div className="col-xs-12" style={marginTop}>
+										<div className="col-xs-12 marginTop" >
 											<h4>
 												Choose your sexual preferences
 											</h4>
@@ -227,46 +218,7 @@ class Cabinet extends Component {
 							</Tab>
 
 							<Tab eventKey={2} title="About me">
-								<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
-									<div className="form-group">
-										<div className="col-xs-12">
-											<label htmlFor="tags">
-												<h4>
-													My interests:
-												</h4>
-											</label>
-											{this.state.tags !== null && this.state.tags !== '' ? 
-												<div className="col-xs-10">
-													{this.state.tags}
-												</div>
-												:
-												null
-											}
-											<input type="text" className="form-control" name="tags" id="tags" placeholder="for e.g. muzic photo" title="enter your interests as separated one space words" />
-										</div>
-									</div>
-									<div className="form-group">
-										<div className="col-xs-12" style={marginTop}>
-											<label htmlFor="bio">
-												<h4>
-													Some words about me
-												</h4>
-											</label>
-											<textarea className="form-control" name="bio" id="bio" placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}} value={this.state.bio}/>
-										</div>
-									</div>
-									<div className="form-group">
-										<div className="col-xs-12">
-											<br />
-											<button className="btn btn-lg pull-right" type="reset">
-												<i className="glyphicon glyphicon-repeat"></i> Reset
-											</button>
-											<button className="btn btn-lg btn-success pull-right" type="submit">
-												<i className="glyphicon glyphicon-ok-sign"></i> Save
-											</button>
-										</div>
-									</div>
-								</form>
+								<AboutMe userId={this.state.userId}/>
 							</Tab>
 
 							<Tab eventKey={3} title="My location">
@@ -304,7 +256,7 @@ class Cabinet extends Component {
 							</Tab>
 
 							<Tab eventKey={4} title="Photos">
-								<MyPhoto userId={this.state.userId}/>
+								<MyPhoto userId={this.state.userId} photo={this.state.pics}/>
 							</Tab>
 
 							<Tab eventKey={5} title="Viewes">

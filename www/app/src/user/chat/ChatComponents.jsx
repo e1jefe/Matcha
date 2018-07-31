@@ -18,19 +18,19 @@ class ChatComponents extends Component {
     render() {
         return (
             <div id="wrapper" className="chatComponent">
-                <div class="sidebar">
-                    <div class="profile-img">
-                        <img src="http://img.vikna.if.ua/gallery_2017/80228/188771_102584486582505_1540861915_n-e1489585794754__large.jpg" alt=""/>
+                <div className="sidebar">
+                    <div className="profile-img">
+                        <img className="http://img.vikna.if.ua/gallery_2017/80228/188771_102584486582505_1540861915_n-e1489585794754__large.jpg" alt=""/>
                     </div>
-                    <ul class="sidebar-menu">
-                        <li><a href="#" class="sidebar-menu__links active"><img src="http://muhammederdem.com.tr/sms/img/send.png" alt=""/></a></li>
-                        <li><a href="#" class="sidebar-menu__links"><img src="http://muhammederdem.com.tr/sms/img/trash.png" alt=""/></a></li>
+                    <ul className="sidebar-menu">
+                        <li><a href="#" className="sidebar-menu__links active"><img src="http://muhammederdem.com.tr/sms/img/send.png" alt=""/></a></li>
+                        <li><a href="#" className="sidebar-menu__links"><img src="http://muhammederdem.com.tr/sms/img/trash.png" alt=""/></a></li>
                     </ul>
 
-                    <a href="#" class="btn-menu"><img src="img/menu.png" alt=""/></a>
+                    <a href="#" className="btn-menu"><img src="img/menu.png" alt=""/></a>
                 </div>
 
-                <div class="messages">
+                <div className="messages">
 
                     {/*<div class="seacrh-bar">*/}
 
@@ -39,98 +39,98 @@ class ChatComponents extends Component {
 
                     {/*</div>*/}
 
-                    <a href="#" class="messages__item">
-                        <div class="name">
+                    <a href="#" className="messages__item">
+                        <div className="name">
                             <b> Алежа Винник</b>
                         </div>
-                        <div class="date">
+                        <div className="date">
                             1h ago
                         </div>
 
-                        <div class="content">
+                        <div className="content">
                             Я люблю вас волчицы...
                         </div>
                     </a>
 
-                    <a href="#" class="messages__item unread">
-                        <div class="name">
+                    <a href="#" className="messages__item unread">
+                        <div className="name">
                            <b> Коленька Басков</b>
                         </div>
-                        <div class="date">
+                        <div className="date">
                             1h ago
                         </div>
 
-                        <div class="content">
+                        <div className="content">
                             Я всех вас люблю, мои дорогие волчицы...
                         </div>
                     </a>
 
-                    <a href="#" class="messages__item unread">
-                        <div class="name">
+                    <a href="#" className="messages__item unread">
+                        <div className="name">
                            <b> Стасик Михайлов</b>
                         </div>
-                        <div class="date">
+                        <div className="date">
                             4h ago
                         </div>
 
-                        <div class="content">
+                        <div className="content">
                             Я люблю вас. Я всех вас люблю.
                         </div>
                     </a>
                 </div>
 
-                <div class="message-content">
+                <div className="message-content">
 
-                    <div class="message-content__item">
-                            <div class="message-content-header">
-                                <div class="name"><NavLink to="/userID">Алежа Винник </NavLink></div>
-                            <div class="status">В активной роли</div>
+                    <div className="message-content__item">
+                            <div className="message-content-header">
+                                <div className="name"><NavLink to="/userID">Алежа Винник </NavLink></div>
+                            <div className="status">В активной роли</div>
                             <img src="img/message-more.png" alt=""/>
                         </div>
                     </div>
 
-                    <div class="message-box">
-                        <div class="message-box__item incoming">
-                            <div class="name"><b>Алежа</b></div>
+                    <div className="message-box">
+                        <div className="message-box__item incoming">
+                            <div className="name"><b>Алежа</b></div>
 
-                            <div class="box-text">
+                            <div className="box-text">
                                 Падав безжалісно град,
                                 Била блискавиця...
-                                <div class="time">18:36</div>
+                                <div className="time">18:36</div>
                             </div>
                         </div>
 
-                        <div class="message-box__item outgoing">
+                        <div className="message-box__item outgoing">
 
-                            <div class="box-text">
+                            <div className="box-text">
                                 Гріла під серцем вовчат,
                                 Молода вовчиця
-                                <div class="time">18:36</div>
+                                <div className="time">18:36</div>
                             </div>
                         </div>
 
-                        <div class="message-box__item outgoing">
+                        <div className="message-box__item outgoing">
 
-                            <div class="box-text">
+                            <div className="box-text">
                                 Знаю про вірну любов,
                                 Лісове озерце
-                                <div class="time">18:36</div>
+                                <div className="time">18:36</div>
                             </div>
                         </div>
 
-                        <div class="message-box__item incoming">
-                            <div class="name"><b>Алежа</b></div>
+                        <div className="message-box__item incoming">
+                            <div className="name"><b>Алежа</b></div>
 
-                            <div class="box-text">
+                            <div className="box-text">
                                 Плаче нічної пори
                                 Одиноке серце.
 
-                                <div class="time">18:36</div>
+                                <div className="time">18:36</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="message-form">
+                    <div className="message-form">
                         <input type="text" placeholder="Write smth for young female wolves..."/>
                         <Button type="primary">send</Button>
                     </div>
