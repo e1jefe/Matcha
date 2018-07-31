@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Tag, Input, Tooltip, Icon } from 'antd';
 
@@ -48,7 +47,7 @@ class EditableTagGroup extends React.Component {
                 {tags.map((tag, index) => {
                     const isLongTag = tag.length > 20;
                     const tagElem = (
-                        <Tag key={tag} closable={index !== 0} afterClose={() => this.handleClose(tag)}>
+                        <Tag key={tag} closable={ true} afterClose={() => this.handleClose(tag)}>
                             {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                         </Tag>
                     );

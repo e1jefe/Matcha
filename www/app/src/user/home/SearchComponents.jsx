@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Slider, Switch } from 'antd';
 import { Button } from 'antd';
 import EditableTagGroup from './TagComponents.jsx';
-
-
+import UsersCards from "./UsersCards";
 
 class SearchComponents extends Component {
     constructor(props) {
@@ -28,7 +27,7 @@ class SearchComponents extends Component {
         const { disabled } = this.state;
 
         return (
-
+<div>
             <div id="wrapper1">
                 <div className="sliders">
                 <p>Age</p>
@@ -45,6 +44,10 @@ class SearchComponents extends Component {
                 <Button type="primary" icon="search">Search</Button>
                 </div>
             </div>
+    <div className="Cards">
+        <UsersCards />
+    </div>
+</div>
         );
 
     }

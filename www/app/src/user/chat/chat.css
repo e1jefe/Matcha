@@ -3,8 +3,8 @@ body {
     /*padding: 3vh 0;*/
     font-family: 'Roboto', sans-serif; }
 
-.chatComponent>img {
-    max-width: 100%; }
+/*.chatComponent>img {*/
+    /*max-width: 100%; }*/
 
 ul {
     padding-left: 0; }
@@ -54,15 +54,18 @@ a:hover {
     padding: 35px 0;
     position: relative; }
 .sidebar .profile-img {
-    padding: 0 12px;
+    padding: 0 10px;
     margin-bottom: 40px; }
 .sidebar .profile-img img {
-    border-radius: 110%;
-    border: 2px solid #fff; }
+    border-radius: 30%;
+    border: 2px solid #fff;
+    width: 110%;
+    margin-right: auto;
+    margin-left: auto;}
 .sidebar .sidebar-menu {
     display: block; }
 .sidebar .sidebar-menu img{
-   width:  40%;
+   width:  50%;
    margin-left: auto;
     margin-right: auto;
 }
