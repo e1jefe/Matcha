@@ -12,7 +12,7 @@ class MyPhoto extends Component  {
 		super(props);
 		this.state = {
 			userId: props.userId,			
-			pics: props.photo,
+			pics: '',
 			picErr: '',
 			photoIndex: 0,
       		isOpen: false
@@ -20,7 +20,7 @@ class MyPhoto extends Component  {
 	}
 
 	componentWillMount(){
-		PostData('user/getAllInfo', {userId: this.state.userId}).then ((result) => {
+		PostData('user/getAllPhoto', {userId: this.state.userId}).then ((result) => {
 			this.setState({
 				pics: result.userPhoto
 			})
@@ -76,7 +76,7 @@ class MyPhoto extends Component  {
 		const userPics = this.state.pics
 		const photoIndex = this.state.photoIndex
 		console.log("user pic in render  ", userPics)
-
+		let i = 0;
 		return(
 			<form className="form" id="registrationForm3">
 				<div className="form-group">								
@@ -89,10 +89,10 @@ class MyPhoto extends Component  {
 				<div className="row my-photo-img">
 					<div className="col-lg-12">
 						{(userPics !== null && userPics !== '') ? 
-							userPics.map((pikcha) => (
+							userPics.map((pikcha, i) => (
 								<div className="col-lg-6" key={pikcha.toString()}>
 									<div className="card">
-									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true })}/>
+									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })}/>
 									  <div className="card-body margin-top">									    
 									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
 									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>

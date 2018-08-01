@@ -13,7 +13,6 @@ class AboutMe extends Component {
 			bio: '',
 			err: ''
 		}
-		// this.onChangeTag = this.onChangeTag.bind(this);
 		this.onChangeBio = this.onChangeBio.bind(this);
 		this.dellTag = this.dellTag.bind(this);
 
@@ -25,7 +24,7 @@ class AboutMe extends Component {
 			console.log("res in Mount ABOUT ", result)
 
 			this.setState({
-				tags: result.tags,
+				tags: result.tags.split(" "),
 				bio: result.bio
 			})
 		})
@@ -35,14 +34,10 @@ class AboutMe extends Component {
 		this.setState({bio: event.target.value});
 	}
 
-	// onChangeTag(event) {
-	// 	this.setState({tags: event.target.value});
-	// }
-
 	dellTag(event) {
 		let tagToDel = event.target.getAttribute('tagcontent')
 		PostData('user/dellTag', {what: tagToDel, uId: this.state.uId}).then ((result) => {
-			this.setState({tags: result.tags})
+			this.setState({tags: result.tags.split(" ")})
 		})
 	}
 
@@ -54,13 +49,14 @@ class AboutMe extends Component {
 			this.setState({tags: ''})
 		this.setState({err: ''})
 		let newTags = findDOMNode(this.refs.tags).value.trim()
-		console.log("gotted tag", newTags)
+		this.refs.tags.value = ' '
 		PostData('user/recordAbout', {uId: this.state.uId, bio: this.state.bio, tags: newTags}).then ((result) => {
 			console.log("resul from base ", result)
 			if (result.end === true) {
 				this.setState({
 					tags: result.tags.split(" "),
-					bio: result.bio
+					bio: result.bio,
+					err: result.err
 				})
 			} else {
 				this.setState({err: result.err})
@@ -73,7 +69,7 @@ class AboutMe extends Component {
 	}
 
 	render(){
-		let tags = this.state.tags.split(" ")
+		let tags = this.state.tags
 		return(
 			<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
 				<div className="form-group">
@@ -90,7 +86,7 @@ class AboutMe extends Component {
 							:
 							null
 						}
-						<input type="text" className="form-control" name="tags" ref="tags" id="tags" placeholder="for e.g. muzic photo" title="enter your interests as separated one space words" />
+						<input type="text" className="form-control" name="tags" ref="tags" id="tags" placeholder="for e.g. muzic photo" title="enter your interests as separated one space words" defaultValue=" " maxLength="256"/>
 					</div>
 				</div>
 				<div className="form-group">
@@ -114,6 +110,15 @@ class AboutMe extends Component {
 						</button>
 					</div>
 				</div>
+				{this.state.err !== '' && this.state.err !== undefined ? 
+					<div className="form-group">
+						<div className="col-xs-12 alert alert-warning">
+							{this.state.err}
+						</div>
+					</div>
+					:
+					null
+				}
 			</form>
 		)
 	}
