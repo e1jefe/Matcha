@@ -42,13 +42,6 @@ class MyPhoto extends Component  {
 		
 	}
 
-	setAvatar(event){
-		event.preventDefault()
-		let pic = event.target.getAttribute('target')
-		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
-		})
-	}
-
 	onCHangeFile(e) {
 		this.setState({picErr: ''})
 		let files = e.target.files
@@ -95,7 +88,7 @@ class MyPhoto extends Component  {
 									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })}/>
 									  <div className="card-body margin-top">									    
 									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
-									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
+									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.props.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
 									  </div>
 									</div>
 								</div>

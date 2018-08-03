@@ -31,6 +31,27 @@ class Cabinet extends Component {
 			avatar: '',
 			whoLikedMe: []
 		}
+		this.setAvatar = this.setAvatar.bind(this)
+	}
+	
+	componentWillMount(){
+		PostData('user/getAllInfo', {userId: this.state.userId}).then((res) => {
+			this.setState({
+				avatar: res.userData.profilePic,
+				whoLikedMe: res.whoLikesUser
+			})
+		})
+	}
+
+	setAvatar(event){
+		event.preventDefault()
+		let pic = event.target.getAttribute('target')
+		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
+			console.log("RESULT", result)
+			this.setState({
+				avatar: result.src,
+			})
+		})
 	}
 
 	render() {
@@ -80,7 +101,7 @@ class Cabinet extends Component {
 							</Tab>
 
 							<Tab eventKey={4} title="Photos">
-								<MyPhoto userId={this.state.userId}/>
+								<MyPhoto userId={this.state.userId} setAvatar={this.setAvatar}/>
 							</Tab>
 
 							<Tab eventKey={5} title="Viewes">
