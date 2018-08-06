@@ -8,17 +8,18 @@ import EditableTagGroup from './TagComponents.jsx';
 import UsersCards from "./UsersCards";
 import jwtDecode from 'jwt-decode';
 import { PostData } from '../main/components/PostData';
+import {findDOMNode} from 'react-dom';
 
 class SearchComponents extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: props.login,
-            userId: props.userId,
-            fullProfile: props.access,
+            age: props.age,
+            distance: props.distance,
+            fameRate: props.fameRate,
+            res: ''
         }
-        // this.handleSubmitInfo = this.handleSubmitInfo.bind(this)
-        // this.handleSubmitAbout = this.handleSubmitAbout.bind(this)
+        // this.onChange = this.onChange.bind(this);
     }
 
     componentWillMount() {
@@ -30,48 +31,50 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user}).then ((result) => {
                 this.setState({
+                    res: result.userData
                     // Age: result.userData.age,
                     // Distance: result.userData.distance,
-                    // bio: result.userData.bio,
-                    // fameRate: result.userData.fameRate,
-                    // tags: result.userData.tags,
-                    // avatar: result.userData.profilePic,
-                    // whoLikedMe: result.whoLikesUser
                 })
             })
         }
     }
 
-    // handleDisabledChange = (disabled) => {
-    //     this.setState({disabled});
-    // }
-    onChange(value) {
-        console.log('onChange: ', value);
+    onChange(event) {
+        console.log('event: ', event);
+        let age = findDOMNode(this.refs.age)
+        console.log('age: ', age);
+
+        if(age){
+            this.setState({
+                age: event.value
+            })
+        }
+        console.log('onChange: ', this.state);
     }
 
     render() {
-        const { disabled } = this.state;
-
+        // const { disabled } = this.state;
+console.log("in state our users ", this.state.res)
         return (
 <div>
             <div id="wrapper1">
                 <div className="sliders">
                 <p>Age</p>
-                <Slider  min={18} range defaultValue={[18, 40]} onChange={this.onChange}/>
+                <Slider ref="age" id="age" min={18} range defaultValue={[18, 40]} onChange={this.onChange.bind(this)}/>
                 <p>Distance</p>
-                <Slider   min={2} defaultValue={30}  onChange={this.onChange}/>
+                <Slider name="distance"  min={2} defaultValue={30}  onChange={this.onChange}/>
                 <p>Fame rating</p>
-                <Slider range step={10} defaultValue={[10, 50]} onChange={this.onChange}/>
+                <Slider name="fameRate" range step={10} defaultValue={[10, 50]} onChange={this.onChange}/>
                 </div>
                 <div className="tags">
                 <EditableTagGroup />
                 </div>
                 <div className="btn-search">
-                <Button type="primary" icon="search">Search</Button>
+                <Button id= "search" type="primary" icon="search">Search</Button>
                 </div>
             </div>
     <div className="Cards">
-        <UsersCards />
+        <UsersCards toShow={this.state.res}/>
     </div>
 </div>
         );
