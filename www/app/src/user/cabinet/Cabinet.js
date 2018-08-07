@@ -9,8 +9,8 @@ import MainInfo from './components/MainInfo'
 import AboutMe from './components/AboutMe'
 import Location from './components/Location'
 import MyPhoto from './components/MyPhoto'
-
-
+import { Rate } from 'antd'
+import { Button, Radio, Icon } from 'antd';
 
 	$(document).on('click', '.browse', function(){
 		var file = $(this).parent().parent().parent().find('.file');
@@ -27,9 +27,10 @@ class Cabinet extends Component {
 		this.state = {
 			login: props.login,
 			userId: props.userId,
-			fullProfile: props.access,
+			fullProfile: '',
 			avatar: '',
-			whoLikedMe: []
+			whoLikedMe: [],
+			whoViewedMe: []
 		}
 		this.setAvatar = this.setAvatar.bind(this)
 	}
@@ -38,7 +39,9 @@ class Cabinet extends Component {
 		PostData('user/getAllInfo', {userId: this.state.userId}).then((res) => {
 			this.setState({
 				avatar: res.userData.profilePic,
-				whoLikedMe: res.whoLikesUser
+				whoLikedMe: res.whoLikesUser,
+				whoViewedMe: res.whoViewedUser,
+				fullProfile: Boolean(res.userData.isFull)
 			})
 		})
 	}
@@ -47,7 +50,7 @@ class Cabinet extends Component {
 		event.preventDefault()
 		let pic = event.target.getAttribute('target')
 		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
-			console.log("RESULT", result)
+			// console.log("RESULT", result)
 			this.setState({
 				avatar: result.src,
 			})
@@ -55,11 +58,15 @@ class Cabinet extends Component {
 	}
 
 	render() {
+		console.log("is full prof", this.state.fullProfile)
 		const whoLikedMe = this.state.whoLikedMe
+		const whoViewedMe = this.state.whoViewedMe
+		console.log('whoViewedMe lenth', whoViewedMe.length)
+
 		return(
 			<div className="container bootstrap snippet marginTop">
 				<div className="row">
-					<div className="col-sm-4">
+					<div className="col-sm-3 text-center">
 						<h1>{this.state.login}</h1>
 					</div>
 					<div className="col-sm-8">
@@ -79,11 +86,11 @@ class Cabinet extends Component {
 							</div>
 						</div>
 						<br />
-						<ul className="list-group">
-							<li className="list-group-item text-muted">Resent events</li>
-							<li className="list-group-item text-left"><strong>Anna viewed my profile</strong></li>
-							<li className="list-group-item text-left"><strong>Anna liked my profile</strong></li>
-							<li className="list-group-item text-left"><strong>Zorro send me a message</strong></li>
+						<ul className="list-group my-height">
+							<li className="list-group-item text-muted">Resently I view:</li>
+							<li className="list-group-item text-left"><strong>Anna's </strong></li>
+							<li className="list-group-item text-left"><strong>Anna </strong></li>
+							<li className="list-group-item text-left"><strong>Zorro </strong></li>
 						</ul>
 					</div>
 					<div className="col-sm-9">
@@ -112,38 +119,33 @@ class Cabinet extends Component {
 								</div>
 
 								<div className="row">
-									<div className="col-xs-3">
-										<div className="card">
-											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-											<div className="card-body">
-												<h5 className="card-title margin-top">
-													Card title
-												</h5>
-												<p className="card-text">
-													Some quick example text to build on the card title and make up the bulk of the card's content.
-												</p>
-												<a href="#" className="btn btn-primary">
-													view
-												</a>
+									<div className="col-xs-4">
+									{whoViewedMe.length > 0 ? 
+										whoViewedMe.map((view) => (
+											<div key={view.login} className="card">
+												<img className="card-img-top" src={view.profilePic != "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } />
+												<div className="my-card-body">
+													<h5 className="card-title margin-top">
+														{view.fname} {view.lname}
+													</h5>
+													<h6 className="card-subtitle mb-2 text-muted">
+														Age: {view.age}
+													</h6>
+													<Rate allowHalf disabled defaultValue={view.fameRate/20} />
+													<hr />
+													<Button.Group size="large" className="my-card-width">
+											          <Button type="primary" className="my-card-btn-width"><Icon type="info-circle-o" /></Button>
+											          <Button type="primary" className="my-card-btn-width"><Icon type="like-o" /></Button>
+											          <Button type="primary" className="my-card-btn-width"><Icon type="close-circle-o" /></Button>
+											          <Button type="primary" className="my-card-btn-width"><Icon type="user-delete" /></Button>
+											        </Button.Group>
+												</div>
 											</div>
-										</div>
+										)) 
+										: null										
+									}
 									</div> 
-									<div className="col-xs-3">
-										<div className="card">
-											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-											<div className="card-body">
-												<h5 className="card-title margin-top">
-													Card title
-												</h5>
-												<p className="card-text">
-													Some quick example text to build on the card title and make up the bulk of the card's content.
-												</p>
-												<a href="#" className="btn btn-primary">
-													view
-												</a>
-											</div>
-										</div>
-									</div> 
+									
 								</div>
 							</Tab>
 							<Tab eventKey={6} title="Likes">

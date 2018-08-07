@@ -35,9 +35,6 @@ class Home extends Component {
 			console.log("user", user);
 			if (user.userLogin !== '')
 			{
-				console.log("here");
-				console.log("login : ", user.userLogin);
-
 				this.setState({
 					author: true,
 					userLogin: user.userLogin,
@@ -50,13 +47,11 @@ class Home extends Component {
 					this.setState({ errMsg: result.error });
 					// console.log(result);
 					// console.log('cirently in state', this.state);
-				} else if (result === true) {
-					this.setState({ fullProfile: true });					
-				}
-				else
-					history.push('/cabinet');
-				console.log("and now res: ", result);
-				console.log("and now state: ", this.state);			
+				} else
+					this.setState({ fullProfile: result });					
+				
+				// console.log("and now res: ", result);
+				// console.log("and now state: ", this.state);			
 
 			});
 			// console.log("and now res: ", result);
@@ -80,7 +75,7 @@ class Home extends Component {
 			<div>
 				<Header/>
 				<Router history={history}>
-					<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId} access={this.state.fullProfile}/>} />				
+					<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />				
 				</Router>
 				<Footer />				
 			</div>

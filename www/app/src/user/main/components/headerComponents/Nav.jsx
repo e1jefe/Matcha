@@ -7,6 +7,7 @@ import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
 import history from "../../../history/history";
+import { PostData } from '../PostData';
 
 class ForUnauthor extends Component{
     render() {
@@ -33,7 +34,10 @@ class Nav extends Component {
     handleLogout() {
         localStorage.removeItem('token');
         this.setState({author: false});
-        history.push('/home');
+        PostData('auth/logOut', {uLogin: this.state.userLogin}).then ((result) => {
+            if (result == true)
+                history.push('/home');
+        })
     }
 
     componentWillMount() {

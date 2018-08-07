@@ -70,6 +70,8 @@ class AboutMe extends Component {
 
 	render(){
 		let tags = this.state.tags
+			console.log("tags in ABOUT before MAP", tags)
+
 		return(
 			<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
 				<div className="form-group">
@@ -79,7 +81,7 @@ class AboutMe extends Component {
 								My interests:
 							</h4>
 						</label>
-						{tags !== null && tags !== '' && tags !== undefined ? 
+						{tags !== null && tags !== '' && tags !== undefined && tags[0] !== '' ? 
 							<div className="col-xs-10">
 								{tags.map((tag) => (<div key={tag.toString()} className="tag"><span className="tagTxt">{tag}</span><span className="tagDel" tagcontent={tag.toString()} onClick={this.dellTag}> x</span></div>))}
 							</div>

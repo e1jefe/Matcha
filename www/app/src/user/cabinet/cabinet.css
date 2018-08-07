@@ -2,6 +2,7 @@
 	width: 200px;
 	height: 200px;
 	position: relative;
+	margin: 0 auto;
 	overflow: hidden;
 	border-radius: 50%;
 }
@@ -68,3 +69,20 @@
 		color: #fff;
 		cursor: pointer;
 	}
+
+.my-height {
+	max-height: 620px;
+}
+
+.my-card-body {
+	padding: 1.25rem;
+	background-color: #fff;
+}
+
+	.my-card-width {
+		width: 100%;
+	}
+
+		.my-card-btn-width {
+			width: 25%;
+		}
