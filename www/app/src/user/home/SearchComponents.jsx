@@ -42,19 +42,19 @@ class SearchComponents extends Component {
     onChange(event) {
         console.log('event: ', event);
         let age = findDOMNode(this.refs.age)
-        console.log('age: ', age);
+        // console.log('age: ', age);
 
         if(age){
             this.setState({
                 age: event.value
             })
         }
-        console.log('onChange: ', this.state);
+        // console.log('onChange: ', this.state);
     }
 
     render() {
         // const { disabled } = this.state;
-console.log("in state our users ", this.state.res)
+// console.log("in state our users ", this.state.res)
         return (
 <div>
             <div id="wrapper1">
