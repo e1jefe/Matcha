@@ -13,6 +13,7 @@ import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
 import Chat from '../chat/chat';
 import Search from "./Search.js";
+import Profile from "../profile/userProfile";
 
 class Home extends Component {
 
@@ -90,6 +91,7 @@ class Home extends Component {
 					<Header/>
 						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)} />
 						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)} />
+						<Route path="/home/profile" component={(props) => (<Profile />)} />
 					<Route path='/search' component={(props) => (<Search login={this.state.userLogin}/>)} />
 					<Footer />
 				</Router>

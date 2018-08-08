@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
 import history from "../../history/history"
-import { Tabs, Tab } from 'react-bootstrap'
-import $ from 'jquery'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
 

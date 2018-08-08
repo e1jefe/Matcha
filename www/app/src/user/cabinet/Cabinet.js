@@ -9,8 +9,7 @@ import MainInfo from './components/MainInfo'
 import AboutMe from './components/AboutMe'
 import Location from './components/Location'
 import MyPhoto from './components/MyPhoto'
-import { Rate } from 'antd'
-import { Button, Radio, Icon } from 'antd';
+import Views from './components/Views'
 
 	$(document).on('click', '.browse', function(){
 		var file = $(this).parent().parent().parent().find('.file');
@@ -29,8 +28,7 @@ class Cabinet extends Component {
 			userId: props.userId,
 			fullProfile: '',
 			avatar: '',
-			whoLikedMe: [],
-			whoViewedMe: []
+			whoLikedMe: []
 		}
 		this.setAvatar = this.setAvatar.bind(this)
 	}
@@ -40,7 +38,6 @@ class Cabinet extends Component {
 			this.setState({
 				avatar: res.userData.profilePic,
 				whoLikedMe: res.whoLikesUser,
-				whoViewedMe: res.whoViewedUser,
 				fullProfile: Boolean(res.userData.isFull)
 			})
 		})
@@ -58,11 +55,7 @@ class Cabinet extends Component {
 	}
 
 	render() {
-		console.log("is full prof", this.state.fullProfile)
 		const whoLikedMe = this.state.whoLikedMe
-		const whoViewedMe = this.state.whoViewedMe
-		console.log('whoViewedMe lenth', whoViewedMe.length)
-
 		return(
 			<div className="container bootstrap snippet marginTop">
 				<div className="row">
@@ -112,41 +105,7 @@ class Cabinet extends Component {
 							</Tab>
 
 							<Tab eventKey={5} title="Viewes">
-								<div className="form-group">
-									<div className="col-xs-12">
-										<h3>Users who looked through my profile</h3>
-									</div>
-								</div>
-
-								<div className="row">
-									<div className="col-xs-4">
-									{whoViewedMe.length > 0 ? 
-										whoViewedMe.map((view) => (
-											<div key={view.login} className="card">
-												<img className="card-img-top" src={view.profilePic != "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } />
-												<div className="my-card-body">
-													<h5 className="card-title margin-top">
-														{view.fname} {view.lname}
-													</h5>
-													<h6 className="card-subtitle mb-2 text-muted">
-														Age: {view.age}
-													</h6>
-													<Rate allowHalf disabled defaultValue={view.fameRate/20} />
-													<hr />
-													<Button.Group size="large" className="my-card-width">
-											          <Button type="primary" className="my-card-btn-width"><Icon type="info-circle-o" /></Button>
-											          <Button type="primary" className="my-card-btn-width"><Icon type="like-o" /></Button>
-											          <Button type="primary" className="my-card-btn-width"><Icon type="close-circle-o" /></Button>
-											          <Button type="primary" className="my-card-btn-width"><Icon type="user-delete" /></Button>
-											        </Button.Group>
-												</div>
-											</div>
-										)) 
-										: null										
-									}
-									</div> 
-									
-								</div>
+								<Views userId={this.state.userId} />
 							</Tab>
 							<Tab eventKey={6} title="Likes">
 								<div className="form-group">
