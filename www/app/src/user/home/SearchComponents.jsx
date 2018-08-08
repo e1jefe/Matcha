@@ -41,14 +41,14 @@ class SearchComponents extends Component {
 
     onChange(event) {
         console.log('event: ', event);
-        let age = findDOMNode(this.refs.age)
+        // let age = findDOMNode(this.refs.age)
         // console.log('age: ', age);
 
-        if(age){
-            this.setState({
-                age: event.value
-            })
-        }
+        // if(age){
+        //     this.setState({
+        //         age: event.value
+        //     })
+        // }
         // console.log('onChange: ', this.state);
     }
 

@@ -29,12 +29,12 @@ class UsersCards extends Component {
                     {Object.keys(users2).map((i) => <div key={i}>{
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>  <Card>
                 <CardBody>
-                    <CardTitle><NavLink to="/userID"> {users2[i].fname}</NavLink>, 34</CardTitle>
-                    <CardSubtitle>Ukraine, Kyiv</CardSubtitle>
+                    <CardTitle><NavLink to="/userID"> {users2[i].fname} {users2[i].lname}</NavLink>, {users2[i].age}</CardTitle>
+                    <CardSubtitle>Fame Rating: {users2[i].fameRate}</CardSubtitle>
                 </CardBody>
-                        <NavLink to="/userID"><img src="https://scontent.fiev11-1.fna.fbcdn.net/v/t1.0-9/33900375_2108633922735576_1234385064138113024_n.jpg?_nc_cat=0&oh=50f4018fc45f729fdfdd9026e80206a3&oe=5C084579" /> </NavLink>
+                        <NavLink to="/userID"><img src={users2[i].profilePic} /> </NavLink>
                 <CardBody>
-                    <CardText>About me...</CardText>
+                    <CardText>{users2[i].bio}</CardText>
                     <Button type="danger">Like</Button>
                     <CardLink href="#">Block user</CardLink>
                 </CardBody>
