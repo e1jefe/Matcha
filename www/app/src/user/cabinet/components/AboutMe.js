@@ -22,11 +22,20 @@ class AboutMe extends Component {
 	componentWillMount() {
 		PostData('user/getAbout', this.state).then ((result) => {
 			console.log("res in Mount ABOUT ", result)
-
-			this.setState({
-				tags: result.tags.split(" "),
-				bio: result.bio
-			})
+			if (result.tags != null)
+			{
+				this.setState({
+					tags: result.tags.split(" "),
+					bio: result.bio
+				})
+			}
+			else
+			{
+				this.setState({
+					tags: result.tags,
+					bio: result.bio
+				})
+			}
 		})
 	}
 

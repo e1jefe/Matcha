@@ -33,7 +33,9 @@ class Views extends Component {
 	render(){
 		const whoViewedMe = this.state.whoViewedMe
 		console.log("who view me ", this.state.whoViewedMe)
-
+		const green = {
+			backgroundColor: "#00ff00!important"
+		}
 		return(
 			<div>
 				<div className="form-group">
@@ -45,7 +47,8 @@ class Views extends Component {
 					{whoViewedMe.length > 0 ? 
 						whoViewedMe.map((view) => (
 						<div className="col-xs-4" key={view.uId}>
-							<div className="card">
+							<div className="card card-relatieve">
+								<div className="onLineIndecator" style={view.isOnline == 1 ? {backgroundColor: '#00e64d'} : null}></div>
 								<img className="card-img-top" src={view.profilePic != "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } />
 								<div className="my-card-body">
 									<h5 className="card-title margin-top">

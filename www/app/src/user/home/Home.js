@@ -13,7 +13,7 @@ import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
 import Chat from '../chat/chat';
 import Search from "./Search.js";
-import Profile from "../profile/userProfile";
+import Profile from "../profile/Profile";
 
 class Home extends Component {
 

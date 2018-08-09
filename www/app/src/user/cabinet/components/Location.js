@@ -45,7 +45,7 @@ class Location extends Component {
 			let self = this
 			navigator.geolocation.getCurrentPosition( function(pos) {
 				PostData('user/pushCoord', {uId: self.state.uId, longAllow: pos.coords.longitude, latAllow: pos.coords.latitude}).then ((result) => {
-					if (self.state.markers.position.lat().length < result.latAllow && self.state.markers.position.lng().length < result.lngAllow)
+					if (self.state.markers.position.lat.length < result.latAllow && self.state.markers.position.lng.length < result.lngAllow)
 					{
 						self.setState({
 							markers:{
