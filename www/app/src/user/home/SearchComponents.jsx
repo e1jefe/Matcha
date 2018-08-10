@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './search.css';
 import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
-import { Slider, Switch } from 'antd';
 import { Button } from 'antd';
 import EditableTagGroup from './TagComponents.jsx';
 import UsersCards from "./UsersCards";
@@ -20,9 +19,14 @@ class SearchComponents extends Component {
             distance: props.distance,
             fameRate: props.fameRate,
             res: '',
-            value: { min: 18, max: 30 },
+            searchAge: { min: 18, max: 30 },
+            searchDistance: 10,
+            searchFR: {
+                min: 0,
+                max: 100,
+            },
         }
-        // this.onChange = this.onChange.bind(this);
+        this.updateSearchRes = this.updateSearchRes.bind(this);
     }
 
     componentWillMount() {
@@ -32,33 +36,34 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user}).then ((result) => {
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge,}).then
+            ((result) => {
                 this.setState({
                     res: result.userData
-                    // Age: result.userData.age,
-                    // Distance: result.userData.distance,
                 })
             })
         }
     }
 
-    onChange(event) {
-        console.log('event: ', this.value);
-        console.log(this);
-        // let age = findDOMNode(this.refs.age)
-        // console.log('age: ', age);
+    updateSearchRes(event) {
+        console.log("changed value: ", this.state)
+        const token = localStorage.getItem('token')
+        if (token !== null) {
+            let user = jwtDecode(token)
+            if (user.userLogin !== '')
+                user = user.userId
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge}).then
+            ((result) => {
+                console.log(result);
+                this.setState({
+                    res: result.userData
+                })
+            })
+        }
 
-        // if(age){
-        //     this.setState({
-        //         age: event.value
-        //     })
-        // }
-        // console.log('onChange: ', this.state);
     }
 
     render() {
-        // const { disabled } = this.state;
-// console.log("in state our users ", this.state.res)
         return (
 <div>
             <div id="wrapper1">
@@ -67,20 +72,27 @@ class SearchComponents extends Component {
                     <InputRange
                         maxValue={55}
                         minValue={18}
-                        value={this.state.value}
-                        onChange={value => this.setState({ value })} />
-
-                    {/*<Slider ref="age" id="age" min={18} range defaultValue={[18, 40]} onChange={this.onChange.bind(this)}/>*/}
+                        value={this.state.searchAge}
+                        onChange={value => this.setState({ searchAge: value })}
+                    />
                 <p>Distance</p>
-                {/*<Slider name="distance"  min={2} defaultValue={30}  onChange={this.onChange.bind(this)}/>*/}
+                    <InputRange
+                        maxValue={100}
+                        minValue={0}
+                        value={this.state.searchDistance}
+                         onChange={value => this.setState({ searchDistance : value })} />
                 <p>Fame rating</p>
-                {/*<Slider name="fameRate" range step={10} defaultValue={[10, 50]} onChange={this.onChange.bind(this)}/>*/}
+                    <InputRange step={10}
+                    maxValue={100}
+                    minValue={0}
+                    value={this.state.searchFR}
+                    onChange={value => this.setState({ searchFR : value })} />
                 </div>
                 <div className="tags">
                 <EditableTagGroup />
                 </div>
                 <div className="btn-search">
-                <Button id= "search" type="primary" icon="search">Search</Button>
+                <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
                 </div>
             </div>
     <div className="Cards">

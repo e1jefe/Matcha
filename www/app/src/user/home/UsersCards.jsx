@@ -20,7 +20,7 @@ class UsersCards extends Component {
         const users = this.state.show
         const users2 = this.props.toShow
 
-        console.log("in ", users2);
+        // console.log("in ", users2);
     return(
         <div>
             <div className="CardHolder">

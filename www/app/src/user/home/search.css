@@ -59,9 +59,9 @@ body {
         padding: 5px;
         margin: auto;
     }
-    .InputRange {
-        width: 100%;
-        height: 160px;}
+    .input-range {
+        width: 90%;
+        height: 160px;  }
     .tags{
         width: 100%;
         display: none;
