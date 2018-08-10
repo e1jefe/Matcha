@@ -27,7 +27,7 @@ class Views extends Component {
 	handleProfile(e){
 		// e.preventDefault()
 		console.log("I clicked on profile: ", e.target.name)
-		history.push('/home/profile');
+		history.push('/profile/' + e.target.name);
 	}
 
 	render(){

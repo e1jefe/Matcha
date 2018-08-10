@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import history from "../history/history";
 import { PostData } from '../main/components/PostData';
 
 class FormResetPass extends Component {

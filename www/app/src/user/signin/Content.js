@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
 import FormResetPass from './FormResetPass';
@@ -69,13 +68,13 @@ class Content extends Component {
 			<div className="flex-wrap">
 			<ul className="nav nav-pills nav-push-down">
 				<li className="nav-item">
-					<a onClick={this.clicShowSignIn} className={"nav-link " + (this.state.activeIn ? 'active' : null)} href="#">Sign in</a>
+					<a onClick={this.clicShowSignIn} className={"nav-link " + (this.state.activeIn ? 'active' : null)} >Sign in</a>
 				</li>
 				<li className="nav-item">
-					<a onClick={this.clicShowSignUp} className={"nav-link " + (this.state.activeUp ? 'active': null)} href="#">Sign up</a>
+					<a onClick={this.clicShowSignUp} className={"nav-link " + (this.state.activeUp ? 'active': null)} >Sign up</a>
 				</li>
 				<li className="nav-item">
-					<a onClick={this.clicShowResetPass} className={"nav-link " + (this.state.activeReset ? 'active': null)} href="#">Reset</a>
+					<a onClick={this.clicShowResetPass} className={"nav-link " + (this.state.activeReset ? 'active': null)} >Reset</a>
 				</li>
 			</ul>
 

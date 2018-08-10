@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import history from "../history/history";
 import { PostData } from '../main/components/PostData';
 
 class FormSignUp extends Component {
@@ -47,7 +46,7 @@ class FormSignUp extends Component {
 				regStatuse: false
 			});
 			PostData('auth/signup', this.state).then ((result) => {			
-				if (result.fromDbErr !== undefined) {
+				if (result.fromDbErr != undefined) {
 					this.setState({ errMsg: result.fromDbErr });
 					console.log('here', result);
 				} else if (result != true){
@@ -70,7 +69,7 @@ class FormSignUp extends Component {
 	}
 
 	render() {
-		const { errMsg } = this.state
+		// const { errMsg } = this.state
 		return(
 				<form onSubmit={this.handleSubmit}>
 					{ this.state.errMsg !== '' && ( <span className="alert alert-danger">{this.state.errMsg}</span>) }

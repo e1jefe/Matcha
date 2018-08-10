@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { PostData } from '../main/components/PostData';
 import history from "../history/history";
 import jwtDecode from 'jwt-decode';
@@ -91,7 +91,7 @@ class Home extends Component {
 					<Header/>
 						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)} />
 						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)} />
-						<Route path="/home/profile" component={(props) => (<Profile />)} />
+						<Route path="/profile/:id" component={(props) => (<Profile />)} />
 					<Route path='/search' component={(props) => (<Search login={this.state.userLogin}/>)} />
 					<Footer />
 				</Router>
