@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import './userProfile.css'
 import jwtDecode from 'jwt-decode'
-import { PostData } from '../main/components/PostData'
+import { PostData } from '../../main/components/PostData'
 import { Layout } from 'antd'
 import { Carousel } from 'antd'
 import { Rate } from 'antd'
 import { Tooltip, Button, Radio, Icon } from 'antd'
+import Like from './Like'
 const { Content } = Layout
 
 // import { Avatar, Badge } from 'antd';
@@ -98,11 +98,7 @@ class ProfileContent extends Component {
 							</div>
 						</div>
 						<Button.Group size="large" className="my-card-width">
-							<Tooltip placement="topLeft" title="Like profile">
-								<Button type="primary" className="target-btn">
-									<Icon type="like-o" />
-								</Button>
-							</Tooltip>
+							<Like who={this.state.curentUserId} target={this.props.target.params.id}/>
 							<Tooltip placement="topLeft" title="Never show me">
 								<Button type="primary" className="target-btn">
 									<Icon type="close-circle-o" />
