@@ -36,7 +36,8 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge,}).then
+            console.log(user);
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
                 this.setState({
                     res: result.userData
@@ -52,7 +53,7 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge}).then
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
                 console.log(result);
                 this.setState({
