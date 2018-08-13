@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import history from "../../history/history"
 import { PostData } from '../../main/components/PostData'
 import { Rate } from 'antd'
-import { Tooltip, Button, Radio, Icon } from 'antd'
+import { Tooltip, Button, Icon } from 'antd'
+import Like from '../../profile/components/Like'
+import Block from '../../profile/components/Block'
 
 class Views extends Component {
 	
@@ -18,6 +20,7 @@ class Views extends Component {
 
 	componentWillMount(){
 		PostData('user/getWhoViewMe', {uId: this.state.userId}).then((res) => {
+			console.log("who view me in Post ", res)
 			this.setState({
 				whoViewedMe: res.views
 			})
@@ -32,10 +35,7 @@ class Views extends Component {
 
 	render(){
 		const whoViewedMe = this.state.whoViewedMe
-		console.log("who view me ", this.state.whoViewedMe)
-		const green = {
-			backgroundColor: "#00ff00!important"
-		}
+		console.log("who view me length ", this.state.whoViewedMe.length)
 		return(
 			<div>
 				<div className="form-group">
@@ -48,8 +48,8 @@ class Views extends Component {
 						whoViewedMe.map((view) => (
 						<div className="col-xs-4" key={view.uId}>
 							<div className="card card-relatieve">
-								<div className="onLineIndecator" style={view.isOnline == 1 ? {backgroundColor: '#00e64d'} : null}></div>
-								<img className="card-img-top" src={view.profilePic != "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } />
+								<div className="onLineIndecator" style={view.isOnline === true ? {backgroundColor: '#00e64d'} : null}></div>
+								<img className="card-img-top" src={view.profilePic !== "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } alt="avatar"/>
 								<div className="my-card-body">
 									<h5 className="card-title margin-top">
 										{view.fname} {view.lname}
@@ -60,26 +60,13 @@ class Views extends Component {
 									<Rate allowHalf disabled defaultValue={view.stars} />
 									<hr />
 									<Button.Group size="large" className="my-card-width">
-											<Tooltip placement="topLeft" title="Review profile">
-												<Button name={view.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
-													<Icon type="info-circle-o" />
-												</Button>
-											</Tooltip>
-										<Tooltip placement="topLeft" title="Like profile">
-											<Button type="primary" className="my-card-btn-width">
-												<Icon type="like-o" />
+										<Tooltip placement="topLeft" title="Review profile">
+											<Button name={view.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
+												<Icon type="info-circle-o" />
 											</Button>
 										</Tooltip>
-										<Tooltip placement="topLeft" title="Never show me">
-											<Button type="primary" className="my-card-btn-width">
-												<Icon type="close-circle-o" />
-											</Button>
-										</Tooltip>
-										<Tooltip placement="topLeft" title="Report scammer">
-											<Button type="primary" className="my-card-btn-width">
-												<Icon type="user-delete" />
-											</Button>
-										</Tooltip>
+										<Like who={this.state.userId} target={view.uId} className="my-card-btn-width"/>
+										<Block who={this.state.userId} target={view.uId} className="my-card-btn-width"/>
 									</Button.Group>
 								</div>
 							</div>

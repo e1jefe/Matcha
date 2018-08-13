@@ -1,31 +1,41 @@
 import React, { Component } from 'react'
-import { Tooltip, Button, Radio, Icon } from 'antd'
+import { Tooltip, Button, Icon } from 'antd'
 import { PostData } from '../../main/components/PostData'
-import $ from 'jquery'
-
-// $('.alert').alert()
-// $('.alert').alert('close')
-// $('.alert1').alert()
-// $('.alert1').alert('close')
+import jwtDecode from 'jwt-decode'
+import {findDOMNode} from 'react-dom'
+import iziToast from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 class Like extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			curentUserId: props.who,
+			curentUserId: '',
 			target: props.target
 		}
 		this.onClick = this.onClick.bind(this)
+		console.log("state in like ", this.state)
 	}
 	
 	onClick(){
-		PostData('user/like', {uId: this.state.curentUserId, target: this.state.target}).then((res) => {
-			console.log("you liked user ")
-			res.check == true ? this.setState({liked: true}) : this.setState({liked: false})
-			this.setState({
-				msg: res.msg
+		const token = localStorage.getItem('token');
+		if (token !== null)
+		{
+			const user = jwtDecode(token);
+			PostData('user/like', {uId: user.userId, target: this.state.target}).then((res) => {
+				console.log("you liked user ")
+				res.check == true ? this.setState({liked: true}) : this.setState({liked: false})
+				this.setState({
+					curentUserId: user.userId,
+					msg: res.msg
+				})
+				iziToast.info({
+				    message: res.msg,
+				    position: 'topRight',
+				    progressBar: false
+				})
 			})
-		})
+		}
 	}	
 
 	render(){
@@ -34,22 +44,6 @@ class Like extends Component {
 				<Button type="primary" className="target-btn" onClick={this.onClick}>
 					<Icon type="like-o" />
 				</Button>
-				{this.state.liked && 
-					<div className="alert alert-success alert-dismissible fade show" role="alert">
-						{this.state.msg}
-						<button type="button" className="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				}
-				{this.state.liked == false && 
-					<div className="alert alert-warning alert-dismissible fade show" role="alert">
-						{this.state.msg}
-						<button type="button" className="close" data-dismiss="alert1" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				}
 			</Tooltip>
 		)
 	}

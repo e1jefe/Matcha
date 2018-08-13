@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
-import history from "../../history/history"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { Switch } from 'antd'
 
 class Location extends Component {
@@ -84,7 +83,7 @@ class Location extends Component {
     }
 
     handleMapClick(event) {
-        let that = this;
+        // let that = this;
         let mapRef = this._mapComponent;
         this.setState({
             markers: {
@@ -102,7 +101,7 @@ class Location extends Component {
     }
 
     allowLocation(checked){
-    	if (checked == false)
+    	if (checked === false)
     		this.setState({showMarker: false});
     	else
     		this.setState({showMarker: true});

@@ -6,18 +6,10 @@ import { Carousel } from 'antd'
 import { Rate } from 'antd'
 import { Tooltip, Button, Radio, Icon } from 'antd'
 import Like from './Like'
-const { Content } = Layout
+import Block from './Block'
+import Scammer from './Scammer'
 
-// import { Avatar, Badge } from 'antd';
-// import 'antd/dist/antd.css';
-// import { Progress } from 'antd';
-// import { Alert } from 'antd';
-// import { Tag } from 'antd';
-// import { Carousel } from 'antd';
-// import { Badge } from 'antd';
-// import { Upload, Icon, Modal } from 'antd';
-// import { Rate } from 'antd';
-// import { DatePicker } from 'antd';
+const { Content } = Layout
 
 class ProfileContent extends Component {
 	constructor(props) {
@@ -29,7 +21,6 @@ class ProfileContent extends Component {
 	}
 
 	componentWillMount(){
-		console.log("in profile")
 		const token = localStorage.getItem('token');
 		if (token !== null)
 		{
@@ -60,7 +51,7 @@ class ProfileContent extends Component {
 	}
 
 	render(){
-		console.log("in profile state: ", this.state.tStars)
+		console.log("in profile state: ", this.state)
 		const tags = (this.state.tTags != undefined && this.state.tTags.length != 0) ? this.state.tTags.split(" ") : this.state.tTags
 		return(
 			<Layout>
@@ -86,7 +77,7 @@ class ProfileContent extends Component {
 							<p>Last visit: {this.state.tLastSeen}</p>
 						</div>
 						<p className="targetBio">{this.state.tBio}</p>
-						<Rate allowHalf disabled defaultValue={this.state.tStars} style={{marginBottom: "10px"}}/>
+						<Rate allowHalf disabled value={this.state.tStars} style={{marginBottom: "10px"}}/>
 						<div className="targetTags">
 							<h2>Tags:</h2>
 							<div className="targetTags-holder">
@@ -99,16 +90,8 @@ class ProfileContent extends Component {
 						</div>
 						<Button.Group size="large" className="my-card-width">
 							<Like who={this.state.curentUserId} target={this.props.target.params.id}/>
-							<Tooltip placement="topLeft" title="Never show me">
-								<Button type="primary" className="target-btn">
-									<Icon type="close-circle-o" />
-								</Button>
-							</Tooltip>
-							<Tooltip placement="topLeft" title="Report scammer">
-								<Button type="primary" className="target-btn">
-									<Icon type="user-delete" />
-								</Button>
-							</Tooltip>
+							<Block target={this.props.target.params.id}/>
+							<Scammer target={this.props.target.params.id}/>
 						</Button.Group>
 					</div>
 				</Content>

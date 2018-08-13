@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import jwtDecode from 'jwt-decode'
 import { PostData } from '../../main/components/PostData'
-import history from "../../history/history"
 
 class MainInfo extends Component {
 	constructor(props) {

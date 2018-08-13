@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import jwtDecode from 'jwt-decode';
 import { PostData } from '../main/components/PostData';
-import history from "../history/history";
 import './cabinet.css'
 import { Tabs, Tab } from 'react-bootstrap';
 import $ from 'jquery';
@@ -10,6 +8,8 @@ import AboutMe from './components/AboutMe'
 import Location from './components/Location'
 import MyPhoto from './components/MyPhoto'
 import Views from './components/Views'
+import LikedMe from './components/LikedMe'
+import MyBlocks from './components/MyBlocks'
 
 	$(document).on('click', '.browse', function(){
 		var file = $(this).parent().parent().parent().find('.file');
@@ -27,8 +27,7 @@ class Cabinet extends Component {
 			login: props.login,
 			userId: props.userId,
 			fullProfile: '',
-			avatar: '',
-			whoLikedMe: []
+			avatar: ''
 		}
 		this.setAvatar = this.setAvatar.bind(this)
 	}
@@ -37,7 +36,6 @@ class Cabinet extends Component {
 		PostData('user/getAllInfo', {userId: this.state.userId}).then((res) => {
 			this.setState({
 				avatar: res.userData.profilePic,
-				whoLikedMe: res.whoLikesUser,
 				fullProfile: Boolean(res.userData.isFull)
 			})
 		})
@@ -47,15 +45,13 @@ class Cabinet extends Component {
 		event.preventDefault()
 		let pic = event.target.getAttribute('target')
 		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
-			// console.log("RESULT", result)
 			this.setState({
-				avatar: result.src,
+				avatar: result.src
 			})
 		})
 	}
 
 	render() {
-		const whoLikedMe = this.state.whoLikedMe
 		return(
 			<div className="container bootstrap snippet marginTop">
 				<div className="row">
@@ -104,64 +100,15 @@ class Cabinet extends Component {
 								<MyPhoto userId={this.state.userId} setAvatar={this.setAvatar}/>
 							</Tab>
 
-							<Tab eventKey={5} title="Viewes">
+							<Tab eventKey={5} title="Views">
 								<Views userId={this.state.userId} />
 							</Tab>
 							<Tab eventKey={6} title="Likes">
-								<div className="form-group">
-									<div className="col-xs-12">
-										<h3>Users who liked my profile</h3>
-									</div>
-								</div>
-								<div className="row">
-									{whoLikedMe !== undefined && whoLikedMe !== null ? 
-										whoLikedMe.map((profile) => (												
-											<div className="col-xs-3" key={profile.profilePic}>
-												<div className="card">
-													<img className="card-img-top" src={profile.profilePic} />
-													<div className="card-body">
-														<h5 className="card-title margin-top">{profile.firstName} {profile.lastName}</h5>
-														<p className="card-text">{profile.about}</p>
-														<a href="#" className="btn btn-primary">View full profile</a>
-													</div>
-												</div>
-											</div>
-										))
-										:
-										null
-									}
-								</div>
+								<LikedMe userId={this.state.userId} />
 							</Tab>
 							
 							<Tab eventKey={7} title="Blocs">
-								<div className="form-group">							
-									<div className="col-xs-12">
-										<h3>Profiles that I blocked</h3>
-										<h6>Или вывести списком имена</h6>
-									</div>
-								</div>									
-								<div className="row">
-									<div className="col-xs-3">
-										<div className="card">
-											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-											<div className="card-body">
-												<h5 className="card-title margin-top">Card title</h5>
-												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-												<a href="#" className="btn btn-primary">view</a>
-											</div>
-										</div>
-									</div> 
-									<div className="col-xs-3">
-										<div className="card">
-											<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-											<div className="card-body">
-												<h5 className="card-title margin-top">Card title</h5>
-												<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-												<a href="#" className="btn btn-primary">view</a>
-											</div>
-										</div>
-									</div> 
-								</div>
+								<MyBlocks userId={this.state.userId} />
 							</Tab>
 
 						</Tabs>

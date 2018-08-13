@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
-import history from "../../history/history"
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
 
@@ -83,7 +82,7 @@ class MyPhoto extends Component  {
 							userPics.map((pikcha, i) => (
 								<div className="col-lg-6" key={pikcha.toString()}>
 									<div className="card">
-									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })}/>
+									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })} alt="my photocard"/>
 									  <div className="card-body margin-top">									    
 									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
 									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.props.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
