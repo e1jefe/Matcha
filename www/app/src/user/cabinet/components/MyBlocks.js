@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
 import history from "../../history/history"
-import { Rate, Tooltip, Button, Icon } from 'antd'
-import Like from '../../profile/components/Like'
+import { Tooltip, Button, Icon } from 'antd'
 import Block from '../../profile/components/Block'
+import Scammer from '../../profile/components/Scammer'
+
 
 class MyBlocks extends Component {
 
@@ -16,7 +17,7 @@ class MyBlocks extends Component {
 	}
 
 	componentWillMount(){
-		PostData('user/getAllInfo', {userId: this.state.userId}).then((res) => {
+		PostData('user/getMyBlocks', {uId: this.state.userId}).then((res) => {
 			this.setState({
 				myBlocks: res.myBlocks
 			})
@@ -30,34 +31,51 @@ class MyBlocks extends Component {
 	}
 
 	render() {
-		const whoLikedMe = this.state.whoLikedMe
+		const myBlocks = this.state.myBlocks
 		return(
 			<div>
 				<div className="form-group">							
 					<div className="col-xs-12">
 						<h3>Profiles that I blocked</h3>
-						<h6>Или вывести списком имена</h6>
 					</div>
 				</div>									
 				<div className="row">
-					<div className="col-xs-3">
-						<div className="card">
-							<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="avatar blocked person"/>
-							<div className="card-body">
-								<h5 className="card-title margin-top">Card title</h5>
-								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					{myBlocks !== undefined && myBlocks !== null ? 
+						myBlocks.map((profile) => (												
+							<div className="col-xs-4" key={profile.uId}>
+								<div className="card card-relatieve">
+									<div className="onLineIndecator" style={profile.isOnline === true ? {backgroundColor: '#00e64d'} : null}></div>
+									<img className="card-img-top" src={profile.profilePic !== "" ? profile.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } alt="avatar"/>
+									<div className="my-card-body">
+										<h5 className="card-title margin-top">
+											{profile.fname} {profile.lname}
+										</h5>
+										<h6 className="card-subtitle mb-2 text-muted">
+											Age: {profile.age}
+										</h6>
+										<h6 className="card-subtitle mb-2 text-muted">
+											{profile.sexPref == 'homo' ? "Homosexual" : profile.sexPref == 'hetero' ? "Heterosexual" : "Bisexual"}, {profile.sex}
+										</h6>
+										<h6 className="card-subtitle mb-2 text-muted">
+											Last visit: {profile.lastSeen}
+										</h6>
+										<hr />
+										<Button.Group size="large" className="my-card-width">
+											<Tooltip placement="topLeft" title="Review profile">
+												<Button name={profile.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
+													<Icon type="info-circle-o" />
+												</Button>
+											</Tooltip>
+											<Block who={this.state.userId} target={profile.uId} className="my-card-btn-width"/>
+											<Scammer target={profile.uId}/>
+										</Button.Group>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div> 
-					<div className="col-xs-3">
-						<div className="card">
-							<img className="card-img-top" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="avatar blocked person"/>
-							<div className="card-body">
-								<h5 className="card-title margin-top">Card title</h5>
-								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div> 
+						))
+						:
+						null
+					}
 				</div>
 			</div>
 			)

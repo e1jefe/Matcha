@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './userProfile.css'
+import './Userprofile.css'
 import ProfileContent from './components/ProfileContent';
 import Header from '../main/components/headerComponents/Header.jsx'
 import Footer from '../main/components/footerComponents/Footer'

@@ -43,7 +43,9 @@ class ProfileContent extends Component {
 						tLastSeen: res.userData.lastSeen,
 						tBio: res.userData.bio,
 						tTags: res.userData.tags,
-						tStars: res.userData.stars
+						tStars: res.userData.stars,
+						isLikeMe: res.isLike,
+						isMatch: res.isMatch
 					})
 				})
 			}
@@ -64,7 +66,7 @@ class ProfileContent extends Component {
 									<img src={img}/>
 								</div>))
 								:
-								null
+								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
 							}
 						</Carousel>
 					</div>
@@ -73,8 +75,10 @@ class ProfileContent extends Component {
 						<h2 className="targetDescription-age">{this.state.tAge}</h2>
 						<div className="targetDescription-info">
 							<p>1992.6 km away</p>
-							<p>{this.state.tSexPref}, {this.state.tSex}</p>
-							<p>Last visit: {this.state.tLastSeen}</p>
+							<p>{this.state.tSexPref == 'homo' ? "Homosexual" : this.state.tSexPref == 'hetero' ? "Heterosexual" : "Bisexual"}, {this.state.tSex}</p>
+							<p>Last visit: {this.state.tIsOnline ? "online" : this.state.tLastSeen}</p>
+							{this.state.isLikeMe && <p>Added me to favourite</p>}
+							{this.state.isMatch && <p>We are connected</p>}
 						</div>
 						<p className="targetBio">{this.state.tBio}</p>
 						<Rate allowHalf disabled value={this.state.tStars} style={{marginBottom: "10px"}}/>
