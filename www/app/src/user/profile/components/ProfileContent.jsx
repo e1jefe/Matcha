@@ -9,6 +9,9 @@ import Like from './Like'
 import Block from './Block'
 import Scammer from './Scammer'
 
+import iziToast from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
+
 const { Content } = Layout
 
 class ProfileContent extends Component {
@@ -49,6 +52,22 @@ class ProfileContent extends Component {
 					})
 				})
 			}
+			this.conn = new WebSocket('ws:/\/localhost:8090')
+			this.conn.onmessage = this.onMessage.bind(this)
+		}
+	}
+
+	onMessage(event){
+		const data = JSON.parse(event.data);
+		if (data.event === 'setLike') {
+			iziToast.show({
+				theme: 'dark',
+	    		icon: 'icon-like',
+	    		maxWidth: '500px',
+			    message: data.who + ' ' + data.payload,
+			    position: 'topRight',
+			    progressBar: false
+			})
 		}
 	}
 

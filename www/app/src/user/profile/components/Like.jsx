@@ -13,11 +13,17 @@ class Like extends Component {
 			curentUserId: '',
 			target: props.target
 		}
-		this.onClick = this.onClick.bind(this)
+		this.handleLike = this.handleLike.bind(this)
 		console.log("state in like ", this.state)
 	}
+
+	componentWillMount(){
+		this.conn = new WebSocket('ws:/\/localhost:8090')
+		this.conn.handleLike = this.handleLike.bind(this)
+		this.setState({target: this.props.target})
+	}
 	
-	onClick(){
+	handleLike(){
 		const token = localStorage.getItem('token');
 		if (token !== null)
 		{
@@ -34,14 +40,21 @@ class Like extends Component {
 				    position: 'topRight',
 				    progressBar: false
 				})
+				this.conn.send(JSON.stringify({
+		            event: 'setLike',
+		            payload: 'Like you',
+		            who: user.userLogin,
+		            user_id: this.state.curentUserId,
+		            target_id: this.state.target
+		        }))
 			})
 		}
 	}	
 
 	render(){
 		return(
-			<Tooltip placement="topLeft" title="Like profile">
-				<Button type="primary" className="target-btn" onClick={this.onClick}>
+			<Tooltip placement="topLeft" title={this.state.liked === true ? "Unlike profile" : "Like profile"}>
+				<Button type="primary" className="target-btn" onClick={this.handleLike}>
 					<Icon type="like-o" />
 				</Button>
 			</Tooltip>
