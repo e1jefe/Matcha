@@ -45,7 +45,7 @@ class Content extends Component {
 			activeReset: false,
 			activeIp: false
 		});
-		console.log("show sign up", currentState);
+		// console.log("show sign up", currentState);
 
 	}
 

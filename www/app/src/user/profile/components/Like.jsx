@@ -36,17 +36,36 @@ class Like extends Component {
 					msg: res.msg
 				})
 				iziToast.info({
-				    message: res.msg,
-				    position: 'topRight',
-				    progressBar: false
+					message: res.msg,
+					position: 'topRight',
+					progressBar: false
 				})
-				this.conn.send(JSON.stringify({
-		            event: 'setLike',
-		            payload: 'Like you',
-		            who: user.userLogin,
-		            user_id: this.state.curentUserId,
-		            target_id: this.state.target
-		        }))
+				if (res.check == true && res.match == undefined) {
+					this.conn.send(JSON.stringify({
+						event: 'setLike',
+						payload: res.fromWhoName + ' like you',
+						ava: res.fromWhoPic,
+						user_id: this.state.curentUserId,
+						target_id: this.state.target
+					}))
+				} else if (res.removedMatch1 || res.removedMatch2) {
+					this.conn.send(JSON.stringify({
+						event: 'disLike',
+						payload: res.fromWhoName + ' unlike you',
+						ava: res.fromWhoPic,
+						user_id: this.state.curentUserId,
+						target_id: this.state.target
+					}))
+				}
+				else if (res.match != undefined) {
+					this.conn.send(JSON.stringify({
+						event: 'match',
+						payload: 'You got a match with ' + res.fromWhoName,
+						ava: res.fromWhoPic,
+						user_id: res.match.partner1,
+						target_id: res.match.partner2
+					}))
+				}
 			})
 		}
 	}	

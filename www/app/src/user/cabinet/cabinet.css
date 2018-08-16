@@ -21,6 +21,10 @@
 		object-position: 0% 10%;
 	}
 
+	.my-photos.card > img {
+		max-height: 300px;
+	}
+
 .glyphicon-ok-sign:before {
 	margin-right: 5px;
 }

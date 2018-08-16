@@ -7,6 +7,8 @@ import history from './user/history/history';
 import Chat from './user/chat/chat.js'
 import Search from "./user/home/Search.js";
 import Profile from "./user/profile/Profile";
+import { Provider } from "mobx-react";
+import storage from "./storage";
 
 
 // The Main component renders one of the three provided
@@ -16,16 +18,18 @@ import Profile from "./user/profile/Profile";
 // when the pathname is exactly the string "/"
 const Main = () => (
 	<main>
-		<Router history={history}>
-			<Switch>
-				<Route exact path='/' component={Home} />
-				<Route path='/home' component={Home}/>
-				<Route path='/signin' component={SignIn}/>
-				<Route path='/chat' component={Chat}/>
-				<Route path='/search' component={Search}/>
-				<Route path="/profile/:id" component={Profile} />
-			</Switch>
-		</Router>
+		<Provider notifications={storage.test}>
+			<Router history={history}>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/home' component={Home}/>
+					<Route path='/signin' component={SignIn}/>
+					<Route path='/chat' component={Chat}/>
+					<Route path='/search' component={Search}/>
+					<Route path="/profile/:id" component={Profile} />
+				</Switch>
+			</Router>
+		</Provider>
 	</main>
 )
 

@@ -8,7 +8,6 @@ import { Tooltip, Button, Radio, Icon } from 'antd'
 import Like from './Like'
 import Block from './Block'
 import Scammer from './Scammer'
-
 import iziToast from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 
@@ -59,31 +58,50 @@ class ProfileContent extends Component {
 
 	onMessage(event){
 		const data = JSON.parse(event.data);
-		if (data.event === 'setLike') {
+		if (data.event === 'setLike' && data.user_id != this.state.curentUserId) {
 			iziToast.show({
 				theme: 'dark',
-	    		icon: 'icon-like',
-	    		maxWidth: '500px',
-			    message: data.who + ' ' + data.payload,
-			    position: 'topRight',
-			    progressBar: false
+				icon: 'icon-like',
+				image: data.ava,
+				imageWidth: 50,
+				maxWidth: '500px',
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
+			})
+		}
+		if (data.event === 'match' && data.target_id == this.state.curentUserId) {
+			iziToast.show({
+				theme: 'dark',
+				icon: 'icon-match',
+				image: data.ava,
+				imageWidth: 50,
+				maxWidth: '500px',
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
 			})
 		}
 	}
 
 	render(){
-		console.log("in profile state: ", this.state)
-		const tags = (this.state.tTags != undefined && this.state.tTags.length != 0) ? this.state.tTags.split(" ") : this.state.tTags
+		const tags = (this.state.tTags != undefined && this.state.tTags.length != 0 && this.state.tTags != "") ? this.state.tTags.split(" ") : this.state.tTags
+		const picks = this.state.tAllPics
+		if (picks != undefined){
+			console.log("this.state.tAllPics lenth", picks.length)
+		}
 		return(
 			<Layout>
 				<Content>
 					<div className="my-carousel">
 						<Carousel>
-							{(this.state.tAllPics != undefined && this.state.tAllPics.length != 0) ?
+							{this.state.tAllPics != undefined && this.state.tAllPics.length !== 0 ?
 								this.state.tAllPics.map((img, i) => (
 								<div key={i}>
 									<img src={img}/>
 								</div>))
+								:
+								this.state.tAvatar != "" ? (<img src={this.state.tAvatar}/>)
 								:
 								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
 							}
@@ -104,10 +122,12 @@ class ProfileContent extends Component {
 						<div className="targetTags">
 							<h2>Tags:</h2>
 							<div className="targetTags-holder">
-								{tags != undefined && tags.lenth != 0 ? 
+								{tags != undefined && tags.lenth != 0 && tags != "" ? 
 									tags.map((tag) => (<p key={tag.toString()} className="targetTags-single">{tag}</p>))
 									:
-									<p className="targetTags-single">{tags}</p>
+									tags != "" ? (<p className="targetTags-single">{tags}</p>)
+									:
+									null
 								}
 							</div>
 						</div>

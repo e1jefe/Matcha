@@ -3,11 +3,46 @@ import './header.css';
 import '../../../fonts/fonts.css';
 import { NavLink } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Menu, Dropdown, Icon } from 'antd';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
 import history from "../../../history/history";
 import { PostData } from '../PostData';
+
+// class Menu1 extends Component{
+//     constructor(props) {
+//         super(props);
+//         let notifArray = localStorage.getItem('notification');
+//         if (notifArray != null)
+//         {
+//             if (notifArray.includes('}{')){
+//                 this.state = {
+//                     notifications: notifArray.split('}{')
+//                 };
+//             }
+//             else{
+//                 this.state = {
+//                     notifications: notifArray
+//                 }
+//             }
+//         }
+//     }
+
+//     render(){
+//         return(
+//             <Menu>
+//                 {this.state.notifications.map( (notification, i) => 
+//                     <Menu.Item key={i}>
+//                       <a href="http://www.alipay.com/">{notification}</a>
+//                     </Menu.Item>
+//                 )}
+//             </Menu>
+//         )
+//     }
+// }
+
+
 
 class ForUnauthor extends Component{
     render() {
@@ -29,6 +64,7 @@ class Nav extends Component {
             userLogin: ''
         };
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleNotif = this.handleNotif.bind(this);
     }
 
     handleLogout() {
@@ -40,8 +76,36 @@ class Nav extends Component {
         })
     }
 
+    handleNotif() {
+        setTimeout(()=> {
+            this.setState(()=> ({ notifications: null }))
+        }, 5000);
+        localStorage.removeItem('notification');
+    }
+
     componentWillMount() {
         let token = localStorage.getItem('token');
+        let notifArray = localStorage.getItem('notification');
+        console.log("notif array ", notifArray)
+
+        if (notifArray != null)
+        {
+            if (notifArray.includes('}{')) {
+                notifArray = notifArray.split('}{');
+                for (let i = 0; i < notifArray.length; i++) {
+                    if (i == 0)
+                        notifArray[i] = notifArray[i] + '}'
+                    else if (i == notifArray.length - 1)
+                        notifArray[i] = '{' + notifArray[i]
+                    else
+                        notifArray[i] = '{' + notifArray[i] + '}'
+                    // notifArray[i] = notifArray[i].replace('":"', '": "')
+                    notifArray[i] = JSON.parse(notifArray[i])
+                }
+            }
+            else
+                notifArray = new Array(JSON.parse(notifArray));
+        }
         if (token !== null)
         {
             let user = jwtDecode(token);
@@ -50,10 +114,16 @@ class Nav extends Component {
             {
                 this.setState({
                     author: true,
-                    userLogin: user.login
+                    userLogin: user.login,
+                    notifications: notifArray
                 });
             }
         }
+    }
+
+    componentDidUpdate() {
+        let notifArray = localStorage.getItem('notification');
+        console.log("test")
     }
 
     render() {
@@ -76,6 +146,25 @@ class Nav extends Component {
             )
         }
         else {
+            const menu = (
+                <Menu>
+                    {this.state.notifications != null ?
+                        this.state.notifications.map((notif, i) => 
+                            <Menu.Item key={i}>
+                                <NavLink to={"profile/:" + notif.user_id}>
+                                    <img className="notifImg" src={notif.ava} alt="Who done this" />
+                                    <p className="notifTxt">{notif.payload}</p>
+                                </NavLink>
+                            </Menu.Item>
+                        )
+                        : 
+                        <Menu.Item key="0">
+                            <p id="notifTxt-null">No unread notifications</p>
+                        </Menu.Item>
+                    }
+                </Menu>
+            )
+            
             return(
                 <nav className="menu" role="navigation">
                     <ul>
@@ -104,11 +193,14 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/home/notification">
-                                        <Badge count={7}>
-                                        <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
+                                <Dropdown overlay={menu} trigger={['click']} onClick={this.handleNotif} >
+                                    <a className="ant-dropdown-link" href="_">
+                                        <Badge count={this.state.notifications != null ? this.state.notifications.length : 0}>
+                                            <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
                                         </Badge>
-                                    </NavLink>
+                                    </a>
+                                </Dropdown>
+                                    
                                 </li>
                                 <li className="item">
                                     <NavLink to="" onClick={this.handleLogout.bind(this)}>

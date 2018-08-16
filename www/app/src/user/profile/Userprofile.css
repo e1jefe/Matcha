@@ -6,12 +6,18 @@
 	width: 50%;
 	margin: 0 auto;
 }
-/* For demo */
+.ant-carousel .slick-list {
+	height: 30vh;
+}
+.ant-carousel .slick-slider {
+	height: 30vh;
+    background: #364d79;
+}
+
 .ant-carousel .slick-slide {
     text-align: center;
     max-height: 500px;
-    line-height: 500px;
-    /*background: #364d79;*/
+    /*line-height: 500px;*/
     overflow: hidden;
 }
 

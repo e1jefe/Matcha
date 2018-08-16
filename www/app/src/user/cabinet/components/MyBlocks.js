@@ -4,7 +4,7 @@ import history from "../../history/history"
 import { Tooltip, Button, Icon } from 'antd'
 import Block from '../../profile/components/Block'
 import Scammer from '../../profile/components/Scammer'
-
+import OpenProfile from '../../profile/components/OpenProfile'
 
 class MyBlocks extends Component {
 
@@ -13,7 +13,6 @@ class MyBlocks extends Component {
 		this.state = {
 			userId: props.userId
 		}
-		this.handleProfile = this.handleProfile.bind(this)
 	}
 
 	componentWillMount(){
@@ -22,12 +21,6 @@ class MyBlocks extends Component {
 				myBlocks: res.myBlocks
 			})
 		})
-	}
-
-	handleProfile(e){
-		// e.preventDefault()
-		console.log("I clicked on profile: ", e.target.name)
-		history.push('/profile/' + e.target.name);
 	}
 
 	render() {
@@ -61,11 +54,7 @@ class MyBlocks extends Component {
 										</h6>
 										<hr />
 										<Button.Group size="large" className="my-card-width">
-											<Tooltip placement="topLeft" title="Review profile">
-												<Button name={profile.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
-													<Icon type="info-circle-o" />
-												</Button>
-											</Tooltip>
+											<OpenProfile target={profile.uId}/>
 											<Block who={this.state.userId} target={profile.uId} className="my-card-btn-width"/>
 											<Scammer target={profile.uId}/>
 										</Button.Group>

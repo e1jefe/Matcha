@@ -4,6 +4,9 @@ import { PostData } from '../main/components/PostData';
 import history from "../history/history";
 import jwtDecode from 'jwt-decode';
 
+import iziToast from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
+
 import './home.css';
 import '../fonts/fonts.css';
 
@@ -15,7 +18,9 @@ import Chat from '../chat/chat';
 import Search from "./Search.js";
 import Profile from "../profile/Profile";
 
-class Home extends Component {
+import { observer } from 'mobx-react'
+
+const Home =  observer(class Home extends Component {
 
 	constructor(props) {
 		super(props);
@@ -26,7 +31,9 @@ class Home extends Component {
 			fullProfile: false,
 			errMsg: ''
 		};
+		let count = 0
 	}
+	
 
 	componentWillMount() {
 		const token = localStorage.getItem('token');
@@ -46,16 +53,79 @@ class Home extends Component {
 			PostData('user/isFull', {userId: user.userId}).then ((result) => {
 				if (result.error !== '' || result.error !== undefined) {
 					this.setState({ errMsg: result.error });
-					// console.log(result);
-					// console.log('cirently in state', this.state);
 				} else
-					this.setState({ fullProfile: result });					
-				
-				// console.log("and now res: ", result);
-				// console.log("and now state: ", this.state);			
-
+					this.setState({ fullProfile: result });
 			});
-			// console.log("and now res: ", result);
+			this.conn = new WebSocket('ws:/\/localhost:8090')
+			this.conn.onmessage = this.onMessage.bind(this)
+		}
+	}
+
+	onMessage(event){
+		console.log("in storage ", this.props.notifications)
+		const data = JSON.parse(event.data);
+		let notifArray = localStorage.getItem('notification')
+		if (data.event === 'setLike' && data.user_id != this.state.userId) {
+			console.log("notification array ", notifArray)
+			console.log("notification data ", data)
+
+			if (notifArray == null)
+				localStorage.setItem('notification', JSON.stringify(data))
+			else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+				localStorage.setItem('notification', notifArray + JSON.stringify(data))
+			iziToast.show({
+				theme: 'dark',
+				icon: 'icon-like',
+				image: data.ava,
+				imageWidth: 50,
+				maxWidth: '500px',
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
+			})
+		}
+		if (data.event === 'disLike' && data.user_id != this.state.userId) {
+			if (notifArray == null)
+				localStorage.setItem('notification', JSON.stringify(data))
+			else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+				localStorage.setItem('notification', notifArray + JSON.stringify(data))
+			iziToast.show({
+				theme: 'light',
+				iconUrl: 'http://i66.tinypic.com/241312b.png',
+				image: data.ava,
+				imageWidth: 50,
+				maxWidth: '500px',
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
+			})
+		}
+		if (data.event === 'match' && data.target_id == this.state.userId) {
+			if (notifArray == null)
+				localStorage.setItem('notification', JSON.stringify(data))
+			else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
+				localStorage.setItem('notification', notifArray + JSON.stringify(data))
+			iziToast.show({
+				theme: 'dark',
+				icon: 'icon-match',
+				image: data.ava,
+				imageWidth: 50,
+				maxWidth: '500px',
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
+			})
+		}
+		if (data.event === 'view' && data.target_id == this.state.userId) {
+			if (notifArray == null)
+				localStorage.setItem('notification', JSON.stringify(data))
+			else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
+				localStorage.setItem('notification', notifArray + JSON.stringify(data))
+			iziToast.info({
+				message: data.payload,
+				position: 'topRight',
+				progressBar: false
+			})
 		}
 	}
 
@@ -100,6 +170,6 @@ class Home extends Component {
 		}
 	}
 	
-}
+})
 
 export default Home;

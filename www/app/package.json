@@ -12,6 +12,8 @@
     "jquery": "^3.3.1",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.5",
     "react": "^16.4.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.1",

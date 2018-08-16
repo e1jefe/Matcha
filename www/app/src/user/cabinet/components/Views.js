@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // import { NavLink } from 'react-router-dom'
-import history from "../../history/history"
 import { PostData } from '../../main/components/PostData'
 import { Rate } from 'antd'
 import { Tooltip, Button, Icon } from 'antd'
 import Like from '../../profile/components/Like'
 import Block from '../../profile/components/Block'
+import OpenProfile from '../../profile/components/OpenProfile'
 
 class Views extends Component {
 	
@@ -15,7 +15,6 @@ class Views extends Component {
 			userId: props.userId,
 			whoViewedMe: []
 		}
-		this.handleProfile = this.handleProfile.bind(this)
 	}
 
 	componentWillMount(){
@@ -25,12 +24,6 @@ class Views extends Component {
 				whoViewedMe: res.views
 			})
 		})
-	}
-
-	handleProfile(e){
-		// e.preventDefault()
-		console.log("I clicked on profile: ", e.target.name)
-		history.push('/profile/' + e.target.name);
 	}
 
 	render(){
@@ -60,11 +53,7 @@ class Views extends Component {
 									<Rate allowHalf disabled defaultValue={view.stars} />
 									<hr />
 									<Button.Group size="large" className="my-card-width">
-										<Tooltip placement="topLeft" title="Review profile">
-											<Button name={view.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
-												<Icon type="info-circle-o" />
-											</Button>
-										</Tooltip>
+										<OpenProfile target={view.uId}/>
 										<Like who={this.state.userId} target={view.uId} className="my-card-btn-width"/>
 										<Block who={this.state.userId} target={view.uId} className="my-card-btn-width"/>
 									</Button.Group>

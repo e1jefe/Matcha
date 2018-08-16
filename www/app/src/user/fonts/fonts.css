@@ -28,12 +28,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-3d_rotation:before {
-  content: "\e84d";
+.icon-match:before {
+  content: "\f05b";
 }
-.icon-ac_unit:before {
-  content: "\eb3b";
-}
+/*.icon-dislike:before {
+  content: "";
+  background-image: url('http://i66.tinypic.com/241312b.png');
+}*/
 .icon-alarm:before {
   content: "\e855";
 }

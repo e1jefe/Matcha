@@ -81,7 +81,7 @@ class MyPhoto extends Component  {
 						{(userPics !== null && userPics !== '') ? 
 							userPics.map((pikcha, i) => (
 								<div className="col-lg-6" key={pikcha.toString()}>
-									<div className="card">
+									<div className="my-photos card">
 									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })} alt="my photocard"/>
 									  <div className="card-body margin-top">									    
 									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>

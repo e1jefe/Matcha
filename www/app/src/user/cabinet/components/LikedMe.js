@@ -4,6 +4,7 @@ import history from "../../history/history"
 import { Rate, Tooltip, Button, Icon } from 'antd'
 import Like from '../../profile/components/Like'
 import Block from '../../profile/components/Block'
+import OpenProfile from '../../profile/components/OpenProfile'
 
 class LikedMe extends Component {
 
@@ -12,7 +13,6 @@ class LikedMe extends Component {
 		this.state = {
 			userId: props.userId
 		}
-		this.handleProfile = this.handleProfile.bind(this)
 	}
 
 	componentWillMount(){
@@ -21,12 +21,6 @@ class LikedMe extends Component {
 				whoLikedMe: res.whoLikesUser
 			})
 		})
-	}
-
-	handleProfile(e){
-		// e.preventDefault()
-		console.log("I clicked on profile: ", e.target.name)
-		history.push('/profile/' + e.target.name);
 	}
 
 	render() {
@@ -55,11 +49,7 @@ class LikedMe extends Component {
 										<Rate allowHalf disabled defaultValue={profile.stars} />
 										<hr />
 										<Button.Group size="large" className="my-card-width">
-											<Tooltip placement="topLeft" title="Review profile">
-												<Button name={profile.uId} type="primary" className="my-card-btn-width" onClick={this.handleProfile}>
-													<Icon type="info-circle-o" />
-												</Button>
-											</Tooltip>
+											<OpenProfile target={profile.uId}/>
 											<Like who={this.state.userId} target={profile.uId} className="my-card-btn-width"/>
 											<Block who={this.state.userId} target={profile.uId} className="my-card-btn-width"/>
 										</Button.Group>
