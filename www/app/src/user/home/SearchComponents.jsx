@@ -39,6 +39,7 @@ class SearchComponents extends Component {
             console.log(user);
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
+                console.log('result before change param ', result);
                 this.setState({
                     res: result.userData
                 })
@@ -55,7 +56,7 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
-                console.log(result);
+                console.log('result', result);
                 this.setState({
                     res: result.userData
                 })
