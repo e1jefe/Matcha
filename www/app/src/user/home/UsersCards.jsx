@@ -30,7 +30,7 @@ class UsersCards extends Component {
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>  <Card>
                 <CardBody>
                     <CardTitle><NavLink to="/userID"> {users2[i].fname} {users2[i].lname}</NavLink>, {users2[i].age}</CardTitle>
-                    <CardSubtitle>Fame Rating: {users2[i].fameRate}</CardSubtitle>
+                    <CardSubtitle>Fame Rating: {users2[i].fameRate}. Distance: {users2[i].distance} km</CardSubtitle>
                 </CardBody>
                         <NavLink to="/userID"><img src={users2[i].profilePic} /> </NavLink>
                 <CardBody>

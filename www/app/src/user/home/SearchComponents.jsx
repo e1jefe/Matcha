@@ -91,7 +91,7 @@ class SearchComponents extends Component {
                     onChange={value => this.setState({ searchFR : value })} />
                 </div>
                 <div className="tags">
-                <EditableTagGroup />
+                <EditableTagGroup value={this.state.tags}/>
                 </div>
                 <div className="btn-search">
                 <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
