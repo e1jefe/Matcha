@@ -4,7 +4,6 @@ import history from "../history/history";
 import jwtDecode from 'jwt-decode';
 import './chat.css';
 import 'antd/dist/antd.css'
-import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';
 
 const ChatContent = (props) => {
@@ -88,10 +87,10 @@ class ChatComponents extends Component {
     }
 
     showMessageHistory(e){
-        console.log(e.target) 
-        console.log(e.target.name)
-        if (e.target.name) {
-              this.setState({withWho: parseInt(e.target.name)})
+        console.log(e.currentTarget) 
+        console.log(e.currentTarget.name)
+        if (e.currentTarget.name) {
+              this.setState({withWho: parseInt(e.currentTarget.name, 10)})
         }
       
     }
@@ -108,7 +107,7 @@ class ChatComponents extends Component {
                         conversations.map((conversation) => (
                             <Button className="messages__item" key={conversation.withWho} name={conversation.withWho} onClick={this.showMessageHistory}>
                                 <div className="name-img" name={conversation.withWho}>
-                                    <img className="name-img__src" src={conversation.ava} name={conversation.withWho}></img>
+                                    <img className="name-img__src" src={conversation.ava} name={conversation.withWho} alt="Chat with this person"></img>
                                 </div>
                                 <div className="name" name={conversation.withWho}>
                                     {conversation.name}
