@@ -7,16 +7,55 @@ import 'antd/dist/antd.css'
 import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';
 
+const ChatContent = (props) => {
+    console.log("experiment props ", props)
+    // if (props.show === undefined) {
+    //     props.show = 
+    // }
+    return(
+        <div className={props.show === props.withWho ? "message-content" : "visibleChat-hidden"}>
+
+            <div className="message-box">
+                {props.conversation.map((twit, i) => 
+                    twit.sender === props.withWho ? (
+                        <div className="message-box__item incoming" key={i}>
+                            <div className="name"><b>{props.withWhoName}</b></div>
+
+                            <div className="box-text">
+                                { twit.content }
+                                <div className="time">{ twit.time }</div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="message-box__item outgoing" key={i}>
+                            <div className="box-text">
+                                { twit.content }
+                                <div className="time">{ twit.time }</div>
+                            </div>
+                        </div>
+                    )
+                )}
+            </div>
+            <div className="message-form">
+                <textarea name="text" rows="2" wrap="soft" placeholder="Write smth for young female wolves..."/>
+                <Button type="primary">send</Button>
+            </div>
+        </div>
+    )
+}
+
+
 class ChatComponents extends Component {
     constructor(props) {
         super(props);
         this.state = {}
         this.conn = new WebSocket('ws:/\/localhost:8090')
-        this.conn.onmessage = this.onMessage.bind(this)
+        // this.conn.onmessage = this.onMessage.bind(this)
         const user = jwtDecode(localStorage.getItem('token'));
         this.state = {
             currentUserId: user.userId
         }
+        this.showMessageHistory = this.showMessageHistory.bind(this)
     }
 
     componentWillMount(){
@@ -42,171 +81,51 @@ class ChatComponents extends Component {
             PostData('message/historyInit', {userId: this.state.currentUserId}).then ((result) => {
                 this.setState({
                     conversations: result.data
-                }, this.forceUpdate())
-                
-                // this.forceUpdate(console.log("TUT"))
+                })
+                // console.log(result.check, result.data)
             })
         }
     }
 
-    // componentDidUpdate(){
-    //    this.forceUpdate()
-    // }
-
-    // componentDidMount(){
-    // //     PostData('message/historyInit', {userId: this.state.currentUserId}).then ((result) => {
-    // //             this.setState({
-    // //                 conversations: result.conversation
-    // //             })
-
-    // //         })
-    //     this.forceUpdate(console.log("TUT"))
-    // }
-
-    onMessage(){
-
+    showMessageHistory(e){
+        console.log(e.target) 
+        console.log(e.target.name)
+        if (e.target.name) {
+              this.setState({withWho: parseInt(e.target.name)})
+        }
+      
     }
 
     render() {
         const conversations = this.state.conversations
-        console.log("perepiska ", conversations)
+        // console.log("perepiska ", conversations)
+        // conversations !== undefined ? conversations.map((conversation) => {console.log(conversation)}) : null
+     
         return (
             <div id="wrapper" className="chatComponent">
                 <div className="messages">
-                    {conversations !== undefined ?
-                        conversations.map((conversation, i) => {
-                        <NavLink to="_" className="messages__item" key={i}>
-                            <div className="name-img">
-                                <img className="name-img__src" src={conversation.ava}></img>
-                            </div>
-                            <div className="name">
-                                <b>{conversation.name}</b>
-                            </div>
-                        </NavLink>
-                        }) : null
+                    {conversations !== undefined && conversations.length > 0 ? 
+                        conversations.map((conversation) => (
+                            <Button className="messages__item" key={conversation.withWho} name={conversation.withWho} onClick={this.showMessageHistory}>
+                                <div className="name-img" name={conversation.withWho}>
+                                    <img className="name-img__src" src={conversation.ava} name={conversation.withWho}></img>
+                                </div>
+                                <div className="name" name={conversation.withWho}>
+                                    {conversation.name}
+                                </div>
+                            </Button>
+                        )) 
+                        : null
                     }
                 </div>
+                    {conversations !== undefined && conversations.length > 0  && this.state.withWho > 0 ? 
+                        conversations.map((conversation) => (
+                            <ChatContent key={conversation.ava} withWho={conversation.withWho} withWhoName={conversation.name} me={this.state.currentUserId} conversation={conversation.messagies} show={this.state.withWho}/>
+                        ))
+                        : null
+                    }
+                    
 
-                <div className="message-content">
-
-                    <div className="message-box">
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-
-                        <div className="message-box__item outgoing">
-
-                            <div className="box-text">
-                                Гріла під серцем вовчат,
-                                Молода вовчиця
-                                <div className="time">18:36</div>
-                            </div>
-                            
-                        </div>
-                        <div className="message-box__item outgoing">
-
-                            <div className="box-text">
-                                Гріла під серцем вовчат,
-                                Молода вовчиця
-                                <div className="time">18:36</div>
-                            </div>
-                            
-                        </div>
-                        <div className="message-box__item outgoing">
-
-                            <div className="box-text">
-                                Гріла під серцем вовчат,
-                                Молода вовчиця
-                                <div className="time">18:36</div>
-                            </div>
-                            
-                        </div>
-                        <div className="message-box__item outgoing">
-
-                            <div className="box-text">
-                                Гріла під серцем вовчат,
-                                Молода вовчиця
-                                <div className="time">18:36</div>
-                            </div>
-                            
-                        </div>
-                        <div className="message-box__item outgoing">
-
-                            <div className="box-text">
-                                Гріла під серцем вовчат,
-                                Молода вовчиця
-                                <div className="time">18:36</div>
-                            </div>
-                            
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-box__item incoming">
-                            <div className="name"><b>Алежа</b></div>
-
-                            <div className="box-text">
-                                Падав безжалісно град,
-                                Била блискавиця...
-                                <div className="time">18:36</div>
-                            </div>
-                        </div>
-                        <div className="message-form">
-                            <textarea name="text" rows="2" wrap="soft" placeholder="Write smth for young female wolves..."/>
-                            <Button type="primary">send</Button>
-                        </div>
-                        
-                    </div>
-                     
-                </div>
 
             </div>
 

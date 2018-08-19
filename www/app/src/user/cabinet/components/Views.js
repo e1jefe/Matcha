@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { NavLink } from 'react-router-dom'
 import { PostData } from '../../main/components/PostData'
 import { Rate } from 'antd'
 import { Button } from 'antd'
@@ -19,7 +18,6 @@ class Views extends Component {
 
 	componentWillMount(){
 		PostData('user/getWhoViewMe', {uId: this.state.userId}).then((res) => {
-			// console.log("who view me in Post ", res)
 			this.setState({
 				whoViewedMe: res.views
 			})
@@ -28,7 +26,6 @@ class Views extends Component {
 
 	render(){
 		const whoViewedMe = this.state.whoViewedMe
-		// console.log("who view me length ", this.state.whoViewedMe.length)
 		return(
 			<div>
 				<div className="form-group">

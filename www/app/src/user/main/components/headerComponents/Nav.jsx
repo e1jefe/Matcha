@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './header.css';
 import '../../../fonts/fonts.css';
 import { NavLink } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Menu, Dropdown, Icon } from 'antd';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
 import history from "../../../history/history";
 import { PostData } from '../PostData';
+import iziToast from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 class ForUnauthor extends Component{
     render() {
@@ -28,10 +29,12 @@ class Nav extends Component {
         this.state = {
             author: false,
             userLogin: '',
-            notifications: this.props.notifications
+            userId: '',
+            notifications: ''
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleNotif = this.handleNotif.bind(this);
+        this.onMessage = this.onMessage.bind(this)
     }
 
     handleLogout() {
@@ -50,13 +53,102 @@ class Nav extends Component {
         localStorage.removeItem('notification');
     }
 
-    componentWillReceiveProps(){
-        // console.log("notif array ", this.props)
+    onMessage(event){
+        // console.log("on MSG")
+        const data = JSON.parse(event.data);
+        let notifArray = localStorage.getItem('notification')
+        if (data.event === 'setLike' && data.user_id != this.state.userId) {
+            // console.log("notification array ", notifArray)
+            // console.log("ngot msg")
+
+            if (notifArray == null)
+                localStorage.setItem('notification', JSON.stringify(data))
+            else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+                localStorage.setItem('notification', notifArray + JSON.stringify(data))
+            iziToast.show({
+                theme: 'dark',
+                icon: 'icon-like',
+                image: data.ava,
+                imageWidth: 50,
+                maxWidth: '500px',
+                message: data.payload,
+                position: 'topRight',
+                progressBar: false
+            })
+        }
+        if (data.event === 'disLike' && data.user_id != this.state.userId) {
+            if (notifArray == null)
+                localStorage.setItem('notification', JSON.stringify(data))
+            else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+                localStorage.setItem('notification', notifArray + JSON.stringify(data))
+            iziToast.show({
+                theme: 'light',
+                iconUrl: 'http://i66.tinypic.com/241312b.png',
+                image: data.ava,
+                imageWidth: 50,
+                maxWidth: '500px',
+                message: data.payload,
+                position: 'topRight',
+                progressBar: false
+            })
+        }
+        if (data.event === 'match' && data.target_id == this.state.userId) {
+            if (notifArray == null)
+                localStorage.setItem('notification', JSON.stringify(data))
+            else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
+                localStorage.setItem('notification', notifArray + JSON.stringify(data))
+            iziToast.show({
+                theme: 'dark',
+                icon: 'icon-match',
+                image: data.ava,
+                imageWidth: 50,
+                maxWidth: '500px',
+                message: data.payload,
+                position: 'topRight',
+                progressBar: false
+            })
+        }
+        if (data.event === 'view' && data.target_id == this.state.userId) {
+            if (notifArray == null)
+                localStorage.setItem('notification', JSON.stringify(data))
+            else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
+                localStorage.setItem('notification', notifArray + JSON.stringify(data))
+            iziToast.info({
+                message: data.payload,
+                position: 'topRight',
+                progressBar: false
+            })
+        }
+        notifArray = localStorage.getItem('notification')
+        if (notifArray != null) {
+            if (notifArray.includes('}{')) {
+                notifArray = notifArray.split('}{');
+                for (let i = 0; i < notifArray.length; i++) {
+                    if (i == 0)
+                        notifArray[i] = notifArray[i] + '}'
+                    else if (i == notifArray.length - 1)
+                        notifArray[i] = '{' + notifArray[i]
+                    else
+                        notifArray[i] = '{' + notifArray[i] + '}'
+                    // notifArray[i] = notifArray[i].replace('":"', '": "')
+                    notifArray[i] = JSON.parse(notifArray[i])
+                }
+            }
+            else
+                notifArray = new Array(JSON.parse(notifArray));
+            // console.log("notifications on msg in navigation ", notifArray)
+            this.setState({notifications: notifArray})
+        }
+
     }
 
     componentWillMount() {
+        this.conn = new WebSocket('ws:/\/localhost:8090')
+        this.conn.onmessage = this.onMessage.bind(this)
         let token = localStorage.getItem('token');
-        let notifArray = this.state.notifications;
+        let notifArray = localStorage.getItem('notification')
+
+        const user = jwtDecode(token);
         // console.log("notif will mount ", notifArray)
 
         if (notifArray != null)
@@ -86,6 +178,7 @@ class Nav extends Component {
                 this.setState({
                     author: true,
                     userLogin: user.login,
+                    userId: user.userId,
                     notifications: notifArray
                 });
             }
@@ -98,6 +191,8 @@ class Nav extends Component {
     // }
 
     render() {
+        const notifications = this.state.notifications
+        // console.log("notifications ", notifications)
         if (this.state.author === false
         ) {
             return(
@@ -119,11 +214,14 @@ class Nav extends Component {
         else {
             const menu = (
                 <Menu>
-                    {this.state.notifications != null ?
-                        this.state.notifications.map((notif, i) => 
+                    {notifications !== undefined && notifications !== null ?
+                        notifications.map((notif, i) => 
                             <Menu.Item key={i}>
                                 <NavLink to={"profile/:" + notif.user_id}>
-                                    <img className="notifImg" src={notif.ava} alt="Who done this" />
+                                    {notif.ava !== undefined ?
+                                        <img className="notifImg" src={notif.ava} alt="Who done this" />
+                                        : null
+                                    }
                                     <p className="notifTxt">{notif.payload}</p>
                                 </NavLink>
                             </Menu.Item>
@@ -165,7 +263,7 @@ class Nav extends Component {
                                 <li className="item">
                                 <Dropdown overlay={menu} trigger={['click']} onClick={this.handleNotif} >
                                     <a className="ant-dropdown-link" href="_">
-                                        <Badge count={this.state.notifications != null ? this.state.notifications.length : 0}>
+                                        <Badge count={this.state.notifications !== null ? this.state.notifications.length : 0}>
                                             <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
                                         </Badge>
                                     </a>

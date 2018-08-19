@@ -29,11 +29,11 @@ class Like extends Component {
 		{
 			const user = jwtDecode(token);
 			PostData('user/like', {uId: user.userId, target: this.state.target}).then((res) => {
-				console.log("you liked user ")
+				// console.log("you liked user ")
 				res.check == true ? this.setState({liked: true}) : this.setState({liked: false})
 				this.setState({
-					curentUserId: user.userId,
-					msg: res.msg
+					curentUserId: user.userId
+					// msg: res.msg
 				})
 				iziToast.info({
 					message: res.msg,

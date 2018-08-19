@@ -12,17 +12,16 @@ class OpenProfile extends Component {
 		this.state = {
 			curentUserId: '',
 			fromWho: '',
+			fromWhoPic: '',
 			target: props.target
 		}
 		this.handleProfile = this.handleProfile.bind(this)
-		// console.log("state in like ", this.state)
 	}
 	
 	handleProfile(e){
-		// e.preventDefault()
-		// console.log("I clicked on profile: ", e.target.name)
 		this.conn.send(JSON.stringify({
 			event: 'view',
+			ava: this.state.fromWhoPic,
 			payload: this.state.fromWho + ' checked your profile',
 			user_id: this.state.curentUserId,
 			target_id: this.state.target
@@ -37,10 +36,13 @@ class OpenProfile extends Component {
 			const user = jwtDecode(token);
 			if (user.userLogin !== '')
 			{
-				this.setState({
-					curentUserId: user.userId,
-					fromWho: user.userName + ' ' + user.userSurname,
-					target: this.props.target
+				PostData('user/getAva', {uId: user.userId}).then((res) => {
+					this.setState({
+						curentUserId: user.userId,
+						fromWho: user.userName + ' ' + user.userSurname,
+						fromWhoPic: res.fromWhoPic,
+						target: this.props.target
+					})
 				})
 			}
 		}

@@ -8,8 +8,6 @@ import { Button } from 'antd'
 import Like from './Like'
 import Block from './Block'
 import Scammer from './Scammer'
-import iziToast from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 
 const { Content } = Layout
 
@@ -51,44 +49,11 @@ class ProfileContent extends Component {
 					})
 				})
 			}
-			this.conn = new WebSocket('ws:\//localhost:8090')
-			this.conn.onmessage = this.onMessage.bind(this)
-		}
-	}
-
-	onMessage(event){
-		const data = JSON.parse(event.data);
-		if (data.event === 'setLike' && data.user_id !== this.state.curentUserId) {
-			iziToast.show({
-				theme: 'dark',
-				icon: 'icon-like',
-				image: data.ava,
-				imageWidth: 50,
-				maxWidth: '500px',
-				message: data.payload,
-				position: 'topRight',
-				progressBar: false
-			})
-		}
-		if (data.event === 'match' && data.target_id === this.state.curentUserId) {
-			iziToast.show({
-				theme: 'dark',
-				icon: 'icon-match',
-				image: data.ava,
-				imageWidth: 50,
-				maxWidth: '500px',
-				message: data.payload,
-				position: 'topRight',
-				progressBar: false
-			})
 		}
 	}
 
 	render(){
 		const tags = (this.state.tTags !== undefined && this.state.tTags.length !== 0 && this.state.tTags !== "") ? this.state.tTags.split(" ") : this.state.tTags
-		// if (picks != undefined){
-		// 	console.log("this.state.tAllPics lenth", picks.length)
-		// }
 		return(
 			<Layout>
 				<Content>
