@@ -46,10 +46,10 @@ class FormSignUp extends Component {
 				regStatuse: false
 			});
 			PostData('auth/signup', this.state).then ((result) => {			
-				if (result.fromDbErr != undefined) {
+				if (result.fromDbErr !== undefined) {
 					this.setState({ errMsg: result.fromDbErr });
 					console.log('here', result);
-				} else if (result != true){
+				} else if (result !== true){
 					this.setState({
 						eLogin: result.eLogin,
 						ePass: result.ePass,
@@ -110,7 +110,7 @@ class FormSignUp extends Component {
 					</div>
 						{this.state.eCPass !== undefined && this.state.eCPass !== '' && ( <span className="alert alert-danger">{this.state.eCPass}</span>)}																							
 
-					<button type="submit" className="btn btn-primary btn-block btn-my-color">Submit</button>
+					<button type="submit" className="btn btn-primary btn-block">Submit</button>
 				</form>
 		
 		);

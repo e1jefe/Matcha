@@ -10,40 +10,6 @@ import jwtDecode from 'jwt-decode';
 import history from "../../../history/history";
 import { PostData } from '../PostData';
 
-// class Menu1 extends Component{
-//     constructor(props) {
-//         super(props);
-//         let notifArray = localStorage.getItem('notification');
-//         if (notifArray != null)
-//         {
-//             if (notifArray.includes('}{')){
-//                 this.state = {
-//                     notifications: notifArray.split('}{')
-//                 };
-//             }
-//             else{
-//                 this.state = {
-//                     notifications: notifArray
-//                 }
-//             }
-//         }
-//     }
-
-//     render(){
-//         return(
-//             <Menu>
-//                 {this.state.notifications.map( (notification, i) => 
-//                     <Menu.Item key={i}>
-//                       <a href="http://www.alipay.com/">{notification}</a>
-//                     </Menu.Item>
-//                 )}
-//             </Menu>
-//         )
-//     }
-// }
-
-
-
 class ForUnauthor extends Component{
     render() {
         return (
@@ -61,7 +27,8 @@ class Nav extends Component {
         super(props);
         this.state = {
             author: false,
-            userLogin: ''
+            userLogin: '',
+            notifications: this.props.notifications
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleNotif = this.handleNotif.bind(this);
@@ -83,10 +50,14 @@ class Nav extends Component {
         localStorage.removeItem('notification');
     }
 
+    componentWillReceiveProps(){
+        // console.log("notif array ", this.props)
+    }
+
     componentWillMount() {
         let token = localStorage.getItem('token');
-        let notifArray = localStorage.getItem('notification');
-        console.log("notif array ", notifArray)
+        let notifArray = this.state.notifications;
+        // console.log("notif will mount ", notifArray)
 
         if (notifArray != null)
         {
@@ -109,7 +80,7 @@ class Nav extends Component {
         if (token !== null)
         {
             let user = jwtDecode(token);
-            console.log(user);
+            // console.log(user);
             if (user.user_login !== '')
             {
                 this.setState({
@@ -121,10 +92,10 @@ class Nav extends Component {
         }
     }
 
-    componentDidUpdate() {
-        let notifArray = localStorage.getItem('notification');
-        console.log("test")
-    }
+    // componentDidUpdate() {
+    //     let notifArray = localStorage.getItem('notification');
+    //     console.log("test")
+    // }
 
     render() {
         if (this.state.author === false
@@ -181,8 +152,7 @@ class Nav extends Component {
                             <ul id="menu">
                                 <li className="item">
                                     <NavLink to="/home/cabinet">
-                                        <p>{this.props.userLogin}</p>
-                                        <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="myProfile"/>
+                                        <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="My Profile"/>
                                     </NavLink>
                                 </li>
                                 <li className="item">

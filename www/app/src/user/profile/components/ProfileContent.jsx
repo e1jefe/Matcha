@@ -4,7 +4,7 @@ import { PostData } from '../../main/components/PostData'
 import { Layout } from 'antd'
 import { Carousel } from 'antd'
 import { Rate } from 'antd'
-import { Tooltip, Button, Radio, Icon } from 'antd'
+import { Button } from 'antd'
 import Like from './Like'
 import Block from './Block'
 import Scammer from './Scammer'
@@ -51,14 +51,14 @@ class ProfileContent extends Component {
 					})
 				})
 			}
-			this.conn = new WebSocket('ws:/\/localhost:8090')
+			this.conn = new WebSocket('ws:\//localhost:8090')
 			this.conn.onmessage = this.onMessage.bind(this)
 		}
 	}
 
 	onMessage(event){
 		const data = JSON.parse(event.data);
-		if (data.event === 'setLike' && data.user_id != this.state.curentUserId) {
+		if (data.event === 'setLike' && data.user_id !== this.state.curentUserId) {
 			iziToast.show({
 				theme: 'dark',
 				icon: 'icon-like',
@@ -70,7 +70,7 @@ class ProfileContent extends Component {
 				progressBar: false
 			})
 		}
-		if (data.event === 'match' && data.target_id == this.state.curentUserId) {
+		if (data.event === 'match' && data.target_id === this.state.curentUserId) {
 			iziToast.show({
 				theme: 'dark',
 				icon: 'icon-match',
@@ -85,25 +85,24 @@ class ProfileContent extends Component {
 	}
 
 	render(){
-		const tags = (this.state.tTags != undefined && this.state.tTags.length != 0 && this.state.tTags != "") ? this.state.tTags.split(" ") : this.state.tTags
-		const picks = this.state.tAllPics
-		if (picks != undefined){
-			console.log("this.state.tAllPics lenth", picks.length)
-		}
+		const tags = (this.state.tTags !== undefined && this.state.tTags.length !== 0 && this.state.tTags !== "") ? this.state.tTags.split(" ") : this.state.tTags
+		// if (picks != undefined){
+		// 	console.log("this.state.tAllPics lenth", picks.length)
+		// }
 		return(
 			<Layout>
 				<Content>
 					<div className="my-carousel">
 						<Carousel>
-							{this.state.tAllPics != undefined && this.state.tAllPics.length !== 0 ?
+							{this.state.tAllPics !== undefined && this.state.tAllPics.length !== 0 ?
 								this.state.tAllPics.map((img, i) => (
 								<div key={i}>
-									<img src={img}/>
+									<img src={img} alt="This user"/>
 								</div>))
 								:
-								this.state.tAvatar != "" ? (<img src={this.state.tAvatar}/>)
+								this.state.tAvatar !== "" ? (<img src={this.state.tAvatar} alt="This user"/>)
 								:
-								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="This user"/>
 							}
 						</Carousel>
 					</div>
@@ -112,7 +111,7 @@ class ProfileContent extends Component {
 						<h2 className="targetDescription-age">{this.state.tAge}</h2>
 						<div className="targetDescription-info">
 							<p>1992.6 km away</p>
-							<p>{this.state.tSexPref == 'homo' ? "Homosexual" : this.state.tSexPref == 'hetero' ? "Heterosexual" : "Bisexual"}, {this.state.tSex}</p>
+							<p>{this.state.tSexPref === 'homo' ? "Homosexual" : this.state.tSexPref === 'hetero' ? "Heterosexual" : "Bisexual"}, {this.state.tSex}</p>
 							<p>Last visit: {this.state.tIsOnline ? "online" : this.state.tLastSeen}</p>
 							{this.state.isLikeMe && <p>Added me to favourite</p>}
 							{this.state.isMatch && <p>We are connected</p>}
@@ -122,10 +121,10 @@ class ProfileContent extends Component {
 						<div className="targetTags">
 							<h2>Tags:</h2>
 							<div className="targetTags-holder">
-								{tags != undefined && tags.lenth != 0 && tags != "" ? 
+								{tags !== undefined && tags.lenth !== 0 && tags !== "" ? 
 									tags.map((tag) => (<p key={tag.toString()} className="targetTags-single">{tag}</p>))
 									:
-									tags != "" ? (<p className="targetTags-single">{tags}</p>)
+									tags !== "" ? (<p className="targetTags-single">{tags}</p>)
 									:
 									null
 								}

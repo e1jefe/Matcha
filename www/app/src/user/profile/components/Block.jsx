@@ -13,7 +13,7 @@ class Block extends Component {
 			target: props.target
 		}
 		// this.onClick = this.onClick.bind(this)
-		console.log("state in like ", this.state)
+		// console.log("state in like ", this.state)
 	}
 	
 	onClick(){
@@ -21,9 +21,9 @@ class Block extends Component {
 		if (token !== null)
 		{
 			const user = jwtDecode(token);
-			console.log('in block entered user ID: ', this.state.target)
+			// console.log('in block entered user ID: ', this.state.target)
 			PostData('user/block', {uId: user.userId, target: this.state.target}).then((res) => {
-				console.log('in block res in POST >>> ', res)
+				// console.log('in block res in POST >>> ', res)
 
 				this.setState({
 					curentUserId: user.userId,

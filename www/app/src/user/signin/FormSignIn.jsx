@@ -39,7 +39,7 @@ class FormSignIn extends Component {
 	}
 
 	render() {
-		const { errMsg } = this.state
+		// const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<div>
@@ -53,7 +53,7 @@ class FormSignIn extends Component {
 					<label className="image-replace password" htmlFor="signin-pass"></label>
 					<input type="password" className="form-control dop-pad" id="signin-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 				</div>
-				<button type="submit" className="btn btn-primary btn-block btn-my-color">Submit</button>
+				<button type="submit" className="btn btn-primary btn-block">Submit</button>
 			</form>
 		);
 	}

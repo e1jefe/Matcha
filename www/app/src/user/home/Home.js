@@ -18,9 +18,7 @@ import Chat from '../chat/chat';
 import Search from "./Search.js";
 import Profile from "../profile/Profile";
 
-import { observer } from 'mobx-react'
-
-const Home =  observer(class Home extends Component {
+class Home extends Component {
 
 	constructor(props) {
 		super(props);
@@ -29,9 +27,11 @@ const Home =  observer(class Home extends Component {
 			userLogin: '',
 			userId: '',
 			fullProfile: false,
-			errMsg: ''
+			errMsg: '',
+			notifications: localStorage.getItem('notification')
 		};
-		let count = 0
+		this.onMessage = this.onMessage.bind(this)
+		this.updateIt = this.updateIt.bind(this)
 	}
 	
 
@@ -40,14 +40,14 @@ const Home =  observer(class Home extends Component {
 		if (token !== null)
 		{
 			const user = jwtDecode(token);
-			console.log("user", user);
+			// console.log("user", user);
 			if (user.userLogin !== '')
 			{
 				this.setState({
 					author: true,
 					userLogin: user.userLogin,
 					userId: user.userId,
-				});
+				}, ()=>{this.setState({author: true})});
 			};
 			//postdata to usercontroller to get is profile full, setstate fullProfile = true
 			PostData('user/isFull', {userId: user.userId}).then ((result) => {
@@ -58,16 +58,22 @@ const Home =  observer(class Home extends Component {
 			});
 			this.conn = new WebSocket('ws:/\/localhost:8090')
 			this.conn.onmessage = this.onMessage.bind(this)
+			let notifArray = localStorage.getItem('notification')
+			this.setState({notifications: notifArray}, this.updateIt(notifArray))
 		}
 	}
 
+	updateIt (notifArray) {
+		this.setState({notifications: notifArray})
+	}
+
 	onMessage(event){
-		console.log("in storage ", this.props.notifications)
+		console.log("on MSG")
 		const data = JSON.parse(event.data);
 		let notifArray = localStorage.getItem('notification')
 		if (data.event === 'setLike' && data.user_id != this.state.userId) {
-			console.log("notification array ", notifArray)
-			console.log("notification data ", data)
+			// console.log("notification array ", notifArray)
+			// console.log("ngot msg")
 
 			if (notifArray == null)
 				localStorage.setItem('notification', JSON.stringify(data))
@@ -127,9 +133,17 @@ const Home =  observer(class Home extends Component {
 				progressBar: false
 			})
 		}
+		// notifArray = localStorage.getItem('notification')
+        // console.log("notifications befor send ", notifArray)
+
+		// this.setState({notifications: notifArray}, (notifArray) => {
+		// 	this.setState({notifications: notifArray})
+		// })
 	}
 
 	render() {
+        console.log("in home before render ", this.state.notifications)
+
 		if (this.state.author === false)
 		{
 			return(
@@ -140,11 +154,11 @@ const Home =  observer(class Home extends Component {
 				</div>
 			)
 		}
-		else if (this.state.author && this.state.fullProfile === false)
+		else 
 		{
 			return(
 			<div>
-				<Header/>
+				<Header notifications={this.state.notifications}/>
 				<Router history={history}>
 					<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />				
 				</Router>
@@ -152,24 +166,25 @@ const Home =  observer(class Home extends Component {
 			</div>
 			)
 		}
-		else
-		{
-			return(
-				<div>
-
-				<Router history={history}>
-					<Header/>
-						<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin}/>)} />
-						<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)} />
-						<Route path="/profile/:id" component={(props) => (<Profile />)} />
-					<Route path='/search' component={(props) => (<Search login={this.state.userLogin}/>)} />
-					<Footer />
-				</Router>
-				</div>
-			)
-		}
+		// else
+		// {
+		// 	return(
+		// 		<div>
+		// 			<Router history={history}>
+		// 				<div>
+		// 					<Header notifications={this.state.notifications}/>
+		// 					<Route path="/home/cabinet" component={(props) => (<Cabinet login={this.state.userLogin} userId={this.state.userId}/>)} />
+		// 					<Route path="/home/chat" component={(props) => (<Chat login={this.state.userLogin}/>)} />
+		// 					<Route path="/profile/:id" component={(props) => (<Profile />)} />
+		// 					<Route path='/search' component={(props) => (<Search login={this.state.userLogin}/>)} />
+		// 					<Footer />
+		// 				</div>
+		// 			</Router>
+		// 		</div>
+		// 	)
+		// }
 	}
 	
-})
+}
 
 export default Home;

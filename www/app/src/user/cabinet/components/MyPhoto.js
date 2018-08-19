@@ -25,17 +25,17 @@ class MyPhoto extends Component  {
 	}
 
 	deletePic(event){
-		console.log('in delete')
+		// console.log('in delete')
 		
 		event.preventDefault()
 		let pic = event.target.getAttribute('target')
-		console.log('sorce: ', pic)
+		// console.log('sorce: ', pic)
 		PostData('user/delMyPic', {userId: this.state.userId, pic: pic}).then ((result) => {
 			this.setState({pics: result.userPhoto})
 			console.log("удал pic after ", this.state.pics)
 			console.log("удал pic after result ", result)
 		})
-		console.log("удал pic before ", this.state.pics)
+		// console.log("удал pic before ", this.state.pics)
 		
 	}
 
@@ -55,17 +55,17 @@ class MyPhoto extends Component  {
 						pics: result.userPhoto
 					})
 				}
-			console.log("pic after ", this.state.pics)
+			// console.log("pic after ", this.state.pics)
 
 			})
 		}
-		console.log("pic before ", this.state.pics)
+		// console.log("pic before ", this.state.pics)
 	}
 
 	render() {
 		const userPics = this.state.pics
 		const photoIndex = this.state.photoIndex
-		console.log("user pic in render  ", userPics)
+		// console.log("user pic in render  ", userPics)
 		let i = 0;
 		return(
 			<form className="form" id="registrationForm3">

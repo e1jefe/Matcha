@@ -48,10 +48,6 @@ label.password {
     margin-top: 15px;
     font-size: 16px;
 }
-.btn-my-color {
-    background-color: #d9baf7;
-    border-color: transparent;
-}
     .btn-my-color:hover {
         background-color: #9947eb;
         border-color: transparent;

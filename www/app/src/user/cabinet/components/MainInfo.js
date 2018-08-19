@@ -36,7 +36,7 @@ class MainInfo extends Component {
 				fameRate: result.userData.fameRate
 			})
 		})
-		console.log("state in cabinet in WILL Mount ", this.state)			
+		// console.log("state in cabinet in WILL Mount ", this.state)		
 	}
 
 	onChange(event) {

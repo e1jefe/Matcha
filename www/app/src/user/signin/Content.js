@@ -31,7 +31,7 @@ class Content extends Component {
 			activeUp: false,
 			activeReset: false
 		});
-		console.log("show sign in", !currentState);
+		// console.log("show sign in", !currentState);
 
 	}
 
@@ -60,7 +60,7 @@ class Content extends Component {
 			activeUp: false,
 			activeIp: false
 		});
-		console.log(this.state);
+		// console.log(this.state);
 	}
 
 	render() {

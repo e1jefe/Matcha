@@ -14,7 +14,7 @@ class Like extends Component {
 			target: props.target
 		}
 		this.handleLike = this.handleLike.bind(this)
-		console.log("state in like ", this.state)
+		// console.log("state in like ", this.state)
 	}
 
 	componentWillMount(){

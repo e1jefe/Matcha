@@ -49,7 +49,7 @@ class FormResetPass extends Component {
 	}
 
 	render() {
-		const { errMsg } = this.state
+		// const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<fieldset>
@@ -64,7 +64,7 @@ class FormResetPass extends Component {
 						<input type="password" className="form-control dop-pad" id="reset-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 					</div>
 						{this.state.ePass !== undefined && this.state.ePass !== '' && ( <span className="alert alert-danger">{this.state.ePass}</span>)}
-					<button type="submit" className="btn btn-primary btn-block btn-my-color">Submit</button>
+					<button type="submit" className="btn btn-primary btn-block">Submit</button>
 				</fieldset>
 			</form>
 

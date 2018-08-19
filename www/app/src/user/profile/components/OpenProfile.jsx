@@ -26,7 +26,7 @@ class OpenProfile extends Component {
 			payload: this.state.fromWho + ' checked your profile',
 			user_id: this.state.curentUserId,
 			target_id: this.state.target
-		}), console.log("SENDED VIE NOTIFICATION"))
+		}))
 		history.push('/profile/' + e.target.name)
 	}
 

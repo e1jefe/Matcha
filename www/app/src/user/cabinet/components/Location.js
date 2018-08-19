@@ -78,7 +78,7 @@ class Location extends Component {
 			})
 		}
 		else
-			PostData('user/pushCoord', {uId: this.state.uId, showMe: +this.state.showMarker}).then ((result) => {
+			PostData('user/pushCoord', {uId: this.state.uId, showMe: this.state.showMarker}).then ((result) => {
 			})
     }
 
@@ -108,7 +108,7 @@ class Location extends Component {
     }
 
 	render(){
-		console.log("location state: ", this.state)
+		// console.log("location state: ", this.state)
 		const show = this.state.showMarker
 		const GoogleMapWrapper = withGoogleMap(props => (
             <GoogleMap

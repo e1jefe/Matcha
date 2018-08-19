@@ -19,7 +19,7 @@ class AboutMe extends Component {
 
 	componentWillMount() {
 		PostData('user/getAbout', this.state).then ((result) => {
-			console.log("res in Mount ABOUT ", result)
+			// console.log("res in Mount ABOUT ", result)
 			if (result.tags != null)
 			{
 				this.setState({
@@ -77,7 +77,7 @@ class AboutMe extends Component {
 
 	render(){
 		let tags = this.state.tags
-			console.log("tags in ABOUT before MAP", tags)
+			// console.log("tags in ABOUT before MAP", tags)
 
 		return(
 			<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
