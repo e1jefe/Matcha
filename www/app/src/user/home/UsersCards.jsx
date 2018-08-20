@@ -17,9 +17,8 @@ class UsersCards extends Component {
     }
 
     render() {
-        const users = this.state.show
+        // const users = this.state.show
         const users2 = this.props.toShow
-
         // console.log("in ", users2);
     return(
         <div>

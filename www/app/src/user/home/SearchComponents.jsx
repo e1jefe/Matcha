@@ -36,17 +36,19 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            console.log(user);
+            // console.log(user);
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
-                console.log('result before change param ', result);
+                // console.log('result before change param ', result);
                 this.setState({
                     res: result.userData
                 })
             })
         }
     }
-
+    updateData = (value) => {
+        this.setState({ tags: value })
+    }
     updateSearchRes(event) {
         console.log("changed value: ", this.state)
         const token = localStorage.getItem('token')
@@ -56,7 +58,7 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
-                console.log('result', result);
+                // console.log('result', result);
                 this.setState({
                     res: result.userData
                 })
@@ -91,7 +93,7 @@ class SearchComponents extends Component {
                     onChange={value => this.setState({ searchFR : value })} />
                 </div>
                 <div className="tags">
-                <EditableTagGroup value={this.state.tags}/>
+                <EditableTagGroup updateData={this.updateData}/>
                 </div>
                 <div className="btn-search">
                 <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
