@@ -30,11 +30,14 @@ class Nav extends Component {
             author: false,
             userLogin: '',
             userId: '',
-            notifications: ''
+            notifications: '',
+            unreadMsg: []
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleNotif = this.handleNotif.bind(this);
-        this.onMessage = this.onMessage.bind(this)
+        this.onMessage = this.onMessage.bind(this);
+        this.conn = new WebSocket('ws:/\/localhost:8090')
+        this.conn.onmessage = this.onMessage.bind(this)
     }
 
     handleLogout() {
@@ -57,6 +60,38 @@ class Nav extends Component {
         // console.log("on MSG")
         const data = JSON.parse(event.data);
         let notifArray = localStorage.getItem('notification')
+        if (data.event === 'message' && data.user_id !== this.state.userId) {
+            const newMsg = [{who: data.user_id, content: data.myVar}]
+            const oldMsg = this.state.unreadMsg
+            // console.log("old unread messagies: ", oldMsg)
+            if (oldMsg !== undefined && oldMsg.who !== "") {
+                this.setState({
+                    unreadMsg: oldMsg.concat(newMsg)
+                })
+            } else {
+                this.setState({
+                    unreadMsg: new Array(newMsg)
+                })
+            }
+            // console.log("new unread messagies: ", this.state.unreadMsg)
+
+            // if (notifArray == null)
+            //     localStorage.setItem('notification', JSON.stringify(data))
+            // else
+            //     localStorage.setItem('notification', notifArray + JSON.stringify(data))
+            if (window.location.href.includes('chat') === false){
+                iziToast.show({
+                    theme: 'dark',
+                    icon: 'icon-msg',
+                    image: data.ava,
+                    imageWidth: 50,
+                    maxWidth: '500px',
+                    message: data.payload,
+                    position: 'topRight',
+                    progressBar: false
+                })
+            }
+        }
         if (data.event === 'setLike' && data.user_id != this.state.userId) {
             // console.log("notification array ", notifArray)
             // console.log("ngot msg")
@@ -143,14 +178,10 @@ class Nav extends Component {
     }
 
     componentWillMount() {
-        this.conn = new WebSocket('ws:/\/localhost:8090')
-        this.conn.onmessage = this.onMessage.bind(this)
+       
         let token = localStorage.getItem('token');
         let notifArray = localStorage.getItem('notification')
-
-        const user = jwtDecode(token);
         // console.log("notif will mount ", notifArray)
-
         if (notifArray != null)
         {
             if (notifArray.includes('}{')) {
@@ -169,7 +200,7 @@ class Nav extends Component {
             else
                 notifArray = new Array(JSON.parse(notifArray));
         }
-        if (token !== null)
+        if (token !== undefined && token !== null)
         {
             let user = jwtDecode(token);
             // console.log(user);
@@ -254,8 +285,8 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/chat">
-                                        <Badge count={42}>
+                                    <NavLink to="/chat" unread={this.state.unreadMsg}>
+                                        <Badge count={this.state.unreadMsg !== null ? this.state.unreadMsg.length : 0}>
                                             <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
                                         </Badge>
                                     </NavLink>

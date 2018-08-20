@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Tooltip, Button, Icon } from 'antd'
 import { PostData } from '../../main/components/PostData'
 import jwtDecode from 'jwt-decode'
-import {findDOMNode} from 'react-dom'
+// import {findDOMNode} from 'react-dom'
 import iziToast from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 
@@ -30,7 +30,7 @@ class Like extends Component {
 			const user = jwtDecode(token);
 			PostData('user/like', {uId: user.userId, target: this.state.target}).then((res) => {
 				// console.log("you liked user ")
-				res.check == true ? this.setState({liked: true}) : this.setState({liked: false})
+				res.check === true ? this.setState({liked: true}) : this.setState({liked: false})
 				this.setState({
 					curentUserId: user.userId
 					// msg: res.msg
@@ -40,7 +40,7 @@ class Like extends Component {
 					position: 'topRight',
 					progressBar: false
 				})
-				if (res.check == true && res.match == undefined) {
+				if (res.check === true && res.match === undefined) {
 					this.conn.send(JSON.stringify({
 						event: 'setLike',
 						payload: res.fromWhoName + ' like you',
@@ -57,7 +57,7 @@ class Like extends Component {
 						target_id: this.state.target
 					}))
 				}
-				else if (res.match != undefined) {
+				else if (res.match !== undefined) {
 					this.conn.send(JSON.stringify({
 						event: 'match',
 						payload: 'You got a match with ' + res.fromWhoName,
