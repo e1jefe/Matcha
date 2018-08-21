@@ -6,7 +6,7 @@ class EditableTagGroup extends React.Component {
     state = {
         tags: [],
         inputVisible: false,
-        inputValue: '',
+        inputValue: "",
     };
 
     handleClose = (removedTag) => {
@@ -31,13 +31,12 @@ class EditableTagGroup extends React.Component {
             tags = [...tags, inputValue];
         }
         console.log(tags);
-        // this.props.tags;
+        this.props.updateData(this.state.tags)
         this.setState({
             tags,
             inputVisible: false,
             inputValue: '',
         });
-        this.props.updateData(this.state.tags)
     }
 
     saveInputRef = input => this.input = input

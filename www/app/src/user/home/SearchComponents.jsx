@@ -36,10 +36,10 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            // console.log(user);
+            console.log(user);
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
-                // console.log('result before change param ', result);
+                console.log('result before change param ', result);
                 this.setState({
                     res: result.userData
                 })
@@ -47,7 +47,7 @@ class SearchComponents extends Component {
         }
     }
     updateData = (value) => {
-        this.setState({ tags: value })
+        this.setState({ tags : value })
     }
     updateSearchRes(event) {
         console.log("changed value: ", this.state)
@@ -56,9 +56,9 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
             ((result) => {
-                // console.log('result', result);
+                console.log('result', result);
                 this.setState({
                     res: result.userData
                 })
@@ -77,7 +77,7 @@ class SearchComponents extends Component {
                         maxValue={55}
                         minValue={18}
                         value={this.state.searchAge}
-                        onChange={value => this.setState({ searchAge: value })}
+                        onChange={value => this.setState({ searchAge : value })}
                     />
                 <p>Distance</p>
                     <InputRange
