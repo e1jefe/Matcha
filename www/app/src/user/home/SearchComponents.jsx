@@ -27,6 +27,7 @@ class SearchComponents extends Component {
             },
         }
         this.updateSearchRes = this.updateSearchRes.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
 
     componentWillMount() {
