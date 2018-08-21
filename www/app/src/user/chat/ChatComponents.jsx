@@ -39,6 +39,13 @@ class ChatContent extends Component{
         // this.props.txtmsg = event.target.value
         // console.log("input msg ", event.target.value)
     }
+    
+    handleTxtSend() {
+        this.props.updateData(this.state.txtmsg);
+        this.setState({
+            txtmsg: ''
+        });
+    }
 
     render(){
         return(
@@ -71,7 +78,7 @@ class ChatContent extends Component{
                     <div className="message-form">
                         <textarea ref={this.props.txtmsg} name="msgcontent" rows="2" wrap="soft" placeholder="Write smth for young female wolves..."
                             onChange={this.handleTxtArea}/>
-                        <Button type="primary" name={this.props.withWho} onClick={() => {this.props.updateData(this.state.txtmsg)}}>send</Button>
+                        <Button type="primary" name={this.props.withWho} onClick={() => {this.handleTxtSend()}}>send</Button>
                     </div>
                 </div>
                 
