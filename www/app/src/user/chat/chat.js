@@ -6,6 +6,8 @@ import Footer from '../main/components/footerComponents/Footer';
 
 class Chat extends Component {
     render(){
+        console.log(" props in chat ", this.props)
+
         return(
             <div>
                 <Header/>

@@ -84,7 +84,7 @@ body {
             object-fit: cover;
         }
 
-.messages .messages__item .name {
+.messages .messages__item .name, .messages__item .name {
     color: #4a4a4a;
     font-size: 16px;
     font-weight: 500;
@@ -107,7 +107,7 @@ body {
 
 .message-content {
     background-image: url('./chatBgr.jpg');
-    background-size: contain;
+    background-size: auto;
     background-repeat: repeat;
     width: 70%;
     display: inline-block;
@@ -173,12 +173,14 @@ body {
     color: #939397; }
 
 .message-content .message-form {
-    border-top: 1px solid #e0e2e4;
     padding: 20px 15px;
-    position: sticky;
-    bottom: 40px;
     background-color: #fff;
     width: 100%;
+    border-radius: 2px;
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.15);
+    height: 75px;
+    position: sticky;
+    bottom: 0;
 }
 
 .message-content .message-form textarea {

@@ -11,7 +11,7 @@ import UnAuthorize from './UnAuthorize';
 import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
-// import Chat from '../chat/chat';
+import Chat from '../chat/chat';
 // import Search from "./Search.js";
 // import Profile from "../profile/Profile";
 
@@ -25,7 +25,11 @@ class Home extends Component {
 			userId: '',
 			fullProfile: false,
 			errMsg: ''
+			// unreadMsg: []
 		};
+		// this.onMessage = this.onMessage.bind(this);
+  //       this.conn = new WebSocket('ws:/\/localhost:8090')
+  //       this.conn.onmessage = this.onMessage.bind(this)
 	}
 	
 
@@ -52,6 +56,24 @@ class Home extends Component {
 		}
 	}
 
+ //    onMessage(event){
+ //    	const data = JSON.parse(event.data);
+ //    	if (data.event === 'message' && data.user_id !== this.state.userId) {
+ //            const newMsg = [{who: data.user_id, content: data.myVar}]
+ //            const oldMsg = this.state.unreadMsg
+ //            // console.log("old unread messagies: ", oldMsg)
+ //            if (oldMsg !== undefined && oldMsg.who !== "") {
+ //                this.setState({
+ //                    unreadMsg: oldMsg.concat(newMsg)
+ //                })
+ //            } else {
+ //                this.setState({
+ //                    unreadMsg: new Array(newMsg)
+ //                })
+ //            }
+ //        }
+	// }
+
 	render() {
         // console.log("in home before render ", this.state.notifications)
 
@@ -71,7 +93,10 @@ class Home extends Component {
 			<div>
 				<Header />
 				<Router history={history}>
-					<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />				
+					<div>
+						<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />
+						<Route exact path="/chat" render={()=><Chat />}/>
+					</div>
 				</Router>
 				<Footer />				
 			</div>

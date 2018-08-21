@@ -285,7 +285,7 @@ class Nav extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="item">
-                                    <NavLink to="/chat" unread={this.state.unreadMsg}>
+                                    <NavLink to="/chat" unread={this.state.unreadMsg} test="test" >
                                         <Badge count={this.state.unreadMsg !== null ? this.state.unreadMsg.length : 0}>
                                             <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
                                         </Badge>
