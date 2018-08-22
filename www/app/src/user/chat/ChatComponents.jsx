@@ -12,12 +12,15 @@ import 'izitoast/dist/css/iziToast.min.css'
 class ChatContent extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            txtmsg: ''
+        }
         this.handleTxtArea = this.handleTxtArea.bind(this)
+        this.handleTxtSend = this.handleTxtSend.bind(this)
     }
 
     componentDidMount() {
         this.scrollToBottom()
-
     }
 
     componentDidUpdate() {
@@ -28,16 +31,18 @@ class ChatContent extends Component{
         this.el.scrollIntoView({ block: "end", behavior: 'smooth' });
 
     }
-    // if (props.show === undefined) {
-    //     props.show = 
-    // }
+
+    handleTxtSend() {
+        this.props.updateData(this.state.txtmsg);
+        this.setState({
+            txtmsg: ''
+        });
+    }
 
     handleTxtArea(event) {
         this.setState({
             txtmsg: event.target.value
         })
-        // this.props.txtmsg = event.target.value
-        // console.log("input msg ", event.target.value)
     }
 
     render(){
@@ -70,8 +75,8 @@ class ChatContent extends Component{
                     }
                     <div className="message-form">
                         <textarea ref={this.props.txtmsg} name="msgcontent" rows="2" wrap="soft" placeholder="Write smth for young female wolves..."
-                            onChange={this.handleTxtArea}/>
-                        <Button type="primary" name={this.props.withWho} onClick={() => {this.props.updateData(this.state.txtmsg)}}>send</Button>
+                            onChange={this.handleTxtArea} value={this.state.txtmsg}/>
+                        <Button type="primary" name={this.props.withWho} onClick={this.handleTxtSend}>send</Button>
                     </div>
                 </div>
                 
@@ -88,7 +93,7 @@ class ChatComponents extends Component {
         this.state = {
             currentUserId: user.userId,
             txtmsg: '',
-            withWho: ''
+            fromWhoUnread: []
         }
         this.conn = new WebSocket('ws:/\/localhost:8090')
         this.onMessage = this.onMessage.bind(this);
@@ -118,14 +123,13 @@ class ChatComponents extends Component {
                 }
             }, PostData('message/historyInit', {userId: this.state.currentUserId}).then ((result) => {
                     this.setState({
-                        withWho: result.data[0].withWho,
                         userName: user.userName + ' ' + user.userSurname,
                         myPic: result.myAva,
                         conversations: result.data,
-                        toPrint: result.data[0],
+                        fromWhoUnread: result.fromWhoUnread,
                         myMatches: result.myMatches
                     }),
-                    console.log("myMatches  ", result.myMatches)
+                    console.log("unread msg from:  ", result.fromWhoUnread)
                 })
             );
             // console.log("state in chat ", this.state)
@@ -136,12 +140,41 @@ class ChatComponents extends Component {
     }
 
     showMessageHistory(e){
-        // console.log(e.currentTarget) 
-        // console.log(e.currentTarget.name)
         if (e.currentTarget.name) {
+            const target = parseInt(e.currentTarget.name, 10);
+            let readHistory = this.state.conversations.filter(conversation => conversation.withWho === target)[0]
+            for (let i = readHistory.messagies.length - 1; i >= 0; i--) {
+                if (readHistory.messagies[i].sender !== this.state.currentUserId) {
+                    readHistory.messagies[i].read = 1
+                }
+            }
+            for (let k = 0; k < readHistory.messagies.length; k++) {
+                if (this.state.conversations[k].withWho === target){
+                    let newConversations = this.state.conversations;
+                    // newConversations.splice(k, 1);
+                    newConversations.forEach(function(item, i) { if (item.withWho === target) newConversations[i] = readHistory; });
+                    // newConversations.push(readHistory);
+                    this.setState({
+                        conversations: newConversations
+                    })
+                    break ;
+                }
+            }
+            PostData('message/markAsRead', {uId: this.state.currentUserId, sender: target}).then((res) => {
+                let newUnreadArray = this.state.fromWhoUnread;
+                for (let k = 0; k < newUnreadArray.length; k++) {
+                    if (newUnreadArray[k] === target){
+                        newUnreadArray.splice(k, 1);
+                        this.setState({
+                            fromWhoUnread: newUnreadArray
+                        })
+                        break ;
+                    }
+                }
+            })
             this.setState({
-                withWho: parseInt(e.currentTarget.name, 10),
-                toPrint: this.state.conversations.filter(conversation => conversation.withWho === parseInt(e.currentTarget.name, 10))
+                withWho: target,
+                toPrint: readHistory
             })
         }
       
@@ -149,25 +182,34 @@ class ChatComponents extends Component {
 
     onMessage(event){
         const data = JSON.parse(event.data);
-        const date = new Date()
+        const date = new Date();
+        const target = parseInt(data.user_id, 10);
         if (data.event === 'message' && data.user_id !== this.state.currentUserId) {
             PostData('message/get', {
                     sender: data.user_id, 
                     reciever: this.state.currentUserId,
                 }). then ((res) => {
-                    let newMsg = this.state.conversations.filter(conversation => conversation.withWho === parseInt(data.user_id, 10))
-                    // const arrayA = newMsg.messages;
-                    // console.log("catch obj ", newMsg)
-                    // console.log("catch obj and its mesagies ", newMsg[0].messagies)
-                    const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
-                    // console.log("array to push ", arrayB)
-                    newMsg[0].messagies.push(arrayB)
-                    // console.log("messagies after push ", newMsg)
-                    const forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
-                        this.setState({
-                            conversations: forPrint,
-                            withWho: data.user_id
-                        })
+                        let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
+                        // const arrayA = newMsg.messages;
+                        console.log("catch obj ", newMsg)
+                        // console.log("catch obj and its mesagies ", newMsg[0].messagies)
+                        const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
+                        // console.log("array to push ", arrayB)
+                        newMsg[0].messagies.push(arrayB)
+                        console.log("messagies after push ", newMsg)
+                        const forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
+                        // if (this.state.withWho === target){
+                            let newUnread = this.state.fromWhoUnread;
+                            this.setState({ conversations: forPrint, fromWhoUnread: newUnread.includes(target) ? newUnread : newUnread.push(target)})
+                                // withWho: data.user_id if currently open dialog is not with this user record its id to unreaded ids in state                           
+                        // } else {
+                            
+                            // newUnread.push(target);
+                            // this.setState({ 
+                            //     conversations: forPrint,
+                            //     fromWhoUnread: newUnread
+                            // })
+                        // }
                    })
             
             // iziToast.show({
@@ -230,12 +272,12 @@ class ChatComponents extends Component {
         let toPrint = new Object()
         if (conversations !== undefined && this.state.withWho !== undefined){
             // let withWho = this.state.withWho
-            toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)
-            const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)
+            toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)[0]
+            const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)[0]
             const tmp = {
-                    name: nameMatch[0].name,
-                    withWho: nameMatch[0].withWho,
-                    ava: nameMatch[0].ava,
+                    name: nameMatch.name,
+                    withWho: nameMatch.withWho,
+                    ava: nameMatch.ava,
                     messagies: {
                         sender: '',
                         time: '',
@@ -249,10 +291,10 @@ class ChatComponents extends Component {
             }
             // console.log("toPrint ", toPrint)
         }
-        else if (conversations !== undefined && conversations.length > 0) {
-            toPrint = conversations[0]
-            // console.log("toPrint2 ", toPrint)
-        }
+        // else if (conversations !== undefined && conversations.length > 0) {
+        //     toPrint = conversations[0]
+        //     // console.log("toPrint2 ", toPrint)
+        // }
 
         const menu = (
             <Menu onClick={this.addNewChat}>
@@ -289,6 +331,7 @@ class ChatComponents extends Component {
                             <Button className={ this.state.withWho === conversation.withWho ? "messages__item messages__item-actieve" : "messages__item"} key={conversation.withWho} name={conversation.withWho} onClick={this.showMessageHistory}>
                                 <div className="name-img" name={conversation.withWho}>
                                     <img className="name-img__src" src={conversation.ava} name={conversation.withWho} alt="Chat with this person"></img>
+                                    {this.state.fromWhoUnread.includes(parseInt(conversation.withWho, 10)) ? <div className="newMsg"></div> : null}
                                 </div>
                                 <div className="name" name={conversation.withWho}>
                                     <b>{conversation.name}</b>
@@ -299,9 +342,9 @@ class ChatComponents extends Component {
                     }
                 </div>
                     {conversations !== undefined && conversations.length > 0 && this.state.withWho !== undefined ?    
-                        (<ChatContent updateData={this.updateData} withWho={this.state.withWho} withWhoName={toPrint[0].name} me={this.state.currentUserId} conversation={toPrint[0].messagies}/>)
+                        (<ChatContent updateData={this.updateData} withWho={this.state.withWho} withWhoName={toPrint.name} me={this.state.currentUserId} conversation={toPrint.messagies}/>)
                         :
-                        (<div className="message-content">Start conversation</div>)
+                        (<div className="message-content message-content--initial"></div>)
                     }
             </div>
         );
