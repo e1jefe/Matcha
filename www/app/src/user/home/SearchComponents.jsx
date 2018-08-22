@@ -10,6 +10,7 @@ import { PostData } from '../main/components/PostData';
 import {findDOMNode} from 'react-dom';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import { Pagination } from 'antd';
 
 class SearchComponents extends Component {
     constructor(props) {
@@ -102,6 +103,9 @@ class SearchComponents extends Component {
             </div>
     <div className="Cards">
         <UsersCards toShow={this.state.res}/>
+    </div>
+    <div className="pagination">
+     <Pagination defaultCurrent={1} total={50} />
     </div>
 </div>
         );
