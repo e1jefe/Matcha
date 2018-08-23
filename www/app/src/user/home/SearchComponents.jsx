@@ -2,49 +2,108 @@ import React, { Component } from 'react';
 import './search.css';
 import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
-import { Slider, Switch } from 'antd';
 import { Button } from 'antd';
 import EditableTagGroup from './TagComponents.jsx';
-
-
+import UsersCards from "./UsersCards";
+import jwtDecode from 'jwt-decode';
+import { PostData } from '../main/components/PostData';
+import {findDOMNode} from 'react-dom';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 class SearchComponents extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            author: true,
-            userLogin: props.login
-        };
+            age: props.age,
+            distance: props.distance,
+            fameRate: props.fameRate,
+            res: '',
+            searchAge: { min: 18, max: 30 },
+            searchDistance: 10,
+            searchFR: {
+                min: 0,
+                max: 100,
+            },
+        }
+        this.updateSearchRes = this.updateSearchRes.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
-    state = {
-        disabled: false,
-    };
 
-    handleDisabledChange = (disabled) => {
-        this.setState({disabled});
+    componentWillMount() {
+        const token = localStorage.getItem('token')
+        if (token !== null)
+        {
+            let user = jwtDecode(token)
+            if (user.userLogin !== '')
+                user = user.userId
+            console.log(user);
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
+            ((result) => {
+                console.log('result before change param ', result);
+                this.setState({
+                    res: result.userData
+                })
+            })
+        }
+    }
+    updateData = (value) => {
+        this.setState({ tags : value })
+    }
+    updateSearchRes(event) {
+        console.log("changed value: ", this.state)
+        const token = localStorage.getItem('token')
+        if (token !== null) {
+            let user = jwtDecode(token)
+            if (user.userLogin !== '')
+                user = user.userId
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
+            ((result) => {
+                console.log('result', result);
+                this.setState({
+                    res: result.userData
+                })
+            })
+        }
+
     }
 
     render() {
-        const { disabled } = this.state;
-
         return (
-
+<div>
             <div id="wrapper1">
                 <div className="sliders">
                 <p>Age</p>
-                <Slider  min={18} range defaultValue={[18, 40]} />
+                    <InputRange
+                        maxValue={55}
+                        minValue={18}
+                        value={this.state.searchAge}
+                        onChange={value => this.setState({ searchAge : value })}
+                    />
                 <p>Distance</p>
-                <Slider   min={2} defaultValue={30}  />
+                    <InputRange
+                        maxValue={100}
+                        minValue={0}
+                        value={this.state.searchDistance}
+                         onChange={value => this.setState({ searchDistance : value })} />
                 <p>Fame rating</p>
-                <Slider range step={10} defaultValue={[10, 50]} />
+                    <InputRange step={10}
+                    maxValue={100}
+                    minValue={0}
+                    value={this.state.searchFR}
+                    onChange={value => this.setState({ searchFR : value })} />
                 </div>
                 <div className="tags">
-                <EditableTagGroup />
+                <EditableTagGroup updateData={this.updateData}/>
                 </div>
                 <div className="btn-search">
-                <Button type="primary" icon="search">Search</Button>
+                <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
                 </div>
             </div>
+    <div className="Cards">
+        <UsersCards toShow={this.state.res}/>
+    </div>
+</div>
         );
 
     }

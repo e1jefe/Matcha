@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Tag, Input, Tooltip, Icon } from 'antd';
 
@@ -7,7 +6,7 @@ class EditableTagGroup extends React.Component {
     state = {
         tags: [],
         inputVisible: false,
-        inputValue: '',
+        inputValue: "",
     };
 
     handleClose = (removedTag) => {
@@ -32,11 +31,13 @@ class EditableTagGroup extends React.Component {
             tags = [...tags, inputValue];
         }
         console.log(tags);
+
         this.setState({
             tags,
             inputVisible: false,
             inputValue: '',
-        });
+
+        },()=>{this.props.updateData(this.state.tags)});
     }
 
     saveInputRef = input => this.input = input
@@ -48,7 +49,7 @@ class EditableTagGroup extends React.Component {
                 {tags.map((tag, index) => {
                     const isLongTag = tag.length > 20;
                     const tagElem = (
-                        <Tag key={tag} closable={index !== 0} afterClose={() => this.handleClose(tag)}>
+                        <Tag key={tag} closable={ true} afterClose={() => this.handleClose(tag)}>
                             {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                         </Tag>
                     );

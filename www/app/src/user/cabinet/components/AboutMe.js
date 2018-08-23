@@ -105,7 +105,7 @@ class AboutMe extends Component {
 								Some words about me
 							</h4>
 						</label>
-						<textarea className="form-control" name="bio" id="bio" onChange={this.onChangeBio} placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}} value={this.state.bio}/>
+						<textarea className="form-control" name="bio" id="bio" onChange={this.onChangeBio} placeholder="some facts about you or short your lifestory" title="some facts about you or short your lifestory" maxLength="256" rows="5" style={{resize: 'none'}} value={this.state.bio !== "" ? this.state.bio : " "}/>
 					</div>
 				</div>
 				<div className="form-group">
