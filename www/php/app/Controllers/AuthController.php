@@ -17,7 +17,7 @@ class AuthController extends Controller
 		return $token;
 	}
 
-	public function generateToken($login, $id)
+	public function generateToken($login, $id, $name, $surname)
 	{
 		$expiration = time() + (15 * 60 * 1000);
 
@@ -25,7 +25,7 @@ class AuthController extends Controller
 		$header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
 
 		// Create token payload as a JSON string
-		$payload = json_encode(['userLogin' => $login, 'userId' => $id,'exp' => $expiration]);
+		$payload = json_encode(['userLogin' => $login, 'userId' => $id, 'userName' => $name, 'userSurname' => $surname, 'exp' => $expiration]);
 
 		// Encode Header to Base64Url String
 		$base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
@@ -53,20 +53,23 @@ class AuthController extends Controller
 		$exec = $sql->execute();
 		$fromDb = $exec->fetch();
 
-		if (count($fromDb) !== 0 && password_verify($request->getParam('pass'), $fromDb['password']) && $fromDb['isEmailConfirmed'] === 1)
-		{
-			$jwt = $this->generateToken($login, $fromDb['userId']);
+		// if (count($fromDb) !== 0 && password_verify($request->getParam('pass'), $fromDb['password']) && $fromDb['isEmailConfirmed'] === 1)
+		// {
+			$jwt = $this->generateToken($login, $fromDb['userId'], $fromDb['fname'], $fromDb['lname']);
 			$result->jwt = $jwt;
 			//record after login that user's last visit of our site has just happened
 			date_default_timezone_set ('Europe/Kiev');
-			$date = date('Y-m-d G:i:s');
+			$date = date('Y-m-d');
 			$updateStatement = $db->update(array('last_seen' => $date))
 					   ->table('users')
 					   ->where('userId', '=', $fromDb['userId']);
 			$affectedRows = $updateStatement->execute();
-			//probably should do insertion in table where all online users are recorded
+			$updateStatement2 = $db->update(array('isOnline' => 1))
+						   ->table('profiles')
+						   ->where('user', '=', $fromDb['userId']);
+			$exec = $updateStatement2->execute();
 			return json_encode($result);
-		}
+		// }
 		return json_encode(false);
 	}
 
@@ -151,9 +154,10 @@ class AuthController extends Controller
 			$exec = $updateStatement->execute();
 
 			//create in profiles table new user, who confirmed email, so it will use our servise for sure
-			$insertStatement = $db->insert(array('userId', 'fameRate'))
+			$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
+			$insertStatement = $db->insert(array('user', 'longetude', 'latitude'))
 						   ->into('profiles')
-						   ->values(array($fromDb['userId'], 1));
+						   ->values(array($fromDb['userId'], $response['lon'], $response['lat']));
 			$insertId = $insertStatement->execute(false);
 			header("Location: http://localhost:3000");
 			die();
@@ -212,5 +216,16 @@ class AuthController extends Controller
 						   ->where('email', '=', $email);
 		$exec = $updateStatement->execute();
 		$this->mail->sendMail($email, "Please, folow this link to confirm your new password: http://localhost:8080/auth/confirmResetPass?email=" . $email . "&pass=" . $pass . "&token=" . $token, "Restore Password");
+	}
+	public function postLogOut($request, $response)
+	{
+		$db = new Model;
+		$db = $db->connect();
+		$sql = $db->select()->from('users')->where('login', '=', $request->getParam('uLogin'));
+		$exec = $sql->execute();
+		$fromDb = $exec->fetch();
+		$updateStatement = $db->update(array('isOnline' => 0))->table('profiles')->where('user', '=', $fromDb['userId']);
+		$updateStatement->execute();
+		return json_encode(true);
 	}
 }

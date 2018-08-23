@@ -3,6 +3,8 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
+define('ROOT', dirname(__FILE__));
+
 session_start();
 
 require __DIR__ . '/vendor/autoload.php';
@@ -62,6 +64,10 @@ $container['AuthController'] = function ($container) {
 
 $container['UserController'] = function ($container) {
 	return new \App\Controllers\UserController($container);
+};
+
+$container['MessageController'] = function ($container) {
+	return new \App\Controllers\MessageController($container);
 };
 
 // v::with('App\\Validation\\Rules\\');
