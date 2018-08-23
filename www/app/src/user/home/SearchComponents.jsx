@@ -104,9 +104,6 @@ class SearchComponents extends Component {
     <div className="Cards">
         <UsersCards toShow={this.state.res}/>
     </div>
-    <div className="pagination">
-     <Pagination defaultCurrent={1} total={50} />
-    </div>
 </div>
         );
 
