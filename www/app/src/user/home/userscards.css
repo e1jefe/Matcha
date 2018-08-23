@@ -7,8 +7,11 @@ body {
     max-height: 80%;
     padding: 10px;
     margin: auto;
-    background-color: aliceblue;
+    background-color: #fff;
 position: relative;
+}
+.card{
+    background-color: #fff;
 }
 
 .CardHolder img{
@@ -17,3 +20,9 @@ position: relative;
 .CardLink{
     right: 5px;
 }
+.my-card-search{
+    width: 91%;
+}
+/*.my-card-btn-width{*/
+    /*background-color: transparent;*/
+/*}*/

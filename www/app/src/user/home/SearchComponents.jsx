@@ -42,7 +42,8 @@ class SearchComponents extends Component {
             ((result) => {
                 console.log('result before change param ', result);
                 this.setState({
-                    res: result.userData
+                    res: result.userData,
+                    currentUserId: user
                 })
             })
         }
@@ -101,7 +102,7 @@ class SearchComponents extends Component {
                 </div>
             </div>
     <div className="Cards">
-        <UsersCards toShow={this.state.res}/>
+        <UsersCards toShow={this.state.res} me={this.state.currentUserId}/>
     </div>
 </div>
         );

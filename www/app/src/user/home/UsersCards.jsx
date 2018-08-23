@@ -4,22 +4,24 @@ import { NavLink } from 'react-router-dom';
 import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, CardLink} from 'reactstrap';
 import { Row, Col, Button } from 'antd';
-
+import Like from '../profile/components/Like'
+import Block from '../profile/components/Block'
+import OpenProfile from '../profile/components/OpenProfile'
+import { Rate } from 'antd'
 
 
 class UsersCards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: props.toShow
+            show: props.toShow,
+
         }
         // this.onChange = this.onChange.bind(this);
     }
 
     render() {
-        // const users = this.state.show
         const users2 = this.props.toShow
-        // console.log("in ", users2);
     return(
         <div>
             <div className="CardHolder">
@@ -29,13 +31,18 @@ class UsersCards extends Component {
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>  <Card>
                 <CardBody>
                     <CardTitle><NavLink to="/userID"> {users2[i].fname} {users2[i].lname}</NavLink>, {users2[i].age}</CardTitle>
-                    <CardSubtitle>Fame Rating: {users2[i].fameRate}. Distance: {users2[i].distance} km</CardSubtitle>
+                    <CardSubtitle><Rate allowHalf disabled defaultValue={users2[i].stars} />,   {users2[i].distance} km</CardSubtitle>
                 </CardBody>
                         <NavLink to="/userID"><img src={users2[i].profilePic} /> </NavLink>
                 <CardBody>
-                    <CardText>{users2[i].bio}</CardText>
-                    <Button type="danger">Like</Button>
-                    <CardLink href="#">Block user</CardLink>
+                    {/*<CardText>{users2[i].bio}</CardText>*/}
+                    {/*<Button type="danger">Like</Button>*/}
+                    {/*<CardLink href="#">Block user</CardLink>*/}
+                    <Button.Group size="large" className="my-card-search">
+                        <OpenProfile target={users2[i].userId} className="my-card-btn-width"/>
+                        <Like who={this.props.me} target={users2[i].userId} className="my-card-btn-width"/>
+                        <Block who={this.props.me} target={users2[i].userId} className="my-card-btn-width"/>
+                    </Button.Group>
                 </CardBody>
             </Card></Col>}
                 </div>)}

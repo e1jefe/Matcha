@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\Model;
 use App\Mail\SendMail;
+use App\Controllers\SearchController;
 
 class UserController extends Controller
 {
@@ -587,7 +588,7 @@ class UserController extends Controller
 			$colMatchDb > 10 ? $colMatch = 10 : $colMatch = $colMatchDb;
 		//general formula
 		//Famerate is plane sum views, likes, matches. 1 star values 10 points. by default you have 1 star. max you may have 5 stars(points can be more, it is sum stored in famerate). view max number 10, it is equval 100%, like same, match max number 20. you may have more then this quantaty but it still will give you up to 100%. count percentage for each category which influense your fame reting, find medium number, multiply by 40 + default 10 points devide on 5 and get stars quantety.
-		$stars1 = ((($colView * 10 + $colLike * 10 + ($colMatch * 10 * 2)) / 300) * 40 + 10) / 10;0;
+		$stars1 = ((($colView * 10 + $colLike * 10 + ($colMatch * 10 * 2)) / 300) * 40 + 10) / 10;
 		$stars2 = round($stars1, 1, PHP_ROUND_HALF_UP);
 		$stars = (ceil($stars2 / 0.5) * 0.5);
 		$fameRate = $colViewDb + $colLikeDb + ($colMatchDb * 2) + 10;
@@ -595,7 +596,7 @@ class UserController extends Controller
                            ->table('profiles')
                            ->where('user', '=', $arr['target']);
 		$updateStatement->execute();
-		return array('stars' => $stars1 . ' ' . $stars2 . ' ' . $stars, 'fameRate'=>$fameRate);
+		return array('stars' => $stars, 'fameRate'=>$fameRate);
 	}
 
 	public function returnGuestInfo($request, $response)
@@ -605,6 +606,9 @@ class UserController extends Controller
 
 		$db = new Model;
 		$db = $db->connect();
+        $sql0 = $db->select()->from('users')->where($userId, '=', 'userId');
+        $exec0 = $sql0->execute();
+        $fromDb0= $exec0->fetchAll();
 		$sql = $db->select()->from('photos')->where('userNbr', '=', $target);
 		$sql = $sql->orderBy('whenAdd', 'DESC');
 		$exec = $sql->execute();
@@ -617,7 +621,7 @@ class UserController extends Controller
 
 		$sql2 = $db->select()->from('views')->where('whoView', '=', $userId)->where('target', '=', $target);
 		$exec2 = $sql2->execute();
-		$fromDb2 = $exec2->fetchAll();
+		$fromDb2 = $exec2->fetch();
 
 		//update table views, change targets fame rate
 		if (count($fromDb2) == 0){
@@ -633,6 +637,9 @@ class UserController extends Controller
 		$sql3= $db->select()->from('users')->join('profiles', 'users.userId', '=', 'profiles.user')->where('userId', '=', $target);
 		$exec3 = $sql3->execute();
 		$forSearch = $exec3->fetch();
+
+//		$result->distance = round(getDistance( $fromDb0['latitude'], $fromDb0['longetude'], $forSearch['latitude'] , $forSearch['longetude']));   DODELAT KM!
+
 		$userData = array('login' => $forSearch['login'], 'fname' => $forSearch['fname'], 'lname' => $forSearch['lname'], 'age' => $forSearch['age'], 'sex' => $forSearch['sex'], 'sexPref' => $forSearch['sexPref'], 'stars' => $forSearch['stars'], 'profilePic' => $forSearch['profilePic'], 'isOnline' => boolval($forSearch['isOnline']), 'lastSeen' => $forSearch['last_seen'], 'bio' => $forSearch['bio'], 'tags' => $forSearch['tags'], 'stars' => $forSearch['stars']);
 		$result->userData = $userData;
 		$sql4 = $db->select()->from('likes')->where('who', '=', $target)->where('target', '=', $userId);
@@ -846,4 +853,15 @@ class UserController extends Controller
 		$res->myMatches = $match;
 		return json_encode($res);
 	}
+
+//    public function getDistance($request, $response) {
+//	    $lon1 = $request->
+//        $theta = $lon1 - $lon2;
+//        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+//        $dist = acos($dist);
+//        $dist = rad2deg($dist);
+//        $kilometres = $dist * 60 * 1.1515 * 1.609344;
+//        return $kilometres;
+//
+//    }
 }
