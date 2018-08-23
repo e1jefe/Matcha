@@ -34,6 +34,7 @@ class MessageController extends Controller
 
 			$conversation[$i]['ava'] = $info['profilePic'];
 			$conversation[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
+			$conversation[$i]['isOnline'] = boolval($info['isOnline']);
 
 			$count = 0;
 			$hasUnread = 0;
