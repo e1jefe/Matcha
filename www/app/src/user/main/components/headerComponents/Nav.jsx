@@ -61,16 +61,18 @@ class Nav extends Component {
         const data = JSON.parse(event.data);
         let notifArray = localStorage.getItem('notification')
         if (data.event === 'message' && data.user_id !== this.state.userId) {
-            const newMsg = [{who: data.user_id, content: data.myVar}]
-            const oldMsg = this.state.unreadMsg
-            if (oldMsg !== undefined && oldMsg.who !== "") {
-                this.setState({
-                    unreadMsg: oldMsg.concat(newMsg)
-                })
-            } else {
-                this.setState({
-                    unreadMsg: new Array(newMsg)
-                })
+            if (window.location.href.includes('chat') === false){
+                const newMsg = [{who: data.user_id, content: data.myVar}]
+                const oldMsg = this.state.unreadMsg
+                if (oldMsg !== undefined && oldMsg.who !== "") {
+                    this.setState({
+                        unreadMsg: oldMsg.concat(newMsg)
+                    })
+                } else {
+                    this.setState({
+                        unreadMsg: new Array(newMsg)
+                    })
+                }
             }
             if (window.location.href.includes('chat') === false){
                 iziToast.show({

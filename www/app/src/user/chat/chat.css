@@ -21,6 +21,13 @@
     background-image: linear-gradient(45deg, #0080FF 0%, #00FFE1 100%);
 }
 
+.chat-person__statuse {
+    display: block;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #bfbfbf;
+}
+
 body {
     margin: 0;
     /*padding: 3vh 0;*/
@@ -49,7 +56,12 @@ body {
     transition: all 0.3s ease; }
 
 #wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: row;
     max-width: 1200px;
+    height: 70vh;
     margin: auto;
     background-image: -moz-linear-gradient(135deg, #fafaff 0%, #f7f7fc 100%);
     background-image: -webkit-linear-gradient(135deg, #fafaff 0%, #f7f7fc 100%);
@@ -59,8 +71,9 @@ body {
 
 .messages {
     width: 30%;
-    height: 100%;
-    display: inline-block;
+    /*height: 100%;*/
+    /*overflow: auto;*/
+    /*display: inline-block;*/
     position: relative;
 }
 
@@ -124,11 +137,11 @@ body {
     background-image: url('./chatBgr.jpg');
     background-size: auto;
     background-repeat: repeat;
-    width: 70%;
-    display: inline-block;
     position: relative;
     vertical-align: top;
     border-left: 1px solid #eee;
+    height: 100%;
+    width: 100%;
 }
 
 .message-content .message-content__item .message-content-header {
@@ -148,8 +161,10 @@ body {
     top: 30px;
     right: 15px; }
 .message-content .message-box {
-    padding: 0px 25px 39px 25px;
-    min-height: 50vh;
+    padding: 0px 25px 80px 25px;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
 }
 .message-content .message-box .message-box__item {
     margin-bottom: 15px; }
@@ -190,12 +205,13 @@ body {
 .message-content .message-form {
     padding: 20px 15px;
     background-color: #fff;
-    width: 100%;
+    width: 96%;
     border-radius: 2px;
     box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.15);
     height: 75px;
-    position: sticky;
-    bottom: 0;
+    position: absolute;
+    left: 12px;
+    bottom: 9px;
 }
 
 .message-content .message-form textarea {
@@ -219,6 +235,15 @@ body {
     width: 15%;
     background-color: #117ee7;
 }
+@media only screen and (max-width:640px) {
+    .morePeople span{
+        display: none;
+    }
+    .message-content--initial {
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width:480px){
     #wrapper {
         width: 480px;
@@ -229,9 +254,11 @@ body {
         margin-left: 0;
         display: inline-block;
     }
-    .sidebar{
-        display: none;
+
+    .message-content--initial {
+        height: 100%;
     }
+
     .messages .messages__item .content {
       display: none;
     }

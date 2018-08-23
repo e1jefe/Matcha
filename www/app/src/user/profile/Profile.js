@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './Userprofile.css'
+import './userProfile.css'
 import ProfileContent from './components/ProfileContent';
-import Header from '../main/components/headerComponents/Header.jsx'
-import Footer from '../main/components/footerComponents/Footer'
+import Header from '../main/components/headerComponents/Header.jsx';
+import Footer from '../main/components/footerComponents/Footer';
 
 class Profile extends Component {
 
