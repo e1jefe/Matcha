@@ -45,7 +45,8 @@ class ProfileContent extends Component {
 						tTags: res.userData.tags,
 						tStars: res.userData.stars,
 						isLikeMe: res.isLike,
-						isMatch: res.isMatch
+						isMatch: res.isMatch,
+						distance: res.distance
 					})
 				})
 			}
@@ -75,7 +76,7 @@ class ProfileContent extends Component {
 						<h2 className="targetDescription-name">{this.state.tFName} {this.state.tLName}, </h2>
 						<h2 className="targetDescription-age">{this.state.tAge}</h2>
 						<div className="targetDescription-info">
-							<p>1992.6 km away</p>
+							<p>{this.state.distance} km away</p>
 							<p>{this.state.tSexPref === 'homo' ? "Homosexual" : this.state.tSexPref === 'hetero' ? "Heterosexual" : "Bisexual"}, {this.state.tSex}</p>
 							<p>Last visit: {this.state.tIsOnline ? "online" : this.state.tLastSeen}</p>
 							{this.state.isLikeMe && <p>Added me to favourite</p>}
