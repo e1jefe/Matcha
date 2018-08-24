@@ -53,8 +53,8 @@ class ChatComponents extends Component {
                         conversations: result.data,
                         fromWhoUnread: result.fromWhoUnread,
                         myMatches: result.myMatches
-                    }),
-                    console.log("unread msg from:  ", result.fromWhoUnread)
+                    })
+                    console.log("data from db", result.data)
                 })
             );
             // console.log("state in chat ", this.state)
@@ -119,7 +119,7 @@ class ChatComponents extends Component {
                             let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
                             const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
                             let forPrint;
-                            console.log("array will be updated ", newMsg)
+                            // console.log("array will be updated ", newMsg)
                             if (newMsg === undefined || newMsg.length === 0) {
                                 newMsg = {
                                     withWho: data.user_id,
@@ -129,14 +129,14 @@ class ChatComponents extends Component {
                                 }
                                 forPrint = this.state.conversations;
                                 forPrint.push(newMsg);
-                                console.log("array newMsg ", newMsg)
+                                // console.log("array newMsg ", newMsg)
                             } else {
                                 newMsg[0].messagies.push(arrayB)
                                 forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
                             }
 
                                 
-                                console.log("new for print ", forPrint)
+                                // console.log("new for print ", forPrint)
 
                                 let newUnread = this.state.fromWhoUnread;
                                 // console.log("on message includes? ", newUnread.includes(target))
@@ -161,17 +161,6 @@ class ChatComponents extends Component {
 
                         }
                    })
-            
-            // iziToast.show({
-            //     theme: 'dark',
-            //     icon: 'icon-msg',
-            //     image: data.ava,
-            //     imageWidth: 50,
-            //     maxWidth: '500px',
-            //     message: data.payload,
-            //     position: 'topRight',
-            //     progressBar: false
-            // })
         }
     }
 
@@ -212,7 +201,7 @@ class ChatComponents extends Component {
         let toPrint = new Object()
         if (conversations !== undefined && this.state.withWho !== ""){
             toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)[0]
-            console.log("conversations ", conversations)
+            // console.log("conversations ", conversations)
 
             const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)[0]
             const tmp = {
@@ -231,7 +220,7 @@ class ChatComponents extends Component {
                 toPrint = toPrint[0]
                 conversations.push(tmp)
             }
-            console.log("toPrint ", toPrint)
+            // console.log("toPrint ", toPrint)
         }
 
         const menu = (
@@ -257,7 +246,7 @@ class ChatComponents extends Component {
             </Menu>
         )
             // conversations !== undefined ? console.log("fromWhoUnread ", this.state.fromWhoUnread) : null
-            // conversations !== undefined ? conversations.map((conversation) => console.log("mapped conversation ", this.state.fromWhoUnread.includes(parseInt(conversation.withWho, 10)))) : null
+            // conversations !== undefined ? conversations.map((conversation) => console.log("mapped conversation ", conversation)) : null
 
         return (
             <div id="wrapper" className="chatComponent">

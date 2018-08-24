@@ -34,7 +34,9 @@ class MessageController extends Controller
 
 			$conversation[$i]['ava'] = $info['profilePic'];
 			$conversation[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
-			$conversation[$i]['isOnline'] = boolval($info['isOnline']);
+
+			strtotime($info['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline = false;
+			$conversation[$i]['isOnline'] = $isOnline;
 
 			$count = 0;
 			$hasUnread = 0;
@@ -132,6 +134,7 @@ class MessageController extends Controller
 
 			$conversation[$i]['ava'] = $info['profilePic'];
 			$conversation[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
+			$conversation[$i]['isOnline'] = boolval($info['isOnline']);
 
 			$count = 0;
 			foreach ($fromDb as $msg) {

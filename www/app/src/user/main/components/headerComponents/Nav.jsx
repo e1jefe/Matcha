@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './header.css';
 import '../../../fonts/fonts.css';
 import { NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
@@ -44,7 +44,7 @@ class Nav extends Component {
         localStorage.removeItem('token');
         this.setState({author: false});
         PostData('auth/logOut', {uLogin: this.state.userLogin}).then ((result) => {
-            if (result == true)
+            if (result === true)
                 history.push('/home');
         })
     }
@@ -87,7 +87,7 @@ class Nav extends Component {
                 })
             }
         }
-        if (data.event === 'setLike' && data.user_id != this.state.userId) {
+        if (data.event === 'setLike' && data.user_id !== this.state.userId) {
             // console.log("notification array ", notifArray)
             // console.log("ngot msg")
 
@@ -106,7 +106,7 @@ class Nav extends Component {
                 progressBar: false
             })
         }
-        if (data.event === 'disLike' && data.user_id != this.state.userId) {
+        if (data.event === 'disLike' && data.user_id !== this.state.userId) {
             if (notifArray == null)
                 localStorage.setItem('notification', JSON.stringify(data))
             else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
@@ -122,7 +122,7 @@ class Nav extends Component {
                 progressBar: false
             })
         }
-        if (data.event === 'match' && data.target_id == this.state.userId) {
+        if (data.event === 'match' && data.target_id === this.state.userId) {
             if (notifArray == null)
                 localStorage.setItem('notification', JSON.stringify(data))
             else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
@@ -138,8 +138,8 @@ class Nav extends Component {
                 progressBar: false
             })
         }
-        if (data.event === 'view' && data.target_id == this.state.userId) {
-            if (notifArray == null)
+        if (data.event === 'view' && data.target_id === this.state.userId) {
+            if (notifArray === null)
                 localStorage.setItem('notification', JSON.stringify(data))
             else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
                 localStorage.setItem('notification', notifArray + JSON.stringify(data))
@@ -154,9 +154,9 @@ class Nav extends Component {
             if (notifArray.includes('}{')) {
                 notifArray = notifArray.split('}{');
                 for (let i = 0; i < notifArray.length; i++) {
-                    if (i == 0)
+                    if (i === 0)
                         notifArray[i] = notifArray[i] + '}'
-                    else if (i == notifArray.length - 1)
+                    else if (i === notifArray.length - 1)
                         notifArray[i] = '{' + notifArray[i]
                     else
                         notifArray[i] = '{' + notifArray[i] + '}'
@@ -177,14 +177,14 @@ class Nav extends Component {
         let token = localStorage.getItem('token');
         let notifArray = localStorage.getItem('notification')
         // console.log("notif will mount ", notifArray)
-        if (notifArray != null)
+        if (notifArray !== null)
         {
             if (notifArray.includes('}{')) {
                 notifArray = notifArray.split('}{');
                 for (let i = 0; i < notifArray.length; i++) {
-                    if (i == 0)
+                    if (i === 0)
                         notifArray[i] = notifArray[i] + '}'
-                    else if (i == notifArray.length - 1)
+                    else if (i === notifArray.length - 1)
                         notifArray[i] = '{' + notifArray[i]
                     else
                         notifArray[i] = '{' + notifArray[i] + '}'

@@ -22,7 +22,7 @@
 	}
 
 	.my-photos.card > img {
-		max-height: 300px;
+		height: 360px;
 	}
 
 .glyphicon-ok-sign:before {

@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import jwtDecode from 'jwt-decode'
 import { PostData } from '../../main/components/PostData'
 import { Layout } from 'antd'
-import { Carousel } from 'antd'
+// import { Carousel } from 'antd'
 import { Rate } from 'antd'
 import { Button } from 'antd'
 import Like from './Like'
 import Block from './Block'
-import Scammer from './Scammer'
+import Scammer from './Scammer';
+import SimpleSlider from './SimpleSlider';
+
 
 const { Content } = Layout
 
@@ -40,7 +42,7 @@ class ProfileContent extends Component {
 						tAvatar: res.userData.profilePic,
 						tAllPics: res.userPhoto,
 						tIsOnline: res.userData.isOnline,
-						tLastSeen: res.userData.lastSeen,
+						tLastSeen: res.userData.lastSeen.substr(0, 10),
 						tBio: res.userData.bio,
 						tTags: res.userData.tags,
 						tStars: res.userData.stars,
@@ -59,18 +61,7 @@ class ProfileContent extends Component {
 			<Layout>
 				<Content>
 					<div className="my-carousel">
-						<Carousel>
-							{this.state.tAllPics !== undefined && this.state.tAllPics.length !== 0 ?
-								this.state.tAllPics.map((img, i) => (
-								<div key={i}>
-									<img src={img} alt="This user"/>
-								</div>))
-								:
-								this.state.tAvatar !== "" ? (<img src={this.state.tAvatar} alt="This user"/>)
-								:
-								<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="This user"/>
-							}
-						</Carousel>
+						<SimpleSlider pics={this.state.tAllPics} ava={this.state.tAvatar}/>
 					</div>
 					<div className="targetDescription">
 						<h2 className="targetDescription-name">{this.state.tFName} {this.state.tLName}, </h2>

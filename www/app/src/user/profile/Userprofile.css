@@ -4,13 +4,31 @@ body {
     height: auto;
 }
 
+.ant-layout {
+	background: none;
+}
+.profile-pic-slide {
+	width: 100%;
+	height: 50vh;
+}
+
+	.profile-pic-slide > img {
+		display: block;
+		width: 100%;
+	}
+
+	.slick-next:before,
+	.slick-prev:before {
+		color: #a6a6a6;
+	}
+
 .ant-tag {
     margin-bottom: 8px;
 }
 
 .my-carousel{
 	width: 50%;
-	margin: 0 auto;
+	margin: 20px auto 0px;
 }
 .ant-carousel .slick-list {
 	height: 30vh;
@@ -38,7 +56,7 @@ body {
 
 .targetDescription {
 	width: 50%;
-	margin: 0 auto;
+	margin: 20px auto 0px;
 	padding: 10px;
 }
 

@@ -3,8 +3,6 @@ import history from "../../history/history"
 import { Tooltip, Button, Icon } from 'antd'
 import { PostData } from '../../main/components/PostData'
 import jwtDecode from 'jwt-decode'
-import iziToast from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 
 class OpenProfile extends Component {
 	constructor(props) {

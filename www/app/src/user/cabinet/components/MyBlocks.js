@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
-import history from "../../history/history"
-import { Tooltip, Button, Icon } from 'antd'
+import { Button } from 'antd'
 import Block from '../../profile/components/Block'
 import Scammer from '../../profile/components/Scammer'
 import OpenProfile from '../../profile/components/OpenProfile'
@@ -47,7 +46,7 @@ class MyBlocks extends Component {
 											Age: {profile.age}
 										</h6>
 										<h6 className="card-subtitle mb-2 text-muted">
-											{profile.sexPref == 'homo' ? "Homosexual" : profile.sexPref == 'hetero' ? "Heterosexual" : "Bisexual"}, {profile.sex}
+											{profile.sexPref === 'homo' ? "Homosexual" : profile.sexPref === 'hetero' ? "Heterosexual" : "Bisexual"}, {profile.sex}
 										</h6>
 										<h6 className="card-subtitle mb-2 text-muted">
 											Last visit: {profile.lastSeen}

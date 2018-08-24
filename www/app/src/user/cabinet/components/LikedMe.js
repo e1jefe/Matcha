@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { PostData } from '../../main/components/PostData'
-import history from "../../history/history"
-import { Rate, Tooltip, Button, Icon } from 'antd'
+import { Rate, Button } from 'antd'
 import Like from '../../profile/components/Like'
 import Block from '../../profile/components/Block'
 import OpenProfile from '../../profile/components/OpenProfile'

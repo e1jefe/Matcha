@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink}  from 'react-router-dom';
 import './home.css';
-import Home from './Home';
 
 class UnAuthorize extends Component {
     render() {

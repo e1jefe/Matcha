@@ -3,7 +3,6 @@
 namespace App\Controllers;
 use App\Models\Model;
 use App\Mail\SendMail;
-use App\Controllers\SearchController;
 
 class UserController extends Controller
 {
@@ -38,6 +37,13 @@ class UserController extends Controller
 		$exec = $sql->execute();
 		$fromDb = $exec->fetch();
 		$result->userData = $fromDb;
+		//record new time of visit 
+		date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+		$updateStatement = $db->update(array('last_seen' => $date))
+				   ->table('users')
+				   ->where('userId', '=', $fromDb['userId']);
+		$affectedRows = $updateStatement->execute();
 		$result->whoLikesUser = $this->whoLikesMe($userId);
 		return json_encode($result);
 	}
@@ -83,7 +89,8 @@ class UserController extends Controller
 			{
 				if (($myData['sex'] == $value['sex'] && $value['sexPref'] == 'homo') || $value['sexPref'] == 'bi')
 				{
-					$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => boolval($value['isOnline']), 'lastSeen' => $value['last_seen']);
+					strtotime($value['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+					$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => $isOnline, 'lastSeen' => $value['last_seen']);
 					$i++;
 				}
 			}
@@ -91,13 +98,15 @@ class UserController extends Controller
 			{
 				if (($myData['sex'] != $value['sex'] && $value['sexPref'] == 'hetero') || $value['sexPref'] == 'bi')
 				{
-					$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => boolval($value['isOnline']), 'lastSeen' => $value['last_seen']);
+					strtotime($value['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+					$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => $isOnline, 'lastSeen' => $value['last_seen']);
 					$i++;
 				}
 			}
 			else
 			{
-				$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => boolval($value['isOnline']), 'lastSeen' => $value['last_seen']);
+				strtotime($value['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+				$viewMe[$i] = array('uId' => $value['userId'], 'login' => $value['login'], 'fname' => $value['fname'], 'lname' => $value['lname'], 'age' => $value['age'], 'sex' => $value['sex'], 'sexPref' => $value['sexPref'], 'fameRate' => $value['fameRate'], 'stars' => $value['stars'], 'profilePic' => $value['profilePic'], 'isOnline' => $isOnline, 'lastSeen' => $value['last_seen']);
 				$i++;
 			}
 		}
@@ -166,16 +175,19 @@ class UserController extends Controller
 		foreach ($fromDb as $key => $profile) {
 			if ($myData['sexPref'] == 'homo') {
 				if (($myData['sex'] == $profile['sex'] && $profile['sexPref'] == 'homo') || $profile['sexPref'] == 'bi') {
-					$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => boolval($profile['isOnline']), 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
+					strtotime($profile['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline= false;
+					$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => $isOnline, 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
 					$i++;
 				}
 			} else if ($myData['sexPref'] == 'hetero') {
 				if (($myData['sex'] != $profile['sex'] && $profile['sexPref'] == 'hetero') || $profile['sexPref'] == 'bi') {
-					$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => boolval($profile['isOnline']), 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
+					strtotime($profile['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+					$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => $isOnline, 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
 					$i++;
 				}
 			} else {
-				$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => boolval($profile['isOnline']), 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
+				strtotime($profile['lastSeen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+				$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => $isOnline, 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
 				$i++;
 			}
 		}
@@ -313,7 +325,10 @@ class UserController extends Controller
 			$sexPref = $fromDb['sexPref'];
 		// $res->sexPref = $sexPref;
 
-		$updateStatement = $db->update(array('login' => $login, 'password' => $pass, 'email' => $email, 'fname' => $fname, 'lname' => $lname))
+		date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+
+		$updateStatement = $db->update(array('login' => $login, 'password' => $pass, 'email' => $email, 'fname' => $fname, 'lname' => $lname, 'last_seen' => $date))
 						   ->table('users')
 						   ->where('userId', '=', $userId);
 		$updateStatement->execute();
@@ -588,7 +603,7 @@ class UserController extends Controller
 			$colMatchDb > 10 ? $colMatch = 10 : $colMatch = $colMatchDb;
 		//general formula
 		//Famerate is plane sum views, likes, matches. 1 star values 10 points. by default you have 1 star. max you may have 5 stars(points can be more, it is sum stored in famerate). view max number 10, it is equval 100%, like same, match max number 20. you may have more then this quantaty but it still will give you up to 100%. count percentage for each category which influense your fame reting, find medium number, multiply by 40 + default 10 points devide on 5 and get stars quantety.
-		$stars1 = ((($colView * 10 + $colLike * 10 + ($colMatch * 10 * 2)) / 300) * 40 + 10) / 10;
+		$stars1 = ((($colView * 10 + $colLike * 10 + ($colMatch * 10 * 2)) / 300) * 40 + 10) / 10;0;
 		$stars2 = round($stars1, 1, PHP_ROUND_HALF_UP);
 		$stars = (ceil($stars2 / 0.5) * 0.5);
 		$fameRate = $colViewDb + $colLikeDb + ($colMatchDb * 2) + 10;
@@ -596,7 +611,7 @@ class UserController extends Controller
                            ->table('profiles')
                            ->where('user', '=', $arr['target']);
 		$updateStatement->execute();
-		return array('stars' => $stars, 'fameRate'=>$fameRate);
+		return array('stars' => $stars1 . ' ' . $stars2 . ' ' . $stars, 'fameRate'=>$fameRate);
 	}
 
 	public function returnGuestInfo($request, $response)
@@ -606,9 +621,6 @@ class UserController extends Controller
 
 		$db = new Model;
 		$db = $db->connect();
-        $sql0 = $db->select()->from('users')->where($userId, '=', 'userId');
-        $exec0 = $sql0->execute();
-        $fromDb0= $exec0->fetchAll();
 		$sql = $db->select()->from('photos')->where('userNbr', '=', $target);
 		$sql = $sql->orderBy('whenAdd', 'DESC');
 		$exec = $sql->execute();
@@ -621,7 +633,7 @@ class UserController extends Controller
 
 		$sql2 = $db->select()->from('views')->where('whoView', '=', $userId)->where('target', '=', $target);
 		$exec2 = $sql2->execute();
-		$fromDb2 = $exec2->fetch();
+		$fromDb2 = $exec2->fetchAll();
 
 		//update table views, change targets fame rate
 		if (count($fromDb2) == 0){
@@ -637,9 +649,6 @@ class UserController extends Controller
 		$sql3= $db->select()->from('users')->join('profiles', 'users.userId', '=', 'profiles.user')->where('userId', '=', $target);
 		$exec3 = $sql3->execute();
 		$forSearch = $exec3->fetch();
-
-//		$result->distance = round(getDistance( $fromDb0['latitude'], $fromDb0['longetude'], $forSearch['latitude'] , $forSearch['longetude']));   DODELAT KM!
-
 		$userData = array('login' => $forSearch['login'], 'fname' => $forSearch['fname'], 'lname' => $forSearch['lname'], 'age' => $forSearch['age'], 'sex' => $forSearch['sex'], 'sexPref' => $forSearch['sexPref'], 'stars' => $forSearch['stars'], 'profilePic' => $forSearch['profilePic'], 'isOnline' => boolval($forSearch['isOnline']), 'lastSeen' => $forSearch['last_seen'], 'bio' => $forSearch['bio'], 'tags' => $forSearch['tags'], 'stars' => $forSearch['stars']);
 		$result->userData = $userData;
 		$sql4 = $db->select()->from('likes')->where('who', '=', $target)->where('target', '=', $userId);
@@ -687,7 +696,7 @@ class UserController extends Controller
 		if (count($fromDb) == 0)
 		{
 			date_default_timezone_set ('Europe/Kiev');
-			$date = date('Y-m-d G:i:s');
+			$date = date('Y-m-d H:i:s');
 			$sql = $db->insert(array('who', 'target', 'whenLike'))
 						   ->into('likes')
 						   ->values(array($id, $target, $date));
@@ -746,7 +755,7 @@ class UserController extends Controller
 		if (count($fromDb) == 0)
 		{
 			date_default_timezone_set ('Europe/Kiev');
-			$date = date('Y-m-d G:i:s');
+			$date = date('Y-m-d H:i:s');
 			$sql = $db->insert(array('whoBlock', 'target', 'whenBlock'))
 						   ->into('blocks')
 						   ->values(array($id, $target, $date));
@@ -806,7 +815,8 @@ class UserController extends Controller
 		$fromDb = $exec->fetchAll();
 		$blocks = array();
 		foreach ($fromDb as $key => $block) {
-			$blocks[$key] = array('uId' => $block['userId'], 'profilePic' => $block['profilePic'], 'fname' => $block['fname'], 'lname' => $block['lname'], 'sex' => $block['sex'], 'sexPref' => $block['sexPref'], 'age' => $block['age'], 'lastSeen' => $block['last_seen'], 'isOnline' => $block['isOnline']);
+			strtotime($block['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline=false;
+			$blocks[$key] = array('uId' => $block['userId'], 'profilePic' => $block['profilePic'], 'fname' => $block['fname'], 'lname' => $block['lname'], 'sex' => $block['sex'], 'sexPref' => $block['sexPref'], 'age' => $block['age'], 'lastSeen' => $block['last_seen'], 'isOnline' => $isOnline);
 		}
 		$res->myBlocks = $blocks;
 		return json_encode($res);
@@ -853,15 +863,4 @@ class UserController extends Controller
 		$res->myMatches = $match;
 		return json_encode($res);
 	}
-
-//    public function getDistance($request, $response) {
-//	    $lon1 = $request->
-//        $theta = $lon1 - $lon2;
-//        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-//        $dist = acos($dist);
-//        $dist = rad2deg($dist);
-//        $kilometres = $dist * 60 * 1.1515 * 1.609344;
-//        return $kilometres;
-//
-//    }
 }

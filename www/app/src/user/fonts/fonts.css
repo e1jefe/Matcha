@@ -3,15 +3,10 @@
     src: url('./Ballpark.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: 'Centaur';
-    src: url('./Centaur/Centaur.ttf') format('truetype');
-}
-
-@font-face {
+/*@font-face {
     font-family: 'FontAwesome';
     src: url('./FontAwesome.ttf') format('truetype');
-}
+}*/
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
