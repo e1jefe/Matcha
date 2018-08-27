@@ -30,14 +30,11 @@ class UsersCards extends Component {
                     {Object.keys(users2).map((i) => <div key={i}>{
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>  <Card>
                 <CardBody>
-                    <CardTitle><NavLink to="/userID"> {users2[i].fname} {users2[i].lname}</NavLink>, {users2[i].age}</CardTitle>
-                    <CardSubtitle><Rate allowHalf disabled defaultValue={users2[i].stars} />,   {users2[i].distance} km</CardSubtitle>
+                    <CardTitle><NavLink to="/userID"> {users2[i].fname} {users2[i].lname}</NavLink>, {users2[i].age} y.o.</CardTitle>
+                    <CardSubtitle><Rate allowHalf disabled defaultValue={users2[i].stars} />  {users2[i].distance} km</CardSubtitle>
                 </CardBody>
-                        <NavLink to="/userID"><img src={users2[i].profilePic} /> </NavLink>
+                        <NavLink to=""><img src={users2[i].profilePic} /> </NavLink>
                 <CardBody>
-                    {/*<CardText>{users2[i].bio}</CardText>*/}
-                    {/*<Button type="danger">Like</Button>*/}
-                    {/*<CardLink href="#">Block user</CardLink>*/}
                     <Button.Group size="large" className="my-card-search">
                         <OpenProfile target={users2[i].userId} className="my-card-btn-width"/>
                         <Like who={this.props.me} target={users2[i].userId} className="my-card-btn-width"/>
