@@ -1,10 +1,14 @@
+.cabinet-height {
+	height: calc(100vh - 148px);
+}
+
 .image-cropper {
 	width: 150px;
 	height: 150px;
 	position: relative;
 	margin: 0 auto;
 	overflow: hidden;
-	border-radius: 50%;
+	border-radius: 2%;
 }
 	.profile-pic {
 		display: inline;
@@ -105,3 +109,14 @@
 			border-radius: 50%;
 			background-color: red;
 		}
+
+.whoIViewName {
+	display: inline-block;
+	margin-left: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+	.cabinet-height {
+		min-height: calc(100vh - 128px);
+	}
+}

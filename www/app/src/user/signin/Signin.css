@@ -1,3 +1,7 @@
+.sign-in__holder {
+    height: calc(100vh - 148px);
+}
+
 .active {
     display: block;
 }

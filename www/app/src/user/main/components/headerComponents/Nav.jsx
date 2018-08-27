@@ -43,7 +43,7 @@ class Nav extends Component {
     handleLogout() {
         localStorage.removeItem('token');
         this.setState({author: false});
-        PostData('auth/logOut', {uLogin: this.state.userLogin}).then ((result) => {
+        PostData('auth/logOut', {uId: this.state.userId}).then ((result) => {
             if (result === true)
                 history.push('/home');
         })
@@ -201,20 +201,21 @@ class Nav extends Component {
             // console.log(user);
             if (user.user_login !== '')
             {
-                this.setState({
-                    author: true,
-                    userLogin: user.login,
-                    userId: user.userId,
-                    notifications: notifArray
+                PostData('user/isFull', {userId: user.userId}).then ((result) => {
+                    if (result.error !== '' || result.error !== undefined) {
+                        this.setState({ errMsg: result.error });
+                    }
+                    this.setState({ 
+                        author: true,
+                        userLogin: user.login,
+                        userId: user.userId,
+                        notifications: notifArray,
+                        fullProfile: result 
+                    });
                 });
             }
         }
     }
-
-    // componentDidUpdate() {
-    //     let notifArray = localStorage.getItem('notification');
-    //     console.log("test")
-    // }
 
     render() {
         const notifications = this.state.notifications
@@ -243,7 +244,7 @@ class Nav extends Component {
                     {notifications !== undefined && notifications !== null ?
                         notifications.map((notif, i) => 
                             <Menu.Item key={i}>
-                                <NavLink to={"profile/:" + notif.user_id}>
+                                <NavLink to={"profile/" + notif.user_id}>
                                     {notif.ava !== undefined ?
                                         <img className="notifImg" src={notif.ava} alt="Who done this" />
                                         : null
@@ -264,7 +265,7 @@ class Nav extends Component {
                 <nav className="menu" role="navigation">
                     <ul>
                         <li className="item">                            
-                            <NavLink to="/home" className="logo">
+                            <NavLink to={this.state.author === true ? (this.state.fullProfile === true ? "/search" : "/cabinet") : "/home"} className="logo">
                                 Matcha
                             </NavLink>
                         </li>
@@ -275,13 +276,13 @@ class Nav extends Component {
                             <span></span>
                             <ul id="menu">
                                 <li className="item">
-                                    <NavLink to="/home/cabinet">
+                                    <NavLink to="/cabinet">
                                         <img className="userImage" src="http://i64.tinypic.com/2nl4p5v.png" alt="My Profile"/>
                                     </NavLink>
                                 </li>
                                 <li className="item">
                                     <NavLink to="/chat" unread={this.state.unreadMsg} test="test" >
-                                        <Badge count={this.state.unreadMsg !== null ? this.state.unreadMsg.length : 0}>
+                                        <Badge count={this.state.unreadMsg !== null && this.state.unreadMsg.length !== 0 ? this.state.unreadMsg.length : 0} >
                                             <img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
                                         </Badge>
                                     </NavLink>
@@ -289,7 +290,7 @@ class Nav extends Component {
                                 <li className="item">
                                 <Dropdown overlay={menu} trigger={['click']} onClick={this.handleNotif} >
                                     <a className="ant-dropdown-link" href="_">
-                                        <Badge count={this.state.notifications !== null ? this.state.notifications.length : 0}>
+                                        <Badge count={this.state.notifications !== null && this.state.notifications.length !== 0 ? this.state.notifications.length : 0} >
                                             <img className="notificationImage" src="http://i66.tinypic.com/qod01l.png" alt="notifications"/>
                                         </Badge>
                                     </a>

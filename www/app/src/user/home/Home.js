@@ -52,6 +52,11 @@ class Home extends Component {
 					this.setState({ errMsg: result.error });
 				} else
 					this.setState({ fullProfile: result });
+				if (result === false) {
+					history.push('/cabinet');
+				} else {
+					history.push('/search');
+				}
 			});
 		}
 	}
@@ -90,16 +95,11 @@ class Home extends Component {
 		else 
 		{
 			return(
-			<div>
-				<Header />
 				<Router history={history}>
 					<div>
-						<Route path="/home/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />
-						<Route exact path="/chat" render={()=><Chat />}/>
+						<Route path="/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />
 					</div>
 				</Router>
-				<Footer />				
-			</div>
 			)
 		}
 		// else

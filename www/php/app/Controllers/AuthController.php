@@ -219,13 +219,19 @@ class AuthController extends Controller
 	}
 	public function postLogOut($request, $response)
 	{
+		$uId = $request->getParam('uId');
+
 		$db = new Model;
 		$db = $db->connect();
-		$sql = $db->select()->from('users')->where('login', '=', $request->getParam('uLogin'));
-		$exec = $sql->execute();
-		$fromDb = $exec->fetch();
-		$updateStatement = $db->update(array('isOnline' => 0))->table('profiles')->where('user', '=', $fromDb['userId']);
+		
+		$updateStatement = $db->update(array('isOnline' => 0))->table('profiles')->where('user', '=', $uId);
 		$updateStatement->execute();
+		
+		date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $uId);
+		$updateStatement2->execute();
+
 		return json_encode(true);
 	}
 }

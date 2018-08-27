@@ -17,6 +17,11 @@ class MessageController extends Controller
 		$uniqUser = array();
 		$conversation = array();
 
+		date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $uId);
+		$updateStatement2->execute();
+
 		foreach ($fromDb as $key => $value) {
 			if ($value['sender'] != $uId && in_array($value['sender'], $uniqUser) === false)
 				$uniqUser[$key] = $value['sender'];
@@ -91,8 +96,6 @@ class MessageController extends Controller
 			$match[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
 		}
 		$result->myMatches = $match;
-
-		// $result->check = '6';
 		return json_encode($result);
 	}
 
@@ -105,6 +108,12 @@ class MessageController extends Controller
 		
 		$db = new Model;
 		$db = $db->connect();
+		
+		date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $uId);
+		$updateStatement2->execute();
+
 		$insertSql = $db->insert(array('sender', 'receiver', 'msg', 'whenSend'))->
 						  into('chat')->
 						  values(array($uId, $target, $content, $time));
@@ -134,7 +143,8 @@ class MessageController extends Controller
 
 			$conversation[$i]['ava'] = $info['profilePic'];
 			$conversation[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
-			$conversation[$i]['isOnline'] = boolval($info['isOnline']);
+			strtotime($info['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline = false;
+			$conversation[$i]['isOnline'] = $isOnline;
 
 			$count = 0;
 			foreach ($fromDb as $msg) {
@@ -148,8 +158,7 @@ class MessageController extends Controller
 		}
 
 		$result->data = $conversation;
-		$result->check = "author " . $uId . " reciever " . $target;
-
+		// $result->check = "author " . $uId . " reciever " . $target;
 		return json_encode($result);
 	}
 
@@ -184,6 +193,8 @@ class MessageController extends Controller
 
 			$conversation[$i]['ava'] = $info['profilePic'];
 			$conversation[$i]['name'] = $info['fname'] . ' ' . $info['lname'];
+			strtotime($info['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline = false;
+			$conversation[$i]['isOnline'] = $isOnline;
 
 			$count = 0;
 			foreach ($fromDb as $msg) {
@@ -197,8 +208,7 @@ class MessageController extends Controller
 		}
 
 		$result->data = $conversation;
-		$result->check = "sender " . $sender . " reciever " . $me;
-
+		// $result->check = "sender " . $sender . " reciever " . $me;
 		return json_encode($result);
 	}
 
@@ -212,6 +222,12 @@ class MessageController extends Controller
                        ->table('chat')
                        ->where('sender', '=', $sender)->where('receiver', '=', $me);
         $affectedRows = $updateStatement->execute();
+        
+        date_default_timezone_set ('Europe/Kiev');
+		$date = date('Y-m-d H:i:s');
+		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $me);
+		$updateStatement2->execute();
+
 		return json_encode(true);
 	}
 }

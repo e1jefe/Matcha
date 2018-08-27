@@ -55,7 +55,7 @@ class MyPhoto extends Component  {
 						pics: result.userPhoto
 					})
 				}
-			// console.log("pic after ", this.state.pics)
+				console.log("pic ", result)
 
 			})
 		}

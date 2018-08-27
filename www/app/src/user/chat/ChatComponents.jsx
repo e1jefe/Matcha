@@ -249,37 +249,39 @@ class ChatComponents extends Component {
             // conversations !== undefined ? conversations.map((conversation) => console.log("mapped conversation ", conversation)) : null
 
         return (
-            <div id="wrapper" className="chatComponent">
-                <div className="messages">
-                    
-                    <Dropdown overlay={menu} trigger={['click']} onClick={this.showMorePeople} >
-                        <Button name={this.state.currentUserId} className="morePeople" icon="plus" size="large">More people for chat</Button>
-                    </Dropdown>
-                    {conversations !== undefined && conversations.length > 0 ? 
-                        conversations.map((conversation) => (
-                            <Button className={ this.state.withWho === conversation.withWho ? "messages__item messages__item-actieve" : "messages__item"} key={conversation.withWho} name={conversation.withWho} onClick={this.showMessageHistory}>
-                                <div className="name-img" name={conversation.withWho}>
-                                    <img className="name-img__src" src={conversation.ava} name={conversation.withWho} alt="Chat with this person"></img>
-                                    {this.state.fromWhoUnread.includes(parseInt(conversation.withWho, 10)) ? <div className="newMsg"></div> : null}
-                                </div>
-                                <div className="name" name={conversation.withWho}>
-                                    <b>{conversation.name}</b>
-                                    {conversation.isOnline ? (
-                                        <span className="chat-person__statuse">
-                                            online
-                                        </span>) : null
-                                    }
-                                </div>
-                            </Button>
-                        )) 
-                        : null
-                    }
+            <div className="chat-holder">
+                <div id="wrapper" className="chatComponent">
+                    <div className="messages">
+                        
+                        <Dropdown overlay={menu} trigger={['click']} onClick={this.showMorePeople} >
+                            <Button name={this.state.currentUserId} className="morePeople" icon="plus" size="large">More people for chat</Button>
+                        </Dropdown>
+                        {conversations !== undefined && conversations.length > 0 ? 
+                            conversations.map((conversation) => (
+                                <Button className={ this.state.withWho === conversation.withWho ? "messages__item messages__item-actieve" : "messages__item"} key={conversation.withWho} name={conversation.withWho} onClick={this.showMessageHistory}>
+                                    <div className="name-img" name={conversation.withWho}>
+                                        <img className="name-img__src" src={conversation.ava} name={conversation.withWho} alt="Chat with this person"></img>
+                                        {this.state.fromWhoUnread.includes(parseInt(conversation.withWho, 10)) ? <div className="newMsg"></div> : null}
+                                    </div>
+                                    <div className="name" name={conversation.withWho}>
+                                        <b>{conversation.name}</b>
+                                        {conversation.isOnline ? (
+                                            <span className="chat-person__statuse">
+                                                online
+                                            </span>) : null
+                                        }
+                                    </div>
+                                </Button>
+                            )) 
+                            : null
+                        }
+                    </div>
+                        {conversations !== undefined && conversations.length > 0 && this.state.withWho !== "" ?    
+                            (<Dialog updateData={this.updateData} withWho={this.state.withWho} withWhoName={toPrint.name} me={this.state.currentUserId} conversation={toPrint.messagies}/>)
+                            :
+                            (<div className="message-content message-content--initial"></div>)
+                        }
                 </div>
-                    {conversations !== undefined && conversations.length > 0 && this.state.withWho !== "" ?    
-                        (<Dialog updateData={this.updateData} withWho={this.state.withWho} withWhoName={toPrint.name} me={this.state.currentUserId} conversation={toPrint.messagies}/>)
-                        :
-                        (<div className="message-content message-content--initial"></div>)
-                    }
             </div>
         );
     }

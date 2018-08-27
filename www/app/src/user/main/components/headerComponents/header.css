@@ -85,9 +85,6 @@ img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userI
             width: 30px;
             height: 30px;
         }
-    .menu-right {
-        float: none;
-    }
     .menu a {
         display: block;
     }
@@ -197,6 +194,7 @@ display: block;
   right: -10px;
   top: -20px;
   opacity: 0;
+  display: none;
   /*margin: -100px 0 0 345px;*/
   /*padding-top: 105px;*/
   
@@ -213,7 +211,7 @@ display: block;
 
 #menu li
 {
-  padding: 10px 0;
+  padding: 0px;
   font-size: 22px;
 }
 
@@ -228,6 +226,7 @@ display: block;
         padding: 58px 5px 0;
         /*margin-left: -16px;*/
         opacity: 1;
+        display: block;
         transition: opacity 0.8s;
     }
 }

@@ -13,7 +13,6 @@ class AboutMe extends Component {
 		}
 		this.onChangeBio = this.onChangeBio.bind(this);
 		this.dellTag = this.dellTag.bind(this);
-
 		this.handleSubmitAbout = this.handleSubmitAbout.bind(this);
 	}
 

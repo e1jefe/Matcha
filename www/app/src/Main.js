@@ -7,6 +7,7 @@ import history from './user/history/history';
 import Chat from './user/chat/chat.js'
 import Search from "./user/home/Search.js";
 import Profile from "./user/profile/Profile";
+import Cabinet from "./user/cabinet/Cabinet";
 
 
 // The Main component renders one of the three provided
@@ -21,6 +22,7 @@ const Main = () => (
 				<Route exact path='/' component={Home} />
 				<Route path='/home' component={Home}/>
 				<Route path='/signin' component={SignIn}/>
+				<Route path="/cabinet" component={Cabinet} />
 				<Route path='/chat' component={Chat}/>
 				<Route path='/search' component={Search}/>
 				<Route path="/profile/:id" component={Profile} />

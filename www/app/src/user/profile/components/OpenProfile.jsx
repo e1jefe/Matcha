@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import history from "../../history/history"
 import { Tooltip, Button, Icon } from 'antd'
 import { PostData } from '../../main/components/PostData'
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 
 class OpenProfile extends Component {
 	constructor(props) {
@@ -13,7 +13,9 @@ class OpenProfile extends Component {
 			fromWhoPic: '',
 			target: props.target
 		}
-		this.handleProfile = this.handleProfile.bind(this)
+		this.handleProfile = this.handleProfile.bind(this);
+		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn.handleProfile = this.handleProfile.bind(this);
 	}
 	
 	handleProfile(e){
@@ -44,8 +46,6 @@ class OpenProfile extends Component {
 				})
 			}
 		}
-		this.conn = new WebSocket('ws:/\/localhost:8090')
-		this.conn.handleProfile = this.handleProfile.bind(this)
 	}
 
 	render(){
