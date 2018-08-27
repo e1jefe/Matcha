@@ -1,0 +1,11 @@
+для хоума? когда будут написаны эти реакт компоненты
+
+import Profile from '../profile/Profile';
+import Search from '../search/Search';
+import Chat from '../chat/Chat';
+import Map from '../map/Map';
+
+							<Route path="/profile/:id" component={Profile} />
+							<Route path="/search" component={(props) => (<Search id={this.state.userId}/>)} />
+							<Route path="/chat" component={Chat}/>
+							<Route path="/map" component={Map}/>
