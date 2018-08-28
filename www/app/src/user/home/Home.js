@@ -12,6 +12,8 @@ import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
 import Chat from '../chat/chat';
+import Profile from '../profile/Profile';
+
 // import Search from "./Search.js";
 // import Profile from "../profile/Profile";
 
@@ -98,6 +100,8 @@ class Home extends Component {
 				<Router history={history}>
 					<div>
 						<Route path="/cabinet" render={()=><Cabinet login={this.state.userLogin} userId={this.state.userId}/>} />
+						<Route path="/chat" render={(props) => (<Chat login={this.state.userLogin}/>)} />
+		 				<Route path="/profile/:id" component={(props) => (<Profile />)} />
 					</div>
 				</Router>
 			)

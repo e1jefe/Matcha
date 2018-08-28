@@ -20,7 +20,42 @@ class ProfileContent extends Component {
 			curentUserId: '',
 			target: ''
 		}
+		this.sendView = this.sendView.bind(this);
+		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn.sendView = this.sendView.bind(this);
 	}
+
+	sendView() {
+		if (this._mounted) {
+			const token = localStorage.getItem('token');
+			const curentUser = jwtDecode(token);
+		// console.log("send view", curentUser);
+		// console.log("target ", this.props.target.params.id);
+
+		PostData('user/getAva', {uId: curentUser.userId}).then((res) => {
+					this.setState({
+						fromWhoPic: res.fromWhoPic
+					})
+					this.conn.send(JSON.stringify({
+						event: 'view',
+						ava: res.fromWhoPic,
+						payload: curentUser.userName + ' ' + curentUser.userSurname + ' checked your profile',
+						user_id: curentUser.userId,
+						target_id: parseInt(this.props.target.params.id, 10)
+					}))	
+					console.log("state in profile ", this.state, res)
+				})
+		}
+	}
+
+	componentDidMount () {
+        this._mounted = true;
+        this.sendView();
+    }
+
+    сomponentWillUnmount () {
+        this._mounted = false
+    }
 
 	componentWillMount(){
 		const token = localStorage.getItem('token');

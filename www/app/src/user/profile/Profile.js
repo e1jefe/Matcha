@@ -8,7 +8,7 @@ class Profile extends Component {
 
 	render(){
 		return(<div>
-				<Header/>
+			<Header />
 				<ProfileContent target={this.props.match}/>
 				<Footer />
 			</div>

@@ -38,6 +38,16 @@ class Nav extends Component {
         this.onMessage = this.onMessage.bind(this);
         this.conn = new WebSocket('ws:/\/localhost:8090')
         this.conn.onmessage = this.onMessage.bind(this)
+        console.log("props dalee ", this.props);
+
+    }
+
+    componentDidMount () {
+        this._mounted = true
+    }
+
+    сomponentWillUnmount () {
+        this._mounted = false
     }
 
     handleLogout() {
@@ -57,27 +67,53 @@ class Nav extends Component {
     }
 
     onMessage(event){
-        // console.log("on MSG")
-        const data = JSON.parse(event.data);
-        let notifArray = localStorage.getItem('notification')
-        if (data.event === 'message' && data.user_id !== this.state.userId) {
-            if (window.location.href.includes('chat') === false){
-                const newMsg = [{who: data.user_id, content: data.myVar}]
-                const oldMsg = this.state.unreadMsg
-                if (oldMsg !== undefined && oldMsg.who !== "") {
-                    this.setState({
-                        unreadMsg: oldMsg.concat(newMsg)
-                    })
-                } else {
-                    this.setState({
-                        unreadMsg: new Array(newMsg)
+        if (this._mounted){
+            // console.log("on MSG")
+            let token = localStorage.getItem('token');
+            const user = jwtDecode(token);
+            console.log('in token ', user);
+            const data = JSON.parse(event.data);
+            console.log('in soket event ', data);
+
+            let notifArray = localStorage.getItem('notification')
+            if (data.event === 'message' && data.target_id === user.userId && data.user_id !== user.userId) {
+                if (window.location.href.includes('chat') === false){
+                    const newMsg = [{who: data.user_id, content: data.myVar}]
+                    const oldMsg = this.state.unreadMsg
+                    if (oldMsg !== undefined && oldMsg.who !== "") {
+                        this.setState({
+                            unreadMsg: oldMsg.concat(newMsg)
+                        })
+                    } else {
+                        this.setState({
+                            unreadMsg: new Array(newMsg)
+                        })
+                    }
+                }
+                if (window.location.href.includes('chat') === false){
+                    iziToast.show({
+                        theme: 'dark',
+                        icon: 'icon-msg',
+                        image: data.ava,
+                        imageWidth: 50,
+                        maxWidth: '500px',
+                        message: data.payload,
+                        position: 'topRight',
+                        progressBar: false
                     })
                 }
             }
-            if (window.location.href.includes('chat') === false){
+            if (data.event === 'setLike' && data.target_id === user.userId && data.user_id !== user.userId) {
+                // console.log("notification array ", notifArray)
+                // console.log("ngot msg")
+
+                if (notifArray == null)
+                    localStorage.setItem('notification', JSON.stringify(data))
+                else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+                    localStorage.setItem('notification', notifArray + JSON.stringify(data))
                 iziToast.show({
                     theme: 'dark',
-                    icon: 'icon-msg',
+                    icon: 'icon-like',
                     image: data.ava,
                     imageWidth: 50,
                     maxWidth: '500px',
@@ -86,90 +122,70 @@ class Nav extends Component {
                     progressBar: false
                 })
             }
-        }
-        if (data.event === 'setLike' && data.user_id !== this.state.userId) {
-            // console.log("notification array ", notifArray)
-            // console.log("ngot msg")
-
-            if (notifArray == null)
-                localStorage.setItem('notification', JSON.stringify(data))
-            else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
-                localStorage.setItem('notification', notifArray + JSON.stringify(data))
-            iziToast.show({
-                theme: 'dark',
-                icon: 'icon-like',
-                image: data.ava,
-                imageWidth: 50,
-                maxWidth: '500px',
-                message: data.payload,
-                position: 'topRight',
-                progressBar: false
-            })
-        }
-        if (data.event === 'disLike' && data.user_id !== this.state.userId) {
-            if (notifArray == null)
-                localStorage.setItem('notification', JSON.stringify(data))
-            else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
-                localStorage.setItem('notification', notifArray + JSON.stringify(data))
-            iziToast.show({
-                theme: 'light',
-                iconUrl: 'http://i66.tinypic.com/241312b.png',
-                image: data.ava,
-                imageWidth: 50,
-                maxWidth: '500px',
-                message: data.payload,
-                position: 'topRight',
-                progressBar: false
-            })
-        }
-        if (data.event === 'match' && data.target_id === this.state.userId) {
-            if (notifArray == null)
-                localStorage.setItem('notification', JSON.stringify(data))
-            else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
-                localStorage.setItem('notification', notifArray + JSON.stringify(data))
-            iziToast.show({
-                theme: 'dark',
-                icon: 'icon-match',
-                image: data.ava,
-                imageWidth: 50,
-                maxWidth: '500px',
-                message: data.payload,
-                position: 'topRight',
-                progressBar: false
-            })
-        }
-        if (data.event === 'view' && data.target_id === this.state.userId) {
-            if (notifArray === null)
-                localStorage.setItem('notification', JSON.stringify(data))
-            else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
-                localStorage.setItem('notification', notifArray + JSON.stringify(data))
-            iziToast.info({
-                message: data.payload,
-                position: 'topRight',
-                progressBar: false
-            })
-        }
-        notifArray = localStorage.getItem('notification')
-        if (notifArray != null) {
-            if (notifArray.includes('}{')) {
-                notifArray = notifArray.split('}{');
-                for (let i = 0; i < notifArray.length; i++) {
-                    if (i === 0)
-                        notifArray[i] = notifArray[i] + '}'
-                    else if (i === notifArray.length - 1)
-                        notifArray[i] = '{' + notifArray[i]
-                    else
-                        notifArray[i] = '{' + notifArray[i] + '}'
-                    // notifArray[i] = notifArray[i].replace('":"', '": "')
-                    notifArray[i] = JSON.parse(notifArray[i])
-                }
+            if (data.event === 'disLike' && data.target_id === user.userId && data.user_id !== user.userId) {
+                if (notifArray == null)
+                    localStorage.setItem('notification', JSON.stringify(data))
+                else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+                    localStorage.setItem('notification', notifArray + JSON.stringify(data))
+                iziToast.show({
+                    theme: 'light',
+                    iconUrl: 'http://i66.tinypic.com/241312b.png',
+                    image: data.ava,
+                    imageWidth: 50,
+                    maxWidth: '500px',
+                    message: data.payload,
+                    position: 'topRight',
+                    progressBar: false
+                })
             }
-            else
-                notifArray = new Array(JSON.parse(notifArray));
-            // console.log("notifications on msg in navigation ", notifArray)
-            this.setState({notifications: notifArray})
+            if (data.event === 'match' && data.target_id === user.userId && data.user_id !== user.userId) {
+                if (notifArray == null)
+                    localStorage.setItem('notification', JSON.stringify(data))
+                else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
+                    localStorage.setItem('notification', notifArray + JSON.stringify(data))
+                iziToast.show({
+                    theme: 'dark',
+                    icon: 'icon-match',
+                    image: data.ava,
+                    imageWidth: 50,
+                    maxWidth: '500px',
+                    message: data.payload,
+                    position: 'topRight',
+                    progressBar: false
+                })
+            }
+            if (data.event === 'view' && data.target_id === user.userId && data.user_id !== user.userId) {
+                if (notifArray === null)
+                    localStorage.setItem('notification', JSON.stringify(data))
+                else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
+                    localStorage.setItem('notification', notifArray + JSON.stringify(data))
+                iziToast.info({
+                    message: data.payload,
+                    position: 'topRight',
+                    progressBar: false
+                })
+            }
+            notifArray = localStorage.getItem('notification')
+            if (notifArray != null) {
+                if (notifArray.includes('}{')) {
+                    notifArray = notifArray.split('}{');
+                    for (let i = 0; i < notifArray.length; i++) {
+                        if (i === 0)
+                            notifArray[i] = notifArray[i] + '}'
+                        else if (i === notifArray.length - 1)
+                            notifArray[i] = '{' + notifArray[i]
+                        else
+                            notifArray[i] = '{' + notifArray[i] + '}'
+                        // notifArray[i] = notifArray[i].replace('":"', '": "')
+                        notifArray[i] = JSON.parse(notifArray[i])
+                    }
+                }
+                else
+                    notifArray = new Array(JSON.parse(notifArray));
+                // console.log("notifications on msg in navigation ", notifArray)
+                this.setState({notifications: notifArray})
+            }
         }
-
     }
 
     componentWillMount() {

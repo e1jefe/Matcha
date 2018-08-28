@@ -812,6 +812,10 @@ class UserController extends Controller
 			$res->removedMatch2 = $exec2;
 
 			$updatedRate = $this->updateRate($target);
+
+			$chatDel = $db->delete()->from('chat')->where('sender', '=', $id)->where('receiver', '=', $target)->orWhere('sender', '=', $target)->where('receiver', '=', $id);
+			$chatDel->execute();
+			
 			$res->msg = "Removed from favorite";
 			$res->check = false;
 		}

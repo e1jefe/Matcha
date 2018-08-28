@@ -46,7 +46,7 @@ class Like extends Component {
 						payload: res.fromWhoName + ' like you',
 						ava: res.fromWhoPic,
 						user_id: this.state.curentUserId,
-						target_id: this.state.target
+						target_id: parseInt(this.state.target, 10)
 					}))
 				} else if (res.removedMatch1 || res.removedMatch2) {
 					this.conn.send(JSON.stringify({
@@ -54,7 +54,7 @@ class Like extends Component {
 						payload: res.fromWhoName + ' unlike you',
 						ava: res.fromWhoPic,
 						user_id: this.state.curentUserId,
-						target_id: this.state.target
+						target_id: parseInt(this.state.target, 10)
 					}))
 				}
 				else if (res.match !== undefined) {
@@ -62,8 +62,8 @@ class Like extends Component {
 						event: 'match',
 						payload: 'You got a match with ' + res.fromWhoName,
 						ava: res.fromWhoPic,
-						user_id: res.match.partner1,
-						target_id: res.match.partner2
+						user_id: parseInt(res.match.partner1, 10),
+						target_id: parseInt(res.match.partner2, 10)
 					}))
 				}
 			})

@@ -59,14 +59,24 @@ class Cabinet extends Component {
 		}
 	}
 
+	componentDidMount () {
+        this._mounted = true
+    }
+
+    сomponentWillUnmount () {
+        this._mounted = false
+    }
+
 	setAvatar(event){
 		event.preventDefault()
-		let pic = event.target.getAttribute('target')
-		PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
-			this.setState({
-				avatar: result.src
+		if (this._mounted){
+			let pic = event.target.getAttribute('target')
+			PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
+				this.setState({
+					avatar: result.src
+				})
 			})
-		})
+		}
 	}
 
 	render() {
@@ -99,7 +109,7 @@ class Cabinet extends Component {
 							<br />
 							<ul className="list-group my-height">
 								<li className="list-group-item text-muted">Resently I view:</li>
-								{views !== undefined && views.length !== 0 ?
+								{views !== undefined && views !== null && views.length !== 0 ?
 									views.map((person) => 
 										<li className="list-group-item text-left" key={person.id}>
 											<NavLink to={"/profile/" + person.id}>

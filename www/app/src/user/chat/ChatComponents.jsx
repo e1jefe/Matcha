@@ -64,6 +64,14 @@ class ChatComponents extends Component {
         }
     }
 
+    componentDidMount () {
+        this._mounted = true
+    }
+
+    сomponentWillUnmount () {
+        this._mounted = false
+    }
+
     showMessageHistory(e){
         if (e.currentTarget.name) {
             const target = parseInt(e.currentTarget.name, 10);
@@ -102,65 +110,110 @@ class ChatComponents extends Component {
                 toPrint: readHistory
             })
         }
-      
     }
 
     onMessage(event){
-        // console.log("on message from who ", this.state.withWho)
-        const data = JSON.parse(event.data);
-        const date = new Date();
-        const target = parseInt(data.user_id, 10);
-        if (data.event === 'message' && data.user_id !== this.state.currentUserId) {
-            PostData('message/get', {
-                    sender: data.user_id, 
-                    reciever: this.state.currentUserId,
-                }). then ((res) => {
-                        if (window.location.href.includes("chat")) {
-                            let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
-                            const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
-                            let forPrint;
-                            // console.log("array will be updated ", newMsg)
-                            if (newMsg === undefined || newMsg.length === 0) {
-                                newMsg = {
-                                    withWho: data.user_id,
-                                    name: data.payload.substr(0, data.payload.indexOf(' sent')),
-                                    ava: data.ava,
-                                    messagies: [arrayB]
-                                }
-                                forPrint = this.state.conversations;
-                                forPrint.push(newMsg);
-                                // console.log("array newMsg ", newMsg)
-                            } else {
-                                newMsg[0].messagies.push(arrayB)
-                                forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
-                            }
-
-                                
-                                // console.log("new for print ", forPrint)
-
-                                let newUnread = this.state.fromWhoUnread;
-                                // console.log("on message includes? ", newUnread.includes(target))
-                                // console.log("on message from who parse int", parseInt(this.state.withWho, 10))
-
-                                if (newUnread.includes(target) === false && parseInt(this.state.withWho, 10) !== target) {
-                                    newUnread.push(target)
-                                // console.log("here new list ", newUnread)
-
-                                } else if (newUnread.includes(target) && parseInt(this.state.withWho, 10) === target) {
-                                // console.log("another place new list ")
-
-                                    for (let i = newUnread.length - 1; i >= 0; i--) {
-                                        if (newUnread[i] === target) {
-                                            newUnread.splice(i, 1);
-                                            break ;
-                                        }
+        if (this._mounted) {
+            // console.log("on message from who ", this.state.withWho)
+            const data = JSON.parse(event.data);
+            const date = new Date();
+            const target = parseInt(data.user_id, 10);
+            if (data.event === 'message' && data.user_id !== this.state.currentUserId) {
+                PostData('message/get', {
+                        sender: data.user_id, 
+                        reciever: this.state.currentUserId,
+                    }). then ((res) => {
+                            if (window.location.href.includes("chat")) {
+                                let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
+                                const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
+                                let forPrint;
+                                // console.log("array will be updated ", newMsg)
+                                if (newMsg === undefined || newMsg.length === 0) {
+                                    newMsg = {
+                                        withWho: data.user_id,
+                                        name: data.payload.substr(0, data.payload.indexOf(' sent')),
+                                        ava: data.ava,
+                                        messagies: [arrayB]
                                     }
-                                    // console.log(newUnread)
+                                    forPrint = this.state.conversations;
+                                    forPrint.push(newMsg);
+                                    // console.log("array newMsg ", newMsg)
+                                } else {
+                                    newMsg[0].messagies.push(arrayB)
+                                    forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
                                 }
-                                this.setState({ conversations: forPrint, fromWhoUnread: newUnread })
 
+                                    
+                                    // console.log("new for print ", forPrint)
+
+                                    let newUnread = this.state.fromWhoUnread;
+                                    // console.log("on message includes? ", newUnread.includes(target))
+                                    // console.log("on message from who parse int", parseInt(this.state.withWho, 10))
+
+                                    if (newUnread.includes(target) === false && parseInt(this.state.withWho, 10) !== target) {
+                                        newUnread.push(target)
+                                    // console.log("here new list ", newUnread)
+
+                                    } else if (newUnread.includes(target) && parseInt(this.state.withWho, 10) === target) {
+                                    // console.log("another place new list ")
+
+                                        for (let i = newUnread.length - 1; i >= 0; i--) {
+                                            if (newUnread[i] === target) {
+                                                newUnread.splice(i, 1);
+                                                break ;
+                                            }
+                                        }
+                                        // console.log(newUnread)
+                                    }
+                                    this.setState({ conversations: forPrint, fromWhoUnread: newUnread })
+
+                            }
+                       })
+            }
+            if (data.event === 'match' && data.target_id === this.state.currentUserId) {
+                //when you got a match it will appear in list for new chat users without reload page
+                let newMatches = this.state.myMatches;
+                if (newMatches !== undefined && newMatches !== null) {
+                    const toPushNewMatch = {
+                        withWho: data.user_id,
+                        name: data.payload.substr(21),
+                        ava: data.ava
+                    };
+                    newMatches.push(toPushNewMatch);
+                    this.setState({
+                        myMatches: newMatches
+                    })
+                }
+            }
+            if (data.event === 'disLike' && data.target_id === this.state.currentUserId) {
+                console.log("in dislike, start dell conversations")
+                let newMatches = this.state.myMatches;
+                console.log("old matches", newMatches)
+
+                if (newMatches !== undefined && newMatches !== null) {
+                    for (let i = newMatches.length - 1; i >= 0; i--) {
+                        if (newMatches[i].withWho === data.user_id) {
+                            newMatches.splice(i, 1);
                         }
-                   })
+                    }
+                    console.log("after dell match ", newMatches)
+
+                    let newConversations = this.state.conversations;
+                console.log("old conversations", newConversations)
+
+                    for (let i = newConversations.length - 1; i >= 0; i--) {
+                        if (newConversations[i].withWho === data.user_id) {
+                            newConversations.splice(i, 1);
+                        }
+                    }
+                console.log("after dell conversations", newConversations)
+
+                    this.setState({
+                        myMatches: newMatches,
+                        conversations: newConversations
+                    })
+                }
+            }
         }
     }
 
@@ -201,26 +254,29 @@ class ChatComponents extends Component {
         let toPrint = new Object()
         if (conversations !== undefined && this.state.withWho !== ""){
             toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)[0]
-            // console.log("conversations ", conversations)
+            console.log("this.state.myMatches ", this.state.myMatches)
 
             const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)[0]
-            const tmp = {
-                    name: nameMatch.name,
-                    withWho: nameMatch.withWho,
-                    ava: nameMatch.ava,
-                    messagies: {
-                        sender: '',
-                        time: '',
-                        content: '',
+            if (nameMatch !== undefined) {
+                const tmp = {
+                        name: nameMatch.name,
+                        withWho: nameMatch.withWho,
+                        ava: nameMatch.ava,
+                        messagies: {
+                            sender: '',
+                            time: '',
+                            content: '',
+                        }
                     }
+                if (toPrint === undefined || toPrint.length === 0) {
+                    toPrint = new Array();
+                    toPrint.push(tmp);
+                    toPrint = toPrint[0];
+                    conversations.push(tmp);
                 }
-            if (toPrint === undefined || toPrint.length === 0) {
-                toPrint = new Array()
-                toPrint.push(tmp)
-                toPrint = toPrint[0]
-                conversations.push(tmp)
             }
-            // console.log("toPrint ", toPrint)
+            
+            console.log("toPrint ", toPrint)
         }
 
         const menu = (
@@ -276,7 +332,7 @@ class ChatComponents extends Component {
                             : null
                         }
                     </div>
-                        {conversations !== undefined && conversations.length > 0 && this.state.withWho !== "" ?    
+                        {conversations !== undefined && conversations.length > 0 && this.state.withWho !== "" && toPrint !== undefined ?    
                             (<Dialog updateData={this.updateData} withWho={this.state.withWho} withWhoName={toPrint.name} me={this.state.currentUserId} conversation={toPrint.messagies}/>)
                             :
                             (<div className="message-content message-content--initial"></div>)
