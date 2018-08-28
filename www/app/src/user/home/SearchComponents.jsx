@@ -71,7 +71,7 @@ class SearchComponents extends Component {
 
     render() {
         return (
-<div>
+<div id="search-all">
             <div id="wrapper1">
                 <div className="sliders">
                 <p>Age</p>
