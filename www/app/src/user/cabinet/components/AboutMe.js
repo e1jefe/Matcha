@@ -67,17 +67,11 @@ class AboutMe extends Component {
 			} else {
 				this.setState({err: result.err})
 			}
-		// console.log("state after send ", this.state)
-
 		})
-		// console.log("state before send ", this.state)
-
 	}
 
 	render(){
 		let tags = this.state.tags
-			// console.log("tags in ABOUT before MAP", tags)
-
 		return(
 			<form className="form" id="registrationForm2" onSubmit={this.handleSubmitAbout}>
 				<div className="form-group">

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Tooltip, Button, Icon } from 'antd'
 import { PostData } from '../../main/components/PostData'
 import jwtDecode from 'jwt-decode'
-// import {findDOMNode} from 'react-dom'
 import iziToast from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 
@@ -14,7 +13,6 @@ class Like extends Component {
 			target: props.target
 		}
 		this.handleLike = this.handleLike.bind(this)
-		// console.log("state in like ", this.state)
 	}
 
 	componentWillMount(){
@@ -29,11 +27,9 @@ class Like extends Component {
 		{
 			const user = jwtDecode(token);
 			PostData('user/like', {uId: user.userId, target: this.state.target}).then((res) => {
-				// console.log("you liked user ")
 				res.check === true ? this.setState({liked: true}) : this.setState({liked: false})
 				this.setState({
 					curentUserId: user.userId
-					// msg: res.msg
 				})
 				iziToast.info({
 					message: res.msg,

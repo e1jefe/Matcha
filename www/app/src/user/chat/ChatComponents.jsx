@@ -250,6 +250,7 @@ class ChatComponents extends Component {
     }
 
     render() {
+        console.log(" history chat ", this.props);
         const conversations = this.state.conversations
         let toPrint = new Object()
         if (conversations !== undefined && this.state.withWho !== ""){

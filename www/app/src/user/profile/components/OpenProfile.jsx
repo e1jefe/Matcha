@@ -11,42 +11,12 @@ class OpenProfile extends Component {
 			curentUserId: '',
 			fromWho: '',
 			fromWhoPic: ''
-			// target: props.target
 		}
-		// this.handleProfile = this.handleProfile.bind(this);
-		// this.conn = new WebSocket('ws:/\/localhost:8090');
-		// this.conn.handleProfile = this.handleProfile.bind(this);
 	}
 	
 	handleProfile(e){
-		// this.conn.send(JSON.stringify({
-		// 	event: 'view',
-		// 	ava: this.state.fromWhoPic,
-		// 	payload: this.state.fromWho + ' checked your profile',
-		// 	user_id: this.state.curentUserId,
-		// 	target_id: this.state.target
-		// }))
 		history.push('/profile/' + e.target.name)
 	}
-
-	// componentWillMount(){
-	// 	const token = localStorage.getItem('token');
-	// 	if (token !== null)
-	// 	{
-	// 		const user = jwtDecode(token);
-	// 		if (user.userLogin !== '')
-	// 		{
-	// 			PostData('user/getAva', {uId: user.userId}).then((res) => {
-	// 				this.setState({
-	// 					curentUserId: user.userId,
-	// 					fromWho: user.userName + ' ' + user.userSurname,
-	// 					fromWhoPic: res.fromWhoPic
-	// 					// target: this.props.target
-	// 				})
-	// 			})
-	// 		}
-	// 	}
-	// }
 
 	render(){
 		return(

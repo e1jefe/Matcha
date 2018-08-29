@@ -68,6 +68,7 @@ class AuthController extends Controller
 						   ->table('profiles')
 						   ->where('user', '=', $fromDb['userId']);
 			$exec = $updateStatement2->execute();
+			$result->id = $fromDb['userId'];
 			return json_encode($result);
 		// }
 		return json_encode(false);
@@ -155,9 +156,9 @@ class AuthController extends Controller
 
 			//create in profiles table new user, who confirmed email, so it will use our servise for sure
 			$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
-			$insertStatement = $db->insert(array('user', 'longetude', 'latitude'))
+			$insertStatement = $db->insert(array('user', 'longetude', 'latitude', 'showMe'))
 						   ->into('profiles')
-						   ->values(array($fromDb['userId'], $response['lon'], $response['lat']));
+						   ->values(array($fromDb['userId'], $response['lon'], $response['lat'], 0));
 			$insertId = $insertStatement->execute(false);
 			header("Location: http://localhost:3000");
 			die();
@@ -200,7 +201,7 @@ class AuthController extends Controller
 			return json_encode($res);
 		$db = new Model;
 		$db = $db->connect();
-		$sql = $db->select()->from('users')->where('email', '=', $request->getParam('pass'));
+		$sql = $db->select()->from('users')->where('email', '=', $request->getParam('email'));
 		$exec = $sql->execute();
 		$fromDb = $exec->fetch();
 		if (count($fromDb) === 0)
@@ -217,6 +218,7 @@ class AuthController extends Controller
 		$exec = $updateStatement->execute();
 		$this->mail->sendMail($email, "Please, folow this link to confirm your new password: http://localhost:8080/auth/confirmResetPass?email=" . $email . "&pass=" . $pass . "&token=" . $token, "Restore Password");
 	}
+
 	public function postLogOut($request, $response)
 	{
 		$uId = $request->getParam('uId');
@@ -233,5 +235,62 @@ class AuthController extends Controller
 		$updateStatement2->execute();
 
 		return json_encode(true);
+	}
+
+	public function signinFB($request, $response)
+	{
+		$uId = intval(substr($request->getParam('id'), 5));
+		// $uId = 55;
+		$name = $request->getParam('name');
+		$email = $request->getParam('email');
+		$ava = $request->getParam('picture');
+		$ava = $ava['data']['url'];
+		$name2 = explode(' ', $name);
+		$fname = $name2[0];
+		$lname = $name2[1];
+		$db = new Model;
+		$db = $db->connect();
+		$ifExist = $db->select()->from('users')->where('userId', '=', $uId);
+		$ifExist = $ifExist->execute();
+		$ifExist = $ifExist->fetchAll();
+		if (count($ifExist) === 0)
+		{
+			//register
+			$pass = "!Popk@7";
+			$pass = password_hash($pass, PASSWORD_DEFAULT);
+			$login = $name;
+			$token = $this->generateTokenConfirm();
+			date_default_timezone_set ('Europe/Kiev');
+			$last_seen = date('Y-m-d H:i:s');
+			$insertStatement = $db->insert(array('userId', 'login', 'password', 'email', 'fname', 'lname', 'token', 'isEmailConfirmed', 'last_seen'))
+						   ->into('users')
+						   ->values(array($uId, $login, $pass, $email, $fname, $lname, $token, 1, $last_seen));
+			$insertId = $insertStatement->execute(false);
+
+			$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
+			$insertStatement = $db->insert(array('user', 'longetude', 'latitude', 'showMe', 'profilePic', 'isOnline'))
+						   ->into('profiles')
+						   ->values(array($uId, $response['lon'], $response['lat'], 0, $ava, 1));
+			$insertId = $insertStatement->execute(false);
+
+			$insertStatement = $db->insert(array('userNbr', 'src', 'whenAdd'))
+						   ->into('photos')
+						   ->values(array($uId, $ava, $last_seen));
+			$insertId = $insertStatement->execute(false);
+
+			$jwt = $this->generateToken($login, $uId, $fname, $lname);
+			$result->jwt = $jwt;
+			$result->id = $uId;
+
+			return json_encode($result);
+		}
+		else
+		{
+			//login
+			$result;
+			return json_encode($result);
+		}
+		return json_encode(false);
+
 	}
 }

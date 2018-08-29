@@ -31,8 +31,6 @@ class Content extends Component {
 			activeUp: false,
 			activeReset: false
 		});
-		// console.log("show sign in", !currentState);
-
 	}
 
 	clicShowSignUp() {
@@ -45,8 +43,6 @@ class Content extends Component {
 			activeReset: false,
 			activeIp: false
 		});
-		// console.log("show sign up", currentState);
-
 	}
 
 	clicShowResetPass() {
@@ -60,7 +56,6 @@ class Content extends Component {
 			activeUp: false,
 			activeIp: false
 		});
-		// console.log(this.state);
 	}
 
 	render() {

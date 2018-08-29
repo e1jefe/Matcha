@@ -80,11 +80,13 @@ class Cabinet extends Component {
 	}
 
 	render() {
+            console.log(" history cabinet ", this.props.location.path);
+
 		console.log("view cabinet", this.state.iView)
 		const views = this.state.iView;
 		return(
 			<div>
-				<Header />
+
 				<div className="container bootstrap snippet marginTop cabinet-height">
 					<div className="row">
 						<div className="col-sm-3 text-center">
@@ -133,7 +135,7 @@ class Cabinet extends Component {
 								</Tab>
 
 								<Tab eventKey={3} title="My location">
-									<Location userId={this.state.userId}/>
+									<Location userId={this.state.userId} mojno={this._mounted}/>
 								</Tab>
 
 								<Tab eventKey={4} title="Photos">
@@ -155,7 +157,6 @@ class Cabinet extends Component {
 						</div>
 					</div>
 				</div>
-				<Footer />
 			</div>
 		);
 	}

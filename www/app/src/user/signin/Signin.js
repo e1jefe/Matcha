@@ -6,9 +6,7 @@ import Content from './Content';
 
 export const SignIn = () => (
 	<div>
-		<Header />
 		<Content />
-		<Footer />
 	</div>
 )
 

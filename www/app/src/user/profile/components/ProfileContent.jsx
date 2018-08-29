@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import jwtDecode from 'jwt-decode'
 import { PostData } from '../../main/components/PostData'
 import { Layout } from 'antd'
-// import { Carousel } from 'antd'
 import { Rate } from 'antd'
 import { Button } from 'antd'
 import Like from './Like'
@@ -27,24 +26,19 @@ class ProfileContent extends Component {
 
 	sendView() {
 		if (this._mounted) {
-			const token = localStorage.getItem('token');
-			const curentUser = jwtDecode(token);
-		// console.log("send view", curentUser);
-		// console.log("target ", this.props.target.params.id);
-
-		PostData('user/getAva', {uId: curentUser.userId}).then((res) => {
-					this.setState({
-						fromWhoPic: res.fromWhoPic
-					})
-					this.conn.send(JSON.stringify({
-						event: 'view',
-						ava: res.fromWhoPic,
-						payload: curentUser.userName + ' ' + curentUser.userSurname + ' checked your profile',
-						user_id: curentUser.userId,
-						target_id: parseInt(this.props.target.params.id, 10)
-					}))	
-					console.log("state in profile ", this.state, res)
+			const curentUser = jwtDecode(localStorage.getItem('token'));
+			PostData('user/getAva', {uId: curentUser.userId}).then((res) => {
+				this.setState({
+					fromWhoPic: res.fromWhoPic
 				})
+				this.conn.send(JSON.stringify({
+					event: 'view',
+					ava: res.fromWhoPic,
+					payload: curentUser.userName + ' ' + curentUser.userSurname + ' checked your profile',
+					user_id: curentUser.userId,
+					target_id: parseInt(this.props.target.params.id, 10)
+				}))	
+			})
 		}
 	}
 

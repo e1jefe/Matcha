@@ -7,6 +7,7 @@ $app->get('/', 'HomeController:index')->setName('home');
 $app->post('/auth/signin', 'AuthController:postSignIn');
 $app->post('/auth/signup', 'AuthController:postSignUp');
 $app->post('/auth/reset', 'AuthController:postResetPass');
+$app->post('/auth/signinFB', 'AuthController:signinFB');
 
 $app->get('/auth/confirmRegistration', 'AuthController:getConfirmRegistr');
 $app->get('/auth/confirmResetPass', 'AuthController:confirmResetPass');

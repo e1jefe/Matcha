@@ -31,19 +31,21 @@ class Nav extends Component {
             userLogin: '',
             userId: '',
             notifications: '',
-            unreadMsg: []
+            unreadMsg: [],
+            authorize: props.authorize
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleNotif = this.handleNotif.bind(this);
         this.onMessage = this.onMessage.bind(this);
         this.conn = new WebSocket('ws:/\/localhost:8090')
         this.conn.onmessage = this.onMessage.bind(this)
-        console.log("props dalee ", this.props);
-
     }
 
-    componentDidMount () {
-        this._mounted = true
+    static getDerivedStateFromProps(nextProps, prevState){
+        if (prevState.authorize !== nextProps.authorize) {
+            return {authorize: nextProps.authorize}
+        }
+        return null
     }
 
     сomponentWillUnmount () {
@@ -54,8 +56,13 @@ class Nav extends Component {
         localStorage.removeItem('token');
         this.setState({author: false});
         PostData('auth/logOut', {uId: this.state.userId}).then ((result) => {
-            if (result === true)
-                history.push('/home');
+            if (result === true) {
+                this.conn.send(JSON.stringify({
+                        event: 'logout',
+                        payload: '',
+                        user_id: this.state.userId
+                    }))
+            }
         })
     }
 
@@ -67,14 +74,10 @@ class Nav extends Component {
     }
 
     onMessage(event){
-        if (this._mounted){
-            // console.log("on MSG")
+        if (this._mounted && localStorage.hasOwnProperty('token')){
             let token = localStorage.getItem('token');
             const user = jwtDecode(token);
-            console.log('in token ', user);
             const data = JSON.parse(event.data);
-            console.log('in soket event ', data);
-
             let notifArray = localStorage.getItem('notification')
             if (data.event === 'message' && data.target_id === user.userId && data.user_id !== user.userId) {
                 if (window.location.href.includes('chat') === false){
@@ -104,9 +107,6 @@ class Nav extends Component {
                 }
             }
             if (data.event === 'setLike' && data.target_id === user.userId && data.user_id !== user.userId) {
-                // console.log("notification array ", notifArray)
-                // console.log("ngot msg")
-
                 if (notifArray == null)
                     localStorage.setItem('notification', JSON.stringify(data))
                 else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
@@ -176,67 +176,63 @@ class Nav extends Component {
                             notifArray[i] = '{' + notifArray[i]
                         else
                             notifArray[i] = '{' + notifArray[i] + '}'
-                        // notifArray[i] = notifArray[i].replace('":"', '": "')
                         notifArray[i] = JSON.parse(notifArray[i])
                     }
                 }
                 else
                     notifArray = new Array(JSON.parse(notifArray));
-                // console.log("notifications on msg in navigation ", notifArray)
                 this.setState({notifications: notifArray})
             }
         }
     }
 
-    componentWillMount() {
-       
-        let token = localStorage.getItem('token');
-        let notifArray = localStorage.getItem('notification')
-        // console.log("notif will mount ", notifArray)
-        if (notifArray !== null)
-        {
-            if (notifArray.includes('}{')) {
-                notifArray = notifArray.split('}{');
-                for (let i = 0; i < notifArray.length; i++) {
-                    if (i === 0)
-                        notifArray[i] = notifArray[i] + '}'
-                    else if (i === notifArray.length - 1)
-                        notifArray[i] = '{' + notifArray[i]
-                    else
-                        notifArray[i] = '{' + notifArray[i] + '}'
-                    // notifArray[i] = notifArray[i].replace('":"', '": "')
-                    notifArray[i] = JSON.parse(notifArray[i])
-                }
-            }
-            else
-                notifArray = new Array(JSON.parse(notifArray));
-        }
-        if (token !== undefined && token !== null)
-        {
-            let user = jwtDecode(token);
-            // console.log(user);
-            if (user.user_login !== '')
+    componentDidMount() {
+        this._mounted = true;
+        if (localStorage.hasOwnProperty('token')){
+            let token = localStorage.getItem('token');
+            let notifArray = localStorage.getItem('notification')
+            if (notifArray !== null)
             {
-                PostData('user/isFull', {userId: user.userId}).then ((result) => {
-                    if (result.error !== '' || result.error !== undefined) {
-                        this.setState({ errMsg: result.error });
+                if (notifArray.includes('}{')) {
+                    notifArray = notifArray.split('}{');
+                    for (let i = 0; i < notifArray.length; i++) {
+                        if (i === 0)
+                            notifArray[i] = notifArray[i] + '}'
+                        else if (i === notifArray.length - 1)
+                            notifArray[i] = '{' + notifArray[i]
+                        else
+                            notifArray[i] = '{' + notifArray[i] + '}'
+                        notifArray[i] = JSON.parse(notifArray[i])
                     }
-                    this.setState({ 
-                        author: true,
-                        userLogin: user.login,
-                        userId: user.userId,
-                        notifications: notifArray,
-                        fullProfile: result 
+                }
+                else
+                    notifArray = new Array(JSON.parse(notifArray));
+            }
+            if (token !== undefined && token !== null)
+            {
+                let user = jwtDecode(token);
+                if (user.user_login !== '')
+                {
+                    PostData('user/isFull', {userId: user.userId}).then ((result) => {
+                        if (result.error !== '' || result.error !== undefined) {
+                            this.setState({ errMsg: result.error });
+                        }
+                        this.setState({ 
+                            author: true,
+                            userLogin: user.login,
+                            userId: user.userId,
+                            notifications: notifArray,
+                            fullProfile: result 
+                        });
                     });
-                });
+                }
             }
         }
     }
 
     render() {
         const notifications = this.state.notifications
-        // console.log("notifications ", notifications)
-        if (this.state.author === false
+        if (this.state.authorize === false
         ) {
             return(
                 <nav className="menu">
@@ -257,7 +253,7 @@ class Nav extends Component {
         else {
             const menu = (
                 <Menu>
-                    {notifications !== undefined && notifications !== null ?
+                    {Array.isArray(notifications) && notifications !== undefined && notifications !== null ?
                         notifications.map((notif, i) => 
                             <Menu.Item key={i}>
                                 <NavLink to={"profile/" + notif.user_id}>

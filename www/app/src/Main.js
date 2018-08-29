@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Router, Switch, Route } from 'react-router-dom'
-// import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Home from './user/home/Home';
 import SignIn from './user/signin/Signin.js';
 import history from './user/history/history';
@@ -9,6 +8,10 @@ import Search from "./user/home/Search.js";
 import Profile from "./user/profile/Profile";
 import Cabinet from "./user/cabinet/Cabinet";
 
+import Header from './user/main/components/headerComponents/Header.jsx';
+import Footer from './user/main/components/footerComponents/Footer';
+import jwtDecode from 'jwt-decode';
+
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -16,11 +19,54 @@ import Cabinet from "./user/cabinet/Cabinet";
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 class Main extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			authorize: false
+		}
+		this.conn = new WebSocket('ws:/\/localhost:8090')
+        this.conn.onmessage = this.onMessage.bind(this)
+	}
+
+	сomponentWillUnmount () {
+        this._mounted = false
+    }
+
+	componentDidMount(){
+			console.log("is token? did", localStorage.hasOwnProperty('token'));
+
+        this._mounted = true;
+        if (localStorage.hasOwnProperty('token')){
+        	this.setState({
+				authorize: true
+        	})
+        }
+	}
+
+	onMessage(event){
+		if (this._mounted) {
+			if (localStorage.hasOwnProperty('token')){
+				const token = localStorage.getItem('token');
+				const user = jwtDecode(token);
+				const data = JSON.parse(event.data);
+				if (data.event === 'login' && data.user_id === user.userId){
+					this.setState({
+						authorize: true
+					})
+				}
+			} else {
+				this.setState({
+					authorize: false
+				})
+			}
+		}
+	}
 
 	render(){
 		return(
-			<main>
-				<Router history={history}>
+			<Router history={history}>
+				<main>
+					<Header authorize={this.state.authorize}/>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route path='/home' component={Home}/>
@@ -30,8 +76,9 @@ class Main extends Component {
 						<Route path='/search' component={Search}/>
 						<Route path="/profile/:id" component={Profile} />
 					</Switch>
-				</Router>
-			</main>
+					<Footer/>
+				</main>
+			</Router>
 		)
 	}
 }

@@ -29,38 +29,40 @@ class Location extends Component {
 	}
 
 	componentDidMount(){
-		PostData('user/getCoord', {uId: this.state.uId}).then ((result) => {
-			this.setState({
-				markers: {
-					position: {
-						lat: parseFloat(result.latStart),
-						lng: parseFloat(result.lngStart)
-					}
-				},
-				showMarker: result.show
+		if (this.props.mojno){
+			PostData('user/getCoord', {uId: this.state.uId}).then ((result) => {
+				this.setState({
+					markers: {
+						position: {
+							lat: parseFloat(result.latStart),
+							lng: parseFloat(result.lngStart)
+						}
+					},
+					showMarker: result.show
+				})
 			})
-		})
-		if(navigator.geolocation){
-			let self = this
-			navigator.geolocation.getCurrentPosition( function(pos) {
-				PostData('user/pushCoord', {uId: self.state.uId, longAllow: pos.coords.longitude, latAllow: pos.coords.latitude}).then ((result) => {
-					if (self.state.markers.position.lat.length < result.latAllow && self.state.markers.position.lng.length < result.lngAllow)
-					{
-						self.setState({
-							markers:{
-								position:{
-									lat: result.latAllow,
-									lng: result.lngAllow
+			if(navigator.geolocation){
+				let self = this
+				navigator.geolocation.getCurrentPosition( function(pos) {
+					PostData('user/pushCoord', {uId: self.state.uId, longAllow: pos.coords.longitude, latAllow: pos.coords.latitude}).then ((result) => {
+						if (self.state.markers.position.lat.length < result.latAllow && self.state.markers.position.lng.length < result.lngAllow)
+						{
+							self.setState({
+								markers:{
+									position:{
+										lat: result.latAllow,
+										lng: result.lngAllow
+									}
 								}
-							}
-						})
-					}
+							})
+						}
+					})
+					self.setState({
+						longAllow: pos.coords.longitude,
+						latAllow: pos.coords.latitude,
+					})
 				})
-				self.setState({
-					longAllow: pos.coords.longitude,
-					latAllow: pos.coords.latitude,
-				})
-			})
+			}
 		}
 	}
 
