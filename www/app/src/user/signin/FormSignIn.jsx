@@ -66,7 +66,7 @@ class FormSignIn extends Component {
 	}
 
 	render() {
-		// const { errMsg } = this.state
+		 const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<div>
@@ -81,13 +81,17 @@ class FormSignIn extends Component {
 					<input type="password" className="form-control dop-pad" id="signin-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 				</div>
 				<div className="form-group position-relative">
-					<Button className="ant-btn-block">Sign in</Button>
+					<Button type="submit" className="ant-btn-block">Sign in</Button>
 				</div>
+				<div className="fbButton">
 				<FacebookLogin
                     appId="435835890273066"
                     autoLoad={false}
                     fields="name,email,picture.type(large)"
-                    callback={this.facebookResponse} />
+                    callback={this.facebookResponse}
+                    icon="fa-facebook"
+                    textButton="Sign in with facebook"/>
+                    </div>
 			</form>
 		);
 	}

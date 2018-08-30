@@ -104,3 +104,12 @@ label.password {
 .example-leave.example-leave-active {
   opacity: 0.01;
 }
+.fbButton .kep-login-facebook.metro{
+    border-radius: 4px;
+    width: 100%;
+    font-size: 11px;
+    color: #4c69ba;
+    background-color: #fff;
+    padding: calc(.34435vw + 6.38843px) calc(.34435vw + 18.38843px);
+
+}
