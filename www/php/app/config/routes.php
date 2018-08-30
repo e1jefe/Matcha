@@ -14,6 +14,8 @@ $app->get('/auth/confirmResetPass', 'AuthController:confirmResetPass');
 $app->post('/auth/logOut', 'AuthController:postLogOut');
 
 $app->post('/user/isFull', 'UserController:postCheckProfileIsFull');
+$app->post('/user/hasAva', 'UserController:postCheckHasAvatar');
+
 $app->post('/user/getAllInfo', 'UserController:postGetAllInfo');
 $app->post('/user/getAllPhoto', 'UserController:postGetAllPhoto');
 

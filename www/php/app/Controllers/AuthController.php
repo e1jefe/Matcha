@@ -239,7 +239,7 @@ class AuthController extends Controller
 
 	public function signinFB($request, $response)
 	{
-		$uId = intval(substr($request->getParam('id'), 5));
+		$uId = $request->getParam('id');
 		// $uId = 55;
 		$name = $request->getParam('name');
 		$email = $request->getParam('email');
@@ -250,7 +250,7 @@ class AuthController extends Controller
 		$lname = $name2[1];
 		$db = new Model;
 		$db = $db->connect();
-		$ifExist = $db->select()->from('users')->where('userId', '=', $uId);
+		$ifExist = $db->select()->from('users')->where('fbNbr', '=', $uId);
 		$ifExist = $ifExist->execute();
 		$ifExist = $ifExist->fetchAll();
 		if (count($ifExist) === 0)
@@ -262,35 +262,57 @@ class AuthController extends Controller
 			$token = $this->generateTokenConfirm();
 			date_default_timezone_set ('Europe/Kiev');
 			$last_seen = date('Y-m-d H:i:s');
-			$insertStatement = $db->insert(array('userId', 'login', 'password', 'email', 'fname', 'lname', 'token', 'isEmailConfirmed', 'last_seen'))
+			$insertStatement = $db->insert(array('fbNbr', 'login', 'password', 'email', 'fname', 'lname', 'token', 'isEmailConfirmed', 'last_seen'))
 						   ->into('users')
 						   ->values(array($uId, $login, $pass, $email, $fname, $lname, $token, 1, $last_seen));
 			$insertId = $insertStatement->execute(false);
 
+			$selectSQL = $db->select()->from('users')->where('fbNbr', '=', $uId);
+			$execSelect = $selectSQL->execute();
+			$forId = $execSelect->fetch();
+
 			$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
 			$insertStatement = $db->insert(array('user', 'longetude', 'latitude', 'showMe', 'profilePic', 'isOnline'))
 						   ->into('profiles')
-						   ->values(array($uId, $response['lon'], $response['lat'], 0, $ava, 1));
+						   ->values(array($forId['userId'], $response['lon'], $response['lat'], 0, $ava, 1));
 			$insertId = $insertStatement->execute(false);
 
 			$insertStatement = $db->insert(array('userNbr', 'src', 'whenAdd'))
 						   ->into('photos')
-						   ->values(array($uId, $ava, $last_seen));
+						   ->values(array($forId['userId'], $ava, $last_seen));
 			$insertId = $insertStatement->execute(false);
 
-			$jwt = $this->generateToken($login, $uId, $fname, $lname);
+			$jwt = $this->generateToken($login, $forId['userId'], $fname, $lname);
 			$result->jwt = $jwt;
-			$result->id = $uId;
+			$result->id = $forId['userId'];
 
 			return json_encode($result);
 		}
 		else
 		{
 			//login
-			$result;
-			return json_encode($result);
+			$selectSQL = $db->select()->from('users')->where('fbNbr', '=', $uId);
+			$execSelect = $selectSQL->execute();
+			$forId = $execSelect->fetchAll();
+			if (count($forId) !== 0)
+			{
+				date_default_timezone_set ('Europe/Kiev');
+				$date = date("Y-m-d H:i:s");
+				$updateStatement = $db->update(array('last_seen' => $date))
+						   ->table('users')
+						   ->where('userId', '=', $forId['userId']);
+				$affectedRows = $updateStatement->execute();
+				$updateStatement2 = $db->update(array('isOnline' => 1))
+							   ->table('profiles')
+							   ->where('user', '=', $forId[0]['userId']);
+				$exec = $updateStatement2->execute();
+
+				$jwt = $this->generateToken($login, $forId[0]['userId'], $fname, $lname);
+				$result->jwt = $jwt;
+				$result->id = $forId[0]['userId'];
+				return json_encode($result);
+			}
 		}
 		return json_encode(false);
-
 	}
 }

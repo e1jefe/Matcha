@@ -3,6 +3,7 @@ import history from "../history/history";
 import { PostData } from '../main/components/PostData';
 import jwtDecode from 'jwt-decode';
 import FacebookLogin from 'react-facebook-login';
+import { Button } from 'antd';
 
 class FormSignIn extends Component {
 
@@ -24,9 +25,7 @@ class FormSignIn extends Component {
 	}
 
 	facebookResponse(response){
-		console.log("fb responce ", response)
 		PostData('auth/signinFB', response).then ((result) => {
-			console.log("after php facebook ", result);
 				if (result === false) {
 					this.setState({ errMsg: 'invalid login or password' });
 				} else {
@@ -81,12 +80,14 @@ class FormSignIn extends Component {
 					<label className="image-replace password" htmlFor="signin-pass"></label>
 					<input type="password" className="form-control dop-pad" id="signin-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 				</div>
-				<button type="submit" className="btn btn-primary btn-block">Submit</button>
+				<div className="form-group position-relative">
+					<Button className="ant-btn-block">Sign in</Button>
+				</div>
 				<FacebookLogin
-                        appId="435835890273066"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        callback={this.facebookResponse} />
+                    appId="435835890273066"
+                    autoLoad={false}
+                    fields="name,email,picture.type(large)"
+                    callback={this.facebookResponse} />
 			</form>
 		);
 	}

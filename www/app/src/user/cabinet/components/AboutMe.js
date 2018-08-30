@@ -18,7 +18,7 @@ class AboutMe extends Component {
 
 	componentWillMount() {
 		PostData('user/getAbout', this.state).then ((result) => {
-			// console.log("res in Mount ABOUT ", result)
+			console.log("res in Mount ABOUT ", result)
 			if (result.tags != null)
 			{
 				this.setState({

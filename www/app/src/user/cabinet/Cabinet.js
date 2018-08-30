@@ -53,7 +53,6 @@ class Cabinet extends Component {
 						fullProfile: Boolean(res.userData.isFull),
 						iView: res.recentViews
 					})
-					console.log("recent view ", res.recentViews)
 				})
 			}
 		}
@@ -80,9 +79,6 @@ class Cabinet extends Component {
 	}
 
 	render() {
-            console.log(" history cabinet ", this.props.location.path);
-
-		console.log("view cabinet", this.state.iView)
 		const views = this.state.iView;
 		return(
 			<div>
@@ -127,7 +123,7 @@ class Cabinet extends Component {
 						<div className="col-sm-9">
 							<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
 								<Tab eventKey={1} title="Personal info">
-									<MainInfo userId={this.state.userId}/>
+									<MainInfo userId={this.state.userId} userData={this.state}/>
 								</Tab>
 
 								<Tab eventKey={2} title="About me">
@@ -135,7 +131,7 @@ class Cabinet extends Component {
 								</Tab>
 
 								<Tab eventKey={3} title="My location">
-									<Location userId={this.state.userId} mojno={this._mounted}/>
+									<Location userId={this.state.userId}/>
 								</Tab>
 
 								<Tab eventKey={4} title="Photos">

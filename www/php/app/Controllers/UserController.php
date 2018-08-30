@@ -6,6 +6,19 @@ use App\Mail\SendMail;
 
 class UserController extends Controller
 {
+	public function postCheckHasAvatar($request, $response)
+	{
+		$userId = $request->getParam('userId');
+		$db = new Model;
+		$db = $db->connect();
+		$sql = $db->select()->from('profiles')->where('user', '=', $userId);
+		$exec = $sql->execute();
+		$fromDb = $exec->fetch();
+		if ($fromDb['profilePic'])
+			return json_encode(true);
+		return json_encode(false);
+	}
+
 	public function postCheckProfileIsFull($request, $response)
 	{
 		$userId = $request->getParam('userId');
@@ -52,6 +65,9 @@ class UserController extends Controller
 		$exec = $sql->execute();
 		$fromDb = $exec->fetch();
 		$result->userData = $fromDb;
+
+		$result->check = $userId;
+		
 		//record new time of visit 
 		date_default_timezone_set ('Europe/Kiev');
 		$date = date('Y-m-d H:i:s');
@@ -507,8 +523,8 @@ class UserController extends Controller
 		$fromDb = $exec->fetchAll();
 		if (count($fromDb))
 		{
-			$sql = $db->delete()->from('profiles')->where('profilePic', '=', $target);
-			$exec = $sql->execute();
+			$updateStatement1 = $db->update(array('profilePic' => null))->table('profiles')->where('profilePic', '=', $target);
+			$updateStatement1->execute();
 		}
 		//return new array pics to re render on front
 		$sql = $db->select()->from('photos')->where('userNbr', '=', $request->getParam('userId'));
@@ -604,6 +620,10 @@ class UserController extends Controller
 		$lat1 = $request->getParam('latAllow');
 		$lat2 = $request->getParam('latDen');
 		$show = $request->getParam('showMe');
+			$res->check3 = "prishlo " . $request->getParam('showMe') ." for DB " . $show;
+
+		// $res->check3 = $request->getParam('uId') . " lat alow: " . $request->getParam('latAllow') . " lon alow: " . $request->getParam('longAllow') . " lon den: " . $request->getParam('longDen') . " lon den: " . $request->getParam('latDen') . " " . $request->getParam('showMe');
+		// return json_encode($res);
 		$db = new Model;
 		$db = $db->connect();
 		if ($long1 && $lat1)
@@ -612,6 +632,7 @@ class UserController extends Controller
 			$exec = $updateStatement->execute();
 			$res->latAllow = $lat1;
 			$res->lngAllow = $long1;
+			$res->check = "nice, you got permision ";
 		}
 		if ($long2 && $lat2)
 		{
@@ -625,19 +646,20 @@ class UserController extends Controller
 			}
 			$res->latDen = $lat2;
 			$res->lngDen = $long2;
+			$res->check2 = "pirate ";
 		}
-		if ($show !== '' && $show !== undefined && $show !== null)
+		if ($show === 0 || $show === 1)
 		{
 			$updateStatement = $db->update(array('showMe' => $show))->table('profiles')->where('user', '=', $userId);
 			$exec = $updateStatement->execute();
+
 		}
 
 		date_default_timezone_set ('Europe/Kiev');
 		$date = date('Y-m-d H:i:s');
 		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $userId);
 		$updateStatement2->execute();
-
-		return json_encode($res);
+		return json_encode($res);		
 	}
 
 	public function updateRate($target)

@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import { PostData } from '../../main/components/PostData'
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import { Switch } from 'antd'
+import React, { Component } from 'react';
+import { PostData } from '../../main/components/PostData';
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { Switch } from 'antd';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class Location extends Component {
 	constructor(props) {
@@ -29,41 +31,17 @@ class Location extends Component {
 	}
 
 	componentDidMount(){
-		if (this.props.mojno){
-			PostData('user/getCoord', {uId: this.state.uId}).then ((result) => {
-				this.setState({
-					markers: {
-						position: {
-							lat: parseFloat(result.latStart),
-							lng: parseFloat(result.lngStart)
-						}
-					},
-					showMarker: result.show
-				})
+		PostData('user/getCoord', {uId: this.state.uId}).then ((result) => {
+			this.setState({
+				markers: {
+					position: {
+						lat: parseFloat(result.latStart),
+						lng: parseFloat(result.lngStart)
+					}
+				},
+				showMarker: result.show
 			})
-			if(navigator.geolocation){
-				let self = this
-				navigator.geolocation.getCurrentPosition( function(pos) {
-					PostData('user/pushCoord', {uId: self.state.uId, longAllow: pos.coords.longitude, latAllow: pos.coords.latitude}).then ((result) => {
-						if (self.state.markers.position.lat.length < result.latAllow && self.state.markers.position.lng.length < result.lngAllow)
-						{
-							self.setState({
-								markers:{
-									position:{
-										lat: result.latAllow,
-										lng: result.lngAllow
-									}
-								}
-							})
-						}
-					})
-					self.setState({
-						longAllow: pos.coords.longitude,
-						latAllow: pos.coords.latitude,
-					})
-				})
-			}
-		}
+		})	
 	}
 
     handleMapClick = this.handleMapClick.bind(this);
@@ -74,18 +52,38 @@ class Location extends Component {
     updateLocation(event){
     	event.preventDefault()
     	if(this.state.showMarker){
-			const lat = this.state.markers.position.lat
-			const lng = this.state.markers.position.lng
-			PostData('user/pushCoord', {uId: this.state.uId, longAllow: lng, latAllow: lat, showMe: this.state.showMarker}).then ((result) => {
+    		let lat;
+    		let lng;
+    		if (this.state.markers.position.lat instanceof Function) {
+    			lat = this.state.markers.position.lat();
+				lng = this.state.markers.position.lng();
+    		} else {
+    			lat = this.state.markers.position.lat;
+				lng = this.state.markers.position.lng;
+    		}
+			
+			PostData('user/pushCoord', {uId: this.state.uId, longAllow: lng, latAllow: lat, showMe: 1}).then ((result) => {
+				iziToast.info({
+				    title: 'Location',
+				    message: 'We updated your location!',
+				    position: 'center',
+				    progressBar: false
+				});
 			})
 		}
 		else
-			PostData('user/pushCoord', {uId: this.state.uId, showMe: this.state.showMarker}).then ((result) => {
+			PostData('user/pushCoord', {uId: this.state.uId, showMe: 0}).then ((result) => {
+				iziToast.info({
+				    title: 'Location',
+				    message: 'We would not show your location anymore',
+				    position: 'center',
+				    progressBar: false
+				});
+
 			})
     }
 
     handleMapClick(event) {
-        // let that = this;
         let mapRef = this._mapComponent;
         this.setState({
             markers: {
@@ -110,7 +108,6 @@ class Location extends Component {
     }
 
 	render(){
-		// console.log("location state: ", this.state)
 		const show = this.state.showMarker
 		const GoogleMapWrapper = withGoogleMap(props => (
             <GoogleMap
@@ -159,7 +156,7 @@ class Location extends Component {
 						<h4>
 							Allow to collect my location
 						</h4>
-						<Switch checked={show} onChange={this.allowLocation} />
+						<Switch checked={show !== undefined && show !== '' ? this.state.showMarker : false} onChange={this.allowLocation} />
 					</div>
 				</div>
 				<div className="form-group">

@@ -7,8 +7,9 @@ class MainInfo extends Component {
 		super(props);
 		this.state = {
 			userId: props.userId,
+			login: '',
 			fName: '',
-			lname: '',
+			lName: '',
 			email: '',
 			age: '',
 			sexPref: '',
@@ -23,8 +24,10 @@ class MainInfo extends Component {
 		this.handleSubmitInfo = this.handleSubmitInfo.bind(this)
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		PostData('user/getAllInfo', {userId: this.state.userId}).then ((result) => {
+			// console.log("res ", result)
+
 			this.setState({
 				login: result.userData.login,
 				fName: result.userData.fname,
@@ -36,7 +39,6 @@ class MainInfo extends Component {
 				fameRate: result.userData.fameRate
 			})
 		})
-		// console.log("state in cabinet in WILL Mount ", this.state)		
 	}
 
 	onChange(event) {
@@ -85,6 +87,8 @@ class MainInfo extends Component {
 	}
 
 	render() {
+			// console.log("main state ", this.state)
+
 		return(
 			<form className="form" id="registrationForm1" onSubmit={this.handleSubmitInfo}>
 				<div className="form-group">
@@ -94,7 +98,7 @@ class MainInfo extends Component {
 								First name
 							</h4>
 						</label>
-						<input type="text" className="form-control" name="fname"  ref="first_name" onChange={this.onChange} id="first_name" defaultValue={this.state.fName} title="enter your first name if any." />
+						<input type="text" className="form-control" name="fname"  ref="first_name" onChange={this.onChange} id="first_name" defaultValue={this.state.fName !== undefined ? this.state.fName : " "} title="enter your first name if any." />
 					</div>
 				</div>
 				<div className="form-group">
@@ -104,7 +108,7 @@ class MainInfo extends Component {
 								Last name
 							</h4>
 						</label>
-						<input type="text" className="form-control" name="lname" ref="last_name" onChange={this.onChange} id="last_name" defaultValue={this.state.lName} title="enter your last name if any." />
+						<input type="text" className="form-control" name="lname" ref="last_name" onChange={this.onChange} id="last_name" defaultValue={this.state.lName !== undefined ? this.state.lName: " "} title="enter your last name if any." />
 					</div>
 				</div>
 				<div className="form-group">
@@ -114,7 +118,7 @@ class MainInfo extends Component {
 								Login
 							</h4>
 						</label>
-						<input type="text" className="form-control" name="login" ref="login" onChange={this.onChange} id="login" defaultValue={this.state.login} title="enter your new login" />
+						<input type="text" className="form-control" name="login" ref="login" onChange={this.onChange} id="login" defaultValue={this.state.login !== undefined ? this.state.login : " "} title="enter your new login" />
 					</div>
 				</div>
 				<div className="form-group">
@@ -134,7 +138,7 @@ class MainInfo extends Component {
 								Email
 							</h4>
 						</label>
-						<input type="email" className="form-control" name="email" ref="email" onChange={this.onChange} id="email" placeholder={this.state.email} title="enter your email." />
+						<input type="email" className="form-control" name="email" ref="email" onChange={this.onChange} id="email" placeholder={this.state.email !== undefined ? this.state.email : " "} title="enter your email." />
 					</div>
 				</div>
 				<div className="form-group">
@@ -150,7 +154,7 @@ class MainInfo extends Component {
 				<div className="form-group">
 					<div className="col-xs-12 marginTop" >
 						<h4>Choose your sex</h4>
-							<select className="custom-select" value={this.state.sex} onChange={this.handleSexChange} id="inputGroupSelect02" name="gender">
+							<select className="custom-select" value={this.state.sex !== "" ? this.state.sex : " "} onChange={this.handleSexChange} id="inputGroupSelect02" name="gender">
 								<option value="">...</option>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
@@ -162,7 +166,7 @@ class MainInfo extends Component {
 						<h4>
 							Choose your sexual preferences
 						</h4>
-						<select className="custom-select" value={this.state.sexPref} onChange={this.handleSexPrefChange} name="sexPref">
+						<select className="custom-select" value={this.state.sexPref !== undefined ? this.state.sexPref : " "} onChange={this.handleSexPrefChange} name="sexPref">
 							<option value="">...</option>
 						    <option value="bi" >Bisexual</option>
 						    <option value="hetero" >Heterosexual</option>
