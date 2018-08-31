@@ -78,11 +78,11 @@ class SearchController extends Controller
         join('profiles', 'users.userId', '=', 'profiles.user')->
         where('userId', '=', $userId);
         $exec = $sql->execute();
-        $fromDb = $exec->fetch();
-        $userLat = $fromDb['latitude'];
-        $userLong = $fromDb['longetude'];
-        $userGender = $fromDb['sex'];
-        $userPref = $fromDb['sexPref'];
+        $fromDb1 = $exec->fetch();
+        $userLat = $fromDb1['latitude'];
+        $userLong = $fromDb1['longetude'];
+        $userGender = $fromDb1['sex'];
+        $userPref = $fromDb1['sexPref'];
 
         $maxDistance = $request->getParam('searchDistance');
         $fameRate = $request->getParam('searchFR');
@@ -128,6 +128,7 @@ class SearchController extends Controller
                 if ($distance > $maxDistance)
                     unset($fromDb[$key]);
                 }
+
         }
 //        foreach ($fromDb as $key => $value)
 //        {

@@ -30,7 +30,7 @@ class UsersCards extends Component {
                     {Object.keys(users2).map((i) => <div key={i}>{
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>  <Card>
                 <CardBody>
-                    <CardTitle>  {users2[i].fname} {users2[i].lname}, {users2[i].age} y.o.</CardTitle>
+                    <CardTitle>  {users2[i].fname} {users2[i].lname}, {users2[i].age}</CardTitle>
                     <CardSubtitle><Rate allowHalf disabled defaultValue={users2[i].stars} />  {users2[i].distance} km</CardSubtitle>
                 </CardBody>
                         <img src={users2[i].profilePic} />

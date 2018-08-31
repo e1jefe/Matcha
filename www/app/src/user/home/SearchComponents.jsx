@@ -23,11 +23,13 @@ class SearchComponents extends Component {
             searchDistance: 10,
             searchFR: {
                 min: 0,
-                max: 100,
+                max: 80,
             },
         }
         this.updateSearchRes = this.updateSearchRes.bind(this);
         this.updateData = this.updateData.bind(this);
+        this.sortByAge = this.sortByAge.bind(this);
+        this.sortByDistance = this.sortByDistance.bind(this);
     }
 
     componentWillMount() {
@@ -51,6 +53,20 @@ class SearchComponents extends Component {
     updateData = (value) => {
         this.setState({ tags : value })
     }
+
+    sortByAge(result)
+    {
+        result.sort((a, b) => {
+            return a['age'] > b['age'] ? 1 : -1;
+        });
+    }
+
+    sortByDistance(result)
+    {
+        result.sort((a, b) => {
+            return a['distance'] > b['distance'] ? 1 : -1;
+        });
+    }
     updateSearchRes(event) {
         console.log("changed value: ", this.state)
         const token = localStorage.getItem('token')
@@ -60,12 +76,15 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
             ((result) => {
-                console.log('result', result);
+                this.sortByDistance(result.userData);
+                // this.sortByAge(result.userData);
+               // console.log('result 1', result);
                 this.setState({
                     res: result.userData
                 })
             })
         }
+
 
     }
 
