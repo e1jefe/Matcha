@@ -25,18 +25,16 @@ class MyPhoto extends Component  {
 	}
 
 	deletePic(event){
-		// console.log('in delete')
-		
 		event.preventDefault()
 		let pic = event.target.getAttribute('target')
-		// console.log('sorce: ', pic)
 		PostData('user/delMyPic', {userId: this.state.userId, pic: pic}).then ((result) => {
 			this.setState({pics: result.userPhoto})
 			console.log("удал pic after ", this.state.pics)
 			console.log("удал pic after result ", result)
 		})
-		// console.log("удал pic before ", this.state.pics)
-		
+		if (this.props.avatar !== undefined && pic === this.props.avatar) {
+			this.props.setAvatar(null);
+		}		
 	}
 
 	onCHangeFile(e) {

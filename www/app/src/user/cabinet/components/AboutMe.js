@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import { PostData } from '../../main/components/PostData'
+import { PostData } from '../../main/components/PostData';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class AboutMe extends Component {
 	constructor(props){
@@ -19,18 +21,18 @@ class AboutMe extends Component {
 	componentWillMount() {
 		PostData('user/getAbout', this.state).then ((result) => {
 			console.log("res in Mount ABOUT ", result)
-			if (result.tags != null)
+			if (result.tags !== null)
 			{
 				this.setState({
 					tags: result.tags.split(" "),
-					bio: result.bio
+					bio: result.bio === null || result.bio === "" ? " " : result.bio
 				})
 			}
 			else
 			{
 				this.setState({
-					tags: result.tags,
-					bio: result.bio
+					tags: result.tags === null || result.tags === "" ? " " : result.tags,
+					bio: result.bio === null || result.bio === "" ? " " : result.bio
 				})
 			}
 		})
@@ -54,16 +56,24 @@ class AboutMe extends Component {
 		if (this.state.tags === null || this.state.tags === '' || this.state.tags === undefined)
 			this.setState({tags: ''})
 		this.setState({err: ''})
-		let newTags = findDOMNode(this.refs.tags).value.trim()
+		let newTags = findDOMNode(this.refs.tags).value;
+		newTags = newTags.trim();
+		// console.log("new tag:", newTags);
 		this.refs.tags.value = ' '
 		PostData('user/recordAbout', {uId: this.state.uId, bio: this.state.bio, tags: newTags}).then ((result) => {
-			console.log("resul from base ", result)
+			console.log("resul from base:", result)
 			if (result.end === true) {
 				this.setState({
 					tags: result.tags.split(" "),
 					bio: result.bio,
 					err: result.err
-				})
+				}, iziToast.info({
+				    	title: 'Info',
+				    	message: 'We updated your info',
+				    	position: 'center',
+				    	timeout: 3000,
+				    	progressBar: false
+					}))
 			} else {
 				this.setState({err: result.err})
 			}
@@ -81,7 +91,7 @@ class AboutMe extends Component {
 								My interests:
 							</h4>
 						</label>
-						{tags !== null && tags !== '' && tags !== undefined && tags[0] !== '' ? 
+						{tags !== null && tags !== undefined && tags !== '' && tags !== ' ' && tags[0] !== '' ? 
 							<div className="col-xs-10">
 								{tags.map((tag) => (<div key={tag.toString()} className="tag"><span className="tagTxt">{tag}</span><span className="tagDel" tagcontent={tag.toString()} onClick={this.dellTag}> x</span></div>))}
 							</div>

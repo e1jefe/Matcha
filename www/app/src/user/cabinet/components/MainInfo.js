@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import { PostData } from '../../main/components/PostData'
+import { PostData } from '../../main/components/PostData';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class MainInfo extends Component {
 	constructor(props) {
@@ -34,8 +36,8 @@ class MainInfo extends Component {
 				lName: result.userData.lname,
 				email: result.userData.email,
 				age: result.userData.age,
-				sex: result.userData.sex,
-				sexPref: result.userData.sexPref,
+				sex: result.userData.sex === null ? ' ' : result.userData.sex,
+				sexPref: result.userData.sexPref === null ? ' ' : result.userData.sexPref,
 				fameRate: result.userData.fameRate
 			})
 		})
@@ -82,7 +84,12 @@ class MainInfo extends Component {
 				email: result.newData.email,
 				sex: result.newData.sex,
 				sexPref: result.newData.sexPref
-			})
+			}, iziToast.info({
+				    title: 'Info',
+				    message: 'We updated your info',
+				    position: 'center',
+				    progressBar: false
+				}))
 		})
 	}
 

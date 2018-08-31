@@ -392,8 +392,8 @@ class UserController extends Controller
 		$selectStatement = $db->select()->from('profiles')->where('user', '=', $userId);
 		$exec = $selectStatement->execute();
 		$fromDb = $exec->fetch();
-		$res->tags = $fromDb['tags'];
-		$res->bio = $fromDb['bio'];
+		$res->tags = trim($fromDb['tags']);
+		$res->bio = trim($fromDb['bio']);
 		return json_encode($res);
 	}
 
@@ -401,13 +401,14 @@ class UserController extends Controller
 	{
 		$userId = $request->getParam('uId');
 		$userTags = $request->getParam('tags');
-		$userBio = $request->getParam('bio');
+		$userTags = trim($userTags);
+		$userBio = trim($request->getParam('bio'));
 		$db = new Model;
 		$db = $db->connect();
 		$selectStatement = $db->select()->from('profiles')->where('user', '=', $userId);
 		$exec = $selectStatement->execute();
 		$fromDb = $exec->fetch();
-		$userTagsInit = $fromDb['tags'];
+		$userTagsInit = trim($fromDb['tags']);
 		$colTagDb = explode(' ', $fromDb['tags']);
 		$sendTags = explode(' ', $userTags);
 		$colForRecord = 50 - count($colTagDb);
@@ -428,7 +429,7 @@ class UserController extends Controller
 			$userTags = $userTagsInit;
 			$res->err = "Would you be so kind be less specific. You may add up to 50 tags";
 		}
-		$userBio === "" ? $userBio = $fromDb['bio'] : $userBio = $userBio;
+		$userBio === "" ? $userBio = trim($fromDb['bio']) : $userBio = $userBio;
 
 		$updateStatement = $db->update(array('bio' => $userBio, 'tags' => $userTags))
 								   ->table('profiles')
@@ -446,13 +447,12 @@ class UserController extends Controller
 		if ($fromDb['tags'] === "")
 			$res->tags = "";
 		else
-			$res->tags = $fromDb['tags'];
+			$res->tags = trim($fromDb['tags']);
 
 		date_default_timezone_set ('Europe/Kiev');
 		$date = date('Y-m-d H:i:s');
 		$updateStatement2 = $db->update(array('last_seen' => $date))->table('users')->where('userId', '=', $userId);
 		$updateStatement2->execute();
-
 		return json_encode($res);
 	}
 

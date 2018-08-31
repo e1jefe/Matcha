@@ -6,6 +6,8 @@ import './chat.css';
 import ChatComponents from './ChatComponents';
 import Header from '../main/components/headerComponents/Header.jsx';
 import Footer from '../main/components/footerComponents/Footer';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class Chat extends Component {
 	constructor(props) {
@@ -24,7 +26,13 @@ class Chat extends Component {
 						hasAva: res
 					})
 				} else {
-					history.push('/cabinet');
+					iziToast.info({
+				    	title: 'Info',
+				    	message: 'Set profile picture before chating with somebody',
+				    	position: 'topCenter',
+				    	timeout: 5000,
+				    	progressBar: false
+					}, history.push('/cabinet'))
 				}
 			})
 			

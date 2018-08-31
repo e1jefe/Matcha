@@ -67,14 +67,20 @@ class Cabinet extends Component {
     }
 
 	setAvatar(event){
-		event.preventDefault()
-		if (this._mounted){
-			let pic = event.target.getAttribute('target')
-			PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
-				this.setState({
-					avatar: result.src
-				})
+		if (event === null)	{
+			this.setState({
+				avatar: ""
 			})
+		} else {
+			event.preventDefault()
+			if (this._mounted){
+				let pic = event.target.getAttribute('target')
+				PostData('user/setAvatar', {ava: pic, userId: this.state.userId}).then((result) => {
+					this.setState({
+						avatar: result.src
+					})
+				})
+			}
 		}
 	}
 
@@ -135,7 +141,7 @@ class Cabinet extends Component {
 								</Tab>
 
 								<Tab eventKey={4} title="Photos">
-									<MyPhoto userId={this.state.userId} setAvatar={this.setAvatar}/>
+									<MyPhoto userId={this.state.userId} setAvatar={this.setAvatar} avatar={this.state.avatar}/>
 								</Tab>
 
 								<Tab eventKey={5} title="Views">

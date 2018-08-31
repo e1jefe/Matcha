@@ -81,7 +81,7 @@ class FormSignIn extends Component {
 					<input type="password" className="form-control dop-pad" id="signin-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 				</div>
 				<div className="form-group position-relative">
-					<Button type="submit" className="ant-btn-block">Sign in</Button>
+					<Button type="submit" className="ant-btn-block" onClick={this.handleSubmit}>Sign in</Button>
 				</div>
 				<div className="fbButton">
 				<FacebookLogin
