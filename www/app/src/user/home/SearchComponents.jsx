@@ -10,6 +10,8 @@ import { PostData } from '../main/components/PostData';
 import {findDOMNode} from 'react-dom';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import { Radio } from 'antd'
+const RadioGroup = Radio.Group;
 
 class SearchComponents extends Component {
     constructor(props) {
@@ -30,6 +32,9 @@ class SearchComponents extends Component {
         this.updateData = this.updateData.bind(this);
         this.sortByAge = this.sortByAge.bind(this);
         this.sortByDistance = this.sortByDistance.bind(this);
+        this.sortByRate = this.sortByRate.bind(this);
+        this.onChange = this.onChange.bind(this);
+
     }
 
     componentWillMount() {
@@ -67,6 +72,25 @@ class SearchComponents extends Component {
             return a['distance'] > b['distance'] ? 1 : -1;
         });
     }
+
+    sortByRate(result)
+    {
+        result.sort((a, b) => {
+            return a['fameRate'] > b['fameRate'] ? 1 : -1;
+        });
+    }
+
+    state = {
+        value: 1,
+    }
+
+    onChange = (e) => {
+        // console.log('radio checked', e.target.value);
+        this.setState({
+            value: e.target.value,
+        });
+    }
+
     updateSearchRes(event) {
         console.log("changed value: ", this.state)
         const token = localStorage.getItem('token')
@@ -76,8 +100,15 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
             ((result) => {
-                this.sortByDistance(result.userData);
-                // this.sortByAge(result.userData);
+                if(this.state.value === 1) {
+                    this.sortByAge(result.userData);
+                }
+                else if(this.state.value === 2) {
+                    this.sortByDistance(result.userData);
+                }
+                else if(this.state.value === 3) {
+                    this.sortByRate(result.userData);
+                }
                // console.log('result 1', result);
                 this.setState({
                     res: result.userData
@@ -90,42 +121,49 @@ class SearchComponents extends Component {
 
     render() {
         return (
-<div id="search-all">
-            <div id="wrapper1">
-                <div className="sliders">
-                <p>Age</p>
-                    <InputRange
-                        maxValue={55}
-                        minValue={18}
-                        value={this.state.searchAge}
-                        onChange={value => this.setState({ searchAge : value })}
-                    />
-                <p>Distance</p>
-                    <InputRange
-                        maxValue={100}
-                        minValue={0}
-                        value={this.state.searchDistance}
-                         onChange={value => this.setState({ searchDistance : value })} />
-                <p>Fame rating</p>
-                    <InputRange step={10}
-                    maxValue={100}
-                    minValue={0}
-                    value={this.state.searchFR}
-                    onChange={value => this.setState({ searchFR : value })} />
+            <div id="search-all">
+                <div id="wrapper1">
+                    <div className="sliders">
+                        <p>Age</p>
+                        <InputRange
+                            maxValue={55}
+                            minValue={18}
+                            value={this.state.searchAge}
+                            onChange={value => this.setState({ searchAge : value })}
+                        />
+                        <p>Distance</p>
+                        <InputRange
+                            maxValue={100}
+                            minValue={0}
+                            value={this.state.searchDistance}
+                            onChange={value => this.setState({ searchDistance : value })} />
+                        <p>Fame rating</p>
+                        <InputRange step={10}
+                                    maxValue={100}
+                                    minValue={0}
+                                    value={this.state.searchFR}
+                                    onChange={value => this.setState({ searchFR : value })} />
+                    </div>
+                    <div className="tags">
+                        <EditableTagGroup updateData={this.updateData}/>
+                    </div>
+                    <div className="Radio">
+                        <RadioGroup onChange={this.onChange} defaultValue={this.state.value}>
+                            <Radio value={1}>Age</Radio>
+                            <Radio value={2}>Distance</Radio>
+                            <Radio value={3}>Rating</Radio>
+                            <Radio value={4}>Tags</Radio>
+                        </RadioGroup>
+                    </div>
+                    <div className="btn-search">
+                        <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
+                    </div>
                 </div>
-                <div className="tags">
-                <EditableTagGroup updateData={this.updateData}/>
-                </div>
-                <div className="btn-search">
-                <Button id= "search" type="submit" onClick={this.updateSearchRes} icon="search">Search</Button>
+                <div className="Cards">
+                    <UsersCards toShow={this.state.res} me={this.state.currentUserId}/>
                 </div>
             </div>
-    <div className="Cards">
-        <UsersCards toShow={this.state.res} me={this.state.currentUserId}/>
-    </div>
-</div>
         );
-
     }
 }
 export default SearchComponents;
