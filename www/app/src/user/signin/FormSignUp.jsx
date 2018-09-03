@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { PostData } from '../main/components/PostData';
+import { Button } from 'antd';
+import FacebookLogin from 'react-facebook-login';
+import history from "../history/history";
 
 class FormSignUp extends Component {
 
@@ -25,10 +28,35 @@ class FormSignUp extends Component {
 		}
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
+		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn.handleLogin = this.handleLogin.bind(this);
+		this.facebookResponse = this.facebookResponse.bind(this)
 	}
 
 	onChange(event) {
 		this.setState({[event.target.name]: event.target.value});
+	}
+
+	facebookResponse(response){
+		PostData('auth/signinFB', response).then ((result) => {
+				if (result === false) {
+					this.setState({ errMsg: 'invalid login or password' });
+				} else {
+					localStorage.setItem('token', result.jwt);
+					this.setState({regStatuse: true});
+					this.handleLogin(result.id);
+				}
+			});
+	}
+
+	handleLogin(id){
+		this.conn.send(JSON.stringify({
+						event: 'login',
+						payload: '',
+						user_id: id
+					}));
+		history.push('/home');
 	}
 	
 	handleSubmit(event) {
@@ -69,7 +97,6 @@ class FormSignUp extends Component {
 	}
 
 	render() {
-		// const { errMsg } = this.state
 		return(
 				<form onSubmit={this.handleSubmit}>
 					{ this.state.errMsg !== '' && ( <span className="alert alert-danger">{this.state.errMsg}</span>) }
@@ -108,9 +135,19 @@ class FormSignUp extends Component {
 						<label className="image-replace password" htmlFor="signup-pass2"></label>
 						<input type="password" className="form-control dop-pad" id="signup-pass2" name="cpass" onChange={this.onChange} placeholder="Confirm password"></input>
 					</div>
-						{this.state.eCPass !== undefined && this.state.eCPass !== '' && ( <span className="alert alert-danger">{this.state.eCPass}</span>)}																							
-
-					<button type="submit" className="btn btn-primary btn-block">Submit</button>
+						{this.state.eCPass !== undefined && this.state.eCPass !== '' && ( <span className="alert alert-danger">{this.state.eCPass}</span>)}
+					<div className="form-group position-relative">
+						<Button type="submit" className="my-btn-block" onClick={this.handleSubmit}>Sign up</Button>
+					</div>
+					<div className="fbButton">
+						<FacebookLogin
+		                    appId="435835890273066"
+		                    autoLoad={false}
+		                    fields="name,email,picture.type(large)"
+		                    callback={this.facebookResponse}
+		                    icon="fa-facebook"
+		                    textButton="Sign up with facebook"/>
+                	</div>
 				</form>
 		
 		);

@@ -209,6 +209,11 @@ class AuthController extends Controller
 			$res->eEmail = 'This email is not registered';
 			return $res;
 		}
+		else if ($fromDb['fbNbr'] !== null)
+		{
+			$res->eEmail = 'You should login with facebook';
+			return $res;
+		}
 		$email = $request->getParam('email');
 		$pass = password_hash($request->getParam('pass'), PASSWORD_DEFAULT);
 		$token = $this->generateTokenConfirm();
@@ -240,7 +245,6 @@ class AuthController extends Controller
 	public function signinFB($request, $response)
 	{
 		$uId = $request->getParam('id');
-		// $uId = 55;
 		$name = $request->getParam('name');
 		$email = $request->getParam('email');
 		$ava = $request->getParam('picture');

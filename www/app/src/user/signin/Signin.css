@@ -5,9 +5,11 @@
 .active {
     display: block;
 }
+
 .none {
     display: none;
 }
+
 i {
     font-style: normal;
 }
@@ -20,9 +22,11 @@ i {
     border-radius: 3px;
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
 }
+
 .position-relative {
     position: relative;
 }
+
 .dop-pad {
     padding-left: 40px;
 }
@@ -42,17 +46,21 @@ label.image-replace {
     background-repeat: no-repeat;
     font-family: 'fontawesome';
 }
+
 label.password {
     background-image: url(https://codyhouse.co/demo/login-signup-modal-window/img/cd-icon-password.svg);
 }
+
 .margin-top {
     margin-top: 15px;
     font-size: 16px;
 }
+
     .btn-my-color:hover {
         background-color: #9947eb;
         border-color: transparent;
     }
+
     .btn-primary:focus {
         border-color: transparent;
         box-shadow: none;
@@ -111,5 +119,10 @@ label.password {
     color: #4c69ba;
     background-color: #fff;
     padding: calc(.34435vw + 6.38843px) calc(.34435vw + 18.38843px);
+}
 
+.my-btn-block {
+    display: block;
+    width: 100%;
+    font-weight: 700;
 }

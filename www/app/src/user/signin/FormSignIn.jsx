@@ -21,7 +21,6 @@ class FormSignIn extends Component {
 		this.conn = new WebSocket('ws:/\/localhost:8090');
 		this.conn.handleLogin = this.handleLogin.bind(this);
 		this.facebookResponse = this.facebookResponse.bind(this)
-
 	}
 
 	facebookResponse(response){
@@ -81,17 +80,17 @@ class FormSignIn extends Component {
 					<input type="password" className="form-control dop-pad" id="signin-pass" name="pass" onChange={this.onChange} placeholder="Password"></input>
 				</div>
 				<div className="form-group position-relative">
-					<Button type="submit" className="ant-btn-block" onClick={this.handleSubmit}>Sign in</Button>
+					<Button type="submit" className="my-btn-block" onClick={this.handleSubmit}>Sign in</Button>
 				</div>
 				<div className="fbButton">
-				<FacebookLogin
-                    appId="435835890273066"
-                    autoLoad={false}
-                    fields="name,email,picture.type(large)"
-                    callback={this.facebookResponse}
-                    icon="fa-facebook"
-                    textButton="Sign in with facebook"/>
-                    </div>
+					<FacebookLogin
+	                    appId="435835890273066"
+	                    autoLoad={false}
+	                    fields="name,email,picture.type(large)"
+	                    callback={this.facebookResponse}
+	                    icon="fa-facebook"
+	                    textButton="Sign in with facebook"/>
+                </div>
 			</form>
 		);
 	}
