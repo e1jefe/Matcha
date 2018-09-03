@@ -71,6 +71,16 @@ img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userI
 		display: none;
 }
 
+.item button.unread-msg-btn {
+	background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 @media (max-width: 767px){
 		nav.menu {
 				overflow: visible;

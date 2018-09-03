@@ -39,6 +39,7 @@ class Nav extends Component {
 		this.onMessage = this.onMessage.bind(this);
 		this.conn = new WebSocket('ws:/\/localhost:8090')
 		this.conn.onmessage = this.onMessage.bind(this)
+		this.clearUnread = this.clearUnread.bind(this);
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState){
@@ -50,6 +51,10 @@ class Nav extends Component {
 
 	сomponentWillUnmount () {
 		this._mounted = false
+	}
+
+	clearUnread(){
+		this.setState({ unreadMsg: [] });
 	}
 
 	handleLogout() {
@@ -296,7 +301,9 @@ class Nav extends Component {
 								<li className="item">
 									<NavLink to="/chat" unread={this.state.unreadMsg} test="test" >
 										<Badge count={this.state.unreadMsg !== null && this.state.unreadMsg.length !== 0 ? this.state.unreadMsg.length : 0} >
-											<img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+											<button className="unread-msg-btn" onClick={this.clearUnread}>
+												<img className="shopaImage" src="http://i66.tinypic.com/xnw035.png" alt="messagies"/>
+											</button>
 										</Badge>
 									</NavLink>
 								</li>
