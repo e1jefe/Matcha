@@ -207,7 +207,7 @@ class UserController extends Controller
 		foreach ($fromDb as $key => $profile) {
 			if ($myData['sexPref'] == 'homo') {
 				if (($myData['sex'] == $profile['sex'] && $profile['sexPref'] == 'homo') || $profile['sexPref'] == 'bi') {
-					strtotime($profile['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline= false;
+					strtotime($profile['last_seen'] . ' + 15 minutes') > time() ? $isOnline = true : $isOnline = false;
 					$likesMeProfiles[$i] = array('uId' => $profile['userId'], 'fname' => $profile['fname'], 'lname' => $profile['lname'], 'age' => $profile['age'], 'sex' => $profile['sex'], 'sexPref' => $profile['sexPref'], 'fameRate' => $profile['fameRate'], 'stars' => $profile['stars'], 'isOnline' => $isOnline, 'lastSeen' => $profile['last_seen'], 'profilePic' => $profile['profilePic']);
 					$i++;
 				}
