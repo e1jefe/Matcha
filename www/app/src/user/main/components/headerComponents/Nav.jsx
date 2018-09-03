@@ -143,21 +143,37 @@ class Nav extends Component {
 					progressBar: false
 				})
 			}
-			if (data.event === 'match' && data.target_id === user.userId && data.user_id !== user.userId) {
-				if (notifArray == null)
-					localStorage.setItem('notification', JSON.stringify(data))
-				else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false))
-					localStorage.setItem('notification', notifArray + JSON.stringify(data))
-				iziToast.show({
-					theme: 'dark',
-					icon: 'icon-match',
-					image: data.ava,
-					imageWidth: 50,
-					maxWidth: '500px',
-					message: data.payload,
-					position: 'topRight',
-					progressBar: false
-				})
+			if (data.event === 'match' && (data.target_id === user.userId || data.user_id === user.userId)) {
+				if (notifArray === null) {
+					if (data.user_id !== user.userId) {
+						localStorage.setItem('notification', JSON.stringify(data));	
+					}
+				} else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false)) {
+					if (data.user_id !== user.userId) {	
+						localStorage.setItem('notification', notifArray + JSON.stringify(data))
+					}
+				}
+				if (data.target_id === user.userId) {
+					iziToast.show({
+						theme: 'dark',
+						icon: 'icon-match',
+						image: data.ava,
+						imageWidth: 50,
+						maxWidth: '500px',
+						message: data.payload,
+						position: 'topRight',
+						progressBar: false
+					})
+				} else {
+					iziToast.show({
+						theme: 'dark',
+						icon: 'icon-match',
+						maxWidth: '500px',
+						message: 'You got a match just now',
+						position: 'topRight',
+						progressBar: false
+					})
+				}
 			}
 			if (data.event === 'view' && data.target_id === user.userId && data.user_id !== user.userId) {
 				if (notifArray === null)
@@ -196,6 +212,8 @@ class Nav extends Component {
 		if (localStorage.hasOwnProperty('token')){
 			let token = localStorage.getItem('token');
 			let notifArray = localStorage.getItem('notification')
+				console.log("notifications:");
+
 			if (notifArray !== null)
 			{
 				if (notifArray.includes('}{')) {
@@ -236,7 +254,6 @@ class Nav extends Component {
 	}
 
 	render() {
-		// console.log("authorize in nav ", this.state.authorize);
 		const notifications = this.state.notifications
 		if (this.state.authorize === false
 		) {
