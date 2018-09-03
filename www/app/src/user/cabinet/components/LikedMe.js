@@ -24,6 +24,7 @@ class LikedMe extends Component {
 
 	render() {
 		const whoLikedMe = this.state.whoLikedMe
+		console.log("who liked me", whoLikedMe)
 		return(
 			<div>
 				<div className="form-group">
