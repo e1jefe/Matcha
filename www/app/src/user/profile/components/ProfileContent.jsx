@@ -85,7 +85,9 @@ class ProfileContent extends Component {
 	}
 
 	render(){
-		const tags = (this.state.tTags !== undefined && this.state.tTags.length !== 0 && this.state.tTags !== "") ? this.state.tTags.split(" ") : this.state.tTags
+		let tags = (this.state.tTags !== undefined && this.state.tTags.length !== 0 && this.state.tTags !== "") ? this.state.tTags.split(" ") : this.state.tTags;
+		if (tags !== undefined && tags[0] === "")
+			tags = tags.splice(1);
 		return(
 			<Layout>
 				<Content>

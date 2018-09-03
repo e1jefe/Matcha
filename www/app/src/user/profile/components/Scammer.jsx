@@ -21,7 +21,6 @@ class Scammer extends Component {
 		{
 			const user = jwtDecode(token);
 			PostData('user/scammer', {uId: user.userId, target: this.state.target}).then((res) => {
-				// console.log("res in report ", res)
 				iziToast.info({
 				    message: res.msg,
 				    position: 'topRight',
