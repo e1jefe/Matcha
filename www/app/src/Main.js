@@ -33,8 +33,6 @@ class Main extends Component {
     }
 
 	componentDidMount(){
-			console.log("is token? did", localStorage.hasOwnProperty('token'));
-
         this._mounted = true;
         if (localStorage.hasOwnProperty('token')){
         	this.setState({

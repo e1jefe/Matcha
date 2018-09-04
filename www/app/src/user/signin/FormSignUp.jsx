@@ -76,7 +76,6 @@ class FormSignUp extends Component {
 			PostData('auth/signup', this.state).then ((result) => {			
 				if (result.fromDbErr !== undefined) {
 					this.setState({ errMsg: result.fromDbErr });
-					console.log('here', result);
 				} else if (result !== true){
 					this.setState({
 						eLogin: result.eLogin,
@@ -86,11 +85,9 @@ class FormSignUp extends Component {
 						eLname: result.eLname,
 						eEmail: result.eEmail,
 					});
-					console.log(result);
 				}
 				else {
 					this.setState({regStatuse: true});
-					console.log(result);
 				}
 			});
 		}

@@ -20,7 +20,6 @@ class AboutMe extends Component {
 
 	componentWillMount() {
 		PostData('user/getAbout', this.state).then ((result) => {
-			console.log("res in Mount ABOUT ", result)
 			if (result.tags !== null)
 			{
 				this.setState({
@@ -58,10 +57,8 @@ class AboutMe extends Component {
 		this.setState({err: ''})
 		let newTags = findDOMNode(this.refs.tags).value;
 		newTags = newTags.trim();
-		// console.log("new tag:", newTags);
 		this.refs.tags.value = ' '
 		PostData('user/recordAbout', {uId: this.state.uId, bio: this.state.bio, tags: newTags}).then ((result) => {
-			console.log("resul from base:", result)
 			if (result.end === true) {
 				this.setState({
 					tags: result.tags.split(" "),

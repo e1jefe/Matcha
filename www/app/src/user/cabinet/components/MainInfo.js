@@ -28,7 +28,6 @@ class MainInfo extends Component {
 
 	componentDidMount() {
 		PostData('user/getAllInfo', {userId: this.state.userId}).then ((result) => {
-			// console.log("res ", result)
 
 			this.setState({
 				login: result.userData.login,
@@ -94,7 +93,6 @@ class MainInfo extends Component {
 	}
 
 	render() {
-			// console.log("main state ", this.state)
 
 		return(
 			<form className="form" id="registrationForm1" onSubmit={this.handleSubmitInfo}>

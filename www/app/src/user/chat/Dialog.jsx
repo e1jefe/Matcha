@@ -14,14 +14,11 @@ class Dialog extends Component {
     }
 
     componentDidMount() {
-    	console.log("try to scroll")
         this.scrollToBottom()
     }
 
     componentDidUpdate() {
-    	console.log("try to scroll 2 ")
-    	// findDOMNode(this.)
-    	
+
         this.scrollToBottom()
     }
 

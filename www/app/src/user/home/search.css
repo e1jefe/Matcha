@@ -78,6 +78,14 @@ body {
         margin-top: 5px;
     }
 }
+@media only screen and (max-width:768px){
+    #search-all {
+        height: calc(100vh - 124px);
+    }
+    .Radio{
+        margin-top: 5px;
+    }
+}
 @media only screen and (max-width:480px){
     #wrapper1 {
         width: 99%;
@@ -111,5 +119,7 @@ body {
         margin-top: 0px;
         flex-wrap: nowrap;
     }
-
+    #search-all {
+        height: calc(100vh - 104px);
+    }
 }

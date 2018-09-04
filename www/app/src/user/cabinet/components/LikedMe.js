@@ -24,7 +24,6 @@ class LikedMe extends Component {
 
 	render() {
 		const whoLikedMe = this.state.whoLikedMe
-		console.log("who liked me", whoLikedMe)
 		return(
 			<div>
 				<div className="form-group">
@@ -35,7 +34,7 @@ class LikedMe extends Component {
 				<div className="row">
 					{whoLikedMe !== undefined && whoLikedMe !== null ? 
 						whoLikedMe.map((profile) => (												
-							<div className="col-xs-4" key={profile.uId}>
+							<div className="col-xs-10 col-sm-4 col-md-4" key={profile.uId}>
 								<div className="card card-relatieve">
 									<div className="onLineIndecator" style={profile.isOnline === true ? {backgroundColor: '#00e64d'} : null}></div>
 									<img className="card-img-top" src={profile.profilePic !== "" ? profile.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } alt="avatar"/>

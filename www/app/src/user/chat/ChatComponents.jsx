@@ -27,14 +27,12 @@ class ChatComponents extends Component {
         this.conn.handleSendMsg = this.updateData.bind(this)
         this.showMessageHistory = this.showMessageHistory.bind(this)
         this.addNewChat = this.addNewChat.bind(this)
-        // this.showMorePeople = this.showMorePeople.bind(this)
     }
 
     componentWillMount(){
         const token = localStorage.getItem('token');
         if (token !== null) {
             const user = jwtDecode(token);
-            // console.log("data in token ", user)
 
             PostData('user/isFull', {userId: user.userId}).then ((result) => {
                 if (result.error !== '' || result.error !== undefined) {
@@ -54,10 +52,8 @@ class ChatComponents extends Component {
                         fromWhoUnread: result.fromWhoUnread,
                         myMatches: result.myMatches
                     })
-                    console.log("data from db", result.data)
                 })
             );
-            // console.log("state in chat ", this.state)
             if (this.state.full === false) {
                 history.push('/cabinet');
             }
@@ -114,7 +110,6 @@ class ChatComponents extends Component {
 
     onMessage(event){
         if (this._mounted) {
-            // console.log("on message from who ", this.state.withWho)
             const data = JSON.parse(event.data);
             const date = new Date();
             const target = parseInt(data.user_id, 10);
@@ -127,7 +122,6 @@ class ChatComponents extends Component {
                                 let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
                                 const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
                                 let forPrint;
-                                // console.log("array will be updated ", newMsg)
                                 if (newMsg === undefined || newMsg.length === 0) {
                                     newMsg = {
                                         withWho: data.user_id,
@@ -137,25 +131,19 @@ class ChatComponents extends Component {
                                     }
                                     forPrint = this.state.conversations;
                                     forPrint.push(newMsg);
-                                    // console.log("array newMsg ", newMsg)
                                 } else {
                                     newMsg[0].messagies.push(arrayB)
                                     forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
                                 }
 
                                     
-                                    // console.log("new for print ", forPrint)
 
                                     let newUnread = this.state.fromWhoUnread;
-                                    // console.log("on message includes? ", newUnread.includes(target))
-                                    // console.log("on message from who parse int", parseInt(this.state.withWho, 10))
 
                                     if (newUnread.includes(target) === false && parseInt(this.state.withWho, 10) !== target) {
                                         newUnread.push(target)
-                                    // console.log("here new list ", newUnread)
 
                                     } else if (newUnread.includes(target) && parseInt(this.state.withWho, 10) === target) {
-                                    // console.log("another place new list ")
 
                                         for (let i = newUnread.length - 1; i >= 0; i--) {
                                             if (newUnread[i] === target) {
@@ -163,7 +151,6 @@ class ChatComponents extends Component {
                                                 break ;
                                             }
                                         }
-                                        // console.log(newUnread)
                                     }
                                     this.setState({ conversations: forPrint, fromWhoUnread: newUnread })
 
@@ -186,9 +173,7 @@ class ChatComponents extends Component {
                 }
             }
             if (data.event === 'disLike' && data.target_id === this.state.currentUserId) {
-                console.log("in dislike, start dell conversations")
                 let newMatches = this.state.myMatches;
-                console.log("old matches", newMatches)
 
                 if (newMatches !== undefined && newMatches !== null) {
                     for (let i = newMatches.length - 1; i >= 0; i--) {
@@ -196,10 +181,8 @@ class ChatComponents extends Component {
                             newMatches.splice(i, 1);
                         }
                     }
-                    console.log("after dell match ", newMatches)
 
                     let newConversations = this.state.conversations;
-                console.log("old conversations", newConversations)
 
                     for (let i = newConversations.length - 1; i >= 0; i--) {
                         if (newConversations[i].withWho === data.user_id) {
@@ -250,12 +233,10 @@ class ChatComponents extends Component {
     }
 
     render() {
-        console.log(" history chat ", this.props);
         const conversations = this.state.conversations
         let toPrint = new Object()
         if (conversations !== undefined && this.state.withWho !== ""){
             toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)[0]
-            console.log("this.state.myMatches ", this.state.myMatches)
 
             const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)[0]
             if (nameMatch !== undefined) {
@@ -277,7 +258,6 @@ class ChatComponents extends Component {
                 }
             }
             
-            console.log("toPrint ", toPrint)
         }
 
         const menu = (
@@ -302,8 +282,7 @@ class ChatComponents extends Component {
                     }
             </Menu>
         )
-            // conversations !== undefined ? console.log("fromWhoUnread ", this.state.fromWhoUnread) : null
-            // conversations !== undefined ? conversations.map((conversation) => console.log("mapped conversation ", conversation)) : null
+
 
         return (
             <div className="chat-holder">

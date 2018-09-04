@@ -1,5 +1,6 @@
 .cabinet-height {
 	height: calc(100vh - 145px);
+
 }
 
 .image-cropper {
@@ -115,8 +116,36 @@
 	margin-left: 4px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width:480px) {
 	.cabinet-height {
-		min-height: calc(100vh - 128px);
+		height: 100%;
+		min-height: 50px;
+	}
+	.targetDescription{
+		width: 80% !important;
+	}
+	.my-carousel{
+		width: 75% !important;
+	}
+}
+
+@media only screen and (min-width:769px){
+	.ant-layout-content {
+		min-height: calc(100vh - 124px) !important;
+	}
+	.profile-pic-slide{
+		width: 600px !important;
+		max-height: 780px;
+	}
+	.targetDescription{
+		width: 600px !important;
+	}
+	.my-carousel{
+		width: 600px !important;
+	}
+}
+@media only screen and (max-width:768px){
+	.ant-layout-content {
+		min-height: calc(100vh - 124px) !important;
 	}
 }

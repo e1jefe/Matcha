@@ -33,7 +33,6 @@ class FormResetPass extends Component {
 			PostData('auth/reset', this.state).then ((result) => {
 				if (result.eEmail !== undefined) {
 					this.setState({ errMsg: result.eEmail });
-					console.log(result);
 				} else if (result.ePass !== undefined || result.wrongEmail !== undefined){
 					this.setState({
 						ePass: result.ePass,				
@@ -42,8 +41,7 @@ class FormResetPass extends Component {
 				}
 				else {
 					this.setState({resetStatuse: true});
-					console.log(result);
-				}
+			}
 			});			
 		}
 	}

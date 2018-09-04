@@ -29,8 +29,6 @@ class MyPhoto extends Component  {
 		let pic = event.target.getAttribute('target')
 		PostData('user/delMyPic', {userId: this.state.userId, pic: pic}).then ((result) => {
 			this.setState({pics: result.userPhoto})
-			console.log("удал pic after ", this.state.pics)
-			console.log("удал pic after result ", result)
 		})
 		if (this.props.avatar !== undefined && pic === this.props.avatar) {
 			this.props.setAvatar(null);
@@ -53,17 +51,14 @@ class MyPhoto extends Component  {
 						pics: result.userPhoto
 					})
 				}
-				console.log("pic ", result)
 
 			})
 		}
-		// console.log("pic before ", this.state.pics)
 	}
 
 	render() {
 		const userPics = this.state.pics
 		const photoIndex = this.state.photoIndex
-		// console.log("user pic in render  ", userPics)
 		let i = 0;
 		return(
 			<form className="form" id="registrationForm3">
@@ -75,7 +70,7 @@ class MyPhoto extends Component  {
 					</div>
 				</div>
 				<div className="row my-photo-img">
-					<div className="col-lg-12">
+					<div className="col-xs-12 col-sm-8 col-md-8 col-lg-12">
 						{(userPics !== null && userPics !== '') ? 
 							userPics.map((pikcha, i) => (
 								<div className="col-lg-6" key={pikcha.toString()}>

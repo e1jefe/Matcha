@@ -212,7 +212,6 @@ class Nav extends Component {
 		if (localStorage.hasOwnProperty('token')){
 			let token = localStorage.getItem('token');
 			let notifArray = localStorage.getItem('notification')
-				console.log("notifications:");
 
 			if (notifArray !== null)
 			{

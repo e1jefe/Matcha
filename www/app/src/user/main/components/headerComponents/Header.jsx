@@ -5,7 +5,6 @@ import './header.css';
 class Header extends Component {
 
 	render(){
-		console.log("HADER ", this.props.authorize)
 		return(
 			<div>
 				<Nav authorize={this.props.authorize}/>

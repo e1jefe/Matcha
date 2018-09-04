@@ -44,10 +44,8 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            console.log(user);
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
             ((result) => {
-                console.log('result before change param ', result);
                 this.setState({
                     res: result.userData,
                     currentUserId: user
@@ -85,14 +83,12 @@ class SearchComponents extends Component {
     }
 
     onChange = (e) => {
-        // console.log('radio checked', e.target.value);
         this.setState({
             value: e.target.value,
         });
     }
 
     updateSearchRes(event) {
-        console.log("changed value: ", this.state)
         const token = localStorage.getItem('token')
         if (token !== null) {
             let user = jwtDecode(token)
@@ -109,7 +105,6 @@ class SearchComponents extends Component {
                 else if(this.state.value === 3) {
                     this.sortByRate(result.userData);
                 }
-               // console.log('result 1', result);
                 this.setState({
                     res: result.userData
                 })

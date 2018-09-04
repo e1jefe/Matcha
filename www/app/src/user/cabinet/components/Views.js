@@ -36,7 +36,7 @@ class Views extends Component {
 				<div className="row">
 					{whoViewedMe.length > 0 ? 
 						whoViewedMe.map((view) => (
-						<div className="col-xs-4" key={view.uId}>
+						<div className="col-xs-10 col-sm-4 col-md-4" key={view.uId}>
 							<div className="card card-relatieve">
 								<div className="onLineIndecator" style={view.isOnline === true ? {backgroundColor: '#00e64d'} : null}></div>
 								<img className="card-img-top" src={view.profilePic !== "" ? view.profilePic : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" } alt="avatar"/>

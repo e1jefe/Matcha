@@ -6,8 +6,6 @@ import './cabinet.css';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Avatar } from 'antd';
 import $ from 'jquery';
-import Header from '../main/components/headerComponents/Header';
-import Footer from '../main/components/footerComponents/Footer';
 import MainInfo from './components/MainInfo';
 import AboutMe from './components/AboutMe';
 import Location from './components/Location';
