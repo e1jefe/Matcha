@@ -20,7 +20,7 @@ class ProfileContent extends Component {
 			target: ''
 		}
 		this.sendView = this.sendView.bind(this);
-		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn = new WebSocket('ws://localhost:8090');
 		this.conn.sendView = this.sendView.bind(this);
 	}
 

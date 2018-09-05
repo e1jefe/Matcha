@@ -10,13 +10,13 @@ a:visited {
 				text-decoration: none;
 		}
 
-nav.menu {
+div.menu {
 		width: 100%;
 		overflow: hidden;
 		background-color : #FAEBD7;
 }
 
-	nav.menu > ul {
+	div.menu > ul {
 		margin-bottom: 0;
 	}
 
@@ -82,10 +82,10 @@ img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userI
 }
 
 @media (max-width: 767px){
-		nav.menu {
+		div.menu {
 				overflow: visible;
 		}
-				nav.menu a {
+				div.menu a {
 						padding: 10px;
 				}
 				.menu a:hover{

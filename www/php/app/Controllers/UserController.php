@@ -872,7 +872,24 @@ class UserController extends Controller
 						   ->values(array($id, $target, $date));
 			$sql->execute(false);
 			$res->msg = "You blocked this user";
+
+			$sql2 = $db->delete()->from('likes')->where('who', '=', $id)->where('target', '=', $target);
+			$exec2 = $sql2->execute();
+
+			$sql3 = $db->delete()->from('matches')->where('partner1', '=', $id)->where('partner2', '=', $target);
+			$exec3 = $sql3->execute();
+
+			$sql4 = $db->delete()->from('matches')->where('partner1', '=', $target)->where('partner2', '=', $id);
+			$exec4 = $sql4->execute();
+
+			$sql5 = $db->delete()->from('chat')->where('sender', '=', $id)->where('receiver', '=', $target);
+			$exec5 = $sql5->execute();
+
+			$sql6 = $db->delete()->from('chat')->where('sender', '=', $target)->where('receiver', '=', $id);
+			$exec6 = $sql6->execute();
+
 			$res->check = false;
+			$res->event = "block";
 		}
 		else
 		{
@@ -880,6 +897,7 @@ class UserController extends Controller
 			$exec = $sql->execute();
 			$res->msg = "You unblocked this user";
 			$res->check = true;
+			$res->event = "unblock";
 		}
 		return json_encode($res);
 	}

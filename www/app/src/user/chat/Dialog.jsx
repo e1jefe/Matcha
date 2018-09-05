@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import ScrollIntoViewIfNeeded from 'react-scroll-into-view-if-needed';
-// import { findDOMNode } from 'react-dom';
 
 import 'antd/dist/antd.css';
 import ButtonSend from './ButtonSend';
 
-ButtonSend
-
 class Dialog extends Component {
-    constructor(props){
-        super(props);
-    }
-
+    
     componentDidMount() {
         this.scrollToBottom()
     }
 
     componentDidUpdate() {
-
         this.scrollToBottom()
     }
 
@@ -30,15 +23,19 @@ class Dialog extends Component {
     }
 
     render(){
+    	let conversation = this.props.conversation;
+    	if (conversation !== undefined) {
+    		if (conversation[0].sender === '') {
+    			conversation = conversation.slice(1);
+    		}
+    	}
         return(
         	<div className="message-content__holder">
             	<div className="message-content">
-            		<ScrollIntoViewIfNeeded options={{
-				  										scrollMode: 'always',
-					}}>
+            		<ScrollIntoViewIfNeeded options={{ scrollMode: 'always' }}>
 		                <div className="message-box" ref={node => this.node = node} >
-		                    {this.props.conversation.sender !== '' ?
-		                        this.props.conversation.map((twit, i) => 
+		                    {conversation.length !== 0 && conversation[0].sender !== '' ?
+		                        conversation.map((twit, i) => 
 		                            twit.sender === this.props.withWho ? (
 		                                <div className="message-box__item incoming" key={i}>
 		                                    <div className="name"><b>{this.props.withWhoName}</b></div>

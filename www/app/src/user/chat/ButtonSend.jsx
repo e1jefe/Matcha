@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class ButtonSend extends Component{
 	constructor(props) {
@@ -13,10 +15,21 @@ class ButtonSend extends Component{
 	}
 
 	handleTxtSend() {
-		const mesage = this.state.txtmsg.trim();
-		if (mesage !== '') {
-        	this.props.updateData(this.state.txtmsg);
-    	}
+        const cyrillicPattern = /[\u0400-\u04FF]/;
+        if (!cyrillicPattern.test(this.state.txtmsg)) {
+    		const mesage = this.state.txtmsg.trim();
+    		if (mesage !== '') {
+            	this.props.updateData(this.state.txtmsg);
+        	}
+        } else {
+            iziToast.warning({
+                title: 'Warning',
+                message: 'No cyrillic letters',
+                position: 'center',
+                timeout: 3000,
+                progressBar: false
+            })
+        }
         this.setState({
             txtmsg: ''
         });

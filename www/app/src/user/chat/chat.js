@@ -4,8 +4,6 @@ import { PostData } from '../main/components/PostData';
 import jwtDecode from 'jwt-decode';
 import './chat.css';
 import ChatComponents from './ChatComponents';
-import Header from '../main/components/headerComponents/Header.jsx';
-import Footer from '../main/components/footerComponents/Footer';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -16,6 +14,11 @@ class Chat extends Component {
 			hasAva: false
 		}
 	}
+
+	сomponentWillUnmount () {
+        console.log("before del from dom chat")
+        this._mounted = false
+    }
 
 	componentDidMount() {
 		if (localStorage.hasOwnProperty('token')){

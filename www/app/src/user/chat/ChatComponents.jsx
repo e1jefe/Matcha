@@ -5,10 +5,10 @@ import jwtDecode from 'jwt-decode';
 import './chat.css';
 import 'antd/dist/antd.css'
 import { Button } from 'antd';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown } from 'antd';
+import Dialog from './Dialog';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import Dialog from './Dialog';
 
 class ChatComponents extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class ChatComponents extends Component {
             fromWhoUnread: [],
             withWho: ''
         }
-        this.conn = new WebSocket('ws:/\/localhost:8090')
+        this.conn = new WebSocket('ws://localhost:8090')
         this.onMessage = this.onMessage.bind(this);
         this.conn.onmessage = this.onMessage.bind(this)
         this.updateData = this.updateData.bind(this)
@@ -29,7 +29,8 @@ class ChatComponents extends Component {
         this.addNewChat = this.addNewChat.bind(this)
     }
 
-    componentWillMount(){
+    componentDidMount(){
+        this._mounted = true
         const token = localStorage.getItem('token');
         if (token !== null) {
             const user = jwtDecode(token);
@@ -42,7 +43,7 @@ class ChatComponents extends Component {
                 } else {
                     this.setState({ 
                         full: result
-                    }, () =>{this.setState({full: result})});
+                    });
                 }
             }, PostData('message/historyInit', {userId: this.state.currentUserId}).then ((result) => {
                     this.setState({
@@ -58,10 +59,6 @@ class ChatComponents extends Component {
                 history.push('/cabinet');
             }
         }
-    }
-
-    componentDidMount () {
-        this._mounted = true
     }
 
     сomponentWillUnmount () {
@@ -117,7 +114,7 @@ class ChatComponents extends Component {
                 PostData('message/get', {
                         sender: data.user_id, 
                         reciever: this.state.currentUserId,
-                    }). then ((res) => {
+                    }).then((res) => {
                             if (window.location.href.includes("chat")) {
                                 let newMsg = this.state.conversations.filter(conversation => conversation.withWho === target)
                                 const arrayB = {sender: data.user_id, content: data.myVar.trim(), time: date.getHours() + ':' + date.getMinutes()};
@@ -135,25 +132,20 @@ class ChatComponents extends Component {
                                     newMsg[0].messagies.push(arrayB)
                                     forPrint = this.state.conversations.map(obj => newMsg.find(o => o.withWho === obj.withWho) || obj)
                                 }
+                                let newUnread = this.state.fromWhoUnread;
+                                if (newUnread.includes(target) === false && parseInt(this.state.withWho, 10) !== target) {
+                                    newUnread.push(target)
+                                } else if (newUnread.includes(target) && parseInt(this.state.withWho, 10) === target) {
 
-                                    
-
-                                    let newUnread = this.state.fromWhoUnread;
-
-                                    if (newUnread.includes(target) === false && parseInt(this.state.withWho, 10) !== target) {
-                                        newUnread.push(target)
-
-                                    } else if (newUnread.includes(target) && parseInt(this.state.withWho, 10) === target) {
-
-                                        for (let i = newUnread.length - 1; i >= 0; i--) {
-                                            if (newUnread[i] === target) {
-                                                newUnread.splice(i, 1);
-                                                break ;
-                                            }
+                                    for (let i = newUnread.length - 1; i >= 0; i--) {
+                                        if (newUnread[i] === target) {
+                                            newUnread.splice(i, 1);
+                                            break ;
                                         }
                                     }
-                                    this.setState({ conversations: forPrint, fromWhoUnread: newUnread })
-
+                                }
+                                this.setState({ conversations: forPrint, fromWhoUnread: newUnread })
+                                PostData('message/markAsRead', {uId: this.state.currentUserId, sender: data.user_id}).then((res) => {});
                             }
                        })
             }
@@ -172,28 +164,30 @@ class ChatComponents extends Component {
                     })
                 }
             }
-            if (data.event === 'disLike' && data.target_id === this.state.currentUserId) {
+            if ((data.event === 'disLike' || data.event === 'block') && data.target_id === this.state.currentUserId) {
                 let newMatches = this.state.myMatches;
-
                 if (newMatches !== undefined && newMatches !== null) {
                     for (let i = newMatches.length - 1; i >= 0; i--) {
                         if (newMatches[i].withWho === data.user_id) {
                             newMatches.splice(i, 1);
                         }
                     }
-
                     let newConversations = this.state.conversations;
-
                     for (let i = newConversations.length - 1; i >= 0; i--) {
                         if (newConversations[i].withWho === data.user_id) {
                             newConversations.splice(i, 1);
                         }
                     }
-                console.log("after dell conversations", newConversations)
-
                     this.setState({
                         myMatches: newMatches,
                         conversations: newConversations
+                    })
+                }
+                if (window.location.href.includes('chat')) {
+                    iziToast.info({
+                        message: 'One of previously matched users disliked or blocked you',
+                        position: 'topRight',
+                        progressBar: false
                     })
                 }
             }
@@ -233,33 +227,30 @@ class ChatComponents extends Component {
     }
 
     render() {
-        const conversations = this.state.conversations
-        let toPrint = new Object()
+        const conversations = this.state.conversations;
+        let toPrint = {};
         if (conversations !== undefined && this.state.withWho !== ""){
             toPrint = conversations.filter(conversation => conversation.withWho === this.state.withWho)[0]
-
             const nameMatch = this.state.myMatches.filter(match => match.withWho === this.state.withWho)[0]
             if (nameMatch !== undefined) {
                 const tmp = {
                         name: nameMatch.name,
                         withWho: nameMatch.withWho,
                         ava: nameMatch.ava,
-                        messagies: {
+                        messagies: [{
                             sender: '',
                             time: '',
                             content: '',
-                        }
+                        }]
                     }
                 if (toPrint === undefined || toPrint.length === 0) {
-                    toPrint = new Array();
+                    toPrint = [];
                     toPrint.push(tmp);
                     toPrint = toPrint[0];
                     conversations.push(tmp);
                 }
-            }
-            
+            }   
         }
-
         const menu = (
             <Menu onClick={this.addNewChat}>
                     {this.state.myMatches !== undefined && this.state.myMatches.length !== 0 ?
@@ -282,8 +273,6 @@ class ChatComponents extends Component {
                     }
             </Menu>
         )
-
-
         return (
             <div className="chat-holder">
                 <div id="wrapper" className="chatComponent">

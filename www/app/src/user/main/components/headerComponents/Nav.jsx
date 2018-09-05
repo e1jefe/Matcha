@@ -6,7 +6,6 @@ import { Menu, Dropdown } from 'antd';
 import Badge from 'antd/lib/badge';
 import 'antd/dist/antd.css';
 import jwtDecode from 'jwt-decode';
-import history from "../../../history/history";
 import { PostData } from '../PostData';
 import iziToast from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
@@ -37,7 +36,7 @@ class Nav extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleNotif = this.handleNotif.bind(this);
 		this.onMessage = this.onMessage.bind(this);
-		this.conn = new WebSocket('ws:/\/localhost:8090')
+		this.conn = new WebSocket('ws://localhost:8090')
 		this.conn.onmessage = this.onMessage.bind(this)
 		this.clearUnread = this.clearUnread.bind(this);
 	}
@@ -58,7 +57,12 @@ class Nav extends Component {
 	}
 
 	handleLogout() {
-		localStorage.removeItem('token');
+		if (localStorage.hasOwnProperty('token')) {
+			localStorage.removeItem('token');
+		}
+		if (localStorage.hasOwnProperty('notification')) {
+			localStorage.removeItem('notification');
+		}
 		this.setState({author: false});
 		PostData('auth/logOut', {uId: this.state.userId}).then ((result) => {
 			if (result === true) {
@@ -82,109 +86,121 @@ class Nav extends Component {
 		if (this._mounted && localStorage.hasOwnProperty('token')){
 			let token = localStorage.getItem('token');
 			const user = jwtDecode(token);
+			PostData('user/getMyBlocks', {uId: user.userId}).then ((result) => {
+				let bloks = result.myBlocks;
+				let mojno = true;
+				for (let i = bloks.length - 1; i >= 0; i--) {
+					if (bloks[i].uId === data.user_id) {
+						mojno = false;
+					}
+				}
+				this.setState({ grant: mojno })
+			})
 			const data = JSON.parse(event.data);
 			let notifArray = localStorage.getItem('notification')
-			if (data.event === 'message' && data.target_id === user.userId && data.user_id !== user.userId) {
-				if (window.location.href.includes('chat') === false){
-					const newMsg = [{who: data.user_id, content: data.myVar}]
-					const oldMsg = this.state.unreadMsg
-					if (oldMsg !== undefined && oldMsg.who !== "") {
-						this.setState({
-							unreadMsg: oldMsg.concat(newMsg)
+			if (this.state.grant !== undefined && this.state.grant) {
+				if (data.event === 'message' && data.target_id === user.userId && data.user_id !== user.userId) {
+					if (window.location.href.includes('chat') === false){
+						const newMsg = [{who: data.user_id, content: data.myVar}]
+						const oldMsg = this.state.unreadMsg
+						if (oldMsg !== undefined && oldMsg.who !== "") {
+							this.setState({
+								unreadMsg: oldMsg.concat(newMsg)
+							})
+						} else {
+							this.setState({
+								unreadMsg: new Array(newMsg)
+							})
+						}
+					}
+					if (window.location.href.includes('chat') === false){
+						iziToast.show({
+							theme: 'dark',
+							icon: 'icon-msg',
+							image: data.ava,
+							imageWidth: 50,
+							maxWidth: '500px',
+							message: data.payload,
+							position: 'topRight',
+							progressBar: false
+						})
+					}
+				}
+				if (data.event === 'setLike' && data.target_id === user.userId && data.user_id !== user.userId) {
+					if (notifArray == null)
+						localStorage.setItem('notification', JSON.stringify(data))
+					else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+						localStorage.setItem('notification', notifArray + JSON.stringify(data))
+					iziToast.show({
+						theme: 'dark',
+						icon: 'icon-like',
+						image: data.ava,
+						imageWidth: 50,
+						maxWidth: '500px',
+						message: data.payload,
+						position: 'topRight',
+						progressBar: false
+					})
+				}
+				if (data.event === 'disLike' && data.target_id === user.userId && data.user_id !== user.userId) {
+					if (notifArray == null)
+						localStorage.setItem('notification', JSON.stringify(data))
+					else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
+						localStorage.setItem('notification', notifArray + JSON.stringify(data))
+					iziToast.show({
+						theme: 'light',
+						iconUrl: 'http://i66.tinypic.com/241312b.png',
+						image: data.ava,
+						imageWidth: 50,
+						maxWidth: '500px',
+						message: data.payload,
+						position: 'topRight',
+						progressBar: false
+					})
+				}
+				if (data.event === 'match' && (data.target_id === user.userId || data.user_id === user.userId)) {
+					if (notifArray === null) {
+						if (data.user_id !== user.userId) {
+							localStorage.setItem('notification', JSON.stringify(data));	
+						}
+					} else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false)) {
+						if (data.user_id !== user.userId) {	
+							localStorage.setItem('notification', notifArray + JSON.stringify(data))
+						}
+					}
+					if (data.target_id === user.userId) {
+						iziToast.show({
+							theme: 'dark',
+							icon: 'icon-match',
+							image: data.ava,
+							imageWidth: 50,
+							maxWidth: '500px',
+							message: data.payload,
+							position: 'topRight',
+							progressBar: false
 						})
 					} else {
-						this.setState({
-							unreadMsg: new Array(newMsg)
+						iziToast.show({
+							theme: 'dark',
+							icon: 'icon-match',
+							maxWidth: '500px',
+							message: 'You got a match just now',
+							position: 'topRight',
+							progressBar: false
 						})
 					}
 				}
-				if (window.location.href.includes('chat') === false){
-					iziToast.show({
-						theme: 'dark',
-						icon: 'icon-msg',
-						image: data.ava,
-						imageWidth: 50,
-						maxWidth: '500px',
-						message: data.payload,
-						position: 'topRight',
-						progressBar: false
-					})
-				}
-			}
-			if (data.event === 'setLike' && data.target_id === user.userId && data.user_id !== user.userId) {
-				if (notifArray == null)
-					localStorage.setItem('notification', JSON.stringify(data))
-				else if (notifArray.includes("setLike") === false || (notifArray.includes("setLike") && notifArray.includes('"user_id":' + data.user_id) === false))
-					localStorage.setItem('notification', notifArray + JSON.stringify(data))
-				iziToast.show({
-					theme: 'dark',
-					icon: 'icon-like',
-					image: data.ava,
-					imageWidth: 50,
-					maxWidth: '500px',
-					message: data.payload,
-					position: 'topRight',
-					progressBar: false
-				})
-			}
-			if (data.event === 'disLike' && data.target_id === user.userId && data.user_id !== user.userId) {
-				if (notifArray == null)
-					localStorage.setItem('notification', JSON.stringify(data))
-				else if (notifArray.includes("disLike") === false || (notifArray.includes("disLike") && notifArray.includes('"user_id":' + data.user_id) === false))
-					localStorage.setItem('notification', notifArray + JSON.stringify(data))
-				iziToast.show({
-					theme: 'light',
-					iconUrl: 'http://i66.tinypic.com/241312b.png',
-					image: data.ava,
-					imageWidth: 50,
-					maxWidth: '500px',
-					message: data.payload,
-					position: 'topRight',
-					progressBar: false
-				})
-			}
-			if (data.event === 'match' && (data.target_id === user.userId || data.user_id === user.userId)) {
-				if (notifArray === null) {
-					if (data.user_id !== user.userId) {
-						localStorage.setItem('notification', JSON.stringify(data));	
-					}
-				} else if (notifArray.includes("match") === false || (notifArray.includes('match') && notifArray.includes('"user_id":' + data.user_id) === false)) {
-					if (data.user_id !== user.userId) {	
+				if (data.event === 'view' && data.target_id === user.userId && data.user_id !== user.userId) {
+					if (notifArray === null)
+						localStorage.setItem('notification', JSON.stringify(data))
+					else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
 						localStorage.setItem('notification', notifArray + JSON.stringify(data))
-					}
-				}
-				if (data.target_id === user.userId) {
-					iziToast.show({
-						theme: 'dark',
-						icon: 'icon-match',
-						image: data.ava,
-						imageWidth: 50,
-						maxWidth: '500px',
+					iziToast.info({
 						message: data.payload,
 						position: 'topRight',
 						progressBar: false
 					})
-				} else {
-					iziToast.show({
-						theme: 'dark',
-						icon: 'icon-match',
-						maxWidth: '500px',
-						message: 'You got a match just now',
-						position: 'topRight',
-						progressBar: false
-					})
 				}
-			}
-			if (data.event === 'view' && data.target_id === user.userId && data.user_id !== user.userId) {
-				if (notifArray === null)
-					localStorage.setItem('notification', JSON.stringify(data))
-				else if (notifArray.includes("view") === false || (notifArray.includes("view") && notifArray.includes('"user_id":' + data.user_id) === false))
-					localStorage.setItem('notification', notifArray + JSON.stringify(data))
-				iziToast.info({
-					message: data.payload,
-					position: 'topRight',
-					progressBar: false
-				})
 			}
 			notifArray = localStorage.getItem('notification')
 			if (notifArray != null) {
@@ -296,7 +312,7 @@ class Nav extends Component {
 			)
 			
 			return(
-				<nav className="menu" role="navigation">
+				<div className="menu" role="navigation">
 					<ul>
 						<li className="item">                            
 							<NavLink to={this.state.author === true ? (this.state.fullProfile === true ? "/search" : "/cabinet") : "/home"} className="logo">
@@ -341,7 +357,7 @@ class Nav extends Component {
 							</ul>
 						</div>
 					</ul>
-				</nav>                            
+				</div>                            
 			)
 		}
 	}

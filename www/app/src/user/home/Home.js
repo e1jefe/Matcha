@@ -8,8 +8,6 @@ import './home.css';
 import '../fonts/fonts.css';
 
 import UnAuthorize from './UnAuthorize';
-import Header from '../main/components/headerComponents/Header.jsx';
-import Footer from '../main/components/footerComponents/Footer';
 import Cabinet from '../cabinet/Cabinet';
 import Chat from '../chat/chat';
 import Profile from '../profile/Profile';

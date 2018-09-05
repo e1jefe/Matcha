@@ -29,7 +29,7 @@ class FormSignUp extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
-		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn = new WebSocket('ws://localhost:8090');
 		this.conn.handleLogin = this.handleLogin.bind(this);
 		this.facebookResponse = this.facebookResponse.bind(this)
 	}
@@ -39,9 +39,12 @@ class FormSignUp extends Component {
 	}
 
 	facebookResponse(response){
+		response.event = 'registration';
 		PostData('auth/signinFB', response).then ((result) => {
 				if (result === false) {
-					this.setState({ errMsg: 'invalid login or password' });
+					this.setState({ errMsg: 'Something went wrong' });
+				} else if (result.err !== undefined) {
+					this.setState({ errMsg: result.err });
 				} else {
 					localStorage.setItem('token', result.jwt);
 					this.setState({regStatuse: true});

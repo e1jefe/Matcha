@@ -254,47 +254,56 @@ class AuthController extends Controller
 		$lname = $name2[1];
 		$db = new Model;
 		$db = $db->connect();
-		$ifExist = $db->select()->from('users')->where('fbNbr', '=', $uId);
-		$ifExist = $ifExist->execute();
-		$ifExist = $ifExist->fetchAll();
-		if (count($ifExist) === 0)
-		{
-			//register
-			$pass = "!Popk@7";
-			$pass = password_hash($pass, PASSWORD_DEFAULT);
-			$login = $name;
-			$token = $this->generateTokenConfirm();
-			date_default_timezone_set ('Europe/Kiev');
-			$last_seen = date('Y-m-d H:i:s');
-			$insertStatement = $db->insert(array('fbNbr', 'login', 'password', 'email', 'fname', 'lname', 'token', 'isEmailConfirmed', 'last_seen'))
-						   ->into('users')
-						   ->values(array($uId, $login, $pass, $email, $fname, $lname, $token, 1, $last_seen));
-			$insertId = $insertStatement->execute(false);
+		if ($request->getParam('event') === 'registration') {
+			$ifExist = $db->select()->from('users')->where('fbNbr', '=', $uId);
+			$ifExist = $ifExist->execute();
+			$ifExist = $ifExist->fetchAll();
+			if (count($ifExist) === 0)
+			{
+				$ifEmailExist = $db->select()->from('users')->where('email', '=', $email);
+				$ifEmailExist = $ifEmailExist->execute();
+				$ifEmailExist = $ifEmailExist->fetchAll();
+				if (count($ifEmailExist) === 0) {
+					$pass = "!Popk@7";
+					$pass = password_hash($pass, PASSWORD_DEFAULT);
+					$login = $name;
+					$token = $this->generateTokenConfirm();
+					date_default_timezone_set ('Europe/Kiev');
+					$last_seen = date('Y-m-d H:i:s');
+					$insertStatement = $db->insert(array('fbNbr', 'login', 'password', 'email', 'fname', 'lname', 'token', 'isEmailConfirmed', 'last_seen'))
+								   ->into('users')
+								   ->values(array($uId, $login, $pass, $email, $fname, $lname, $token, 1, $last_seen));
+					$insertId = $insertStatement->execute(false);
 
-			$selectSQL = $db->select()->from('users')->where('fbNbr', '=', $uId);
-			$execSelect = $selectSQL->execute();
-			$forId = $execSelect->fetch();
+					$selectSQL = $db->select()->from('users')->where('fbNbr', '=', $uId);
+					$execSelect = $selectSQL->execute();
+					$forId = $execSelect->fetch();
 
-			$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
-			$insertStatement = $db->insert(array('user', 'longetude', 'latitude', 'showMe', 'profilePic', 'isOnline'))
-						   ->into('profiles')
-						   ->values(array($forId['userId'], $response['lon'], $response['lat'], 0, $ava, 1));
-			$insertId = $insertStatement->execute(false);
+					$response = json_decode(file_get_contents('http://ip-api.com/json'), true);
+					$insertStatement = $db->insert(array('user', 'longetude', 'latitude', 'showMe', 'profilePic', 'isOnline'))
+								   ->into('profiles')
+								   ->values(array($forId['userId'], $response['lon'], $response['lat'], 0, $ava, 1));
+					$insertId = $insertStatement->execute(false);
 
-			$insertStatement = $db->insert(array('userNbr', 'src', 'whenAdd'))
-						   ->into('photos')
-						   ->values(array($forId['userId'], $ava, $last_seen));
-			$insertId = $insertStatement->execute(false);
+					$insertStatement = $db->insert(array('userNbr', 'src', 'whenAdd'))
+								   ->into('photos')
+								   ->values(array($forId['userId'], $ava, $last_seen));
+					$insertId = $insertStatement->execute(false);
 
-			$jwt = $this->generateToken($login, $forId['userId'], $fname, $lname);
-			$result->jwt = $jwt;
-			$result->id = $forId['userId'];
+					$jwt = $this->generateToken($login, $forId['userId'], $fname, $lname);
+					$result->jwt = $jwt;
+					$result->id = $forId['userId'];
 
-			return json_encode($result);
-		}
-		else
-		{
-			//login
+					return json_encode($result);
+				} else {
+					$result->err = "You have already registered with this email";
+					return json_encode($result);
+				}
+			} else {
+				$result->err = "You have already registered";
+				return json_encode($result);
+			}
+		} else if ($request->getParam('event') === 'login') {
 			$selectSQL = $db->select()->from('users')->where('fbNbr', '=', $uId);
 			$execSelect = $selectSQL->execute();
 			$forId = $execSelect->fetchAll();
@@ -314,6 +323,9 @@ class AuthController extends Controller
 				$jwt = $this->generateToken($login, $forId[0]['userId'], $fname, $lname);
 				$result->jwt = $jwt;
 				$result->id = $forId[0]['userId'];
+				return json_encode($result);
+			} else {
+				$result->err = "You did not register with facebook";
 				return json_encode($result);
 			}
 		}

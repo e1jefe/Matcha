@@ -12,8 +12,24 @@ class Block extends Component {
 			curentUserId: '',
 			target: props.target
 		}
+		this.handleblock = this.handleblock.bind(this)
+	}
+
+	componentDidMount() {
+		this.conn = new WebSocket('ws://localhost:8090')
+		this.conn.handleblock = this.handleblock.bind(this)
 	}
 	
+	handleblock(event) {
+		this.conn.send(JSON.stringify({
+			event: event,
+			payload: this.state.curentUserId + ' blocked ' + this.state.target,
+			ava: '',
+			user_id: this.state.curentUserId,
+			target_id: parseInt(this.state.target, 10)
+		}))
+	}
+
 	onClick(){
 		const token = localStorage.getItem('token');
 		if (token !== null)
@@ -23,8 +39,7 @@ class Block extends Component {
 				this.setState({
 					curentUserId: user.userId,
 					msg: res.msg
-				})
-			
+				}, this.handleblock(res.event))
 				iziToast.info({
 				    message: res.msg,
 				    position: 'topRight',

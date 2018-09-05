@@ -16,7 +16,7 @@ class Like extends Component {
 	}
 
 	componentWillMount(){
-		this.conn = new WebSocket('ws:/\/localhost:8090')
+		this.conn = new WebSocket('ws://localhost:8090')
 		this.conn.handleLike = this.handleLike.bind(this)
 		this.setState({target: this.props.target})
 	}

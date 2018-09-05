@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import history from "../history/history";
 import { PostData } from '../main/components/PostData';
-import jwtDecode from 'jwt-decode';
 import FacebookLogin from 'react-facebook-login';
 import { Button } from 'antd';
 
@@ -18,15 +17,18 @@ class FormSignIn extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
-		this.conn = new WebSocket('ws:/\/localhost:8090');
+		this.conn = new WebSocket('ws://localhost:8090');
 		this.conn.handleLogin = this.handleLogin.bind(this);
 		this.facebookResponse = this.facebookResponse.bind(this)
 	}
 
 	facebookResponse(response){
+		response.event = 'login';
 		PostData('auth/signinFB', response).then ((result) => {
 				if (result === false) {
-					this.setState({ errMsg: 'invalid login or password' });
+					this.setState({ errMsg: 'Something went wrong' });
+				} else if (result.err !== undefined) {
+					this.setState({ errMsg: result.err });
 				} else {
 					localStorage.setItem('token', result.jwt);
 					this.setState({loginStatuse: true});
@@ -65,7 +67,6 @@ class FormSignIn extends Component {
 	}
 
 	render() {
-		 const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<div>

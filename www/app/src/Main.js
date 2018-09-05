@@ -7,24 +7,17 @@ import Chat from './user/chat/chat.js'
 import Search from "./user/home/Search.js";
 import Profile from "./user/profile/Profile";
 import Cabinet from "./user/cabinet/Cabinet";
-
 import Header from './user/main/components/headerComponents/Header.jsx';
 import Footer from './user/main/components/footerComponents/Footer';
 import jwtDecode from 'jwt-decode';
 
-
-// The Main component renders one of the three provided
-// Routes (provided that one matches). Both the /roster
-// and /schedule routes will match any pathname that starts
-// with /roster or /schedule. The / route will only match
-// when the pathname is exactly the string "/"
 class Main extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			authorize: false
 		}
-		this.conn = new WebSocket('ws:/\/localhost:8090')
+		this.conn = new WebSocket('ws://localhost:8090')
         this.conn.onmessage = this.onMessage.bind(this)
 	}
 
