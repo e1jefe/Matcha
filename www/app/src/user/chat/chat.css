@@ -237,7 +237,7 @@ body {
     padding: 6px 3px;
     background-color: #fff;
     width: 100%;
-    height: 87px;
+    height: 59px;
     border-left: 1px solid #eee;
 }
 
@@ -288,7 +288,7 @@ body {
 
     .message-content--initial {
         min-height: calc(100vh - 124px);
-        width: calc(100vw - 55px);}
+        width: calc(100vw - 50px);}
 
     .messages .messages__item .content {
       display: none;
@@ -298,15 +298,10 @@ body {
         display: inline-block;
     }
      .chat-holder{
-         min-height: calc(100vh - 80px);
+         min-height: calc(100vh - 95px);
      }
     .chatComponent{
-        width: calc(100vw - 55px);}
-    .footerTextColor{
-        display: none;
-    }
-    .name{
-    text-indent: -9999px;
+        width: calc(100vw - 45px);
     }
     .name-img__src{
         margin-left: -15px;

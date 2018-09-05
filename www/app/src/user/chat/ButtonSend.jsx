@@ -50,7 +50,7 @@ class ButtonSend extends Component{
 	render() {
 		return(
 			<div className="message-form" onKeyUp={this.handleEnter}>
-		        <textarea ref={this.props.txtmsg} name="msgcontent" rows="2" wrap="soft" placeholder="Write smth for young female wolves..."
+		        <textarea ref={this.props.txtmsg} name="msgcontent" rows="2" wrap="soft" placeholder="Write smth..."
 		            onChange={this.handleTxtArea} value={this.state.txtmsg !== "" ? this.state.txtmsg : ""}/>
 		        <Button type="primary" name={this.props.name} onClick={this.handleTxtSend}>send</Button>
 		    </div>
