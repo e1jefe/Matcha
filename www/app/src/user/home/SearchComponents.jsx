@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './search.css';
 import 'antd/dist/antd.css';
-import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';
 import EditableTagGroup from './TagComponents.jsx';
 import UsersCards from "./UsersCards";
@@ -33,6 +32,7 @@ class SearchComponents extends Component {
         this.sortByAge = this.sortByAge.bind(this);
         this.sortByDistance = this.sortByDistance.bind(this);
         this.sortByRate = this.sortByRate.bind(this);
+        this.sortByTags = this.sortByTags.bind(this);
         this.onChange = this.onChange.bind(this);
 
     }
@@ -77,6 +77,12 @@ class SearchComponents extends Component {
             return a['fameRate'] > b['fameRate'] ? 1 : -1;
         });
     }
+    sortByTags(result)
+    {
+        result.sort(function(a, b) {
+            return a['tags'] < b['tags'] ? 1 : -1;
+        });
+    }
 
     state = {
         value: 1,
@@ -96,6 +102,7 @@ class SearchComponents extends Component {
                 user = user.userId
             PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
             ((result) => {
+                console.log("search", result)
                 if(this.state.value === 1) {
                     this.sortByAge(result.userData);
                 }
@@ -105,9 +112,13 @@ class SearchComponents extends Component {
                 else if(this.state.value === 3) {
                     this.sortByRate(result.userData);
                 }
+                else if(this.state.value === 4) {
+                    this.sortByTags(result.userData);
+                }
                 this.setState({
                     res: result.userData
-                })
+
+                },console.log("res", result.userData))
             })
         }
 

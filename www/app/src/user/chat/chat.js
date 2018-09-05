@@ -4,8 +4,6 @@ import { PostData } from '../main/components/PostData';
 import jwtDecode from 'jwt-decode';
 import './chat.css';
 import ChatComponents from './ChatComponents';
-import Header from '../main/components/headerComponents/Header.jsx';
-import Footer from '../main/components/footerComponents/Footer';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 

@@ -110,7 +110,13 @@ class SearchController extends Controller
             else if ($this->genderPref($userGender, $userPref, $item['sex'], $item['sexPref']) == false) {
                unset($fromDb[$key]);
             }
-            else if ($tagsSearch[0] != "")
+            else
+            { $distance = $this->getDistance($userLat, $userLong, $item['latitude'], $item['longetude']);
+                $fromDb[$key]['distance'] = round($distance);
+                if ($distance > $maxDistance)
+                    unset($fromDb[$key]);
+            }
+             if ($tagsSearch[0] != "")
             {
                 $tags = explode(' ', $item['tags']);
                 foreach($tagsSearch as $tag)
@@ -122,19 +128,14 @@ class SearchController extends Controller
                     }
                 }
             }
-            else
-                { $distance = $this->getDistance($userLat, $userLong, $item['latitude'], $item['longetude']);
-                $fromDb[$key]['distance'] = round($distance);
-                if ($distance > $maxDistance)
-                    unset($fromDb[$key]);
-                }
+//            else if ($maxDistance != NULL)
+//            { $distance = $this->getDistance($userLat, $userLong, $item['latitude'], $item['longetude']);
+//                $fromDb[$key]['distance'] = round($distance);
+//                if ($distance > $maxDistance)
+//                    unset($fromDb[$key]);
+//                }
 
         }
-//        foreach ($fromDb as $key => $value)
-//        {
-//            $fromDb[$key]['tags'] = explode("," , $request->getParam('tags'));
-//            $fromDb = array_values($fromDb);
-//        }
         $fromDb = array_values($fromDb);
         $result->userData = $fromDb;
         return json_encode($result);
