@@ -282,7 +282,6 @@ class UserController extends Controller
 		} else {
 			$login = $fromDb['login'];
 		}
-		// $res->login = $login;
 
 		if ($pass != '')
 		{
@@ -298,8 +297,6 @@ class UserController extends Controller
 		} else {
 			$pass = $fromDb['password'];
 		}
-
-		// $res->pass = $pass;
 
 		if ($email != '')
 		{
@@ -322,7 +319,6 @@ class UserController extends Controller
 		} else {
 			$fname = $fromDb['fname'];
 		}
-		// $res->fname = $fname;
 		
 		if ($lname != '') {
 			$wrongLname = (strlen($lname) <= 1 || strlen($lname) >= 120 || !ctype_alpha($lname));
@@ -334,7 +330,6 @@ class UserController extends Controller
 		} else {
 			$lname = $fromDb['lname'];
 		}
-		// $res->lname = $lname;
 
 		if ($age != '')
 		{
@@ -347,15 +342,12 @@ class UserController extends Controller
 		} else {
 			$age = $fromDb['age'];
 		}
-		// $res->age = $age;
 
 		if ($sex == '')
 			$sex = $fromDb['sex'];
-		// $res->sex = $sex;
 
 		if ($sexPref == '')
 			$sexPref = $fromDb['sexPref'];
-		// $res->sexPref = $sexPref;
 
 		date_default_timezone_set ('Europe/Kiev');
 		$date = date('Y-m-d H:i:s');
@@ -459,7 +451,6 @@ class UserController extends Controller
 	public function postNewPhoto($request, $response)
 	{
 		$userId = $request->getParam('userId');
-		//check if no more 5 photo
 		$db = new Model;
 		$db = $db->connect();
 		$sql = $db->select()->from('photos')->where('userNbr', '=', $userId);
@@ -620,10 +611,6 @@ class UserController extends Controller
 		$lat1 = $request->getParam('latAllow');
 		$lat2 = $request->getParam('latDen');
 		$show = $request->getParam('showMe');
-			$res->check3 = "prishlo " . $request->getParam('showMe') ." for DB " . $show;
-
-		// $res->check3 = $request->getParam('uId') . " lat alow: " . $request->getParam('latAllow') . " lon alow: " . $request->getParam('longAllow') . " lon den: " . $request->getParam('longDen') . " lon den: " . $request->getParam('latDen') . " " . $request->getParam('showMe');
-		// return json_encode($res);
 		$db = new Model;
 		$db = $db->connect();
 		if ($long1 && $lat1)
@@ -652,7 +639,6 @@ class UserController extends Controller
 		{
 			$updateStatement = $db->update(array('showMe' => $show))->table('profiles')->where('user', '=', $userId);
 			$exec = $updateStatement->execute();
-
 		}
 
 		date_default_timezone_set ('Europe/Kiev');
@@ -742,7 +728,7 @@ class UserController extends Controller
 		$exec4 = $sql4->execute();
 		$isLike = $exec4->fetch();
 		$isLike == 0 ? $result->isLike = false : $result->isLike = true;
-		//change db table and do working function
+
 		$sql5 = $db->select()->from('matches')->where('partner1', '=', $userId)->orWhere('partner2', '=', $userId);
 		$exec5 = $sql5->execute();
 		$isMatch = $exec5->fetchAll();

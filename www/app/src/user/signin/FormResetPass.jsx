@@ -42,12 +42,11 @@ class FormResetPass extends Component {
 				else {
 					this.setState({resetStatuse: true});
 			}
-			});			
+			});
 		}
 	}
 
 	render() {
-		// const { errMsg } = this.state
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<fieldset>
@@ -65,7 +64,6 @@ class FormResetPass extends Component {
 					<button type="submit" className="btn btn-primary btn-block">Submit</button>
 				</fieldset>
 			</form>
-
 		);
 	}
 

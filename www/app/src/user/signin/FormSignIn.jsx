@@ -91,7 +91,7 @@ class FormSignIn extends Component {
 	                    callback={this.facebookResponse}
 	                    icon="fa-facebook"
 	                    textButton="Sign in with facebook"/>
-                </div>
+				</div>
 			</form>
 		);
 	}

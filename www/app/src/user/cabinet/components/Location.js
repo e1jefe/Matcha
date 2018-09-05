@@ -44,81 +44,81 @@ class Location extends Component {
 		})	
 	}
 
-    handleMapClick = this.handleMapClick.bind(this);
-    handleMapLoad = this.handleMapLoad.bind(this);
-    updateLocation = this.updateLocation.bind(this);
-    allowLocation = this.allowLocation.bind(this);
+	handleMapClick = this.handleMapClick.bind(this);
+	handleMapLoad = this.handleMapLoad.bind(this);
+	updateLocation = this.updateLocation.bind(this);
+	allowLocation = this.allowLocation.bind(this);
 
-    updateLocation(event){
-    	event.preventDefault()
-    	if(this.state.showMarker){
-    		let lat;
-    		let lng;
-    		if (this.state.markers.position.lat instanceof Function) {
-    			lat = this.state.markers.position.lat();
+	updateLocation(event){
+		event.preventDefault()
+		if(this.state.showMarker){
+			let lat;
+			let lng;
+			if (this.state.markers.position.lat instanceof Function) {
+				lat = this.state.markers.position.lat();
 				lng = this.state.markers.position.lng();
-    		} else {
-    			lat = this.state.markers.position.lat;
+			} else {
+				lat = this.state.markers.position.lat;
 				lng = this.state.markers.position.lng;
-    		}
+			}
 			
 			PostData('user/pushCoord', {uId: this.state.uId, longAllow: lng, latAllow: lat, showMe: 1}).then ((result) => {
 				iziToast.info({
-				    title: 'Location',
-				    message: 'We updated your location!',
-				    position: 'center',
-				    progressBar: false
+					title: 'Location',
+					message: 'We updated your location!',
+					position: 'center',
+					progressBar: false
 				});
 			})
 		}
 		else
 			PostData('user/pushCoord', {uId: this.state.uId, showMe: 0}).then ((result) => {
 				iziToast.info({
-				    title: 'Location',
-				    message: 'We would not show your location anymore',
-				    position: 'center',
-				    progressBar: false
+					title: 'Location',
+					message: 'We would not show your location anymore',
+					position: 'center',
+					progressBar: false
 				});
 
 			})
-    }
+	}
 
-    handleMapClick(event) {
-        let mapRef = this._mapComponent;
-        this.setState({
-            markers: {
-                position: event.latLng,
-                key: Date.now()
-            },
-            mapCenter: event.latLng,
-            zoomLevel: mapRef.getZoom()
-        });
+	handleMapClick(event) {
+		let mapRef = this._mapComponent;
+		this.setState({
+			markers: {
+				position: event.latLng,
+				key: Date.now()
+			},
+			mapCenter: event.latLng,
+			zoomLevel: mapRef.getZoom()
+		});
 
-    }
+	}
 
-    handleMapLoad(map) {
-        this._mapComponent = map;
-    }
+	handleMapLoad(map) {
+		this._mapComponent = map;
+	}
 
-    allowLocation(checked){
-    	if (checked === false)
-    		this.setState({showMarker: false});
-    	else
-    		this.setState({showMarker: true});
-    }
+	allowLocation(checked){
+		if (checked === false)
+			this.setState({showMarker: false});
+		else
+			this.setState({showMarker: true});
+	}
 
 	render(){
 		const show = this.state.showMarker
 		const GoogleMapWrapper = withGoogleMap(props => (
-            <GoogleMap
-                ref={props.onMapLoad}
-                defaultZoom={props.zoomLevel}
-                defaultCenter={props.center}
-                onClick={props.onMapClick}
-            >
-            	{props.showMarker && <Marker {...props.markers} />}
-            </GoogleMap>
-        ))
+			<GoogleMap
+				ref={props.onMapLoad}
+				defaultZoom={props.zoomLevel}
+				defaultCenter={props.center}
+				onClick={props.onMapClick}
+			>
+				{props.showMarker && <Marker {...props.markers} />}
+			</GoogleMap>
+		))
 		return(
 			<form className="form" id="location2" style={{height: '700px'}} onSubmit={this.updateLocation}>
 				<div className="form-group">
@@ -135,19 +135,19 @@ class Location extends Component {
 					<div style={{height: `100%`}}>
 						<div className="col-xs-12" style={{height: `100%`}}>
 							<GoogleMapWrapper
-			                    containerElement={
-			                        <div style={{ height: `55vh` }} />
-			                    }
-			                    mapElement={
-			                        <div style={{ height: `55vh` }} />
-			                    }
-			                    onMapClick={this.handleMapClick}
-			                    onMapLoad={this.handleMapLoad}
-			                    markers={this.state.markers}
-			                    center={this.state.mapCenter}
-			                    zoomLevel={this.state.zoomLevel}
-			                    showMarker={this.state.showMarker}
-		                	/>
+								containerElement={
+									<div style={{ height: `55vh` }} />
+								}
+								mapElement={
+									<div style={{ height: `55vh` }} />
+								}
+								onMapClick={this.handleMapClick}
+								onMapLoad={this.handleMapLoad}
+								markers={this.state.markers}
+								center={this.state.mapCenter}
+								zoomLevel={this.state.zoomLevel}
+								showMarker={this.state.showMarker}
+							/>
 						</div>
 					</div>
 				</div>

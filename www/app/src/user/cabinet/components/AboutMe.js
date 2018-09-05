@@ -65,11 +65,11 @@ class AboutMe extends Component {
 					bio: result.bio,
 					err: result.err
 				}, iziToast.info({
-				    	title: 'Info',
-				    	message: 'We updated your info',
-				    	position: 'center',
-				    	timeout: 3000,
-				    	progressBar: false
+						title: 'Info',
+						message: 'We updated your info',
+						position: 'center',
+						timeout: 3000,
+						progressBar: false
 					}))
 			} else {
 				this.setState({err: result.err})

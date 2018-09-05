@@ -86,7 +86,6 @@ class Content extends Component {
 			</div>
 		);
 	}
-
 }
 
 export default Content;

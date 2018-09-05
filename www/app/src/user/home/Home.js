@@ -3,7 +3,6 @@ import { Router, Route } from 'react-router-dom';
 import { PostData } from '../main/components/PostData';
 import history from "../history/history";
 import jwtDecode from 'jwt-decode';
-
 import './home.css';
 import '../fonts/fonts.css';
 
@@ -25,7 +24,6 @@ class Home extends Component {
 		};
 	}
 	
-
 	componentWillMount() {
 		const token = localStorage.getItem('token');
 		if (token !== null)

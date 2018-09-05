@@ -3,9 +3,6 @@
 namespace App\Controllers;
 use App\Models\Model;
 use App\Mail\SendMail;
-// use Respect\Validation\Validator as v;
-
-// use Slim\Views\Twig as View;
 
 class AuthController extends Controller
 {
@@ -88,13 +85,6 @@ class AuthController extends Controller
 		$wrongFname = (strlen($fname) <= 1 || strlen($fname) >= 120 || strlen($fname) === 0 || !ctype_alpha($fname));
 		$wrongLname = (strlen($lname) <= 1 || strlen($lname) >= 120 || strlen($lname) === 0 || !ctype_alpha($lname));
 		$wrongEmail = (strlen($email) === 0 || strlen($email) >= 120);
-
-		// $res->wrongLogin = $wrongLogin;
-		// $res->wrongPass = $wrongPass;
-		// $res->wrongFname = $wrongFname;
-		// $res->wrongLname = $wrongLname;
-		// $res->wrongEmail = $wrongEmail;
-
 		if ($wrongLogin )
 			$res->eLogin = 'Login should be longer than 4 chars and shorter than 120';
 		if ($wrongPass)
@@ -163,7 +153,6 @@ class AuthController extends Controller
 			header("Location: http://localhost:3000");
 			die();
 		}
-		// return true;
 	}
 
 	public function confirmResetPass($requset, $response)
@@ -184,7 +173,6 @@ class AuthController extends Controller
 			header("Location: http://localhost:3000");
 			die();
 		}
-		// return true;
 	}
 
 	public function postResetPass($request, $response)

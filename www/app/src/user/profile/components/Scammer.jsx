@@ -30,9 +30,6 @@ class Scammer extends Component {
 		}
 	}
 
-	componentDidMount(){
-	}
-
 	render(){
 		return(
 			<Tooltip placement="topLeft" title="Report scammer">

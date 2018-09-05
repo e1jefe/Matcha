@@ -273,7 +273,7 @@ class Nav extends Component {
 		if (this.state.authorize === false
 		) {
 			return(
-				<nav className="menu">
+				<div className="menu">
 					<ul>
 						<li className="item">                            
 							<NavLink to="/home" className="logo">
@@ -285,7 +285,7 @@ class Nav extends Component {
 						</div>
 						<div className="clearfix"></div>
 					</ul>
-				</nav>
+				</div>
 			)
 		}
 		else {
@@ -357,7 +357,7 @@ class Nav extends Component {
 							</ul>
 						</div>
 					</ul>
-				</div>                            
+				</div>
 			)
 		}
 	}

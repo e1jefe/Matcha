@@ -57,12 +57,12 @@ class Cabinet extends Component {
 	}
 
 	componentDidMount () {
-        this._mounted = true
-    }
+		this._mounted = true
+	}
 
-    сomponentWillUnmount () {
-        this._mounted = false
-    }
+	сomponentWillUnmount () {
+		this._mounted = false
+	}
 
 	setAvatar(event){
 		if (event === null)	{
@@ -86,7 +86,6 @@ class Cabinet extends Component {
 		const views = this.state.iView;
 		return(
 			<div>
-
 				<div className="container bootstrap snippet marginTop cabinet-height">
 					<div className="row">
 						<div className="col-sm-3 text-center">
@@ -152,7 +151,6 @@ class Cabinet extends Component {
 								<Tab eventKey={7} title="Blocs">
 									<MyBlocks userId={this.state.userId} />
 								</Tab>
-
 							</Tabs>
 						</div>
 					</div>
@@ -160,7 +158,6 @@ class Cabinet extends Component {
 			</div>
 		);
 	}
-
 }
 
 export default Cabinet;

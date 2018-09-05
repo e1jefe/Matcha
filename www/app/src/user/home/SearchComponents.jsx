@@ -6,7 +6,6 @@ import EditableTagGroup from './TagComponents.jsx';
 import UsersCards from "./UsersCards";
 import jwtDecode from 'jwt-decode';
 import { PostData } from '../main/components/PostData';
-import {findDOMNode} from 'react-dom';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Radio } from 'antd'
@@ -34,7 +33,6 @@ class SearchComponents extends Component {
         this.sortByRate = this.sortByRate.bind(this);
         this.sortByTags = this.sortByTags.bind(this);
         this.onChange = this.onChange.bind(this);
-
     }
 
     componentWillMount() {
@@ -44,8 +42,7 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then
-            ((result) => {
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance}).then((result) => {
                 this.setState({
                     res: result.userData,
                     currentUserId: user
@@ -100,9 +97,7 @@ class SearchComponents extends Component {
             let user = jwtDecode(token)
             if (user.userLogin !== '')
                 user = user.userId
-            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then
-            ((result) => {
-                console.log("search", result)
+            PostData('user/search', {userId: user, searchFR: this.state.searchFR, searchAge: this.state.searchAge, searchDistance: this.state.searchDistance, tags: this.state.tags}).then((result) => {
                 if(this.state.value === 1) {
                     this.sortByAge(result.userData);
                 }
@@ -118,11 +113,9 @@ class SearchComponents extends Component {
                 this.setState({
                     res: result.userData
 
-                },console.log("res", result.userData))
+                })
             })
         }
-
-
     }
 
     render() {

@@ -1,28 +1,28 @@
 body {
     margin: 2px;
-    /*padding: 3vh 0;*/
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Roboto', sans-serif;
+}
 
 .CardHolder {
     max-height: 80%;
     padding: 10px;
     margin: auto;
     background-color: #fff;
-position: relative;
+    position: relative;
 }
-.card{
+
+.card {
     background-color: #fff;
 }
 
-.CardHolder img{
+.CardHolder img {
     width: 90%;
 }
-.CardLink{
+
+.CardLink {
     right: 5px;
 }
-.my-card-search{
+
+.my-card-search {
     width: 91%;
 }
-/*.my-card-btn-width{*/
-    /*background-color: transparent;*/
-/*}*/

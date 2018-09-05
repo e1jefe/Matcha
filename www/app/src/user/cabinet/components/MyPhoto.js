@@ -12,7 +12,7 @@ class MyPhoto extends Component  {
 			pics: '',
 			picErr: '',
 			photoIndex: 0,
-      		isOpen: false
+			isOpen: false
 		}
 	}
 
@@ -42,8 +42,7 @@ class MyPhoto extends Component  {
 		reader.readAsDataURL(files[0])
 		reader.onload=(e) => {
 			PostData('user/newPhoto', {file: e.target.result, userId: this.state.userId}).then((result) => {
-				if (result === false)
-				{
+				if (result === false) {
 					const errPhoto = "You reached photo limit. Delet something before adding new one."
 					this.setState({picErr: errPhoto})
 				} else {
@@ -77,8 +76,8 @@ class MyPhoto extends Component  {
 									<div className="my-photos card">
 									  <img className="card-img-top" src={pikcha} onClick={() => this.setState({ isOpen: true, photoIndex: i })} alt="my photocard"/>
 									  <div className="card-body margin-top">									    
-									    <button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
-									    <button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.props.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
+										<button className="btn btn-danger" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.deletePic(e)}><i className="glyphicon glyphicon-remove"></i></button>
+										<button className="btn btn-success" style={{width: 50 + '%'}} target={pikcha.toString()} onClick={(e) => this.props.setAvatar(e)} title="set as profile picture"><i className="glyphicon glyphicon-user"></i></button>
 									  </div>
 									</div>
 								</div>
@@ -90,14 +89,14 @@ class MyPhoto extends Component  {
 				</div>					
 
 				<div className="form-group margin-top">
-				    <input type="file" name="img[]" className="file" onChange={ (e) => this.onCHangeFile(e)}/>
-				    <div className="input-group col-xs-12">
-				    	<span className="input-group-addon"><i className="glyphicon glyphicon-picture"></i></span>
-				    	<input type="text" className="form-control input-lg" disabled placeholder="Upload Image" />
-				    	<span className="input-group-btn">
-				      	<button className="browse btn btn-success input-lg" type="button"><i className="glyphicon glyphicon-search"></i> Browse</button>
-				    	</span>
-				    </div>
+					<input type="file" name="img[]" className="file" onChange={ (e) => this.onCHangeFile(e)}/>
+					<div className="input-group col-xs-12">
+						<span className="input-group-addon"><i className="glyphicon glyphicon-picture"></i></span>
+						<input type="text" className="form-control input-lg" disabled placeholder="Upload Image" />
+						<span className="input-group-btn">
+						<button className="browse btn btn-success input-lg" type="button"><i className="glyphicon glyphicon-search"></i> Browse</button>
+						</span>
+					</div>
 				</div>
 				{this.state.picErr !== null && this.state.picErr !== '' ?
 					<div className="alert alert-danger" role="alert">
@@ -107,21 +106,21 @@ class MyPhoto extends Component  {
 					null
 				}
 				
-        		{this.state.isOpen && (<Lightbox
-        			mainSrc={this.state.pics[photoIndex]}
-        			nextSrc={this.state.pics[(photoIndex + 1) % this.state.pics.length]}
-		            prevSrc={this.state.pics[(photoIndex + this.state.pics.length - 1) % this.state.pics.length]}
-		            onCloseRequest={() => this.setState({ isOpen: false })}
-		            onMovePrevRequest={() =>
-		              this.setState({
-		                photoIndex: (photoIndex + this.state.pics.length - 1) % this.state.pics.length,
-		              })
-		            }
-		            onMoveNextRequest={() =>
-		              this.setState({
-		                photoIndex: (photoIndex + 1) % this.state.pics.length,
-		              })
-		            }/>)}
+				{this.state.isOpen && (<Lightbox
+					mainSrc={this.state.pics[photoIndex]}
+					nextSrc={this.state.pics[(photoIndex + 1) % this.state.pics.length]}
+					prevSrc={this.state.pics[(photoIndex + this.state.pics.length - 1) % this.state.pics.length]}
+					onCloseRequest={() => this.setState({ isOpen: false })}
+					onMovePrevRequest={() =>
+						this.setState({
+							photoIndex: (photoIndex + this.state.pics.length - 1) % this.state.pics.length,
+						})
+					}
+					onMoveNextRequest={() =>
+						this.setState({
+							photoIndex: (photoIndex + 1) % this.state.pics.length,
+						})
+					}/>)}
 			</form>
 		)
 	}

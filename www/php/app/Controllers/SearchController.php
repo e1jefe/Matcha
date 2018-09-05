@@ -128,18 +128,9 @@ class SearchController extends Controller
                     }
                 }
             }
-//            else if ($maxDistance != NULL)
-//            { $distance = $this->getDistance($userLat, $userLong, $item['latitude'], $item['longetude']);
-//                $fromDb[$key]['distance'] = round($distance);
-//                if ($distance > $maxDistance)
-//                    unset($fromDb[$key]);
-//                }
-
         }
         $fromDb = array_values($fromDb);
         $result->userData = $fromDb;
         return json_encode($result);
     }
-
-
 }

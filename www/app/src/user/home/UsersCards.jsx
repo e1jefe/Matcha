@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './userscards.css';
-import { NavLink } from 'react-router-dom';
-import { Card, CardText, CardBody,
-    CardTitle, CardSubtitle, CardLink} from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 import { Row, Col, Button } from 'antd';
 import Like from '../profile/components/Like'
 import Block from '../profile/components/Block'
@@ -17,7 +15,6 @@ class UsersCards extends Component {
             show: props.toShow,
 
         }
-        // this.onChange = this.onChange.bind(this);
     }
 
     render() {
@@ -33,7 +30,7 @@ class UsersCards extends Component {
                     <CardTitle>  {users2[i].fname} {users2[i].lname}, {users2[i].age}</CardTitle>
                     <CardSubtitle><Rate allowHalf disabled defaultValue={users2[i].stars} />  {users2[i].distance} km</CardSubtitle>
                 </CardBody>
-                        <img src={users2[i].profilePic} />
+                        <img src={users2[i].profilePic} alt="user avatar"/>
                 <CardBody>
                     <Button.Group size="large" className="my-card-search">
                         <OpenProfile target={users2[i].userId} className="my-card-btn-width"/>

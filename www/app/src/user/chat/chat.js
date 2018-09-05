@@ -16,9 +16,9 @@ class Chat extends Component {
 	}
 
 	сomponentWillUnmount () {
-        console.log("before del from dom chat")
-        this._mounted = false
-    }
+		console.log("before del from dom chat")
+		this._mounted = false
+	}
 
 	componentDidMount() {
 		if (localStorage.hasOwnProperty('token')){
@@ -30,11 +30,11 @@ class Chat extends Component {
 					})
 				} else {
 					iziToast.info({
-				    	title: 'Info',
-				    	message: 'Set profile picture before chating with somebody',
-				    	position: 'topCenter',
-				    	timeout: 5000,
-				    	progressBar: false
+						title: 'Info',
+						message: 'Set profile picture before chating with somebody',
+						position: 'topCenter',
+						timeout: 5000,
+						progressBar: false
 					}, history.push('/cabinet'))
 				}
 			})
@@ -42,15 +42,15 @@ class Chat extends Component {
 		}
 	}
 
-    render() {
-        return(
-            <div>
-            	{this.state.hasAva && 
-            		<ChatComponents login={this.props.login}/>
-            	}
-            </div>
-        );
-    }
+	render() {
+		return(
+			<div>
+				{this.state.hasAva && 
+					<ChatComponents login={this.props.login}/>
+				}
+			</div>
+		);
+	}
 }
 
 export default Chat;

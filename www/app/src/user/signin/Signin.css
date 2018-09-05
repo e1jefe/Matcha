@@ -1,128 +1,128 @@
 .sign-in__holder {
-    height: calc(100vh - 148px);
+		height: calc(100vh - 148px);
 }
 
 .active {
-    display: block;
+		display: block;
 }
 
 .none {
-    display: none;
+		display: none;
 }
 
 i {
-    font-style: normal;
+		font-style: normal;
 }
 
 .form-holder{
-    margin: 20px auto 0;
-    padding: 2% 2% 3% 2%;
-    max-width: 320px;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+		margin: 20px auto 0;
+		padding: 2% 2% 3% 2%;
+		max-width: 320px;
+		background: #fff;
+		border-radius: 3px;
+		box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
 }
 
 .position-relative {
-    position: relative;
+		position: relative;
 }
 
 .dop-pad {
-    padding-left: 40px;
+		padding-left: 40px;
 }
 
 label.image-replace {
-    display: inline-block;
-    position: absolute;
-    left: 15px;
-    top: 22%;
-    bottom: auto;
-    height: 20px;
-    width: 20px;
-    overflow: hidden;
-    white-space: nowrap;
-    color: rgba(0,0,0,0.5);
-    text-shadow: none;
-    background-repeat: no-repeat;
-    font-family: 'fontawesome';
+		display: inline-block;
+		position: absolute;
+		left: 15px;
+		top: 22%;
+		bottom: auto;
+		height: 20px;
+		width: 20px;
+		overflow: hidden;
+		white-space: nowrap;
+		color: rgba(0,0,0,0.5);
+		text-shadow: none;
+		background-repeat: no-repeat;
+		font-family: 'fontawesome';
 }
 
 label.password {
-    background-image: url(https://codyhouse.co/demo/login-signup-modal-window/img/cd-icon-password.svg);
+		background-image: url(https://codyhouse.co/demo/login-signup-modal-window/img/cd-icon-password.svg);
 }
 
 .margin-top {
-    margin-top: 15px;
-    font-size: 16px;
+		margin-top: 15px;
+		font-size: 16px;
 }
 
-    .btn-my-color:hover {
-        background-color: #9947eb;
-        border-color: transparent;
-    }
+		.btn-my-color:hover {
+				background-color: #9947eb;
+				border-color: transparent;
+		}
 
-    .btn-primary:focus {
-        border-color: transparent;
-        box-shadow: none;
-    }
+		.btn-primary:focus {
+				border-color: transparent;
+				box-shadow: none;
+		}
 
 .flex-wrap {
-  opacity: 1;
-  transition: opacity 0.5s;
-    margin: 20px auto;
-    padding: 10px;
-    max-width: 310px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-    background-color: #FFF2D3;
-    border-radius: 2px;
-    font-family: 'lato', sans-serif;
-    box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.58);
+	opacity: 1;
+	transition: opacity 0.5s;
+		margin: 20px auto;
+		padding: 10px;
+		max-width: 310px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		text-align: center;
+		background-color: #FFF2D3;
+		border-radius: 2px;
+		font-family: 'lato', sans-serif;
+		box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.58);
 }
 
 .nav-push-down {
-    margin-bottom: 10px;
+		margin-bottom: 10px;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-    background-color: #d9baf7;
+		background-color: #d9baf7;
 }
 
 .alert-danger, .alert-success {
-    display: block;
+		display: block;
 }
 
 .example-enter {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
+	opacity: 0.01;
+	transition: opacity .5s ease-in;
 }
 
 .example-enter.example-enter-active {
-  opacity: 1;
+	opacity: 1;
 }
 
 .example-leave {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+	opacity: 1;
+	transition: opacity .5s ease-in;
 }
 
 .example-leave.example-leave-active {
-  opacity: 0.01;
+	opacity: 0.01;
 }
 .fbButton .kep-login-facebook.metro{
-    border-radius: 4px;
-    width: 100%;
-    font-size: 11px;
-    color: #4c69ba;
-    background-color: #fff;
-    padding: calc(.34435vw + 6.38843px) calc(.34435vw + 18.38843px);
+		border-radius: 4px;
+		width: 100%;
+		font-size: 11px;
+		color: #4c69ba;
+		background-color: #fff;
+		padding: calc(.34435vw + 6.38843px) calc(.34435vw + 18.38843px);
 }
 
 .my-btn-block {
-    display: block;
-    width: 100%;
-    font-weight: 700;
+		display: block;
+		width: 100%;
+		font-weight: 700;
 }

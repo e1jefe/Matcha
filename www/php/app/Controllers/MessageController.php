@@ -46,7 +46,6 @@ class MessageController extends Controller
 			$count = 0;
 			$hasUnread = 0;
 
-			// $countOut = 0;
 			foreach ($fromDb as $msg) {
 				if ($v === $msg['sender'] || $v === $msg['receiver']) {
 					$messag[$count] = array('sender'=> $msg['sender'], 'content' => $msg['msg'], 'time' => substr($msg['whenSend'], -8, 5), 'read' => $msg['seen']);
@@ -158,7 +157,6 @@ class MessageController extends Controller
 		}
 
 		$result->data = $conversation;
-		// $result->check = "author " . $uId . " reciever " . $target;
 		return json_encode($result);
 	}
 
@@ -208,7 +206,6 @@ class MessageController extends Controller
 		}
 
 		$result->data = $conversation;
-		// $result->check = "sender " . $sender . " reciever " . $me;
 		return json_encode($result);
 	}
 

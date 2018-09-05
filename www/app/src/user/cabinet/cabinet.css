@@ -39,8 +39,8 @@
 	padding: 5px;
 }
 .file {
-  visibility: hidden;
-  position: absolute;
+	visibility: hidden;
+	position: absolute;
 }
 
 .marginTop {
@@ -58,10 +58,6 @@
 	border-radius: 3px;
 }
 
-	.tagTxt {
-
-	}
-
 	.tagDel {
 		visibility: hidden;
 		text-align: center;
@@ -71,7 +67,7 @@
 		height: 20px;
 		position: absolute;
 		top: -4px;
-    	right: -5px;
+			right: -5px;
 		background-color: red;
 		border-radius: 50%;
 	}

@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import jwtDecode from 'jwt-decode'
-import { PostData } from '../../main/components/PostData'
-import { Layout } from 'antd'
-import { Rate } from 'antd'
-import { Button } from 'antd'
-import Like from './Like'
-import Block from './Block'
+import React, { Component } from 'react';
+import jwtDecode from 'jwt-decode';
+import { PostData } from '../../main/components/PostData';
+import { Layout } from 'antd';
+import { Rate } from 'antd';
+import { Button } from 'antd';
+import Like from './Like';
+import Block from './Block';
 import Scammer from './Scammer';
 import SimpleSlider from './SimpleSlider';
 
 
-const { Content } = Layout
+const { Content } = Layout;
 
 class ProfileContent extends Component {
 	constructor(props) {

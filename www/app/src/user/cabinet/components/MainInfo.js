@@ -53,7 +53,7 @@ class MainInfo extends Component {
 
 	handleSexPrefChange(event){
 		event.preventDefault();
-    	this.setState({sexPref: event.target.value});
+		this.setState({sexPref: event.target.value});
 	}
 
 	handleSubmitInfo(event) {
@@ -84,10 +84,10 @@ class MainInfo extends Component {
 				sex: result.newData.sex,
 				sexPref: result.newData.sexPref
 			}, iziToast.info({
-				    title: 'Info',
-				    message: 'We updated your info',
-				    position: 'center',
-				    progressBar: false
+					title: 'Info',
+					message: 'We updated your info',
+					position: 'center',
+					progressBar: false
 				}))
 		})
 	}
@@ -173,9 +173,9 @@ class MainInfo extends Component {
 						</h4>
 						<select className="custom-select" value={this.state.sexPref !== undefined ? this.state.sexPref : " "} onChange={this.handleSexPrefChange} name="sexPref">
 							<option value="">...</option>
-						    <option value="bi" >Bisexual</option>
-						    <option value="hetero" >Heterosexual</option>
-						    <option value="homo" >Homosexual</option>						    
+							<option value="bi" >Bisexual</option>
+							<option value="hetero" >Heterosexual</option>
+							<option value="homo" >Homosexual</option>						    
 						</select>
 					</div>
 				</div>

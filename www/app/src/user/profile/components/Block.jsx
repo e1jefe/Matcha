@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { Tooltip, Button, Icon } from 'antd'
-import { PostData } from '../../main/components/PostData'
-import jwtDecode from 'jwt-decode'
-import iziToast from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
+import React, { Component } from 'react';
+import { Tooltip, Button, Icon } from 'antd';
+import { PostData } from '../../main/components/PostData';
+import jwtDecode from 'jwt-decode';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 class Block extends Component {
 	constructor(props) {

@@ -1,58 +1,61 @@
 * {
-		padding         : 0;
-		margin          : 0;
-		box-sizing      : border-box;
-		list-style-type : none;
+	padding         : 0;
+	margin          : 0;
+	box-sizing      : border-box;
+	list-style-type : none;
 }
 
 a:visited {
-				color : #000;
-				text-decoration: none;
-		}
+	color : #000;
+	text-decoration: none;
+}
 
 div.menu {
-		width: 100%;
-		overflow: hidden;
-		background-color : #FAEBD7;
+	width: 100%;
+	overflow: hidden;
+	background-color : #FAEBD7;
 }
 
 	div.menu > ul {
 		margin-bottom: 0;
 	}
 
-.menu a {
+	.menu a {
 		padding : 20px 25px;
 		display : inline-block;
 		transition: background-color 1s;
 		text-decoration: none;
 		font-family: 'lato', sans-serif;
 		color: #000;
-}
+	}
 		.menu a:hover {
-				background-color : #b6c0c8;
-				text-decoration: none;
+			background-color : #b6c0c8;
+			text-decoration: none;
+		}
 
-		}
 		.menu a:visited {
-				color : #000;
-				text-decoration: none;
+			color : #000;
+			text-decoration: none;
 		}
+
 		.menu .logo {
-				font-family: 'Ballpark', sans-serif;
-				line-height: 44px;
-				font-size: 40px;
+			font-family: 'Ballpark', sans-serif;
+			line-height: 44px;
+			font-size: 40px;
 		}
-				.menu .logo:hover {
-						background-color: transparent;
-				}
-				.menu a.logo:hover {
-					color: #000;
-					cursor: pointer;
-				}
+			.menu .logo:hover {
+				background-color: transparent;
+			}
+
+			.menu a.logo:hover {
+				color: #000;
+				cursor: pointer;
+			}
 
 li.item {
 	display: inline-block;
 }
+
 div.clearfix {
 	content: '';
 	width : 0;
@@ -60,50 +63,54 @@ div.clearfix {
 	clear : both;
 }
 img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userImage {
-		width : 40px;
-		height : 40px;
+	width : 40px;
+	height : 40px;
 }
 .menu-right {
 	float: right;
 	line-height: 44px;
 }
+
 #menuToggle input {
-		display: none;
+	display: none;
 }
 
 .item button.unread-msg-btn {
 	background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
 		div.menu {
-				overflow: visible;
+			overflow: visible;
 		}
-				div.menu a {
-						padding: 10px;
-				}
-				.menu a:hover{
-						background-color : transparent;
-				}
-				.logo {
-						font-size: 30px;
-						line-height: inherit;
-				}
-				img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userImage { 
-						width: 30px;
-						height: 30px;
-				}
-		.menu a {
+			div.menu a {
+				padding: 10px;
+			}
+
+			.menu a:hover{
+				background-color : transparent;
+			}
+
+			.logo {
+				font-size: 30px;
+				line-height: inherit;
+			}
+
+			img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userImage { 
+				width: 30px;
+				height: 30px;
+			}
+
+			.menu a {
 				display: block;
-		}
-#menuToggle
-{
+			}
+#menuToggle {
 	float: right;
 	position: relative;
 	top: 20px;
@@ -115,11 +122,10 @@ img.homeImage, img.searchImage, img.shopaImage, img.notificationImage, img.userI
 	user-select: none;
 }
 
-#menuToggle input
-{
+#menuToggle input {
 	content: '';
-position: absolute;
-display: block;
+	position: absolute;
+	display: block;
 	width: 40px;
 	height: 32px;
 
@@ -132,16 +138,13 @@ display: block;
 	
 	opacity: 0;  /* hide this */
 	z-index: 2;  /* and place it over the hamburger */
-	
-	/*-webkit-touch-callout: none;*/
 }
 
 /*
  * Just a quick hamburger
  */
  
-#menuToggle span
-{
+#menuToggle span {
 	display: block;
 	width: 33px;
 	height: 4px;
@@ -160,13 +163,11 @@ display: block;
 							opacity 0.55s ease;
 }
 
-#menuToggle span:first-child
-{
+#menuToggle span:first-child {
 	transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2)
-{
+#menuToggle span:nth-last-child(2) {
 	transform-origin: 0% 100%;
 }
 
@@ -174,8 +175,7 @@ display: block;
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked ~ span
-{
+#menuToggle input:checked ~ span {
 	opacity: 1;
 	transform: rotate(45deg) translate(3px, 0px);
 	background: #232323;
@@ -184,8 +184,7 @@ display: block;
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
+#menuToggle input:checked ~ span:nth-last-child(3) {
 	opacity: 0;
 	transform: rotate(0deg) scale(0.2, 0.2);
 }
@@ -193,8 +192,7 @@ display: block;
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
+#menuToggle input:checked ~ span:nth-last-child(2) {
 	transform: rotate(-45deg) translate(0, 5px);
 }
 
@@ -202,8 +200,7 @@ display: block;
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu
-{
+#menu {
 	position: absolute;
 	right: -10px;
 	top: -20px;
@@ -223,8 +220,7 @@ display: block;
 	/*transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);*/
 }
 
-#menu li
-{
+#menu li {
 	padding: 0px;
 	font-size: 22px;
 }
@@ -232,16 +228,15 @@ display: block;
 /*
  * And let's slide it in from the left
  */
-		#menuToggle input:checked ~ ul
-		{
+		#menuToggle input:checked ~ ul {
 			transform: none;
 		}
+		
 		#menuToggle input:checked ~ ul#menu {
-				padding: 58px 5px 0;
-				/*margin-left: -16px;*/
-				opacity: 1;
-				display: block;
-				transition: opacity 0.8s;
+			padding: 58px 5px 0;
+			opacity: 1;
+			display: block;
+			transition: opacity 0.8s;
 		}
 }
 
@@ -252,6 +247,7 @@ display: block;
 	object-fit: cover;
 	border-radius: 50%;
 }
+
 .notifTxt {
 	display: inline-block;
 	font-weight: 400;

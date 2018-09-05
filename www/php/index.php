@@ -20,33 +20,17 @@ $app = new \Slim\App([
         ],
 	]
 ]);
-
 $container = $app->getContainer();
-
 $container['view'] = function($container) {
-	
 	$view = new \Slim\Views\Twig(__DIR__ . '/app/views', [
 		'cache' => false,
 	]);
-
 	$view->addExtension(new \Slim\Views\TwigExtension(
 		$container->router,
 		$container->request->getUri()
 	));
-
-	// $view->getEnvironment()->addGlobal('auth', [
-	// 	'check' => $container->auth->check(),
-	// 	'user' => $container->auth->user(),
-	// ]);
-
-	// $view->getEnvironment()->addGlobal('flash', $container->flash);
-
 	return $view;
 };
-
-// $container['validator'] = function($container) { usefull function but we re not allowed use external validation
-// 	return new \App\Validation\Validator;
-// };
 
 $container['mail'] = function($container) {
 	return new \App\Mail\SendMail;
@@ -72,8 +56,6 @@ $container['SearchController'] = function ($container) {
 $container['MessageController'] = function ($container) {
 	return new \App\Controllers\MessageController($container);
 };
-
-// v::with('App\\Validation\\Rules\\');
 
 require __DIR__ . '/app/config/routes.php';
 

@@ -1,16 +1,17 @@
 body {
-    /*margin: 2px;*/
-    /*padding: 3vh 0;*/
     font-family: 'Roboto', sans-serif;
     height: 100%;
 }
-.search{
+
+.search {
     height: 100%;
 }
-#search-all{
+
+#search-all {
     height: calc(100vh - 124px);
     overflow-y: scroll;
 }
+
 #wrapper1 {
     width: 650px;
     height: 350px;
@@ -28,22 +29,26 @@ body {
     width: 100%;
     height: 200px;
     border-radius: 7px;
-    position: relative; }
+    position: relative;
+}
 
-.btn-search{
+.btn-search {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
 }
-.btn-search button{
+
+.btn-search button {
     width: 100%;
     display: inline-block;
 
 }
-.tags{
+
+.tags {
     width: 100%;
 }
+
 .Cards {
     width: 650px;
     height: 90px;
@@ -52,6 +57,7 @@ body {
     margin: auto;
     display: table;
 }
+
 .Radio{
     display: flex;
     margin: 15px;
@@ -59,10 +65,13 @@ body {
     margin-right: auto;
     width: 100%;
     flex-wrap: nowrap;
- }.ant-radio-group{
+}
+
+.ant-radio-group{
      margin-left: auto;
      margin-right: auto;
- }
+}
+
 .ant-radio-wrapper{
     font-weight: 500;
 }
