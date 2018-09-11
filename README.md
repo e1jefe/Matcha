@@ -6,4 +6,4 @@ Client used clear Javascript/ReactJs
 Back-end php/slim
 HTML/CSS/Bootstrap
 
-![Alt Text](http://recordit.co/1NbMhKKVyI)
+![](http://recordit.co/1NbMhKKVyI)
