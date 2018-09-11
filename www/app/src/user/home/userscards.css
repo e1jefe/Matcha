@@ -1,0 +1,29 @@
+body {
+    margin: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.CardHolder {
+    max-height: 80%;
+    padding: 10px;
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+}
+
+.card {
+    background-color: #fff;
+    padding-top: 20px;
+}
+
+.CardHolder img {
+    width: 90%;
+}
+
+.CardLink {
+    right: 5px;
+}
+
+.my-card-search {
+    width: 91%;
+}

@@ -1,0 +1,112 @@
+html,
+body {
+	width: auto;
+		height: auto;
+}
+
+.ant-layout {
+	background: none;
+}
+
+.profile-pic-slide {
+	width: 100%;
+}
+
+	.profile-pic-slide > img {
+		display: block;
+		width: 100%;
+	}
+
+	.slick-next:before,
+	.slick-prev:before {
+		color: #a6a6a6;
+	}
+
+.ant-tag {
+		margin-bottom: 8px;
+}
+
+.my-carousel{
+	width: 50%;
+	margin: 20px auto 0px;
+}
+.ant-carousel .slick-list {
+	height: 30vh;
+}
+.ant-carousel .slick-slider {
+	height: 30vh;
+		background: #364d79;
+}
+
+.ant-carousel .slick-slide {
+		text-align: center;
+		max-height: 500px;
+		overflow: hidden;
+}
+
+.ant-carousel .slick-slide img {
+		height: 100%;
+	box-sizing: border-box;
+	max-width: 100%;
+	max-height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.targetDescription {
+	width: 50%;
+	margin: 20px auto 0px;
+	padding: 10px;
+}
+
+	.targetDescription-name {
+		display: inline-block;
+		font-weight: 900;
+	}
+
+	.targetDescription-age {
+		display: inline-block;
+		font-weight: 300;
+		margin-left: 8px;
+	}
+
+	.targetDescription-info {
+		margin-bottom: 20px;
+	}
+
+		.targetDescription-info > p{
+			margin: 0px;
+			font-size: 14px;
+				color: #333;
+				font-weight: 300;
+		}
+
+	.targetBio {
+		margin-bottom: 20px;
+		font-size: 16px;
+			color: #000;
+	}
+
+	.targetTags > h2{
+		font-size: 14px;
+		color: #333;
+		font-weight: 300;
+		margin-bottom: 10px;
+	}
+
+		.targetTags-holder{
+			margin-bottom: 10px;
+		}
+
+			.targetTags-single{
+				background: #E0E0E0;
+				border-radius: 50px;
+				display: inline-block;
+				padding: 5px 20px 5px 20px;
+				margin: 3px 4px;
+				font-weight: 600;
+			}
+
+	.target-btn {
+		width: 33.3%;
+	}

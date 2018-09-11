@@ -1,0 +1,132 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+.search {
+    height: 100%;
+}
+
+#search-all {
+    height: calc(100vh - 124px);
+    overflow-y: scroll;
+}
+
+#wrapper1 {
+    width: 650px;
+    height: 350px;
+    max-height: 80%;
+    padding: 15px;
+    border-radius: 7px;
+    margin: auto;
+    background-image: -moz-linear-gradient(135deg, #fafaff 0%, #f7f7fc 100%);
+    background-image: -webkit-linear-gradient(135deg, #fafaff 0%, #f7f7fc 100%);
+    background-image: -ms-linear-gradient(135deg, #fafaff 0%, #f7f7fc 100%);
+    box-shadow: 0px 12px 30px 0px rgba(1, 50, 101, 0.07);
+}
+
+.sliders {
+    width: 100%;
+    height: 200px;
+    border-radius: 7px;
+    position: relative;
+}
+
+.btn-search {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.btn-search button {
+    width: 100%;
+    display: inline-block;
+
+}
+
+.tags {
+    width: 100%;
+}
+
+.Cards {
+    width: 650px;
+    height: 90px;
+    max-height: 80%;
+    padding: 15px;
+    margin: auto;
+    display: table;
+}
+
+.Radio{
+    display: flex;
+    margin: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.ant-radio-group{
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.ant-radio-wrapper{
+    font-weight: 500;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media only screen and (max-width:769px){
+    #search-all {
+        height: 100%;
+    }
+    .Radio{
+        margin-top: 5px;
+    }
+}
+@media only screen and (max-width:768px){
+    #search-all {
+        height: calc(100vh - 124px);
+    }
+    .Radio{
+        margin-top: 5px;
+    }
+}
+@media only screen and (max-width:480px){
+    #wrapper1 {
+        width: 99%;
+        height: 290px;
+        margin: auto;
+    }
+
+    .Cards {
+        width: 100%;
+        height: 90px;
+        max-height: 85%;
+        padding: 5px;
+        margin: auto;
+    }
+    .input-range {
+        width: 90%;
+        height: 160px;  }
+    .tags{
+        width: 100%;
+        display: none;
+
+    }
+    .btn-search button{
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+    .Radio{
+        margin-top: 0px;
+        flex-wrap: nowrap;
+    }
+    #search-all {
+        height: calc(100vh - 104px);
+    }
+}

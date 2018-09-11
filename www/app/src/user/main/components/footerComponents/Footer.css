@@ -1,0 +1,27 @@
+a,
+a:visited {
+	color : #000;
+}
+
+.footer_bottom {
+	text-align: center;
+}
+
+.footerBackground {
+	background-color: #FAEBD7 !important;
+	font-family: 'lato', sans-serif;
+	line-height: 40px;
+	font-size: calc(12px + (18 - 12) * ((100vw - 320px) / 680));
+	width: 100%;
+	font-size: 16px;
+}
+
+.footerTextColor {
+	color: darkslategray;
+}
+
+@media (max-width: 418px){
+	.footerBackground {
+		font-size: calc(10px + (12 - 10) * ((100vw - 120px) / 418));
+	}
+}

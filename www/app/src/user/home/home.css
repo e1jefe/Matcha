@@ -1,0 +1,105 @@
+.index {
+		margin: 0;
+		padding: 0;
+		min-height: calc(100vh - 125px);
+		font-family: "lato", sans-serif;
+		font-size: calc(10px + (20 - 14) * ((100vw - 300px) / (1600 - 300)));
+		background: url(https://images.unsplash.com/photo-1415369629372-26f2fe60c467?dpr=2&fit=crop&fm=jpg&h=2175&ixlib=rb-0.3.5&q=50&w=1450);
+		background-size: cover;
+		background-position: center;
+}
+
+		.index-holder {
+				padding-top: 25%;
+				padding-right: 15px;
+				padding-left: 15px;
+				margin-right: auto;
+				margin-left: auto;
+				text-align: center;
+				text-shadow: 0px 4px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1);
+				color: white;
+				font-family: lato;
+				font-weight: 700;
+		}
+
+				.index-title, .index-sub-title {
+						margin-top: 20px;
+						margin-bottom: 10px;
+						font-size: 36px;
+						font-weight: 500;
+						line-height: 1.1;
+						color: #fff;
+				}
+
+				.index-sub-title {
+						font-size: 24px;
+				}
+
+				.index-holder hr {
+						margin-top: 20px;
+						margin-bottom: 20px;
+						border: 0;
+						border-top: 1px solid #eee;
+				}
+
+				a.index-btn {
+						text-shadow: none;
+						padding: 10px 16px;
+						font-size: 18px;
+						line-height: 1.3333333;
+						border-radius: 6px;
+						color: #333;
+						background-color: #fff;
+						border-color: #ccc;
+						display: inline-block;
+						margin-bottom: 0;
+						font-weight: 400;
+						text-align: center;
+						white-space: nowrap;
+						vertical-align: middle;
+						-ms-touch-action: manipulation;
+						touch-action: manipulation;
+						cursor: pointer;
+						user-select: none;
+						background-image: none;
+						font-family: 'lato', sans-serif;
+				}
+
+						a.index-btn:hover {
+								background-color: #e6e6e6;
+								border-color: #adadad;
+						}
+
+						.paw {
+								display: inline-block;
+								margin-right: 5px;
+								font: normal normal normal 14px/1 FontAwesome;
+								font-size: inherit;
+								text-rendering: auto;
+								-webkit-font-smoothing: antialiased;
+						}
+
+						.paw:before {
+								content: "\f1b0";
+						}
+
+@media (min-width: 1200px) {
+		.index-holder {
+				width: 1170px;
+		}
+}
+
+@media (min-width: 992px) {
+		.index-holder {
+				width: 970px;
+		}
+}
+
+@media (max-width: 768px) {
+		.index-holder {
+				width: 100%;
+		}
+		.index {
+				min-height: calc(100vh - 104px);
+		}
+}
