@@ -24,8 +24,8 @@ as: <br/>
 6. Chat <br/>
 7. Notifications <br/>
 
-### Sign-in, profile, search
-![profile](https://media.giphy.com/media/2aRKjgZxZq2qXCKAUU/giphy.gif)
+###Sign-in,profile,search
+![profile](https://thumbs.gfycat.com/FastHomelyHoopoe-size_restricted.gif)
 
 ###Chat webscoket
-![chat](https://media.giphy.com/media/5nj57KcWS8mvT9kyxu/giphy.gif)
+![chat](https://thumbs.gfycat.com/BigFineAsp-size_restricted.gif)
