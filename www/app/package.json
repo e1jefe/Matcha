@@ -18,7 +18,7 @@
     "react-image-lightbox": "^5.0.0",
     "react-input-range": "^1.3.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "5.0.1",
     "react-scroll-into-view-if-needed": "^2.1.6",
     "react-slick": "^0.23.1",
     "reactstrap": "^6.3.1",
